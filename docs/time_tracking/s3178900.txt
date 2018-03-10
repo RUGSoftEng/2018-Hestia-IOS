@@ -11,4 +11,12 @@ Meeting with group (Marc, Tom, Andrei) and fixing documents and resolving issues
 Meeting with group (Marc, Tom, Andrei) and fixing documents and resolving issues
 Meeting with group (Marc, Tom, Andrei) and fixing documents and resolving issues
 Meeting with group (Marc, Tom, Andrei) and working on trello and github.
-
+Meeting with group (All) and TA
+Meeting with group (All)
+Meeting with group (All)
+Meeting with group (All)
+Fixing docs, names and adding meeting notes.
+Reading up on CodeCov and TravisCI
+Made meeting notes for team meeting
+Reading and learning up on C# syntax
+Reading and learning up on C# syntax
