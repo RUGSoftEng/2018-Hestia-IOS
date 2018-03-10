@@ -16,3 +16,7 @@ Meeting with group (All)
 Meeting with group (All)
 Meeting with group (All)
 Fixing docs, names and adding meeting notes.
+Reading up on CodeCov and TravisCI
+Made meeting notes for team meeting
+Reading and learning up on C# syntax
+Reading and learning up on C# syntax
