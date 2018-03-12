@@ -14,3 +14,31 @@ Meeting with group (Zino, Tom, Andrei) and fixing documents and resolving issues
 Meeting with group (Zino, Tom, Andrei) and fixing documents and resolving issues
 Meeting with group (Zino, Tom, Andrei) and fixing documents and resolving issues
 Adding footnotes for introduction (new PR)
+Reading iOS human interface guidelines
+Learning justinmind. Trying design with sliders
+Learning justinmind. Trying design with sliders
+Learning justinmind. Trying design with sliders
+Learning justinmind. Trying design with sliders
+Trying to get Hestia running on raspberry pi (didn't manage to do it)
+Trying to get Hestia running on raspberry pi (didn't manage to do it)
+Trying to get Hestia running on raspberry pi (didn't manage to do it)
+Trying to get Hestia running on raspberry pi (didn't manage to do it)
+Trying to get Hestia running on raspberry pi (didn't manage to do it) and ubuntu (worked directly)
+Meeting with team and Feiko
+Meeting with team
+Meeting with team
+Meeting with team
+Scanning annotated screenshots from meeting + updating useful links document + reading Hestia architecture document
+Working on justinmind prototype device screens
+Working on justinmind prototype device screens
+Again working on device screens
+Again working on device screens
+Again working on device screens
+Again working on device screens
+Again working on device screens
+Adding to meeting notes, reviewing PR Zino
+Reading about Xamarin development for iOS and setting up Xamarin with Zino's project from GitHub
+Reading about Xamarin development for iOS and setting up Xamarin with Zino's project from GitHub
+Added device screen explanation in architecture document
+Added device screen explanation in architecture document
+Added device screen explanation in architecture document + fixing login screen design
