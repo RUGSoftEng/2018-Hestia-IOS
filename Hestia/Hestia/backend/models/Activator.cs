@@ -8,11 +8,11 @@ using UIKit;
 
 namespace Hestia.backend.models
 {
-    class Activator<T>
+    class Activator
     {
         private String activatorId;
         private int rank;
-        private ActivatorState<T> state;
+        private ActivatorState<Object> state;
         private String name;
         public Device device;
         private NetworkHandler handler;
@@ -44,12 +44,12 @@ namespace Hestia.backend.models
             this.rank = rank;
         }
 
-        public ActivatorState<T> GetState()
+        public ActivatorState<Object> GetState()
         {
             return this.state;
         }
 
-        public void setState(ActivatorState<T> state) 
+        public void setState(ActivatorState<Object> state) 
         {
             throw new NotImplementedException();
         }
@@ -79,7 +79,7 @@ namespace Hestia.backend.models
             return this.device;
         }
 
-        public setDevice(DeviceCheck device)
+        public void SetDevice(Device device)
         {
             this.device = device;
         }
@@ -91,7 +91,7 @@ namespace Hestia.backend.models
             {
                 return false;
             }
-            Activator<T> activator = (Activator<T>)obj;
+            Activator activator = (Activator)obj;
             return (this == activator || (this.GetId().Equals(activator.GetId()) &&
                 this.GetRank().Equals(activator.GetRank()) &&
                 this.GetState().Equals(activator.GetState()) &&
