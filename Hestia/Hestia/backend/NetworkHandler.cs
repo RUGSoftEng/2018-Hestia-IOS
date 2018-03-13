@@ -29,7 +29,7 @@ namespace Hestia.backend
             using (var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate }))
             {
                 client.BaseAddress = new Uri(endpoint);
-                HttpResponseMessage response = client.GetAsync("answers?order=desc&sort=activity&site=stackoverflow").Result;
+                HttpResponseMessage response = client.GetAsync(endpoint).Result;
                 response.EnsureSuccessStatusCode();
                 string result = response.Content.ReadAsStringAsync().Result;
                 Console.WriteLine("Result: " + result);
