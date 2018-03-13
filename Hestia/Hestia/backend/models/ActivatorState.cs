@@ -47,7 +47,6 @@ namespace Hestia.backend.models
         /*
          * Get the JSON representation of the RawS State, which could be a Boolean, a Float or a String.
          */
-
         public JsonPrimitive GetRawStateJSON ()
         {
             switch (this.GetType().ToString().ToLower())
@@ -67,7 +66,8 @@ namespace Hestia.backend.models
             return this.type + " - " + this.rawState.ToString();
         }
 
-        public bool EqualsO(Object obj)
+        new
+        public bool Equals(Object obj)
         {
             if (!(obj.GetType() == this.GetType())) return false;
             ActivatorState<T> activatorState = (ActivatorState<T>) obj;
@@ -75,7 +75,8 @@ namespace Hestia.backend.models
                     this.GetRawState().Equals(activatorState.GetRawState())));
         }
 
-        public int HashCode()
+        new
+        public int GetHashCode()
         {
             throw new NotImplementedException();
         }
