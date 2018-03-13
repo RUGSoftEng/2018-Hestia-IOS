@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="activatorsPath" xml:space="preserve">
+    <value>/activators/</value>
+  </data>
   <data name="appname" xml:space="preserve">
     <value>Hestia</value>
+  </data>
+  <data name="devicePath" xml:space="preserve">
+    <value>devices/</value>
   </data>
   <data name="hashCodeMultiplier" xml:space="preserve">
     <value>31</value>
@@ -128,6 +134,18 @@
   </data>
   <data name="ipOfServer" xml:space="preserve">
     <value>IP_OF_SERVER</value>
+  </data>
+  <data name="loginPath" xml:space="preserve">
+    <value>login</value>
+  </data>
+  <data name="pluginPathFront" xml:space="preserve">
+    <value>plugins</value>
+  </data>
+  <data name="pluginsPath" xml:space="preserve">
+    <value>plugins</value>
+  </data>
+  <data name="pluginsPathMid" xml:space="preserve">
+    <value>plugins</value>
   </data>
   <data name="server" xml:space="preserve">
     <value>server</value>

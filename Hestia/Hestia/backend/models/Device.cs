@@ -61,26 +61,26 @@ namespace Hestia.backend.models
 
         public void SetName(String name)
         {
-            /*
-             * This code needs still needs transfering, 
-                String endpoint = HestiaApplication.getContext().getString(R.string.devicePath) + deviceId;
-                JsonObject obj = new JsonObject();
-                obj.addProperty("name", name);
-                JsonElement payload = handler.PUT(obj, endpoint);
+            String endpoint = new ResourceManager("strings", Assembly.GetExecutingAssembly()).GetString("devicePath") + deviceId;
+            JsonObject obj = new JsonObject
+            {
+                { "name", name }
+            };
+            /*JsonElement payload = handler.PUT(obj, endpoint);
 
-                if (payload != null && payload.isJsonObject()) 
+            if (payload != null && payload.isJsonObject()) 
+            {
+                JsonObject payloadObject = payload.getAsJsonObject();
+
+                if (payloadObject.has("error")) 
                 {
-                    JsonObject payloadObject = payload.getAsJsonObject();
+                    GsonBuilder gsonBuilder = new GsonBuilder();
+                    Gson gson = gsonBuilder.create();
+                    ComFaultException comFaultException = gson.fromJson(payload, ComFaultException.class);
+                    throw comFaultException;
 
-                    if (payloadObject.has("error")) 
-                    {
-                        GsonBuilder gsonBuilder = new GsonBuilder();
-                        Gson gson = gsonBuilder.create();
-                        ComFaultException comFaultException = gson.fromJson(payload, ComFaultException.class);
-                        throw comFaultException;
-
-                    }
-            }*/
+                }
+        }*/
             this.name = name;
         }
 
