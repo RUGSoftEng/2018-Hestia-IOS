@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Resources;
+using System.Globalization;
 using System.Json;
 using System.Text;
 
@@ -11,7 +14,7 @@ namespace Hestia.backend.models
         private String name;
         private String type;
         private List<Activator> activators;
-        private NetworHandler handler;
+        private NetworkHandler handler;
 
         public Device(String deviceId, String name, String type, List<Activator> activator, NetworkHandler handler)
         {
@@ -100,18 +103,18 @@ namespace Hestia.backend.models
                     this.GetName().Equals(device.GetName()) &&
                     this.GetType().Equals(device.GetType()) &&
                     this.GetActivators().Equals(device.GetActivators()) &&
-                    this.GetHandler().equals(device.GetHandler())));
+                    this.GetHandler().Equals(device.GetHandler())));
         }
 
         new
         public int GetHashCode()
         {
-            int multiplier = 0; //int.Parse(HestiaApplication.getContext().getString(R.string.hashCodeMultiplier)); This can't be used yet.
+            int multiplier = int.Parse(new ResourceManager("strings", Assembly.GetExecutingAssembly()).GetString("hashCodeMultiplier"));
             int result = GetId().GetHashCode();
             result = result * multiplier + GetName().GetHashCode();
             result = result * multiplier + GetType().GetHashCode();
             result = result * multiplier + GetActivators().GetHashCode();
-            result = result * multiplier + GetHandler().HashCode();
+            result = result * multiplier + GetHandler().GetHashCode();
             return result;
         }
 
