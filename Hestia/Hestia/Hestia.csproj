@@ -65,6 +65,7 @@
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
     <Compile Include="backend\models\Device.cs" />
+    <Compile Include="backend\NetworkHandler.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
