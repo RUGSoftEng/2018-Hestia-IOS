@@ -1,0 +1,20 @@
+Date Hour Activity
+7/3/18  15:00   Meeting with the team and Feiko.
+        15:30   Meeting with the group in order to discuss the work that each one is going to do.
+        16:00   Meeting with the group in order to discuss the work that each one is going to do.
+        16:30   Meeting with the group in order to discuss the work that each one is going to do.
+9/3/18  12:00   Setting up all the virtual studio envioremnt and the installation of Xamarin.
+        12:30   Setting up all the virtual studio envioremnt and the installation of Xamarin.
+        16:00   Reading all the requirement document and also read old documents.
+        16:30   Reading all the requirement document and also read old documents.
+        17:00   Looking for information about how to run iOS app in visual studio on Windows.
+        17:30   Looking for information about how to run iOS app in visual studio on Windows.
+        18:00   Looking for information about how to run iOS app in visual studio on Windows.
+11/3/18 18:00   Setting up a virtual machine with MacOS in order to have a Mac server to connect virtual studio with.
+        18:30   Setting up a virtual machine with MacOS in order to have a Mac server to connect virtual studio with.
+        19:00   Setting up a virtual machine with MacOS in order to have a Mac server to connect virtual studio with.
+        19:30   Setting up a virtual machine with MacOS in order to have a Mac server to connect virtual studio with.
+13/3/18 19:00   Updating requirement document with Feiko's notes.
+        19:30   Talk with group on Slack to check the document.
+        20:00   Modifing little mistakes.
+14/3/18 15:00   Meeting with the group and discuss how the front end should be.
