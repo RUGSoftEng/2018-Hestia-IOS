@@ -14,8 +14,25 @@ namespace Hestia.backend.models
         private int rank;
         private ActivatorState<Object> state;
         private String name;
-        public Device device;
+        private Device device;
         private NetworkHandler handler;
+
+        public String ActivatorId { get; set; }
+        public int Rank { get; set; }
+        public ActivatorState<Object> State
+        {
+            get
+            {
+                return state;
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+        public String Name { get; set; }
+        public Device Device { get; set; }
+        public NetworkHandler Handler { get; set; }
 
         public Activator(String activatorId, int rank, String name)
         {
@@ -24,79 +41,19 @@ namespace Hestia.backend.models
             this.name = name;
         }
 
-        public String GetId()
-        {
-            return this.activatorId;
-        }
-
-        public void SetId(String activatorId)
-        {
-            this.activatorId = activatorId;
-        }
-
-        public int GetRank()
-        {
-            return rank;
-        }
-
-        public void SetRank(int rank)
-        {
-            this.rank = rank;
-        }
-
-        public ActivatorState<Object> GetState()
-        {
-            return this.state;
-        }
-
-        public void setState(ActivatorState<Object> state) 
-        {
-            throw new NotImplementedException();
-        }
-
-        public String GetName()
-        {
-            return this.name;
-        }
-
-        public void SetName(String name)
-        {
-            this.name = name;
-        }
-
-        public NetworkHandler GetHandler()
-        {
-            return this.handler;
-        }
-
-        public void SetHandler(NetworkHandler handler)
-        {
-            this.handler = handler;
-        }
-
-        public Device GetDevice()
-        {
-            return this.device;
-        }
-
-        public void SetDevice(Device device)
-        {
-            this.device = device;
-        }
-
         new
         public Boolean Equals(Object obj)
         {
-            if(!(obj is Activator))
+            if (!(obj is Activator))
             {
                 return false;
             }
             Activator activator = (Activator)obj;
-            return (this == activator || (this.GetId().Equals(activator.GetId()) &&
-                this.GetRank().Equals(activator.GetRank()) &&
-                this.GetState().Equals(activator.GetState()) &&
-                this.GetName().Equals(activator.GetName()) &&
-                this.GetHandler().Equals(activator.GetHandler())));
+            return (this == activator || (this.ActivatorId.Equals(activator.ActivatorId) &&
+                this.Rank.Equals(activator.Rank) &&
+                this.State.Equals(activator.State) &&
+                this.Name.Equals(activator.Name) &&
+                this.Handler.Equals(activator.Handler)));
         }
 
         new
