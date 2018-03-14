@@ -23,24 +23,12 @@ namespace Hestia.backend.models
         private T rawState;
         private String type;
 
+        public T RawState { get; set; }
+        public String Type { get; set; }
+
         public ActivatorState(T rawState, String type)
         {
             this.rawState = rawState;
-            this.type = type;
-        }
-
-        public T GetRawState()
-        {
-            return this.rawState;
-        }
-
-        public void SetRawState(T rawState)
-        {
-            this.rawState = rawState;
-        }
-
-        public void SetType(String type)
-        {
             this.type = type;
         }
 
@@ -52,11 +40,11 @@ namespace Hestia.backend.models
             switch (this.GetType().ToString().ToLower())
             {
                 case "bool":
-                    return new JsonPrimitive(bool.Parse(this.GetRawState().ToString()));
+                    return new JsonPrimitive(bool.Parse(this.RawState.ToString()));
                 case "float":
-                    return new JsonPrimitive(float.Parse(this.GetRawState().ToString()));
+                    return new JsonPrimitive(float.Parse(this.RawState.ToString()));
                 default:
-                    return new JsonPrimitive(this.GetRawState().ToString());
+                    return new JsonPrimitive(this.RawState.ToString());
             }
         }
         
@@ -72,7 +60,7 @@ namespace Hestia.backend.models
             if (!(obj.GetType() == this.GetType())) return false;
             ActivatorState<T> activatorState = (ActivatorState<T>) obj;
             return (this == activatorState || (this.GetType().Equals(activatorState.GetType()) &&
-                    this.GetRawState().Equals(activatorState.GetRawState())));
+                    this.RawState.Equals(activatorState.RawState)));
         }
 
         new
