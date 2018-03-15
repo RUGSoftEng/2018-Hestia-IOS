@@ -8,3 +8,7 @@ Learning about c#
 Learning about c#
 Learning about c#
 Reading through already made code, checking for any mistakes/improvements
+Having a meeting
+Having a meeting
+Reading through previous years project
+Reading through previous years project
