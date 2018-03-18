@@ -1,0 +1,35 @@
+Meeting with TA and group
+Meeting with client 
+Meeting with client
+Setting up trello, reading up on documents made by group members
+Beginning of work on requirements
+Merging recruiments and updating document
+Merging recruiments and updating document
+Merging recruiments and updating document
+Merging recruiments and updating document
+Meeting with group (Marc, Tom, Andrei) and fixing documents and resolving issues
+Meeting with group (Marc, Tom, Andrei) and fixing documents and resolving issues
+Meeting with group (Marc, Tom, Andrei) and fixing documents and resolving issues
+Meeting with group (Marc, Tom, Andrei) and working on trello and github.
+Meeting with group (All) and TA
+Meeting with group (All)
+Meeting with group (All)
+Meeting with group (All)
+Fixing docs, names and adding meeting notes.
+Reading up on CodeCov and TravisCI
+Made meeting notes for team meeting
+Reading and learning up on C# syntax
+Reading and learning up on C# syntax
+Reading and learning up on C# syntax
+Reading and learning up on C# syntax
+Setting up a project where work can be done in.
+Understanding the backend code for the android app
+Writing and assimillating code from last year (for backend)
+Writing and assimillating code from last year (for backend)
+Testing the macs at uni and figuring out how mac server works
+Writing backend code (Activor class, Device class)
+Writing backend code (Activor class, Device class)
+Fixing ActivatorState class.
+Adding resources to replace the R.java class in runtime.
+Merging branches made by peers and helping Juan with git.
+Minor bug fixes and updates to the architecture document.

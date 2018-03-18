@@ -1,0 +1,54 @@
+Date      Hour      Activity
+Meeting with TA and group
+Meeting with client
+Setting up trello and slack
+
+24.02 13/00     Reading meeting notes
+		  13/30     Reading meeting	notes
+		  14/00		  Reading meeting notes
+		  14/30	    Reading old requirements document
+		  15/00     Talking with group on Slack
+		  15/30     Organizing stuff on Slack
+		  16/00		  Reading old requirements document
+		  16/30     Started working on Introduction chapter
+		  17/00     Still working on Introduction Chapter
+		  17/30     Same
+		  18/00     Same
+		  18/30		  Started working on System Overview
+		  19/30     Played with android app
+		  20/30     Back to System Overview
+		  21/00     Still writing
+      21/30		Modifing Design of the cover
+26.02     15/00		Meeting with team about retouches for the requirement document
+          15/30		Still talking
+          16/00		Tested git flow
+27.02	    13/00     Retouches for the requirement document
+		      13/30		Still doing that
+		      14/00		Started time tracking file
+		      14/30     Writing the activities done
+		      16/00		Learn
+28.02     19/30   Upload time-tracking file
+          20/00   Play with git syntax
+					20/30   Finish with git push
+01.03     10/30   Deleted .DS_Store file
+          11/00   Meeting with Zino
+          11/30   Installing JustInMind for Prototyping
+          12/00   Working in JustInMind
+          12/30   Same
+          13/00   Organising stuff for future meeting
+07.03.    11/00.  Meeting with Lars for getting more inside information about HESTIA server and how REST API works
+          11/30.  Meeting with Feiko and web team
+          15/00.  Meeting with Feiko and iOS team
+
+12.03.    18/00.  Discovering Visual Studio 
+          18/30.  Still discovering 
+          19/00.  Working in Just In mind
+          23/00.  Working in Just in mind
+          23/30.  Same
+13.03     00/00.  Same
+          00/30.  Same
+          01/00.  Same
+          01/30.  Worked in Architecture Document
+          02/00.  Same	
+          02/30.  Same + Upload stuff on git
+
