@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net.Http;
+using Hestia.backend;
 
 using UIKit;
 
@@ -13,7 +15,21 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Perform any additional setup after loading the view, typically from a nib.
+
+            string ip;
+            int port;
+
+            ConnectButton.TouchUpInside += (object sender, EventArgs e) =>
+            {
+                ip = ServerIp.Text;
+                port = Int32.Parse(ServerPort.Text);
+                HttpClient client = new HttpClient();
+
+                NetworkHandler networkHandler = new NetworkHandler(ip, port, client);
+
+                var devices = networkHandler.Get("devices/");
+                Console.WriteLine(devices);
+            };
         }
 
         public override void DidReceiveMemoryWarning()
