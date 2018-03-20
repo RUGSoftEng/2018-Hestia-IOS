@@ -8,6 +8,7 @@ namespace Hestia.backend.models.deserialisers
     class DeviceDeserializer
     {
         public DeviceDeserializer() { }
+
         public Device deserializeDevice(string jsonData)
         {
             return JsonConvert.DeserializeObject<Device>(jsonData);
