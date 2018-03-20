@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Hestia.backend.models.deserialiser
+namespace Hestia.backend.models.deserialisers
 {
     /**
      * Helper class that deserializes a json object into a Device object
