@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using UIKit;
+﻿using Newtonsoft.Json;
 
 namespace Hestia.backend.models.deserialiser
 {
-    class Class1
+    /**
+     * Helper class that deserializes a json object into a Device object
+     */
+    class DeviceDeserializer
     {
+        public DeviceDeserializer() { }
+        public Device deserializeDevice(string jsonData)
+        {
+            return JsonConvert.DeserializeObject<Device>(jsonData);
+        }
     }
 }
