@@ -20,15 +20,12 @@ namespace Hestia
             string ip;
             int port;
 
-            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-            
             ConnectButton.TouchUpInside += async (object sender, EventArgs e) =>
             {
                 ip = ServerIp.Text;
                 port = Int32.Parse(ServerPort.Text);
-                HttpClient client = new HttpClient();
 
-                NetworkHandler networkHandler = new NetworkHandler(ip, port, client);
+                NetworkHandler networkHandler = new NetworkHandler(ip, port);
 
                 string devices = await networkHandler.Get("devices/");
                 Console.WriteLine(devices);

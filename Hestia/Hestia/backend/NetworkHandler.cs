@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Runtime.Serialization;
-using System.Collections.Generic;
-using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
@@ -21,12 +19,13 @@ namespace Hestia.backend
         public string Ip { get; set; }
         public int Port { get; set; }
 
-        //Empty constructor for compiling.
-        public NetworkHandler(string ip, int port, HttpClient client)
+        public NetworkHandler(string ip, int port)
         {
             this.ip = ip;
             this.port = port;
-            this.client = client;
+            client = new HttpClient();
+
+            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         }
 
         public async Task<string> Get(string endpoint)
