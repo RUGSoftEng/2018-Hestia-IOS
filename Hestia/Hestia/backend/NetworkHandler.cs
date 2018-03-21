@@ -5,7 +5,6 @@ using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Net;
-using Flurl.Http;
 
 namespace Hestia.backend
 {
