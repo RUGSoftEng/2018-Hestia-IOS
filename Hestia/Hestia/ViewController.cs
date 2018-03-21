@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using Hestia.backend;
 
@@ -19,7 +20,9 @@ namespace Hestia
             string ip;
             int port;
 
-            ConnectButton.TouchUpInside += (object sender, EventArgs e) =>
+            ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+            
+            ConnectButton.TouchUpInside += async (object sender, EventArgs e) =>
             {
                 ip = ServerIp.Text;
                 port = Int32.Parse(ServerPort.Text);
@@ -27,7 +30,7 @@ namespace Hestia
 
                 NetworkHandler networkHandler = new NetworkHandler(ip, port, client);
 
-                var devices = networkHandler.Get("devices/");
+                string devices = await networkHandler.Get("devices/");
                 Console.WriteLine(devices);
             };
         }

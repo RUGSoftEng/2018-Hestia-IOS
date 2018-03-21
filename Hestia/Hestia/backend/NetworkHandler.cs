@@ -23,7 +23,7 @@ namespace Hestia.backend
         public int Port { get; set; }
 
         //Empty constructor for compiling.
-        public NetworkHandler (string ip, int port, HttpClient client)
+        public NetworkHandler(string ip, int port, HttpClient client)
         {
             this.ip = ip;
             this.port = port;
@@ -32,26 +32,38 @@ namespace Hestia.backend
 
         public async Task<string> Get(string endpoint)
         {
+            string responseString = null;
             Uri uri = new Uri(GetDefaultUri() + endpoint);
-            Console.WriteLine(uri.ToString());
-            var response = await client.GetAsync(uri);
 
-             if(response.IsSuccessStatusCode)
-             {
-                 Console.WriteLine("succes");
-             }
+            HttpResponseMessage response = await client.GetAsync(uri);
 
-            return "test";
+            if(response.IsSuccessStatusCode)
+            {
+                responseString = await response.Content.ReadAsStringAsync();
+            }
+
+            return responseString;
         }
 
-        public void post()
+        public async Task<string> Post(string jsonString, string endpoint)
         {
+            string responseString = null;
+            HttpContent content = new StringContent(jsonString);
+            Uri uri = new Uri(GetDefaultUri() + endpoint);
 
+            HttpResponseMessage response = await client.PostAsync(uri, content);
+
+            if(response.IsSuccessStatusCode)
+            {
+                responseString = await response.Content.ReadAsStringAsync();
+            }
+
+            return responseString;
         }
 
         public void delete()
         {
-
+           
         } 
 
         public void put()
