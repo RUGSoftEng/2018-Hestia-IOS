@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Net;
+using System.Net.Http;
+using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 namespace Hestia.backend
 {
@@ -25,36 +25,27 @@ namespace Hestia.backend
             this.port = port;
             client = new HttpClient();
 
+            // Trust all ssl certificates
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         }
 
         public async Task<string> Get(string endpoint)
         {
-            string responseString = null;
             Uri uri = new Uri(GetDefaultUri() + endpoint);
 
             HttpResponseMessage response = await client.GetAsync(uri);
-
-            if(response.IsSuccessStatusCode)
-            {
-                responseString = await response.Content.ReadAsStringAsync();
-            }
-
+            string responseString = await response.Content.ReadAsStringAsync();
+            
             return responseString;
         }
 
         public async Task<string> Post(string jsonString, string endpoint)
         {
-            string responseString = null;
             HttpContent content = new StringContent(jsonString);
             Uri uri = new Uri(GetDefaultUri() + endpoint);
 
             HttpResponseMessage response = await client.PostAsync(uri, content);
-
-            if(response.IsSuccessStatusCode)
-            {
-                responseString = await response.Content.ReadAsStringAsync();
-            }
+            string responseString = await response.Content.ReadAsStringAsync();
 
             return responseString;
         }
