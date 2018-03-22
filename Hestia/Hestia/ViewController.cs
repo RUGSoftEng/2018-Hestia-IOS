@@ -20,15 +20,20 @@ namespace Hestia
             string ip;
             int port;
 
-            ConnectButton.TouchUpInside += async (object sender, EventArgs e) =>
+            ConnectButton.TouchUpInside += (object sender, EventArgs e) =>
             {
                 ip = ServerIp.Text;
                 port = Int32.Parse(ServerPort.Text);
 
                 NetworkHandler networkHandler = new NetworkHandler(ip, port);
 
-                string devices = await networkHandler.Get("devices/");
+                string devices = networkHandler.Get("devices");
                 Console.WriteLine(devices);
+
+                string renameDevice =
+                "{ \"name\": \"test2\" }";
+                string response = networkHandler.Put(renameDevice, "devices/5ab37fcde82b3f07245b9d39");
+                Console.WriteLine(response);
             };
         }
 
