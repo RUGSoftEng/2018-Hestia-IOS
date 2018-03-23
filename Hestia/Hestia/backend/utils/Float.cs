@@ -13,9 +13,9 @@ namespace Hestia.backend.utils
         private float value;
         public float Value { get; set; }
 
-        public Float (float value)
+        public Float (String value)
         {
-            this.value = value;
+            this.value = float.Parse(value);
         }
     }
 }
