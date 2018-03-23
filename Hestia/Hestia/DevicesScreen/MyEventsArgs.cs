@@ -8,13 +8,13 @@ using System.Collections;
 
 namespace Hestia.DevicesScreen
 {
-    public class MyEventArgs : EventArgs
+    public class SwitchEventsArgs : EventArgs
     {
         public NSIndexPath indexPath { get; set; }
 
         public bool SwitchState { get; set; }
 
-        public MyEventArgs() : base()
+        public SwitchEventsArgs() : base()
         {
         }
     }

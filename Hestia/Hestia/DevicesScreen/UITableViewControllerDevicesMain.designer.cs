@@ -16,10 +16,19 @@ namespace Hestia
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UINavigationItem DevicesMainNavBar { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView DevicesTable { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (DevicesMainNavBar != null) {
+                DevicesMainNavBar.Dispose ();
+                DevicesMainNavBar = null;
+            }
+
             if (DevicesTable != null) {
                 DevicesTable.Dispose ();
                 DevicesTable = null;

@@ -29,8 +29,9 @@
                     </tableView>
                     <connections>
                         <outlet property="DevicesTable" destination="208" id="name-outlet-208"/>
+                        <outlet property="DevicesMainNavBar" destination="487" id="name-outlet-487"/>
                     </connections>
-                    <navigationItem title="Title" id="487" key="navigationItem"/>
+                    <navigationItem title="Devices" id="487" key="navigationItem"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="213" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
