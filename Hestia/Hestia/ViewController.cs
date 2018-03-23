@@ -2,7 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using Hestia.backend;
-
+using Newtonsoft.Json.Linq;
 using UIKit;
 
 namespace Hestia
@@ -16,25 +16,7 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
-            string ip;
-            int port;
-
-            ConnectButton.TouchUpInside += (object sender, EventArgs e) =>
-            {
-                ip = ServerIp.Text;
-                port = Int32.Parse(ServerPort.Text);
-
-                NetworkHandler networkHandler = new NetworkHandler(ip, port);
-
-                string devices = networkHandler.Get("devices");
-                Console.WriteLine(devices);
-
-                string renameDevice =
-                "{ \"name\": \"test2\" }";
-                string response = networkHandler.Put(renameDevice, "devices/5ab37fcde82b3f07245b9d39");
-                Console.WriteLine(response);
-            };
+            // Perform any additional setup after loading the view, typically from a nib.
         }
 
         public override void DidReceiveMemoryWarning()

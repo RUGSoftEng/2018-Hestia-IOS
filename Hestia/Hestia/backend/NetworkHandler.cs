@@ -1,16 +1,13 @@
-﻿using System;
-using System.Net;
-using System.Net.Http;
-using System.Runtime.Serialization;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
+using System;
+using System.Net;
+using System.Runtime.Serialization;
 
 namespace Hestia.backend
 {
-    /*
-     * Note that the network handler in hestia android extends from application and uses serializable.
-     * I have made sure that the package required for this is in the config, Application is something else though.
-     */
+
     class NetworkHandler : ISerializable
     {
         private string ip;
@@ -38,50 +35,71 @@ namespace Hestia.backend
             client = new RestClient(baseUrl);
         }
 
-        public string Get(string endpoint)
+        public JToken Get(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.GET);
+            JToken jsonResponse = ExecuteRequest(request);
 
-            IRestResponse response = client.Execute(request);
-            var content = response.Content;
-
-            return content;
+            return jsonResponse;
         }
 
-       public string Post(string payload, string endpoint)
+       public JToken Post(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.POST);
 
             request.AddParameter("application/json; charset=utf-8", payload, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;
+            JToken jsonResponse = ExecuteRequest(request);
 
-            IRestResponse response = client.Execute(request);
-            var content = response.Content;
-
-            return content;
+            return jsonResponse;
         }
         
-        public string Delete(string endpoint)
+        public JToken Delete(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.DELETE);
+            JToken jsonResponse = ExecuteRequest(request);
 
-            IRestResponse response = client.Execute(request);
-            var content = response.Content;
-
-            return content;
+            return jsonResponse;
         }
 
-        public string Put(string payload, string endpoint)
+        public JToken Put(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.PUT);
 
             request.AddParameter("application/json; charset=utf-8", payload, ParameterType.RequestBody);
             request.RequestFormat = DataFormat.Json;
+            JToken jsonResponse = ExecuteRequest(request);
 
+            return jsonResponse;
+        }
+
+        private JToken ExecuteRequest(RestRequest request)
+        {
+            request.Timeout = 2000;
             IRestResponse response = client.Execute(request);
-            var content = response.Content;
 
-            return content;
+            string responseContent = response.Content;
+            JToken jsonResponse;
+            if (response.IsSuccessful)
+            {
+                jsonResponse = JToken.Parse(responseContent);
+            }
+            else
+            {
+                try
+                {
+                    jsonResponse = JToken.Parse(responseContent);
+                }
+                catch (JsonReaderException ex)
+                {
+                    // Exception in parsing json, server did not respond or response was not in json format.
+                    Console.WriteLine(ex.Message);
+                    string jsonError = "{ \"error\": \"something went wrong\" }";
+                    jsonResponse = JToken.Parse(jsonError);
+                }
+            }
+
+            return jsonResponse;
         }
 
         private Uri GetBaseUrl()
