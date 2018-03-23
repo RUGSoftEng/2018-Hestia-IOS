@@ -1,6 +1,11 @@
 using Foundation;
 using System;
 using UIKit;
+
+using System.Drawing; 
+using System.Collections.Generic;
+using System.Collections;
+
 using Hestia.DevicesScreen;
 
 namespace Hestia
@@ -20,9 +25,15 @@ namespace Hestia
             
             base.ViewDidLoad();
             table = new UITableView(View.Bounds); // defaults to Plain style
-            string[] tableItems = new string[] { "Vegetables", "Fruits", "Flower Buds", "Legumes", "Bulbs", "Tubers" };
-            table.Source = new TableSource(tableItems, this);
-            Add(table);
+            //string[] tableItems = new string[] { "Vegetables", "Fruits", "Flower Buds", "Legumes", "Bulbs", "Tubers" };
+
+            List<DataItem> tableItems = new List<DataItem>();
+            tableItems.Add(new DataItem(){ Label = " Device 1", State = true });
+            tableItems.Add(new DataItem(){ Label = " Device 2", State = false });
+
+
+            table.Source = new TableSource(tableItems, this); // contains behavior of table
+            Add(table); // Add the table to the view
 
 
 
@@ -31,6 +42,7 @@ namespace Hestia
                 NavigationItem.RightBarButtonItem = edit;
                 ((TableSource)table.Source).DidFinishTableEditing(table);
             });
+
             edit = new UIBarButtonItem(UIBarButtonSystemItem.Edit, (s, e) => {
                 if (table.Editing)
                     table.SetEditing(false, true); // if we've half-swiped a row
@@ -40,8 +52,9 @@ namespace Hestia
                 NavigationItem.RightBarButtonItem = done;
             });
 
+            // Set right button initially to edit 
             NavigationItem.RightBarButtonItem = edit;
-            NavigationItem.LeftBarButtonItem = new UIBarButtonItem(UIBarButtonSystemItem.Play);
+          
 
 
         }
