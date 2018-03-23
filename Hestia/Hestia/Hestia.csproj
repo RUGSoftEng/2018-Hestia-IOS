@@ -74,6 +74,19 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
+    <Compile Include="DevicesScreen\TableSource.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerDevicesMain.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerDevicesMain.designer.cs">
+      <DependentUpon>UITableViewControllerDevicesMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\UITableViewDevicesMain.cs" />
+    <Compile Include="DevicesScreen\UITableViewDevicesMain.designer.cs">
+      <DependentUpon>UITableViewDevicesMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\UITableViewCellDevice.cs" />
+    <Compile Include="DevicesScreen\UITableViewCellDevice.designer.cs">
+      <DependentUpon>UITableViewCellDevice.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewController.designer.cs">
@@ -82,6 +95,7 @@
     <Compile Include="ViewController.cs" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="DevicesScreen\Devices.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -99,6 +113,9 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\strings.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DevicesScreen\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
