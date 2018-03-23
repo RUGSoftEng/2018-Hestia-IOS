@@ -14,5 +14,8 @@ namespace Hestia
     [Register ("UITableViewCellDevice")]
     partial class UITableViewCellDevice
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

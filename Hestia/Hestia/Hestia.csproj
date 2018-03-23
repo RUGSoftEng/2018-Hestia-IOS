@@ -79,10 +79,6 @@
     <Compile Include="DevicesScreen\UITableViewControllerDevicesMain.designer.cs">
       <DependentUpon>UITableViewControllerDevicesMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="DevicesScreen\UITableViewDevicesMain.cs" />
-    <Compile Include="DevicesScreen\UITableViewDevicesMain.designer.cs">
-      <DependentUpon>UITableViewDevicesMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="DevicesScreen\UITableViewCellDevice.cs" />
     <Compile Include="DevicesScreen\UITableViewCellDevice.designer.cs">
       <DependentUpon>UITableViewCellDevice.cs</DependentUpon>
