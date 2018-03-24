@@ -38,7 +38,5 @@ namespace Hestia.backend
                 return false;
             }
         }
-
-
     }
 }
