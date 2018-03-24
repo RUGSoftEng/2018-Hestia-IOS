@@ -8,7 +8,7 @@ using UIKit;
 
 namespace Hestia.backend.utils
 {
-    class Float : Object
+    class Float
     {
         private float value;
         public float Value { get; set; }
@@ -16,6 +16,12 @@ namespace Hestia.backend.utils
         public Float (String value)
         {
             this.value = float.Parse(value);
+        }
+
+        new
+        public String GetType()
+        {
+            return "Float";
         }
     }
 }
