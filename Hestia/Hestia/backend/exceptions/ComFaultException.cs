@@ -10,19 +10,15 @@ using UIKit;
 
 namespace Hestia.backend.exceptions
 {
-    class ComFaultException : Exception
+    class ServerInteractionException : Exception
     {
-        private String error;
-        private String message;
-
-        public String Error { get; set; }
-        new
-        public String Message { get; set; }
-
-        public ComFaultException(String error)
+        public ServerInteractionException()
         {
-            this.error = error;
-            this.message = new ResourceManager("strings", Assembly.GetExecutingAssembly()).GetString("errorMessage");
+        }
+
+        public ServerInteractionException(string message)
+            : base(message)
+        {
         }
     }
 }

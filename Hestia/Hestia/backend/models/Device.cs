@@ -5,19 +5,21 @@ using System.Resources;
 using System.Globalization;
 using System.Json;
 using System.Text;
+using Newtonsoft.Json.Linq;
+using System.Runtime.Remoting;
 
 namespace Hestia.backend.models
 {
     class Device
     {
-        private String deviceId;
-        private String name;
-        private String type;
+        private string deviceId;
+        private string name;
+        private string type;
         private List<Activator> activators;
-        private NetworkHandler handler;
+        private NetworkHandler networkHandler;
 
-        public String DeviceId { get; set; }
-        public String Name
+        public string DeviceId { get; set; }
+        public string Name
         {
             get
             {
@@ -25,40 +27,33 @@ namespace Hestia.backend.models
             }
             set
             {
-                String endpoint = new ResourceManager("strings", Assembly.GetExecutingAssembly()).GetString("devicePath") + deviceId;
-                JsonObject obj = new JsonObject
+                name = value;
+
+                string endpoint = "devices/" + deviceId;
+                JObject jsonName = new JObject
                 {
-                    { "name", name }
+                    ["name"] = name
                 };
-                /*JsonElement payload = handler.PUT(obj, endpoint);
 
-                if (payload != null && payload.isJsonObject()) 
+                JToken payload = networkHandler.Put(jsonName, endpoint);
+                if (payload["error"] != null)
                 {
-                    JsonObject payloadObject = payload.getAsJsonObject();
-
-                    if (payloadObject.has("error")) 
-                    {
-                        GsonBuilder gsonBuilder = new GsonBuilder();
-                        Gson gson = gsonBuilder.create();
-                        ComFaultException comFaultException = gson.fromJson(payload, ComFaultException.class);
-                        throw comFaultException;
-
-                    }
-            }*/
-                this.name = value;
+                    // Throwing a default exception for now, a custom exception should be made later on.
+                    throw new ServerException();
+                }
             }
         }
-        public String Type { get; set; }
+        public string Type { get; set; }
         public List<Activator> Activators { get; set; }
         public NetworkHandler Handler
         {
             get
             {
-                return handler;
+                return networkHandler;
             }
             set
             {
-                this.handler = value;
+                networkHandler = value;
                 foreach (Activator activator in activators)
                 {
                     activator.Handler = value;
@@ -66,13 +61,13 @@ namespace Hestia.backend.models
             }
         }
 
-        public Device(String deviceId, String name, String type, List<Activator> activator, NetworkHandler handler)
+        public Device(string deviceId, string name, string type, List<Activator> activator, NetworkHandler networkHandler)
         {
             this.deviceId = deviceId;
             this.name = name;
             this.type = type;
             this.activators = activator;
-            this.handler = handler;
+            this.networkHandler = networkHandler;
         }
 
         new
