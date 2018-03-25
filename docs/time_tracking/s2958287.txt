@@ -63,3 +63,14 @@ Creating Utils and ServerInteractor classes
 Creating Utils and ServerInteractor classes
 Creating Utils and ServerInteractor classes
 Creating Utils and ServerInteractor classes
+Trying to get serialization working
+Trying to get serialization working
+Trying to get serialization working
+Trying to get serialization working
+Trying to get serialization working
+Trying to get serialization working
+Working on ServerInteractor class
+Working on ServerInteractor class
+Working on ServerInteractor class
+Working on ServerInteractor class
+Working on ServerInteractor class
