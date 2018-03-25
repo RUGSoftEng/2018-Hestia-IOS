@@ -7,8 +7,7 @@ namespace Hestia.backend.models.deserializers
      */
     class ActivatorDeserializer
     {
-
-        public Activator deserializeJson(JToken jT)
+        public Activator deserialize(JToken jT)
         {
             // get the activatorId, rank and name
             string id = jT.SelectToken("activatorId").ToString();
