@@ -7,6 +7,7 @@ using System.Json;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using System.Runtime.Remoting;
+using Newtonsoft.Json;
 
 namespace Hestia.backend.models
 {
@@ -18,7 +19,19 @@ namespace Hestia.backend.models
         private List<Activator> activators;
         private NetworkHandler networkHandler;
 
-        public string DeviceId { get; set; }
+        [JsonProperty("deviceId")]
+        public string DeviceId
+        {
+            get
+            {
+                return deviceId;
+            }
+            set
+            {
+                deviceId = value;
+            }
+        }
+        [JsonProperty("name")]
         public string Name
         {
             get
@@ -30,12 +43,12 @@ namespace Hestia.backend.models
                 name = value;
 
                 string endpoint = "devices/" + deviceId;
-                JObject jsonName = new JObject
+                JObject deviceNameJson = new JObject
                 {
                     ["name"] = name
                 };
 
-                JToken payload = networkHandler.Put(jsonName, endpoint);
+                JToken payload = networkHandler.Put(deviceNameJson, endpoint);
                 if (payload["error"] != null)
                 {
                     // Throwing a default exception for now, a custom exception should be made later on.
@@ -43,9 +56,32 @@ namespace Hestia.backend.models
                 }
             }
         }
-        public string Type { get; set; }
-        public List<Activator> Activators { get; set; }
-        public NetworkHandler Handler
+        [JsonProperty("type")]
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
+        }
+        [JsonProperty("activators")]
+        public List<Activator> Activators
+        {
+            get
+            {
+                return activators;
+            }
+            set
+            {
+                activators = value;
+            }
+        }
+        [JsonIgnoreAttribute]
+        public NetworkHandler NetworkHandler
         {
             get
             {
@@ -60,7 +96,7 @@ namespace Hestia.backend.models
                 }
             }
         }
-
+        
         public Device(string deviceId, string name, string type, List<Activator> activator, NetworkHandler networkHandler)
         {
             this.deviceId = deviceId;
@@ -76,10 +112,10 @@ namespace Hestia.backend.models
             if (!(obj is Device)) return false;
             Device device = (Device)obj;
             return (this == device || (this.DeviceId.Equals(device.DeviceId) &&
-                    this.Name.Equals(device.Name) &&
-                    this.Type.Equals(device.Type) &&
-                    this.Activators.Equals(device.Activators) &&
-                    this.Handler.Equals(device.Handler)));
+                    Name.Equals(device.Name) &&
+                    Type.Equals(device.Type) &&
+                    Activators.Equals(device.Activators) &&
+                    NetworkHandler.Equals(device.NetworkHandler)));
         }
 
         new
@@ -90,7 +126,7 @@ namespace Hestia.backend.models
             result = result * multiplier + Name.GetHashCode();
             result = result * multiplier + GetType().GetHashCode();
             result = result * multiplier + Activators.GetHashCode();
-            result = result * multiplier + Handler.GetHashCode();
+            result = result * multiplier + NetworkHandler.GetHashCode();
             return result;
         }
 

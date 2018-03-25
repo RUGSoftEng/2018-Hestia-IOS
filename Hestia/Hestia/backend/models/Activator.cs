@@ -10,14 +10,14 @@ namespace Hestia.backend.models
 {
     class Activator
     {
-        private String activatorId;
+        private string activatorId;
+        private string name;
         private int rank;
         private ActivatorState<Object> state;
-        private String name;
         private Device device;
-        private NetworkHandler handler;
+        private NetworkHandler networkHandler;
 
-        public String ActivatorId { get; set; }
+        public string ActivatorId { get; set; }
         public int Rank { get; set; }
         public ActivatorState<Object> State
         {

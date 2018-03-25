@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.Remoting;
 
 using Hestia.backend.models;
+using Newtonsoft.Json;
+using System;
 
 namespace Hestia.backend
 {
@@ -25,6 +27,17 @@ namespace Hestia.backend
                 return devices;
             }
             else
+            {
+                throw new ServerException();
+            }
+        }
+
+        public void AddDevice(RequiredInfo info)
+        {
+            JObject deviceInfo = JObject.FromObject(info);
+            JToken payload = networkHandler.Post(deviceInfo, "devices/");
+
+            if(payload["error"] != null)
             {
                 throw new ServerException();
             }
