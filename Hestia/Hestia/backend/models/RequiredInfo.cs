@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Hestia.backend.models
 {
@@ -50,9 +49,9 @@ namespace Hestia.backend.models
 
         public RequiredInfo(string collection, string plugin, Dictionary<String, String> info)
         {
-            Collection = collection;
-            Plugin = plugin;
-            Info = info;
+            this.collection = collection;
+            this.plugin = plugin;
+            this.info = info;
         }
     }
 }
