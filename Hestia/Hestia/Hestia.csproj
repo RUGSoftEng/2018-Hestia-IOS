@@ -68,7 +68,10 @@
     <Compile Include="backend\models\deserialisers\ActivatorDeserializer.cs" />
     <Compile Include="backend\models\deserialisers\DeviceDeserializer.cs" />
     <Compile Include="backend\models\Device.cs" />
+    <Compile Include="backend\models\RequiredInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
+    <Compile Include="backend\ServerInteractor.cs" />
+    <Compile Include="backend\Utils.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
@@ -116,8 +119,6 @@
   <ItemGroup>
     <BundleResource Include="Resources\strings.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DevicesScreen\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
