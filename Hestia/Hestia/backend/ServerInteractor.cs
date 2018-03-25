@@ -42,5 +42,16 @@ namespace Hestia.backend
                 throw new ServerException();
             }
         }
+
+        public void RemoveDevice(Device device)
+        {
+            string endpoint = "devices/" + device.DeviceId;
+            JToken payload = networkHandler.Delete(endpoint);
+
+            if(payload["error"] != null)
+            {
+                throw new ServerException();
+            }
+        }
     }
 }
