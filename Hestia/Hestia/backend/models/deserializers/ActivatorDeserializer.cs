@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace Hestia.backend.models.deserialisers
+namespace Hestia.backend.models.deserializers
 {
     /**
      * Helper class that deserializes a json object into an Activator object
      */
     class ActivatorDeserializer
     {
-        public ActivatorDeserializer() { }
 
         public Activator deserializeJson(JToken jT)
         {

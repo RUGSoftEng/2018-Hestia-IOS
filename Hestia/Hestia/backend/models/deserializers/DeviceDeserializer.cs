@@ -1,13 +1,12 @@
 ﻿using Newtonsoft.Json;
 
-namespace Hestia.backend.models.deserialisers
+namespace Hestia.backend.models.deserializers
 {
     /**
      * Helper class that deserializes a json object into a Device object
      */
     class DeviceDeserializer
     {
-        public DeviceDeserializer() { }
 
         public Device deserializeDevice(string jsonData)
         {
