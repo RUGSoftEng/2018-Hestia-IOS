@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace Hestia.backend
 {
 
-    class NetworkHandler : ISerializable
+    public class NetworkHandler : ISerializable
     {
         private string ip;
         private int port;

@@ -2,7 +2,7 @@
 
 namespace Hestia.backend.models
 {
-    class Activator
+    public class Activator
     {
         private String activatorId;
         private int rank;

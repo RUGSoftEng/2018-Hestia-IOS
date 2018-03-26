@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Hestia.backend.models
 {
-    class Device
+    public class Device
     {
         private String deviceId;
         private String name;
