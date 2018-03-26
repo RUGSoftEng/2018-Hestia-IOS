@@ -65,8 +65,8 @@
     <Compile Include="backend\exceptions\ComFaultException.cs" />
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
-    <Compile Include="backend\models\deserialisers\ActivatorDeserializer.cs" />
-    <Compile Include="backend\models\deserialisers\DeviceDeserializer.cs" />
+    <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />
+    <Compile Include="backend\models\deserializers\DeviceDeserializer.cs" />
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
     <Compile Include="backend\utils\Float.cs" />
@@ -99,7 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=106.2.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.2.1\lib\netstandard2.0\RestSharp.dll</HintPath>
