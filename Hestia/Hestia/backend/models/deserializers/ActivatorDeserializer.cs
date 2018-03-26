@@ -7,19 +7,19 @@ namespace Hestia.backend.models.deserializers
      */
     class ActivatorDeserializer
     {
-        public Activator Deserialize(JToken jT)
+        public Activator deserialize(JToken jT)
         {
             // get the activatorId, rank and name
-            string id = jT.SelectToken("activatorId").ToString();
-            int rank = jT.SelectToken("rank").ToObject<int>();
-            string name = jT.SelectToken("name").ToString();
+            string id = jT.Value<string>("activatorId");
+            int rank = jT.Value<int>("rank");
+            string name = jT.Value<string>("name");
 
             // create the Activator
             Activator activator = new Activator(id, rank, name);
 
             // get the ActivatorState
-            string type = jT.SelectToken("type").ToString();
-            string rawState = jT.SelectToken("state").ToString();
+            string type = jT.Value<string>("type");
+            string rawState = jT.Value<string>("state");
             ActivatorState<object> state = null;
 
             switch (type.ToLower())
