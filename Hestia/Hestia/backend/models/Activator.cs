@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using UIKit;
 
 namespace Hestia.backend.models
 {
@@ -27,7 +21,7 @@ namespace Hestia.backend.models
             }
             set
             {
-                throw new NotImplementedException();
+                this.state = value;
             }
         }
         public String Name { get; set; }
