@@ -61,7 +61,6 @@ namespace Hestia
                     table.SetEditing(false, true); // if we've half-swiped a row
                 ((TableSource)table.Source).WillBeginTableEditing(table);
                 table.SetEditing(true, true);
-                NavigationItem.LeftBarButtonItem = null;
                 NavigationItem.RightBarButtonItem = done;
             });
 
