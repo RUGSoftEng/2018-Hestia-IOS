@@ -11,8 +11,39 @@ namespace Hestia.backend.models
         private Device device;
         private NetworkHandler networkHandler;
 
-        public string ActivatorId { get; set; }
-        public int Rank { get; set; }
+        public string ActivatorId
+        {
+            get
+            {
+                return activatorId;
+            }
+            set
+            {
+                activatorId = value;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        public int Rank
+        {
+            get
+            {
+                return rank;
+            }
+            set
+            {
+                rank = value;
+            }
+        }
         public ActivatorState<Object> State
         {
             get
@@ -24,11 +55,30 @@ namespace Hestia.backend.models
                 this.state = value;
             }
         }
-        public String Name { get; set; }
-        public Device Device { get; set; }
-        public NetworkHandler Handler { get; set; }
+        public Device Device
+        {
+            get
+            {
+                return device;
+            }
+            set
+            {
+                device = value;
+            }
+        }
+        public NetworkHandler Handler
+        {
+            get
+            {
+                return networkHandler;
+            }
+            set
+            {
+                networkHandler = value;
+            }
+        }
 
-        public Activator(String activatorId, int rank, String name)
+        public Activator(string activatorId, int rank, string name)
         {
             this.activatorId = activatorId;
             this.rank = rank;

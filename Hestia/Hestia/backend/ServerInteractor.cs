@@ -5,6 +5,7 @@ using System.Runtime.Remoting;
 using Hestia.backend.models;
 using Newtonsoft.Json;
 using System;
+using Hestia.backend.models.deserializers;
 
 namespace Hestia.backend
 {
@@ -23,7 +24,9 @@ namespace Hestia.backend
 
             if(payload is JArray)
             {
-                var devices = payload.ToObject<List<Device>>();
+                DeviceDeserializer deserializer = new DeviceDeserializer();
+                var devices = deserializer.DeserializeDevices(payload, networkHandler);
+
                 return devices;
             }
             else
