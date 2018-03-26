@@ -1,13 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Resources;
-using System.Globalization;
-using System.Json;
-using System.Text;
-using Newtonsoft.Json.Linq;
 using System.Runtime.Remoting;
-using Newtonsoft.Json;
 
 namespace Hestia.backend.models
 {
@@ -19,7 +15,6 @@ namespace Hestia.backend.models
         private List<Activator> activators;
         private NetworkHandler networkHandler;
 
-        [JsonProperty("deviceId")]
         public string DeviceId
         {
             get
@@ -31,7 +26,6 @@ namespace Hestia.backend.models
                 deviceId = value;
             }
         }
-        [JsonProperty("name")]
         public string Name
         {
             get
@@ -56,7 +50,6 @@ namespace Hestia.backend.models
                 }
             }
         }
-        [JsonProperty("type")]
         public string Type
         {
             get
@@ -68,7 +61,6 @@ namespace Hestia.backend.models
                 type = value;
             }
         }
-        [JsonProperty("activators")]
         public List<Activator> Activators
         {
             get
@@ -80,7 +72,6 @@ namespace Hestia.backend.models
                 activators = value;
             }
         }
-        [JsonIgnoreAttribute]
         public NetworkHandler NetworkHandler
         {
             get
