@@ -1,23 +1,32 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Resources;
-using System.Globalization;
-using System.Json;
-using System.Text;
+using System.Runtime.Remoting;
 
 namespace Hestia.backend.models
 {
     public class Device
     {
-        private String deviceId;
-        private String name;
-        private String type;
+        private string deviceId;
+        private string name;
+        private string type;
         private List<Activator> activators;
-        private NetworkHandler handler;
+        private NetworkHandler networkHandler;
 
-        public String DeviceId { get; set; }
-        public String Name
+        public string DeviceId
+        {
+            get
+            {
+                return deviceId;
+            }
+            set
+            {
+                deviceId = value;
+            }
+        }
+        public string Name
         {
             get
             {
@@ -25,54 +34,67 @@ namespace Hestia.backend.models
             }
             set
             {
-                String endpoint = new ResourceManager("strings", Assembly.GetExecutingAssembly()).GetString("devicePath") + deviceId;
-                JsonObject obj = new JsonObject
+                name = value;
+
+                string endpoint = "devices/" + deviceId;
+                JObject deviceNameJson = new JObject
                 {
-                    { "name", name }
+                    ["name"] = name
                 };
-                /*JsonElement payload = handler.PUT(obj, endpoint);
 
-                if (payload != null && payload.isJsonObject()) 
+                JToken payload = networkHandler.Put(deviceNameJson, endpoint);
+                if (payload["error"] != null)
                 {
-                    JsonObject payloadObject = payload.getAsJsonObject();
-
-                    if (payloadObject.has("error")) 
-                    {
-                        GsonBuilder gsonBuilder = new GsonBuilder();
-                        Gson gson = gsonBuilder.create();
-                        ComFaultException comFaultException = gson.fromJson(payload, ComFaultException.class);
-                        throw comFaultException;
-
-                    }
-            }*/
-                this.name = value;
+                    // Throwing a default exception for now, a custom exception should be made later on.
+                    throw new ServerException();
+                }
             }
         }
-        public String Type { get; set; }
-        public List<Activator> Activators { get; set; }
-        public NetworkHandler Handler
+        public string Type
         {
             get
             {
-                return handler;
+                return type;
             }
             set
             {
-                this.handler = value;
+                type = value;
+            }
+        }
+        public List<Activator> Activators
+        {
+            get
+            {
+                return activators;
+            }
+            set
+            {
+                activators = value;
+            }
+        }
+        public NetworkHandler NetworkHandler
+        {
+            get
+            {
+                return networkHandler;
+            }
+            set
+            {
+                networkHandler = value;
                 foreach (Activator activator in activators)
                 {
                     activator.Handler = value;
                 }
             }
         }
-
-        public Device(String deviceId, String name, String type, List<Activator> activator, NetworkHandler handler)
+        
+        public Device(string deviceId, string name, string type, List<Activator> activator, NetworkHandler networkHandler)
         {
             this.deviceId = deviceId;
             this.name = name;
             this.type = type;
             this.activators = activator;
-            this.handler = handler;
+            this.networkHandler = networkHandler;
         }
 
         new
@@ -81,10 +103,10 @@ namespace Hestia.backend.models
             if (!(obj is Device)) return false;
             Device device = (Device)obj;
             return (this == device || (this.DeviceId.Equals(device.DeviceId) &&
-                    this.Name.Equals(device.Name) &&
-                    this.Type.Equals(device.Type) &&
-                    this.Activators.Equals(device.Activators) &&
-                    this.Handler.Equals(device.Handler)));
+                    Name.Equals(device.Name) &&
+                    Type.Equals(device.Type) &&
+                    Activators.Equals(device.Activators) &&
+                    NetworkHandler.Equals(device.NetworkHandler)));
         }
 
         new
@@ -95,7 +117,7 @@ namespace Hestia.backend.models
             result = result * multiplier + Name.GetHashCode();
             result = result * multiplier + GetType().GetHashCode();
             result = result * multiplier + Activators.GetHashCode();
-            result = result * multiplier + Handler.GetHashCode();
+            result = result * multiplier + NetworkHandler.GetHashCode();
             return result;
         }
 
