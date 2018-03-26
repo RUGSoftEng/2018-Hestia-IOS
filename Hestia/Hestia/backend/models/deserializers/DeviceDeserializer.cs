@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 
 namespace Hestia.backend.models.deserializers
@@ -10,10 +11,10 @@ namespace Hestia.backend.models.deserializers
     {
 
         // deserialize a single device from a JToken
-        public Device deserialize(JToken jT, NetworkHandler handler)
+        public Device Deserialize(JToken jT, NetworkHandler networkHandler)
         {
             // get id, name and type
-            string id = jT.SelectToken("deviceId").ToString();
+            string id   = jT.SelectToken("deviceId").ToString();
             string name = jT.SelectToken("name").ToString();
             string type = jT.SelectToken("type").ToString();
 
@@ -24,21 +25,21 @@ namespace Hestia.backend.models.deserializers
 
             foreach (JToken activator in activators)
             {
-                activatorList.Add(activatorDeserializer.deserialize(activator));
+                activatorList.Add(activatorDeserializer.Deserialize(activator));
             }
 
-            return new Device(id, name, type, activatorList, handler);
+            return new Device(id, name, type, activatorList, networkHandler);
         }
 
         // Use this function if you want to deserialize multiple devices.
         // Useful when you get all the devices from the server and want to deserialize them into a list of devices.
-        public List<Device> deserializeDevices(JToken devices, NetworkHandler handler)
+        public List<Device> DeserializeDevices(JToken devices, NetworkHandler networkHandler)
         {
             List<Device> deviceList = new List<Device>();
 
             foreach(JToken device in devices)
             {
-                deviceList.Add(this.deserialize(device, handler));
+                deviceList.Add(this.Deserialize(device, networkHandler));
             }
 
             return deviceList;

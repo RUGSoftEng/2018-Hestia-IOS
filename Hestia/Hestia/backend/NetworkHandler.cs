@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Net;
@@ -7,7 +6,6 @@ using System.Runtime.Serialization;
 
 namespace Hestia.backend
 {
-
     class NetworkHandler : ISerializable
     {
         private string ip;
@@ -43,7 +41,7 @@ namespace Hestia.backend
             return jsonResponse;
         }
 
-       public JToken Post(JObject payload, string endpoint)
+        public JToken Post(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.POST);
 
@@ -76,30 +74,37 @@ namespace Hestia.backend
         private JToken ExecuteRequest(RestRequest request)
         {
             request.Timeout = 2000;
-            IRestResponse response = client.Execute(request);
 
-            string responseContent = response.Content;
-            JToken jsonResponse;
-            if (response.IsSuccessful)
+            IRestResponse response = client.Execute(request);
+            string responseString = response.Content;
+            JToken responseJson;
+
+            if (response.IsSuccessful && response.ErrorException == null)
             {
-                jsonResponse = JToken.Parse(responseContent);
+                if (Utils.IsValidJson(responseString))
+                {
+                    responseJson = JToken.Parse(responseString);
+                }
+                else
+                {
+                    string jsonSuccess = "{ \"message\": \"success\" }";
+                    responseJson = JToken.Parse(jsonSuccess);
+                }
             }
             else
             {
-                try
+                if (Utils.IsValidJson(responseString))
                 {
-                    jsonResponse = JToken.Parse(responseContent);
+                    responseJson = JToken.Parse(responseString);
                 }
-                catch (JsonReaderException ex)
+                else
                 {
-                    // Exception in parsing json, server did not respond or response was not in json format.
-                    Console.WriteLine(ex.Message);
                     string jsonError = "{ \"error\": \"something went wrong\" }";
-                    jsonResponse = JToken.Parse(jsonError);
+                    responseJson = JToken.Parse(jsonError);
                 }
             }
 
-            return jsonResponse;
+            return responseJson;
         }
 
         private Uri GetBaseUrl()

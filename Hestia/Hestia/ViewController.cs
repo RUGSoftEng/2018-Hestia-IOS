@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using Hestia.backend;
+using Hestia.backend.models;
 using Newtonsoft.Json.Linq;
 using UIKit;
 
