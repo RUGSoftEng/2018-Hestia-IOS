@@ -66,6 +66,7 @@ namespace Hestia.DevicesScreen
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
+            // If no devices present
             if (indexPath.Row == 0)
             {
                 // The text to display on the cell is the device name
@@ -123,10 +124,41 @@ namespace Hestia.DevicesScreen
             tableView.DeselectRow(indexPath, true);
         }
 
+        public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
+        {
+            switch (editingStyle)
+            {
+                case UITableViewCellEditingStyle.Delete:
+                    // remove the item from the underlying data source
+                    TableItems.RemoveAt(indexPath.Row);
+                    // delete the row from the table
+                    tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
+                    break;
+                case UITableViewCellEditingStyle.None:
+                    Console.WriteLine("CommitEditingStyle:None called");
+                    break;
+            }
+        }
+
+        public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
+        {   // Optional - default text is 'Delete'
+            return "Remove " + TableItems[indexPath.Row].Name;
+        }
+
+
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
         {
-            return true; // return false if you wish to disable editing for a specific indexPath or for all rows
+            if (tableView.Editing)
+            {
+                return true; // return false if you wish to disable editing for a specific indexPath or for all rows
+            }
+            else
+            {
+                return false;
+            }
         }
+
+
         public override bool CanMoveRow(UITableView tableView, NSIndexPath indexPath)
         {
             return false; // return false if you don't allow re-ordering

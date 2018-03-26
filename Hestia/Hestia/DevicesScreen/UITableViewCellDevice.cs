@@ -6,7 +6,7 @@ namespace Hestia
 {
     public partial class UITableViewCellDevice : UITableViewCell
     {
-        public UITableViewCellDevice (IntPtr handle) : base (handle)
+        public UITableViewCellDevice(NSString cellid) : base (UITableViewCellStyle.Default, cellid)
         {
         }
     }
