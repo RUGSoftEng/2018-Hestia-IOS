@@ -33,7 +33,7 @@ namespace Hestia.backend.models.deserializers
 
         // Use this function if you want to deserialize multiple devices.
         // Useful when you get all the devices from the server and want to deserialize them into a list of devices.
-        public List<Device> deserializeDevices(JToken devices, NetworkHandler networkHandler)
+        public List<Device> DeserializeDevices(JToken devices, NetworkHandler networkHandler)
         {
             List<Device> deviceList = new List<Device>();
 
