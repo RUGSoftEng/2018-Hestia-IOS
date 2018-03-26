@@ -74,3 +74,9 @@ Working on ServerInteractor class
 Working on ServerInteractor class
 Working on ServerInteractor class
 Working on ServerInteractor class
+Finalizing ServerInteractor class
+Figuring out why deleting a device gives an error
+Figuring out why deleting a device gives an error
+Figuring out why deleting a device gives an error
+Finalizing ServerInteractor class
+Finalizing ServerInteractor class
