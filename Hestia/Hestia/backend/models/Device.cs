@@ -7,7 +7,7 @@ using System.Runtime.Remoting;
 
 namespace Hestia.backend.models
 {
-    class Device
+    public class Device
     {
         private string deviceId;
         private string name;

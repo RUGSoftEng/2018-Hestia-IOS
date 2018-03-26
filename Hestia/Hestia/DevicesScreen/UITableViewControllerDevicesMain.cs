@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Collections;
 
 using Hestia.DevicesScreen;
+using Hestia.backend;
+using Hestia.backend.models;
+
 
 namespace Hestia
 {
@@ -19,7 +22,9 @@ namespace Hestia
         UIBarButtonItem done;
         // Edit button in top right (is shown initially)
         UIBarButtonItem edit;
-      
+
+        List<Device> devices = new List<Device>();
+
         // Constructor
         public UITableViewControllerDevicesMain (IntPtr handle) : base (handle)
         {
@@ -37,7 +42,8 @@ namespace Hestia
             tableItems.Add(new DataItem(){ Label = " Device 2", State = false });
 
             // Contains methods that describe behavior of table
-            table.Source = new TableSource(tableItems, this); 
+            table.Source = new TableSource(devices, this); 
+            //table.Source = new TableSource(tableItems, this); 
             // Add the table to the view
             Add(table); 
 

@@ -18,7 +18,7 @@ using UIKit;
  */
 namespace Hestia.backend.models
 {
-    class ActivatorState<T>
+    public class ActivatorState<T>
     {
         private T rawState;
         private String type;
