@@ -56,5 +56,51 @@ namespace Hestia.backend
                 throw new ServerException();
             }
         }
+
+        public List<string> GetCollections()
+        {
+            JToken payload = networkHandler.Get("plugins/");
+
+            if(payload is JArray)
+            {
+                List<string> collections = payload.ToObject<List<string>>();
+                return collections;
+            } else
+            {
+                throw new ServerException();
+            }
+        }
+
+        public List<string> GetPlugins(string collection)
+        {
+            string endpoint = "plugins/" + collection + "/";
+            JToken payload = networkHandler.Get(endpoint);
+
+            if (payload is JArray)
+            {
+                List<string> plugins = payload.ToObject<List<string>>();
+                return plugins;
+            }
+            else
+            {
+                throw new ServerException();
+            }
+        }
+
+        public RequiredInfo GetRequiredInfo(string collection, string plugin)
+        {
+            string endpoint = "plugins/" + collection + "/plugins/" + plugin;
+            JToken payload = networkHandler.Get(endpoint);
+
+            if(payload["error"] == null)
+            {
+                RequiredInfo info = payload.ToObject<RequiredInfo>();
+                return info;
+            }
+            else
+            {
+                throw new ServerException();
+            }
+        }
     }
 }
