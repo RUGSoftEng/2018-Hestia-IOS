@@ -80,3 +80,10 @@ Figuring out why deleting a device gives an error
 Figuring out why deleting a device gives an error
 Finalizing ServerInteractor class
 Finalizing ServerInteractor class
+Setting up app center for continuous integration
+Setting up app center for continuous integration
+Reading information on ios app certificates
+Substituting hard coded endpoints by strings from resource manager
+Substituting hard coded endpoints by strings from resource manager
+Substituting hard coded endpoints by strings from resource manager
+Fixing bug in resource manager
