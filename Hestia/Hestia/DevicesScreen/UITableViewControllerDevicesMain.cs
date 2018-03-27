@@ -28,8 +28,9 @@ namespace Hestia
         List<Device> devices = new List<Device>();
 
         // Constructor
-        public UITableViewControllerDevicesMain (IntPtr handle) : base (handle)
+        public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
         {
+            
             serverInteractor = new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
         }
 
@@ -40,8 +41,11 @@ namespace Hestia
             table = new UITableView(View.Bounds); // defaults to Plain style
 
             // The list with devices
-            devices = serverInteractor.GetDevices();
-
+            try
+            {
+                devices = serverInteractor.GetDevices();
+            }
+            catch(Exception e){}
             // Contains methods that describe behavior of table
             table.Source = new TableSource(devices, this); 
             //table.Source = new TableSource(tableItems, this); 
