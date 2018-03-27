@@ -35,7 +35,7 @@
         </scene>
         <scene sceneID="204">
             <objects>
-                <viewControllerPlaceholder id="205" sceneMemberID="viewController" storyboardName="Devices"/>
+                <viewControllerPlaceholder id="205" sceneMemberID="viewController" storyboardName="Devices1"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="206" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="554" y="100"/>
