@@ -22,6 +22,10 @@ namespace Hestia
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITableView DevicesTable { get; set; }
 
+        [Action ("UIBarButtonItem704_Activated:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void UIBarButtonItem704_Activated (UIKit.UIBarButtonItem sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (DevicesMainNavBar != null) {
