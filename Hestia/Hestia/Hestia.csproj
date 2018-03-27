@@ -71,8 +71,8 @@
     <Compile Include="backend\models\RequiredInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
     <Compile Include="backend\ServerInteractor.cs" />
-    <Compile Include="backend\Utils.cs" />
     <Compile Include="backend\utils\Float.cs" />
+    <Compile Include="backend\utils\JsonValidator.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
