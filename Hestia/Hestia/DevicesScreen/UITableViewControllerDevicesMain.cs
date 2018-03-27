@@ -15,8 +15,10 @@ namespace Hestia
 {
     public partial class UITableViewControllerDevicesMain : UITableViewController
     {
+        ServerInteractor serverInteractor;
         // The table that lives in this view controller
         UITableView table;
+
 
         // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
@@ -28,6 +30,7 @@ namespace Hestia
         // Constructor
         public UITableViewControllerDevicesMain (IntPtr handle) : base (handle)
         {
+            serverInteractor = new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
         }
 
         public override void ViewDidLoad()
@@ -37,9 +40,7 @@ namespace Hestia
             table = new UITableView(View.Bounds); // defaults to Plain style
 
             // The list with devices
-            List<DataItem> tableItems = new List<DataItem>();
-            tableItems.Add(new DataItem(){ Label = " Device 1", State = true });
-            tableItems.Add(new DataItem(){ Label = " Device 2", State = false });
+            devices = serverInteractor.GetDevices();
 
             // Contains methods that describe behavior of table
             table.Source = new TableSource(devices, this); 
