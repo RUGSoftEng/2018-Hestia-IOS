@@ -15,6 +15,7 @@ namespace Hestia
 {
     public partial class UITableViewControllerDevicesMain : UITableViewController
     {
+        ServerInteractor asd;
         // The table that lives in this view controller
         UITableView table;
 
@@ -28,6 +29,7 @@ namespace Hestia
         // Constructor
         public UITableViewControllerDevicesMain (IntPtr handle) : base (handle)
         {
+            asd = new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
         }
 
         public override void ViewDidLoad()
@@ -40,6 +42,8 @@ namespace Hestia
             List<DataItem> tableItems = new List<DataItem>();
             tableItems.Add(new DataItem(){ Label = " Device 1", State = true });
             tableItems.Add(new DataItem(){ Label = " Device 2", State = false });
+
+            devices = asd.GetDevices();
 
             // Contains methods that describe behavior of table
             table.Source = new TableSource(devices, this); 
