@@ -11,72 +11,12 @@ namespace Hestia.backend.models
         private Device device;
         private NetworkHandler networkHandler;
 
-        public string ActivatorId
-        {
-            get
-            {
-                return activatorId;
-            }
-            set
-            {
-                activatorId = value;
-            }
-        }
-        public string Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
-        }
-        public int Rank
-        {
-            get
-            {
-                return rank;
-            }
-            set
-            {
-                rank = value;
-            }
-        }
-        public ActivatorState<Object> State
-        {
-            get
-            {
-                return state;
-            }
-            set
-            {
-                this.state = value;
-            }
-        }
-        public Device Device
-        {
-            get
-            {
-                return device;
-            }
-            set
-            {
-                device = value;
-            }
-        }
-        public NetworkHandler Handler
-        {
-            get
-            {
-                return networkHandler;
-            }
-            set
-            {
-                networkHandler = value;
-            }
-        }
+        public string ActivatorId { get; set; }
+        public string Name { get; set; }
+        public int Rank { get; set; }
+        public ActivatorState<Object> State { get; set; }
+        public Device Device { get; set; }
+        public NetworkHandler Handler { get; set; }
 
         public Activator(string activatorId, int rank, string name)
         {

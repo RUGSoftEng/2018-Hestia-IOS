@@ -23,28 +23,8 @@ namespace Hestia.backend.models
         private T rawState;
         private String type;
 
-        public T RawState
-        {
-            get
-            {
-                return rawState;
-            }
-            set
-            {
-                rawState = value;
-            }
-        }
-        public string Type
-        {
-            get
-            {
-                return type;
-            }
-            set
-            {
-                type = value;
-            }
-        }
+        public T RawState { get; set; }
+        public string Type { get; set; }
 
         public ActivatorState(T rawState, string type)
         {
