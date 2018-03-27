@@ -18,3 +18,55 @@ Date Hour Activity
         19:30   Talk with group on Slack to check the document.
         20:00   Modifing little mistakes.
 14/3/18 15:00   Meeting with the group and discuss how the front end should be.
+21/3/18 15:00 	Meeting with the gruop to define the tasks to do about the front end.
+	15:30 	Meeting with the gruop to define the tasks to do about the front end.
+22/3/18	15:30	Setting up virtual studio in order to simulate an iPhone.
+	16:00	Setting up virtual studio in order to simulate an iPhone.
+	16:30	Setting up virtual studio in order to simulate an iPhone.
+	17:00	Getting started with C# and Xamarin.Forms.
+	17:30	Getting started with C# and Xamarin.Forms.
+	18:00	Getting started with C# and Xamarin.Forms.
+	18:30	Getting started with C# and Xamarin.Forms.
+	19:00	Starting setting screen for each device.
+	19:30	Starting setting screen for each device.
+23/3/18	11:00	Creating the settings device's screen for each device.
+	11:30	Creating the settings device's screen for each device.
+	12:00	Creating the settings device's screen for each device.
+	12:30	Creating the settings device's screen for each device.
+	17:00	Creating the settings device's screen for each device.
+	17:30	Creating the settings device's screen for each device.
+	18:00	Creating the settings device's screen for each device.
+	18:30	Creating the settings device's screen for each device.
+24/3/18	11:00	Adding edit screen of each device to the project.
+	11:30	Adding edit screen of each device to the project.
+	12:00	Adding edit screen of each device to the project.
+	12:30	Adding edit screen of each device to the project.
+	13:00	Adding edit screen of each device to the project.
+	13:30	Adding edit screen of each device to the project.
+	
+25/3/18	11:00	Adding edit screen of each device to the project.
+	11:30	Adding edit screen of each device to the project.
+	12:00	Adding edit screen of each device to the project.
+	12:30	Adding edit screen of each device to the project.
+	13:00	Adding edit screen of each device to the project.
+	13:30	Adding edit screen of each device to the project.
+	18:00	Trying to fix DisclosureIndicator in the edit mode.
+	18:30	Trying to fix DisclosureIndicator in the edit mode.
+	19:00	Trying to fix DisclosureIndicator in the edit mode.
+	19:30	Trying to fix DisclosureIndicator in the edit mode.
+
+27/3/18	10:30	Fixing edit screen for each device.
+	11:00	Fixing edit screen for each device.
+	11:30	Fixing edit screen for each device.
+	12:00	Fixing edit screen for each device.
+	12:30	Fixing edit screen for each device.
+	13:00	Meeting with part of the group.
+	13:30	Meeting with part of the group.
+	15:00	Meeting with part of the group.
+	15:30	Meeting with part of the group.
+	16:00	Meeting with part of the group.
+	16:30	Meeting with part of the group.
+	17:00	Meeting with part of the group.
+	17:30	Meeting with part of the group.
+	18:00	Meeting with part of the group.
+	18:30	Meeting with part of the group.
