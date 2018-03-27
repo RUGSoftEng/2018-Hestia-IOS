@@ -5,7 +5,8 @@ using System.Runtime.Remoting;
 
 using Hestia.backend.models;
 using Hestia.backend.models.deserializers;
-using System.Reflection;
+
+using Hestia.Resources;
 
 namespace Hestia.backend
 {
@@ -17,14 +18,11 @@ namespace Hestia.backend
         public ServerInteractor(NetworkHandler networkHandler)
         {
             this.networkHandler = networkHandler;
-
-            // Create a resource manager to retrieve resources.
-            rm = new ResourceManager("Hestia.Resources.strings", Assembly.GetExecutingAssembly());
         }
 
         public List<Device> GetDevices()
         {
-            JToken payload = networkHandler.Get(rm.GetString("devicePath"));
+            JToken payload = networkHandler.Get(strings.devicePath);
 
             if(payload is JArray)
             {
@@ -42,7 +40,7 @@ namespace Hestia.backend
         public void AddDevice(RequiredInfo info)
         {
             JObject deviceInfo = JObject.FromObject(info);
-            JToken payload = networkHandler.Post(deviceInfo, Hestia.Resources.strings.devicePath);
+            JToken payload = networkHandler.Post(deviceInfo, strings.devicePath);
 
             if(payload["error"] != null)
             {
@@ -52,7 +50,7 @@ namespace Hestia.backend
 
         public void RemoveDevice(Device device)
         {
-            string endpoint = rm.GetString("devicePath") + device.DeviceId;
+            string endpoint = strings.devicePath + device.DeviceId;
             JToken payload = networkHandler.Delete(endpoint);
 
             if(payload["error"] != null)
@@ -63,7 +61,7 @@ namespace Hestia.backend
 
         public List<string> GetCollections()
         {
-            JToken payload = networkHandler.Get(rm.GetString("pluginsPath"));
+            JToken payload = networkHandler.Get(strings.pluginsPath);
 
             if(payload is JArray)
             {
@@ -77,7 +75,7 @@ namespace Hestia.backend
 
         public List<string> GetPlugins(string collection)
         {
-            string endpoint = rm.GetString("pluginsPath") + collection + "/";
+            string endpoint = strings.pluginsPath + collection + "/";
             JToken payload = networkHandler.Get(endpoint);
 
             if (payload is JArray)
@@ -93,8 +91,8 @@ namespace Hestia.backend
 
         public RequiredInfo GetRequiredInfo(string collection, string plugin)
         {
-            string pluginPath = Hestia.Resources.strings.pluginsPath;
-            string endpoint = pluginPath + collection + "/" + pluginPath + plugin;
+            string pluginsPath = strings.pluginsPath;
+            string endpoint = pluginsPath + collection + "/" + pluginsPath + plugin;
             JToken payload = networkHandler.Get(endpoint);
 
             if(payload["error"] == null)

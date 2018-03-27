@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Resources;
 using System.Runtime.Remoting;
+
+using Hestia.Resources;
 
 namespace Hestia.backend.models
 {
@@ -26,7 +26,7 @@ namespace Hestia.backend.models
             {
                 name = value;
 
-                string endpoint = Hestia.Resources.strings.devicePath + deviceId;
+                string endpoint = strings.devicePath + deviceId;
                 JObject deviceNameJson = new JObject
                 {
                     ["name"] = name
