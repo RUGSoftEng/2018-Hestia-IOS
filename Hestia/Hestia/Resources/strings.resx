@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="activatorsPath" xml:space="preserve">
-    <value>/activators/</value>
+    <value>activators/</value>
   </data>
   <data name="addDeviceTitle" xml:space="preserve">
     <value>new Add device</value>
@@ -166,7 +166,7 @@
     <value>plugins</value>
   </data>
   <data name="pluginsPath" xml:space="preserve">
-    <value>plugins</value>
+    <value>plugins/</value>
   </data>
   <data name="pluginsPathMid" xml:space="preserve">
     <value>plugins</value>
