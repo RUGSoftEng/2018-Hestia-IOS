@@ -11,11 +11,8 @@ using UIKit;
 
 namespace Hestia
 {
-    [Register ("UITableViewCellDevice")]
-    partial class UITableViewCellDevice
+    [Register ("UITableViewAccount")]
+    partial class UITableViewAccount
     {
-        void ReleaseDesignerOutlets ()
-        {
-        }
     }
 }

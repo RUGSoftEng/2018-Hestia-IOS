@@ -90,6 +90,14 @@
     </Compile>
     <Compile Include="DevicesScreen\DataItem.cs" />
     <Compile Include="DevicesScreen\MyEventsArgs.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerAccount.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerAccount.designer.cs">
+      <DependentUpon>UITableViewControllerAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\UITableViewControllerServer.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerServer.designer.cs">
+      <DependentUpon>UITableViewControllerServer.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewController.designer.cs">
@@ -98,7 +106,7 @@
     <Compile Include="ViewController.cs" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
-    <InterfaceDefinition Include="DevicesScreen\Devices.storyboard" />
+    <InterfaceDefinition Include="DevicesScreen\Devices1.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
