@@ -20,20 +20,11 @@ namespace Hestia.DevicesScreen
         //we know we're replacing the old one because the Hashtable is keyed on row.
         Hashtable Switches = new Hashtable();
 
-        // The list with Devices. It is now a DataItem with a Label and State attribute
-        // which hold the name and the on/off state of the device
-        // This DataItem should be replaced by a " devices " class or it should 
-        // interact with it. See also the UITableVieControllerDevicesMainClass, where
-        // values are hardcoded
+        // The list with Devices, set in the constructor. (Retrieved from server)
         List<Device> TableItems;
 
         // The kind of cell that is used in the table (set in Storyboard)
         string CellIdentifier = "tableCell";
-
-        // MarcF: This was in the code I based the switch part code on, but 
-        // I don't know if it will be necessary
-        // Declare a delegate to handle switch state changes
-       // public delegate void mySwitchHandler(object sender, MyEventArgs e);
 
         // Constructor. Gets the device data and the ViewController
         public TableSource(List<Device> items, UITableViewControllerDevicesMain owner)
@@ -69,18 +60,16 @@ namespace Hestia.DevicesScreen
             // If no devices present
             if (indexPath.Row == 0)
             {
-                // The text to display on the cell is the device name
-               // cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
+                // The text to display on the cell is the device name  
                 cell.TextLabel.Text = "New Device";
                 return cell;
             }
 
-
-            // MF: Code below is from the example I found on internet
             // Create a new UISwitch and set up its delegate for the value changing
-            if (TableItems[(indexPath.Row)].Activators[0].Name == "On/Off")
+            if (TableItems[(indexPath.Row)].Activators[0].State.RawState is bool)
             {
                 UISwitch MySwitch = new UISwitch();
+                MySwitch.On = (bool)TableItems[(indexPath.Row)].Activators[0].State.RawState;
                 MySwitch.ValueChanged += delegate (object sender, EventArgs e)
                 {
                     SwitchEventsArgs myE = new SwitchEventsArgs();
@@ -88,7 +77,6 @@ namespace Hestia.DevicesScreen
                     myE.indexPath = indexPath;
                     HandleSwitchChanged(this, myE);
                 };
-
 
                 // Set the switch's state to that of the device.
                 MySwitch.On = (bool)TableItems[(indexPath.Row)].Activators[0].State.RawState;
@@ -100,6 +88,7 @@ namespace Hestia.DevicesScreen
                 // we only have one for any given row
                 Switches[indexPath.Row] = cell.AccessoryView;
             }
+           
             // The text to display on the cell is the device name
             cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
 
@@ -108,7 +97,6 @@ namespace Hestia.DevicesScreen
 
         // Handler for switch changed events.
         // Set the value in the Device list in this class, but 
-        // SHOULD ALSO CHANGE THE STATE OF DEVICE ON SERVER
         protected void HandleSwitchChanged(object sender, SwitchEventsArgs e)
         {
             TableItems[e.indexPath.Row].Activators[0].State.RawState = e.SwitchState;
