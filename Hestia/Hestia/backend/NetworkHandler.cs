@@ -12,6 +12,21 @@ namespace Hestia.backend
         private int port;
         private RestClient client;
 
+        public string Ip
+        {
+            get
+            {
+                return ip;
+            }
+        }
+        public int Port
+        {
+            get
+            {
+                return port;
+            }
+        }
+
         public NetworkHandler(string ip, int port)
         {
             this.ip = ip;
