@@ -62,16 +62,34 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="backend\exceptions\ComFaultException.cs" />
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
+    <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />
+    <Compile Include="backend\models\deserializers\DeviceDeserializer.cs" />
     <Compile Include="backend\models\Device.cs" />
+    <Compile Include="backend\models\RequiredInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
+    <Compile Include="backend\ServerInteractor.cs" />
+    <Compile Include="backend\utils\Float.cs" />
+    <Compile Include="backend\utils\JsonValidator.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
+    <Compile Include="DevicesScreen\TableSource.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerDevicesMain.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerDevicesMain.designer.cs">
+      <DependentUpon>UITableViewControllerDevicesMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\UITableViewCellDevice.cs" />
+    <Compile Include="DevicesScreen\UITableViewCellDevice.designer.cs">
+      <DependentUpon>UITableViewCellDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\DataItem.cs" />
+    <Compile Include="DevicesScreen\MyEventsArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ViewController.designer.cs">
@@ -80,8 +98,15 @@
     <Compile Include="ViewController.cs" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="DevicesScreen\Devices.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.2.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.2.1\lib\netstandard2.0\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Json" />
     <Reference Include="System.Net.Http" />
@@ -95,5 +120,6 @@
   <ItemGroup>
     <BundleResource Include="Resources\strings.resx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -18,15 +18,35 @@ using UIKit;
  */
 namespace Hestia.backend.models
 {
-    class ActivatorState<T>
+    public class ActivatorState<T>
     {
         private T rawState;
         private String type;
 
-        public T RawState { get; set; }
-        public String Type { get; set; }
+        public T RawState
+        {
+            get
+            {
+                return rawState;
+            }
+            set
+            {
+                rawState = value;
+            }
+        }
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
+        }
 
-        public ActivatorState(T rawState, String type)
+        public ActivatorState(T rawState, string type)
         {
             this.rawState = rawState;
             this.type = type;

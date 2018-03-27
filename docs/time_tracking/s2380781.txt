@@ -42,3 +42,53 @@ Reading about Xamarin development for iOS and setting up Xamarin with Zino's pro
 Added device screen explanation in architecture document
 Added device screen explanation in architecture document
 Added device screen explanation in architecture document + fixing login screen design
+Meeting with team
+Meeting with team
+Creating Trello card + working out meeting notes (front end)
+Added create account screen and checked transitions
+Reading on Virtual machine
+Reading on Virtual machine, starting configuration
+Reading on Virtual machine, starting configuration
+Installing Xcode + following Hello, ios part 1 tutorial
+Installing Xcode + following Hello, ios part 1 tutorial
+Hello, iOS tutorial deep dive
+Hello, iOS multiscreen tutorial
+Reading about Table Views and experimenting with it
+Meeting with Lars (with Tom and Andrei
+Meeting with Tom and Andrei
+Working out meeting notes and sending email to Lars
+Reading about table views and experimenting with tableview/devices screen
+Reading about table views and experimenting with tableview/devices screen
+Meeting with team
+Meeting with team
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on device main screen (implementing it in Xamarin.iOS (UITableView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Working on devices screen and  switches in device main screen (AccessoryView)
+Reading about event handling in Xamarin.iOS
+Reading about editing/delete actions. 
+Reading about editing/delete actions.
+Reading about editing/delete actions. Change row editing style
+Integrating with back end device classes in devices main screen
+Integrating with back end device classes in devices main screen 
+Integrating with back end device classes in devices main screen + fixing add device cell
+
+
+
