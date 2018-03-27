@@ -7,14 +7,12 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace Hestia
 {
-    [Register ("ViewController")]
-    partial class ViewController
+    [Register ("UITableViewAccount")]
+    partial class UITableViewAccount
     {
-        void ReleaseDesignerOutlets ()
-        {
-        }
     }
 }
