@@ -1,4 +1,7 @@
 ﻿using Foundation;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using UIKit;
 
 namespace Hestia
@@ -21,6 +24,8 @@ namespace Hestia
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+
+            AppCenter.Start("4fea879d-0c7a-4f73-99c4-a6179202c4d3", typeof(Analytics), typeof(Crashes));
 
             return true;
         }
