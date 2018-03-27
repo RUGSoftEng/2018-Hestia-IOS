@@ -15,17 +15,7 @@ namespace Hestia.backend.models
         private List<Activator> activators;
         private NetworkHandler networkHandler;
 
-        public string DeviceId
-        {
-            get
-            {
-                return deviceId;
-            }
-            set
-            {
-                deviceId = value;
-            }
-        }
+        public string DeviceId { get; set; }
         public string Name
         {
             get
@@ -36,7 +26,7 @@ namespace Hestia.backend.models
             {
                 name = value;
 
-                string endpoint = "devices/" + deviceId;
+                string endpoint = Hestia.Resources.strings.devicePath + deviceId;
                 JObject deviceNameJson = new JObject
                 {
                     ["name"] = name
@@ -45,33 +35,12 @@ namespace Hestia.backend.models
                 JToken payload = networkHandler.Put(deviceNameJson, endpoint);
                 if (payload["error"] != null)
                 {
-                    // Throwing a default exception for now, a custom exception should be made later on.
                     throw new ServerException();
                 }
             }
         }
-        public string Type
-        {
-            get
-            {
-                return type;
-            }
-            set
-            {
-                type = value;
-            }
-        }
-        public List<Activator> Activators
-        {
-            get
-            {
-                return activators;
-            }
-            set
-            {
-                activators = value;
-            }
-        }
+        public string Type { get; set; }
+        public List<Activator> Activators { get; set; }
         public NetworkHandler NetworkHandler
         {
             get
@@ -112,7 +81,7 @@ namespace Hestia.backend.models
         new
         public int GetHashCode()
         {
-            int multiplier = int.Parse(new ResourceManager("strings", Assembly.GetExecutingAssembly()).GetString("hashCodeMultiplier"));
+            int multiplier = int.Parse(Resources.strings.hashCodeMultiplier);
             int result = DeviceId.GetHashCode();
             result = result * multiplier + Name.GetHashCode();
             result = result * multiplier + GetType().GetHashCode();
