@@ -10,7 +10,7 @@ using UIKit;
 
 namespace Hestia.backend
 {
-    public static class Utils
+    public static class JsonValidator
     {
         public static bool IsValidJson(string json)
         {

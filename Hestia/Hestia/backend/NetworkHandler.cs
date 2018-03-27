@@ -81,7 +81,7 @@ namespace Hestia.backend
 
             if (response.IsSuccessful && response.ErrorException == null)
             {
-                if (Utils.IsValidJson(responseString))
+                if (JsonValidator.IsValidJson(responseString))
                 {
                     responseJson = JToken.Parse(responseString);
                 }
@@ -93,7 +93,7 @@ namespace Hestia.backend
             }
             else
             {
-                if (Utils.IsValidJson(responseString))
+                if (JsonValidator.IsValidJson(responseString))
                 {
                     responseJson = JToken.Parse(responseString);
                 }
