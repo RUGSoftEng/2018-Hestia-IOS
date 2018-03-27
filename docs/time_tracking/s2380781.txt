@@ -89,6 +89,16 @@ Reading about editing/delete actions. Change row editing style
 Integrating with back end device classes in devices main screen
 Integrating with back end device classes in devices main screen 
 Integrating with back end device classes in devices main screen + fixing add device cell
-
+Meeting with Zino, discussing front end, back end integration
+Meeting with Zino, discussing front end, back end integration
+Working with team on app. Working with Andrei and Tom at settingsscreen + meeting Feiko
+Working with team on app. Working with Andrei and Tom at settingsscreen
+Working with team on app. Working with Andrei and Tom at settingsscreen
+Working with team on app. Working on log-in screen. Delegated it to Geanne when she arrived. First tried Monotouch.dialog but was not good.
+Working with team on app. Working on log-in screen. Delegated it to Geanne when she arrived. First tried Monotouch.dialog but was not good.
+Working with team on app. Working on log-in screen. Delegated it to Geanne when she arrived. First tried Monotouch.dialog but was not good.
+Working with team on app. Working on log-in screen. Delegated it to Geanne when she arrived. First tried Monotouch.dialog but was not good.
+Working with team on app. Helping Juanjo with device edit screen
+Working with team on app. Helping Geanne with log-in screen
 
 
