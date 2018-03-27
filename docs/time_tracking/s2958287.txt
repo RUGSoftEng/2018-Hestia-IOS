@@ -22,3 +22,68 @@ Learning about and working on networking
 Update requirements document
 Learning about and working on networking
 Learning about and working on networking
+Meeting with group and TA
+Meeting with group
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Setting up virtualbox with macOS / working on NetworkHandler
+Working on NetworkHandler
+Working on NetworkHandler
+Meeting with group
+Meeting with group
+Meeting with group
+Working on NetworkHandler
+Working on NetworkHandler
+Working on NetworkHandler
+Working on NetworkHandler
+Working on NetworkHandler
+Finalizing NetworkHandler
+Finalizing NetworkHandler
+Finalizing NetworkHandler
+Finalizing NetworkHandler
+Creating Utils and ServerInteractor classes
+Creating Utils and ServerInteractor classes
+Creating Utils and ServerInteractor classes
+Creating Utils and ServerInteractor classes
+Creating Utils and ServerInteractor classes
+Creating Utils and ServerInteractor classes
+Creating Utils and ServerInteractor classes
+Creating Utils and ServerInteractor classes
+Trying to get serialization working
+Trying to get serialization working
+Trying to get serialization working
+Trying to get serialization working
+Trying to get serialization working
+Trying to get serialization working
+Working on ServerInteractor class
+Working on ServerInteractor class
+Working on ServerInteractor class
+Working on ServerInteractor class
+Working on ServerInteractor class
+Finalizing ServerInteractor class
+Figuring out why deleting a device gives an error
+Figuring out why deleting a device gives an error
+Figuring out why deleting a device gives an error
+Finalizing ServerInteractor class
+Finalizing ServerInteractor class
+Setting up app center for continuous integration
+Setting up app center for continuous integration
+Reading information on ios app certificates
+Substituting hard coded endpoints by strings from resource manager
+Substituting hard coded endpoints by strings from resource manager
+Substituting hard coded endpoints by strings from resource manager
+Fixing bug in resource manager
