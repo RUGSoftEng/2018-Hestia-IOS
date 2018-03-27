@@ -14,9 +14,9 @@ namespace Hestia.backend.models.deserializers
         public Device Deserialize(JToken jT, NetworkHandler networkHandler)
         {
             // get id, name and type
-            string id   = jT.SelectToken("deviceId").ToString();
-            string name = jT.SelectToken("name").ToString();
-            string type = jT.SelectToken("type").ToString();
+            string id = jT.Value<string>("deviceId");
+            string name = jT.Value<string>("name");
+            string type = jT.Value<string>("name");
 
             // get activators
             JToken activators = jT.SelectToken("activators");
