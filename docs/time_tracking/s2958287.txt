@@ -87,3 +87,6 @@ Substituting hard coded endpoints by strings from resource manager
 Substituting hard coded endpoints by strings from resource manager
 Substituting hard coded endpoints by strings from resource manager
 Fixing bug in resource manager
+Fixing getters and setters in Device.cs, Activator.cs and ActivatorState.cs
+Fixing bug in DeviceSerializer.cs
+Fixing bug in DeviceSerializer.cs
