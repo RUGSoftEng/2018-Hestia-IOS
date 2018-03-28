@@ -5,7 +5,7 @@ namespace Hestia.backend.models.deserializers
     /**
      * Helper class that deserializes a json object into an Activator object
      */
-    class ActivatorDeserializer
+    public class ActivatorDeserializer
     {
         public Activator Deserialize(JToken jT)
         {

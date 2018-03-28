@@ -8,7 +8,7 @@ using UIKit;
 
 namespace Hestia.backend.utils
 {
-    class Float
+    public class Float
     {
         private float value;
         public float Value { get; set; }

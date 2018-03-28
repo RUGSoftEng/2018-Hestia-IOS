@@ -10,7 +10,7 @@ using Hestia.Resources;
 
 namespace Hestia.backend
 {
-    class ServerInteractor
+    public class ServerInteractor
     {
         private NetworkHandler networkHandler;
         ResourceManager rm;

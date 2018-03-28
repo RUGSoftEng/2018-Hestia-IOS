@@ -7,7 +7,7 @@ namespace Hestia.backend.models.deserializers
     /**
      * Helper class that deserializes a jToken into a Device object
      */
-    class DeviceDeserializer
+    public class DeviceDeserializer
     {
 
         // deserialize a single device from a JToken
