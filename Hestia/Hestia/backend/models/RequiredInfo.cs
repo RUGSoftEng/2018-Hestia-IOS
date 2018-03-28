@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Hestia.backend.models
 {
-    class RequiredInfo
+    public class RequiredInfo
     {
         private string collection;
         private string plugin;
