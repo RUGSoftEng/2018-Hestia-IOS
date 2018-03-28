@@ -66,7 +66,7 @@ namespace Hestia.DevicesScreen
             }
 
             // Create a new UISwitch and set up its delegate for the value changing
-            if (TableItems[(indexPath.Row)].Activators[0].State.RawState is bool)
+            /*if (TableItems[(indexPath.Row)].Activators[0].State.RawState is bool)
             {
                 UISwitch MySwitch = new UISwitch();
                 MySwitch.On = (bool)TableItems[(indexPath.Row)].Activators[0].State.RawState;
@@ -87,7 +87,7 @@ namespace Hestia.DevicesScreen
                 // Keep a reference to the UISwitch - note using a Hashtable to ensure
                 // we only have one for any given row
                 Switches[indexPath.Row] = cell.AccessoryView;
-            }
+            }*/
            
             // The text to display on the cell is the device name
             cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;

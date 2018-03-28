@@ -94,9 +94,9 @@
     <Compile Include="DevicesScreen\UITableViewControllerAccount.designer.cs">
       <DependentUpon>UITableViewControllerAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="DevicesScreen\UITableViewControllerServer.cs" />
-    <Compile Include="DevicesScreen\UITableViewControllerServer.designer.cs">
-      <DependentUpon>UITableViewControllerServer.cs</DependentUpon>
+    <Compile Include="DevicesScreen\UITableViewControllerServerConnect.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerServerConnect.designer.cs">
+      <DependentUpon>UITableViewControllerServerConnect.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
