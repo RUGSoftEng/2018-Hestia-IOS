@@ -24,7 +24,7 @@ namespace Hestia.backend.models.deserializers
 
             foreach(JToken activator in activators)
             {
-                activatorList.Add(activatorDeserializer.Deserialize(activator, networkHandler));
+                activatorList.Add(activatorDeserializer.Deserialize(activator));
             }
 
             Device device = new Device(id, name, type, activatorList, networkHandler);
