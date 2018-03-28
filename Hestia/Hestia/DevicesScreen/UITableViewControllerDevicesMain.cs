@@ -11,11 +11,13 @@ using Hestia.backend;
 using Hestia.backend.models;
 
 
-namespace Hestia
+namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerDevicesMain : UITableViewController
     {
         ServerInteractor serverInteractor;
+        //public ServerInteractor ServerInteractor { get; set; }
+
 
         // The table that lives in this view controller
         UITableView table;
@@ -33,7 +35,6 @@ namespace Hestia
         {
             serverInteractor = new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
         }
-
 
         public override void ViewDidLoad()
         {

@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Hestia
+namespace Hestia.DevicesScreen
 {
     [Register ("UITableViewControllerAccount")]
     partial class UITableViewControllerAccount

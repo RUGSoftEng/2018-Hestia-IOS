@@ -3,11 +3,11 @@ using ObjCRuntime;
 using System;
 using UIKit;
 
-using Hestia.DevicesScreen;
+using Hestia;
 using Hestia.backend;
 using Hestia.backend.models;
 
-namespace Hestia
+namespace Hestia.DevicesScreen
 {
 
 
@@ -23,8 +23,8 @@ namespace Hestia
 
             base.ViewDidLoad();
             newServerName.Placeholder = "Hestia_Server2018";
-            newIP.Placeholder = "94.212.164.28";
-            newPort.Placeholder = "8000";
+            newIP.Text = "94.212.164.28";
+            newPort.Text = "8000";
 
 
         }
@@ -36,9 +36,11 @@ namespace Hestia
             //Set up Destination View Controller
             if (segue.Identifier == "ServerToDevice")
             {
-                var DevicesController = (UITableViewControllerDevicesMain)segue.DestinationViewController;
-                if (DevicesController != null)
+                var devicesController = (UITableViewControllerDevicesMain)segue.DestinationViewController;
+                if (devicesController != null)
                 {
+                    ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
+                    //devicesController.ServerInteractor = serverInteractor;
                 }
             }
 
