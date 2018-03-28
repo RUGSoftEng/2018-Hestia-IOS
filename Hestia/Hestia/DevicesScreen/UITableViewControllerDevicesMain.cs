@@ -16,6 +16,7 @@ namespace Hestia
     public partial class UITableViewControllerDevicesMain : UITableViewController
     {
         ServerInteractor serverInteractor;
+
         // The table that lives in this view controller
         UITableView table;
 
@@ -30,9 +31,9 @@ namespace Hestia
         // Constructor
         public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
         {
-            
             serverInteractor = new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
         }
+
 
         public override void ViewDidLoad()
         {
@@ -45,7 +46,9 @@ namespace Hestia
             {
                 devices = serverInteractor.GetDevices();
             }
-            catch(Exception e){}
+            catch(Exception e){
+                Console.Out.WriteLine(e.StackTrace);
+            }
             // Contains methods that describe behavior of table
             table.Source = new TableSource(devices, this); 
             //table.Source = new TableSource(tableItems, this); 
@@ -66,7 +69,6 @@ namespace Hestia
                     table.SetEditing(false, true); // if we've half-swiped a row
                 ((TableSource)table.Source).WillBeginTableEditing(table);
                 table.SetEditing(true, true);
-                NavigationItem.LeftBarButtonItem = null;
                 NavigationItem.RightBarButtonItem = done;
             });
 
