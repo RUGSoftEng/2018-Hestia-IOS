@@ -14,9 +14,6 @@ namespace Hestia.backend.models.deserializers
             int rank = jT.Value<int>("rank");
             string name = jT.Value<string>("name");
 
-            // create the Activator
-            Activator activator = new Activator(id, rank, name);
-
             // get the ActivatorState
             string type = jT.Value<string>("type");
             string rawState = jT.Value<string>("state");
@@ -34,7 +31,8 @@ namespace Hestia.backend.models.deserializers
                     break;
             }
 
-            activator.State = state;
+            // create the Activator
+            Activator activator = new Activator(id, name, rank, state);
 
             return activator;
         }

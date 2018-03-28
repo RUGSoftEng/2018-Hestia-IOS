@@ -13,7 +13,6 @@ namespace Hestia.backend
     class ServerInteractor
     {
         private NetworkHandler networkHandler;
-        ResourceManager rm;
 
         public ServerInteractor(NetworkHandler networkHandler)
         {

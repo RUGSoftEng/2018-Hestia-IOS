@@ -119,6 +119,10 @@ namespace Hestia.backend
                 if (JsonValidator.IsValidJson(responseString))
                 {
                     responseJson = JToken.Parse(responseString);
+                    if(responseJson["error"] == null)
+                    {
+                        responseJson["error"] = "something went wrong";
+                    }
                 }
                 else
                 {
