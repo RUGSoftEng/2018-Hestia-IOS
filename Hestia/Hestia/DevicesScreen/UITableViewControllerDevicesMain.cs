@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.Collections;
 
-using Hestia.DevicesScreen;
+using Hestia.DevicesScreen.resources;
 using Hestia.backend;
 using Hestia.backend.models;
 
@@ -33,7 +33,7 @@ namespace Hestia.DevicesScreen
         // Constructor
         public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
         {
-            serverInteractor = new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
+            serverInteractor = Globals.ServerInteractor;
         }
 
         public override void ViewDidLoad()

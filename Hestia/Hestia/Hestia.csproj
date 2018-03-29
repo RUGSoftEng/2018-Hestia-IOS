@@ -98,6 +98,11 @@
     <Compile Include="DevicesScreen\UITableViewControllerServerConnect.designer.cs">
       <DependentUpon>UITableViewControllerServerConnect.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevicesScreen\resources\Globals.cs" />
+    <Compile Include="DevicesScreen\SettingsController.cs" />
+    <Compile Include="DevicesScreen\SettingsController.designer.cs">
+      <DependentUpon>SettingsController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
@@ -133,5 +138,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DevicesScreen\resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -64,7 +64,7 @@
         </scene>
         <scene sceneID="724">
             <objects>
-                <tableViewController id="725" sceneMemberID="viewController" title="Settings">
+                <tableViewController id="725" sceneMemberID="viewController" title="Settings" customClass="SettingsController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="726">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,7 +111,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ServerName" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18101" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                                    <rect key="frame" x="221" y="12" width="120" height="21"/>
+                                                    <rect key="frame" x="203" y="12" width="138" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" colorSpace="calibratedWhite" white="0.666666666666667" alpha="1"/>
@@ -168,6 +168,9 @@
                             </tableViewSection>
                         </sections>
                     </tableView>
+                    <connections>
+                        <outlet property="serverName" destination="18101" id="name-outlet-18101"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="731" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -828,7 +831,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue id="25412" destination="440" kind="presentation" modalTransitionStyle="crossDissolve" identifier="ServerToDevices"/>
+                                            <segue id="25412" destination="440" kind="presentation" identifier="ServerToDevices"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
