@@ -3,7 +3,7 @@ using ObjCRuntime;
 using System;
 using UIKit;
 
-using Hestia;
+using Hestia.DevicesScreen.resources;
 using Hestia.backend;
 using Hestia.backend.models;
 
@@ -18,42 +18,46 @@ namespace Hestia.DevicesScreen
         {
             
         }
+
         public override void ViewDidLoad()
         {
 
             base.ViewDidLoad();
-            newServerName.Placeholder = "Hestia_Server2018";
+            newServerName.Text = "Hestia_Server2018";
             newIP.Text = "94.212.164.28";
             newPort.Text = "8000";
 
-
         }
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
-            base.PrepareForSegue(segue, sender);
 
-
-            //Set up Destination View Controller
-            if (segue.Identifier == "ServerToDevice")
+		public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+		{
+            if (segueIdentifier == "ServerToDevices")
             {
-                var devicesController = (UITableViewControllerDevicesMain)segue.DestinationViewController;
-                if (devicesController != null)
+                if (newIP.Text == "94.212.164.28" && newPort.Text == "8000")
                 {
-                    ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
-                    //devicesController.ServerInteractor = serverInteractor;
+                    Globals.ServerName = newServerName.Text;
+                    Globals.IP = newIP.Text;
+                    Globals.Port = int.Parse(newPort.Text);
+                    ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                    Globals.ServerInteractor = serverInteractor;
+                    return true;
+                }
+                else
+                {
+                    UIAlertView alert = new UIAlertView()
+                    {
+                        Title = "Could not connect to server",
+                        Message = "Enter correct IP and Port"
+                    };
+                    alert.AddButton("OK");
+                    alert.Show();
+                    return false;
                 }
             }
-
-        }
-        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        {
-            //base.RowSelected (tableView, indexPath);
-
-            Console.WriteLine(indexPath.Section);
-            if (indexPath.Section == 1 && indexPath.Row == 0)
+            else
             {
-                PerformSegue("ServerToDevices", this);
+                return true;
             }
-        }
-    }
+		}
+	}
 }
