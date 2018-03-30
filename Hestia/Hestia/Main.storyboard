@@ -32,6 +32,7 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue id="2664" destination="2606" kind="show"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
