@@ -754,8 +754,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="18641" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" textAlignment="right" placeholder="Enter name">
-                                                    <rect key="frame" x="190" y="7" width="169" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -778,8 +778,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="18639" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Enter IP" textAlignment="right">
-                                                    <rect key="frame" x="189" y="7" width="170" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="0.0" y="7" width="359" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -802,8 +802,8 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="18637" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" placeholder="Enter port" textAlignment="right">
-                                                    <rect key="frame" x="190" y="7" width="169" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -822,11 +822,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18606" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                                    <rect key="frame" x="149" y="12" width="75" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connect" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="18606" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <color key="textColor" colorSpace="calibratedRGB" red="0" green="0" blue="1" alpha="1"/>
+                                                    <color key="textColor" colorSpace="calibratedRGB" red="0" green="0.47450980392156861" blue="1" alpha="1"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
