@@ -26,8 +26,16 @@
                                     <segue id="899" destination="495" kind="show"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2580" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="169" y="395" width="117" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue id="2664" destination="2606" kind="show"/>
+                            </button>
                         </subviews>
                     </view>
+                    <connections/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -39,6 +47,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="496" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="560" y="261"/>
+        </scene>
+        <scene sceneID="2605">
+            <objects>
+                <viewControllerPlaceholder id="2606" sceneMemberID="viewController" storyboardName="AddDevice"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2607" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="469" y="494"/>
         </scene>
     </scenes>
 </document>
