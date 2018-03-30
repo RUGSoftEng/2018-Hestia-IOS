@@ -52,55 +52,40 @@ namespace Hestia.DevicesScreen
             UITableViewCell cell = tableView.DequeueReusableCell(CellIdentifier);
             // if there are no cells to reuse, create a new one
             if (cell == null)
-            {   
+            {
                 // Generate a default table cell
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
-            // If no devices present
-            if (indexPath.Row == 0)
-            {
-                // The text to display on the cell is the device name  
-                cell.TextLabel.Text = "New Device";
-                return cell;
-            }
 
             // Create a new UISwitch and set up its delegate for the value changing
-            /*if (TableItems[(indexPath.Row)].Activators[0].State.RawState is bool)
+            foreach (Hestia.backend.models.Activator act in TableItems[(indexPath.Row)].Activators)
             {
-                UISwitch MySwitch = new UISwitch();
-                MySwitch.On = (bool)TableItems[(indexPath.Row)].Activators[0].State.RawState;
-                MySwitch.ValueChanged += delegate (object sender, EventArgs e)
+                if (act.State.Type == "bool" && (act.Name == "On/Off" || act.Name == "Activate"))
                 {
-                    SwitchEventsArgs myE = new SwitchEventsArgs();
-                    myE.SwitchState = MySwitch.On;
-                    myE.indexPath = indexPath;
-                    HandleSwitchChanged(this, myE);
-                };
+                    UISwitch MySwitch = new UISwitch();
+                    // Set the switch's state to that of the device.
+                    MySwitch.On = (bool)act.State.RawState;
+                    MySwitch.ValueChanged += delegate (object sender, EventArgs e)
+                    {
+                        act.State = new Hestia.backend.models.ActivatorState<object>(MySwitch.On, "bool");
+                    };
+                    // Replace the cell's AccessoryView with the new UISwitch
+                    cell.AccessoryView = MySwitch;
 
-                // Set the switch's state to that of the device.
-                MySwitch.On = (bool)TableItems[(indexPath.Row)].Activators[0].State.RawState;
+                    // Keep a reference to the UISwitch - note using a Hashtable to ensure
+                    // we only have one for any given row
+                    Switches[indexPath.Row] = cell.AccessoryView;
+                }
+            }
 
-                // Replace the cell's AccessoryView with the new UISwitch
-                cell.AccessoryView = MySwitch;
+                // The text to display on the cell is the device name
+                cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
 
-                // Keep a reference to the UISwitch - note using a Hashtable to ensure
-                // we only have one for any given row
-                Switches[indexPath.Row] = cell.AccessoryView;
-            }*/
-           
-            // The text to display on the cell is the device name
-            cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
-
-            return cell;
+                return cell;
+            
         }
 
-        // Handler for switch changed events.
-        // Set the value in the Device list in this class, but 
-        protected void HandleSwitchChanged(object sender, SwitchEventsArgs e)
-        {
-            TableItems[e.indexPath.Row].Activators[0].State.RawState = e.SwitchState;
-        }
 
         // Devices what happens if touch on row.
         // Should display the slider(s) ultimately
