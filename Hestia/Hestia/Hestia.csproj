@@ -112,6 +112,7 @@
     <Compile Include="DevicesScreen\UITableViewControllerAddDeviceDevice.designer.cs">
       <DependentUpon>UITableViewControllerAddDeviceDevice.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevicesScreen\TableSourceAddDeviceDevice.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />

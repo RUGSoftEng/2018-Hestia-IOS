@@ -11,27 +11,27 @@ using Hestia.backend.models;
 
 namespace Hestia.DevicesScreen
 {
-    public class TableSourceAddDeviceManufacturer : UITableViewSource
+    public class TableSourceAddDeviceDevice: UITableViewSource
     {
         // The viewController to which the TableView connected to this Source lives in
-        UITableViewControllerAddDevice owner;
+        UITableViewControllerAddDeviceDevice owner;
 
-        Hashtable plugins;
+ 
 
         // The list with Devices, set in the constructor. (Retrieved from server)
-        List<string> collections;
+        List<string> plugins;
 
         // The kind of cell that is used in the table (set in Storyboard)
         string CellIdentifier = "tableCell";
 
         // Constructor. Gets the device data and the ViewController
-        public TableSourceAddDeviceManufacturer(List<string> collections,
-                                    Hashtable plugins,
-                    UITableViewControllerAddDevice owner)
+        public TableSourceAddDeviceDevice(List<string> plugins,
+                         
+                    UITableViewControllerAddDeviceDevice owner)
         {
             this.plugins = plugins;
             this.owner = owner;
-            this.collections = collections;
+
         }
 
         // We have only one section with devices (thus far)
@@ -43,7 +43,7 @@ namespace Hestia.DevicesScreen
         // The number of manufacturers in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return collections.Count;
+            return plugins.Count;
         }
 
         // Important method. Called to generate a cell to display
@@ -59,7 +59,7 @@ namespace Hestia.DevicesScreen
             }
 
             // The text to display on the cell is the device name
-            cell.TextLabel.Text = collections[indexPath.Row];
+            cell.TextLabel.Text = plugins[indexPath.Row];
 
             return cell;
 
@@ -70,21 +70,21 @@ namespace Hestia.DevicesScreen
         // Should display the slider(s) ultimately
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-           // UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
+            // UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
             //okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
 
-           // owner.PresentViewController(okAlertController, true, null);
+            // owner.PresentViewController(okAlertController, true, null);
 
-           // tableView.DeselectRow(indexPath, true);
+            // tableView.DeselectRow(indexPath, true);
 
             // Launches a new instance of CallHistoryController
-            UITableViewControllerAddDeviceDevice addDeviceType = this.owner.Storyboard.InstantiateViewController("AddDevice") as UITableViewControllerAddDeviceDevice;
-            if (addDeviceType != null)
-            {
-                addDeviceType.plugins = (List<string>)this.plugins[collections[indexPath.Row]];
-                this.owner.NavigationController.PushViewController(addDeviceType, true);
-            }
-        
+            //UITableViewControllerAddDeviceDevice addDeviceType = this.owner.Storyboard.InstantiateViewController("AddDevice") as UITableViewControllerAddDeviceDevice;
+            //if (addDeviceType != null)
+            //{
+            //    addDeviceType.plugins = this.plugins;
+            //    this.owner.NavigationController.PushViewController(addDeviceType, true);
+            //}
+
 
         }
 
