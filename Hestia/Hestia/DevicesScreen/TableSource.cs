@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
+using Hestia.DevicesScreen.resources;
 using System.Drawing;
 using System.Collections;
 using Hestia.backend;
@@ -102,7 +103,15 @@ namespace Hestia.DevicesScreen
             switch (editingStyle)
             {
                 case UITableViewCellEditingStyle.Delete:
-                    // remove the item from the underlying data source
+                    try
+                    {
+                        // remove device from server 
+                        Globals.ServerInteractor.RemoveDevice(TableItems[indexPath.Row]);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.Out.WriteLine(e.StackTrace);
+                    }
                     TableItems.RemoveAt(indexPath.Row);
                     // delete the row from the table
                     tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);

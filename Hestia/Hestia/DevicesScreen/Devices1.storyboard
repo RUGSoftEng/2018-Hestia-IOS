@@ -826,7 +826,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask" heightSizable="YES" widthSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                    <color key="textColor" colorSpace="calibratedRGB" red="0" green="0" blue="1" alpha="1"/>
+                                                    <color key="textColor" colorSpace="calibratedRGB" red="0" green="0.47450980392156861" blue="1" alpha="1"/>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
