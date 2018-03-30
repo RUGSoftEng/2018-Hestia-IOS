@@ -119,6 +119,9 @@ namespace Hestia.DevicesScreen
                 case UITableViewCellEditingStyle.None:
                     Console.WriteLine("CommitEditingStyle:None called");
                     break;
+                case UITableViewCellEditingStyle.Insert:
+                    // Implement insert
+                    break;
             }
         }
 

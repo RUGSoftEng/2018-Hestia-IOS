@@ -103,6 +103,15 @@
     <Compile Include="DevicesScreen\SettingsController.designer.cs">
       <DependentUpon>SettingsController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevicesScreen\UITableViewControllerAddDevice.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerAddDevice.designer.cs">
+      <DependentUpon>UITableViewControllerAddDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\TableSourceAddDeviceManufacturer.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerAddDeviceDevice.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerAddDeviceDevice.designer.cs">
+      <DependentUpon>UITableViewControllerAddDeviceDevice.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
@@ -113,6 +122,7 @@
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="DevicesScreen\Devices1.storyboard" />
+    <InterfaceDefinition Include="DevicesScreen\AddDevice.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
