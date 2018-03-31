@@ -20,6 +20,7 @@ namespace Hestia
 
 
         public List<string> properties;
+
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
         {
         }
@@ -34,11 +35,11 @@ namespace Hestia
 
 
             // Contains methods that describe behavior of table
-           // table.Source = new TableSourceAddDeviceDevice(plugins, this);
+            table.Source = new TableSourceAddDeviceProperties(properties, this);
 
-            //table.Source = new TableSource(tableItems, this); 
+          
             // Add the table to the view
-          //  Add(table);
+            Add(table);
 
         }
 

@@ -16,13 +16,14 @@ namespace Hestia.DevicesScreen
         // The viewController to which the TableView connected to this Source lives in
         UITableViewControllerAddDevice owner;
 
+        // Hashtable of plugins (keyed on collection)
         Hashtable plugins;
 
-        // The list with Devices, set in the constructor. (Retrieved from server)
+        // The list with collections, set in the constructor. (Retrieved from server)
         List<string> collections;
 
         // The kind of cell that is used in the table (set in Storyboard)
-        string CellIdentifier = "tableCell";
+        string CellIdentifier = "tableCellManufacturer";
 
         // Constructor. Gets the device data and the ViewController
         public TableSourceAddDeviceManufacturer(List<string> collections,
@@ -60,7 +61,7 @@ namespace Hestia.DevicesScreen
 
             // The text to display on the cell is the device name
             cell.TextLabel.Text = collections[indexPath.Row];
-
+           
             return cell;
 
         }
@@ -70,17 +71,11 @@ namespace Hestia.DevicesScreen
         // Should display the slider(s) ultimately
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-           // UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
-            //okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-
-           // owner.PresentViewController(okAlertController, true, null);
-
-           // tableView.DeselectRow(indexPath, true);
-
-            // Launches a new instance of CallHistoryController
+           
             UITableViewControllerAddDeviceDevice addDeviceType = this.owner.Storyboard.InstantiateViewController("AddDevice") as UITableViewControllerAddDeviceDevice;
             if (addDeviceType != null)
             {
+                addDeviceType.collection = collections[indexPath.Row];
                 addDeviceType.plugins = (List<string>)this.plugins[collections[indexPath.Row]];
                 this.owner.NavigationController.PushViewController(addDeviceType, true);
             }

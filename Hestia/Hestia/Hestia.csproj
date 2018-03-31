@@ -103,20 +103,21 @@
     <Compile Include="DevicesScreen\SettingsController.designer.cs">
       <DependentUpon>SettingsController.cs</DependentUpon>
     </Compile>
-    <Compile Include="DevicesScreen\UITableViewControllerAddDevice.cs" />
-    <Compile Include="DevicesScreen\UITableViewControllerAddDevice.designer.cs">
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceManufacturer.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.designer.cs">
       <DependentUpon>UITableViewControllerAddDevice.cs</DependentUpon>
     </Compile>
-    <Compile Include="DevicesScreen\TableSourceAddDeviceManufacturer.cs" />
-    <Compile Include="DevicesScreen\UITableViewControllerAddDeviceDevice.cs" />
-    <Compile Include="DevicesScreen\UITableViewControllerAddDeviceDevice.designer.cs">
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.designer.cs">
       <DependentUpon>UITableViewControllerAddDeviceDevice.cs</DependentUpon>
     </Compile>
-    <Compile Include="DevicesScreen\TableSourceAddDeviceDevice.cs" />
-    <Compile Include="DevicesScreen\UITableViewControllerAddDeviceProperties.cs" />
-    <Compile Include="DevicesScreen\UITableViewControllerAddDeviceProperties.designer.cs">
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.designer.cs">
       <DependentUpon>UITableViewControllerAddDeviceProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceProperties.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
@@ -127,7 +128,7 @@
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="DevicesScreen\Devices1.storyboard" />
-    <InterfaceDefinition Include="DevicesScreen\AddDevice.storyboard" />
+    <InterfaceDefinition Include="DevicesScreen\AddDevice1.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -155,6 +156,7 @@
   <ItemGroup />
   <ItemGroup>
     <Folder Include="DevicesScreen\resources\" />
+    <Folder Include="DevicesScreen\AddDeviceScreen\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

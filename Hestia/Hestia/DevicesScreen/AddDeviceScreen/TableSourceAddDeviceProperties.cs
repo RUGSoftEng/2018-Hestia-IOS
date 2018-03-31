@@ -11,25 +11,25 @@ using Hestia.backend.models;
 
 namespace Hestia.DevicesScreen
 {
-    public class TableSourceAddDeviceDevice: UITableViewSource
+    public class TableSourceAddDeviceProperties : UITableViewSource
     {
         // The viewController to which the TableView connected to this Source lives in
-        UITableViewControllerAddDeviceDevice owner;
+        UITableViewControllerAddDeviceProperties owner;
 
- 
+
 
         // The list with Devices, set in the constructor. (Retrieved from server)
-        List<string> plugins;
+        List<string> properties;
 
         // The kind of cell that is used in the table (set in Storyboard)
-        string CellIdentifier = "tableCell";
+        string CellIdentifier = "tableCellProperty";
 
         // Constructor. Gets the device data and the ViewController
-        public TableSourceAddDeviceDevice(List<string> plugins,
-                         
-                    UITableViewControllerAddDeviceDevice owner)
+        public TableSourceAddDeviceProperties(List<string> properties,
+
+                    UITableViewControllerAddDeviceProperties owner)
         {
-            this.plugins = plugins;
+            this.properties = properties;
             this.owner = owner;
 
         }
@@ -43,7 +43,7 @@ namespace Hestia.DevicesScreen
         // The number of manufacturers in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return plugins.Count;
+            return properties.Count;
         }
 
         // Important method. Called to generate a cell to display
@@ -58,8 +58,9 @@ namespace Hestia.DevicesScreen
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
-            // The text to display on the cell is the device name
-            cell.TextLabel.Text = plugins[indexPath.Row];
+            // The text to display on the cell is the property name
+            // To be implemented: text fields
+            cell.TextLabel.Text = properties[indexPath.Row];
 
             return cell;
 
@@ -67,24 +68,11 @@ namespace Hestia.DevicesScreen
 
 
         // Devices what happens if touch on row.
-        // Should display the slider(s) ultimately
+       
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            // UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
-            //okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-
-            // owner.PresentViewController(okAlertController, true, null);
-
-            // tableView.DeselectRow(indexPath, true);
-
-            // Launches a new instance of CallHistoryController
-            //UITableViewControllerAddDeviceDevice addDeviceType = this.owner.Storyboard.InstantiateViewController("AddDevice") as UITableViewControllerAddDeviceDevice;
-            //if (addDeviceType != null)
-            //{
-            //    addDeviceType.plugins = this.plugins;
-            //    this.owner.NavigationController.PushViewController(addDeviceType, true);
-            //}
-
+            
+            // to be implemented
 
         }
 

@@ -32,16 +32,17 @@ namespace Hestia
 
             base.ViewDidLoad();
             table = new UITableView(View.Bounds); // defaults to Plain style
+            collections = new List<string>();
 
             // The list with manufacturers
             try
             {
-                collections = Globals.ServerInteractor.GetCollections();
+                collections.AddRange(Globals.ServerInteractor.GetCollections());
                 foreach(string col in collections)
                 {
                     Console.Out.WriteLine(col);
-                    //List<string> plugins = Globals.ServerInteractor.GetPlugins(col);
-                   // collection_plugins.Add(col, plugins);
+                    List<string> plugins = Globals.ServerInteractor.GetPlugins(col);
+                    collection_plugins.Add(col, plugins);
                 }
      
             }
@@ -50,10 +51,10 @@ namespace Hestia
                 Console.Out.WriteLine(e.StackTrace);
             }
             // Contains methods that describe behavior of table
-            //table.Source = new TableSourceAddDeviceManufacturer(collections, collection_plugins, this);
+            table.Source = new TableSourceAddDeviceManufacturer(collections, collection_plugins, this);
 
             // Add the table to the view
-            //Add(table);
+            Add(table);
 
         }
     }

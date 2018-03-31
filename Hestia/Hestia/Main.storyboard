@@ -31,7 +31,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue id="2664" destination="2606" kind="show"/>
+                                    <segue id="3332" destination="3220" kind="show"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -49,12 +49,12 @@
             </objects>
             <point key="canvasLocation" x="560" y="261"/>
         </scene>
-        <scene sceneID="2605">
+        <scene sceneID="3219">
             <objects>
-                <viewControllerPlaceholder id="2606" sceneMemberID="viewController" storyboardName="AddDevice"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2607" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder id="3220" sceneMemberID="viewController" storyboardName="AddDevice1"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3221" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="469" y="494"/>
+            <point key="canvasLocation" x="504" y="493"/>
         </scene>
     </scenes>
 </document>
