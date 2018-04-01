@@ -886,7 +886,7 @@
         </scene>
         <scene sceneID="25723">
             <objects>
-                <tableViewController id="25724" sceneMemberID="viewController" customClass="UITableViewControllerAddDeviceProperties">
+                <tableViewController id="25724" sceneMemberID="viewController" customClass="UITableViewControllerAddDeviceProperties" storyboardIdentifier="AddDeviceProperties">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="25725">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

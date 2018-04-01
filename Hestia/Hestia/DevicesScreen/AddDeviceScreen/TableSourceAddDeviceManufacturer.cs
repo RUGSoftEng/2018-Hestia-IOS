@@ -81,8 +81,8 @@ namespace Hestia.DevicesScreen
                 Console.WriteLine("Test collection hashtabel");
                 Console.WriteLine(this.plugins[collections[indexPath.Row]]);
                 addDeviceType.plugins = (List<string>)this.plugins[collections[indexPath.Row]];
-                this.owner.PresentViewController(addDeviceType, true, null);
-                //this.owner.NavigationController.PushViewController(addDeviceType, true);
+               // this.owner.PresentViewController(addDeviceType, true, null);
+                this.owner.NavigationController.PushViewController(addDeviceType, true);
             }
         
 

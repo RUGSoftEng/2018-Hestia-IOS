@@ -70,21 +70,37 @@ namespace Hestia.DevicesScreen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
           
-            UITableViewControllerAddDeviceProperties addDeviceProperties = this.owner.Storyboard.InstantiateViewController("AddDevice") as UITableViewControllerAddDeviceProperties;
+            UITableViewControllerAddDeviceProperties addDeviceProperties = 
+                this.owner.Storyboard.InstantiateViewController("AddDeviceProperties") 
+                    as UITableViewControllerAddDeviceProperties;
             if (addDeviceProperties != null)
             {
 
-               
-                var keys = Globals.ServerInteractor.GetRequiredInfo(collection, (string)this.plugins[indexPath.Row]).Info.Keys;
-
-                foreach (var key in keys)
+                try
                 {
-                    addDeviceProperties.properties.Add(key);
+                    ServerInteractor si = 
+                        new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
+                    RequiredInfo reqinfo =
+                        si.GetRequiredInfo("mock", "light");
+                    
+                    //RequiredInfo requiredInfo = Globals.ServerInteractor.GetRequiredInfo(collection, (string)this.plugins[indexPath.Row]);
+                    var keys = reqinfo.Info.Keys;
+
+                    foreach (var key in keys)
+                     {
+                        Console.WriteLine("key");
+                        Console.WriteLine(key);
+                        addDeviceProperties.properties.Add(key);
+                    }
+
+                    this.owner.NavigationController.PushViewController(addDeviceProperties, true);
                 }
-
-                this.owner.NavigationController.PushViewController(addDeviceProperties, true);
+                catch (Exception e)
+                {
+                    Console.WriteLine("Exception while getting required info");
+                    Console.WriteLine(e.StackTrace);
+                }
             }
-
 
         }
 
