@@ -123,7 +123,7 @@ namespace Hestia.DevicesScreen
                     UITableViewControllerAddDevice addDeviceVc = 
                         this.owner.Storyboard.InstantiateViewController("AddManufacturer") 
                              as UITableViewControllerAddDevice;
-                    owner.PresentViewController(addDeviceVc , true, null);
+                    owner.NavigationController.PushViewController(addDeviceVc, true);
                     break;
             }
         }

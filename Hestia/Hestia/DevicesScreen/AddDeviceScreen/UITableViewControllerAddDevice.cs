@@ -42,8 +42,10 @@ namespace Hestia
                 Console.WriteLine(collections);
                 foreach(string col in collections)
                 {
-                    Console.Out.WriteLine(col);
+                    Console.WriteLine(col);
                     List<string> plugins = Globals.ServerInteractor.GetPlugins(col);
+                    Console.WriteLine(plugins[0]);
+                    Console.WriteLine(plugins[1]);
                     collection_plugins.Add(col, plugins);
                 }
      
