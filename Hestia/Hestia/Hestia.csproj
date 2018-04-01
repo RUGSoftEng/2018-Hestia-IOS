@@ -68,7 +68,7 @@
     <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />
     <Compile Include="backend\models\deserializers\DeviceDeserializer.cs" />
     <Compile Include="backend\models\Device.cs" />
-    <Compile Include="backend\models\RequiredInfo.cs" />
+    <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
     <Compile Include="backend\ServerInteractor.cs" />
     <Compile Include="backend\utils\Float.cs" />
@@ -136,10 +136,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Folder Include="DevicesScreen\resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
