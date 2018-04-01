@@ -119,6 +119,12 @@ namespace Hestia.DevicesScreen
                 case UITableViewCellEditingStyle.None:
                     Console.WriteLine("CommitEditingStyle:None called");
                     break;
+                case UITableViewCellEditingStyle.Insert:
+                    UITableViewControllerAddDevice addDeviceVc = 
+                        this.owner.Storyboard.InstantiateViewController("AddManufacturer") 
+                             as UITableViewControllerAddDevice;
+                    owner.NavigationController.PushViewController(addDeviceVc, true);
+                    break;
             }
         }
 

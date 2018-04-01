@@ -103,6 +103,21 @@
     <Compile Include="DevicesScreen\SettingsController.designer.cs">
       <DependentUpon>SettingsController.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceManufacturer.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.designer.cs">
+      <DependentUpon>UITableViewControllerAddDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.designer.cs">
+      <DependentUpon>UITableViewControllerAddDeviceDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.designer.cs">
+      <DependentUpon>UITableViewControllerAddDeviceProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceProperties.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
@@ -140,6 +155,7 @@
   <ItemGroup />
   <ItemGroup>
     <Folder Include="DevicesScreen\resources\" />
+    <Folder Include="DevicesScreen\AddDeviceScreen\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
