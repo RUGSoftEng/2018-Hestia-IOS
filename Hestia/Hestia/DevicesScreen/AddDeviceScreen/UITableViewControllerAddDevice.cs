@@ -32,12 +32,14 @@ namespace Hestia
 
             base.ViewDidLoad();
             table = new UITableView(View.Bounds); // defaults to Plain style
-            collections = new List<string>();
-
+            //collections = new List<string>();
+            Console.WriteLine(" Collections test");
             // The list with manufacturers
             try
             {
-                collections.AddRange(Globals.ServerInteractor.GetCollections());
+                collections = Globals.ServerInteractor.GetCollections();
+                Console.WriteLine(" Collections test");
+                Console.WriteLine(collections);
                 foreach(string col in collections)
                 {
                     Console.Out.WriteLine(col);
@@ -48,7 +50,8 @@ namespace Hestia
             }
             catch (Exception e)
             {
-                Console.Out.WriteLine(e.StackTrace);
+                Console.WriteLine("Exception while using serverInteractor");
+                Console.WriteLine(e.StackTrace);
             }
             // Contains methods that describe behavior of table
             table.Source = new TableSourceAddDeviceManufacturer(collections, collection_plugins, this);
