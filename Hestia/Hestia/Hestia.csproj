@@ -73,6 +73,7 @@
     <Compile Include="backend\ServerInteractor.cs" />
     <Compile Include="backend\utils\Float.cs" />
     <Compile Include="backend\utils\JsonValidator.cs" />
+    <Compile Include="backend\utils\PingServer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
@@ -137,9 +138,8 @@
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Folder Include="DevicesScreen\resources\" />
-  </ItemGroup>
+- <ItemGroup>
+-   <Folder Include="DevicesScreen\resources\" />
+- </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
