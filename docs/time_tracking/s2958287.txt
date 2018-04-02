@@ -90,3 +90,4 @@ Fixing bug in resource manager
 Fixing getters and setters in Device.cs, Activator.cs and ActivatorState.cs
 Fixing bug in DeviceSerializer.cs (the device was not added to an activator)
 Fixing bug in DeviceSerializer.cs (the device was not added to an activator)
+Detecting and fixing bug in RequiredInfo.cs and add new method to PluginInfo.cs (was RequiredInfo.cs)
