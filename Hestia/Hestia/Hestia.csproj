@@ -138,8 +138,9 @@
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-- <ItemGroup>
--   <Folder Include="DevicesScreen\resources\" />
-- </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DevicesScreen\resources\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
