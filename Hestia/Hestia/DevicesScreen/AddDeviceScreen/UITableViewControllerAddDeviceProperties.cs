@@ -20,6 +20,7 @@ namespace Hestia
 
 
         public List<string> properties;
+        public Hashtable PropertyList;
 
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
         {
@@ -41,7 +42,18 @@ namespace Hestia
             // Add the table to the view
             Add(table);
 
+            // Save button
+            UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
+               
+
+               
+            });
+
+            // Set right button initially to edit 
+            NavigationItem.RightBarButtonItem = save;
         }
+
+      
 
     }
 }

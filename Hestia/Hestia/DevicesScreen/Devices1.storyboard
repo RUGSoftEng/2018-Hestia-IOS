@@ -852,14 +852,14 @@
         </scene>
         <scene sceneID="25702">
             <objects>
-                <tableViewController id="25703" sceneMemberID="viewController" customClass="UITableViewControllerAddDevice" storyboardIdentifier="AddManufacturer"/>
+                <tableViewController id="25703" sceneMemberID="viewController" customClass="UITableViewControllerAddDevice" storyboardIdentifier="AddManufacturer" title="Manufacturer"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25704" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-592" y="2555"/>
         </scene>
         <scene sceneID="25710">
             <objects>
-                <tableViewController id="25711" sceneMemberID="viewController" customClass="UITableViewControllerAddDeviceDevice" storyboardIdentifier="AddDevice">
+                <tableViewController id="25711" sceneMemberID="viewController" customClass="UITableViewControllerAddDeviceDevice" storyboardIdentifier="AddDevice" title="Devices">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="25712">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -879,6 +879,9 @@
                             <outlet property="delegate" destination="25711" id="25714"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="Devices" destination="25712" id="name-outlet-25712"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25717" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -886,7 +889,7 @@
         </scene>
         <scene sceneID="25723">
             <objects>
-                <tableViewController id="25724" sceneMemberID="viewController" customClass="UITableViewControllerAddDeviceProperties" storyboardIdentifier="AddDeviceProperties">
+                <tableViewController id="25724" sceneMemberID="viewController" customClass="UITableViewControllerAddDeviceProperties" storyboardIdentifier="AddDeviceProperties" title="Properties">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="25725">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

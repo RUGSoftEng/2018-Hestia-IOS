@@ -21,6 +21,8 @@ namespace Hestia.DevicesScreen
         // The list with Devices, set in the constructor. (Retrieved from server)
         List<string> properties;
 
+        Hashtable PropertyFields = new Hashtable();
+            
         // The kind of cell that is used in the table (set in Storyboard)
         string CellIdentifier = "tableCellProperty";
 
@@ -31,6 +33,7 @@ namespace Hestia.DevicesScreen
         {
             this.properties = properties;
             this.owner = owner;
+            owner.PropertyList = PropertyFields;
 
         }
 
@@ -60,7 +63,16 @@ namespace Hestia.DevicesScreen
 
             // The text to display on the cell is the property name
             // To be implemented: text fields
-            cell.TextLabel.Text = properties[indexPath.Row];
+            //cell.TextLabel.Text = properties[indexPath.Row];
+            UITextField propertyField = new UITextField();
+
+            propertyField.Placeholder = properties[indexPath.Row];
+
+            // Add the input textfield to the cell
+            cell.ContentView.AddSubview(propertyField);
+
+            // Add it to hashtable
+            PropertyFields[indexPath.Row] = propertyField;
 
             return cell;
 

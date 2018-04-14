@@ -14,8 +14,16 @@ namespace Hestia
     [Register ("UITableViewControllerAddDeviceDevice")]
     partial class UITableViewControllerAddDeviceDevice
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableView Devices { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (Devices != null) {
+                Devices.Dispose ();
+                Devices = null;
+            }
         }
     }
 }
