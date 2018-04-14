@@ -103,4 +103,25 @@ Setting up trello and slack
           20/00   Finishing last problems
           21/00.  Time tracking file working
           
+28.03.    15/00.  Team meeting with Marc, Jose, Tom and Zino
+          15/30   Team meeting about the presentation
+          16/00.  Split task
+          16/30.  End 
+          17/00.  Trying to solve uncompiling code with Zino and Tom
+          17/30.  Still doing that
+          18/00.  Work with Tom on Server Screen App
+          18/30.  Tutorial on how to initiate a button in a table view with Tom 
+          19/00.  Working on connect to server screen
 
+30.03.    15.00.  Working on the Introduction of the presentation
+          15/30   Same
+          16/00.  Working on first User Story
+          16/30.  Still working
+          17/00.  Working on 2nd User Story
+          17/30.  Working on 3rd User Story
+          18/00   Working on iOS Hestia slide
+
+
+02.04.    17/30.  Modifying stuff from presentation according to Feiko's suggestions
+          18/00.  Still doing that
+          18/30   Finished with last modifications
