@@ -9,6 +9,7 @@ using System.Collections;
 using Hestia.backend;
 using Hestia.backend.models;
 using Hestia.DevicesScreen;
+using Hestia.DevicesScreen.AddDeviceScreen;
 
 namespace Hestia
 {
@@ -18,15 +19,25 @@ namespace Hestia
 
         // The table that lives in this view controller
 
-
-        public List<string> properties;
-        public Hashtable PropertyList;
+        // Plugin info set at creation in devices window
+        public PluginInfo pluginInfo;
+        public Hashtable inputFields = new Hashtable();
+        string[] propertyNames;
 
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
         {
+           
         }
 
-
+        public void saveFields()
+        {
+            propertyNames = new string[pluginInfo.RequiredInfo.Keys.Count];
+            pluginInfo.RequiredInfo.Keys.CopyTo(propertyNames, 0);
+            foreach (string property in propertyNames)
+            {
+                pluginInfo.RequiredInfo[property] = ((PropertyCell)inputFields[property]).inputField.Text;
+            }
+        }
 
         public override void ViewDidLoad()
         {
@@ -36,7 +47,7 @@ namespace Hestia
 
 
             // Contains methods that describe behavior of table
-            table.Source = new TableSourceAddDeviceProperties(properties, this);
+            table.Source = new TableSourceAddDeviceProperties(this);
 
           
             // Add the table to the view
@@ -44,8 +55,16 @@ namespace Hestia
 
             // Save button
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
-               
-
+                this.saveFields();
+                try
+                {
+                    Globals.ServerInteractor.AddDevice(pluginInfo);
+                }
+                catch (Exception except)
+                {
+                    Console.WriteLine("Exception while adding device");
+                    Console.WriteLine(except.StackTrace);
+                }
                
             });
 

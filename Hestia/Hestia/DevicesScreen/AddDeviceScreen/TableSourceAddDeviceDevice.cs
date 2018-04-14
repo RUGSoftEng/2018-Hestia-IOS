@@ -78,21 +78,17 @@ namespace Hestia.DevicesScreen
 
                 try
                 {
-                    ServerInteractor si = 
-                        new ServerInteractor(new NetworkHandler("94.212.164.28", 8000));
-                    RequiredInfo reqinfo =
-                        si.GetRequiredInfo("mock", "light");
-                    
-                    //RequiredInfo requiredInfo = Globals.ServerInteractor.GetRequiredInfo(collection, (string)this.plugins[indexPath.Row]);
-                    var keys = reqinfo.Info.Keys;
+                 PluginInfo requiredInfo = 
+                        Globals.ServerInteractor.GetPluginInfo(collection, (string)this.plugins[indexPath.Row]);
+                    //var keys = requiredInfo.RequiredInfo.Keys;
 
-                    foreach (var key in keys)
-                     {
-                        Console.WriteLine("key");
-                        Console.WriteLine(key);
-                        addDeviceProperties.properties.Add(key);
-                    }
-
+                    //foreach (var key in keys)
+                    // {
+                    //    Console.WriteLine("key");
+                    //    Console.WriteLine(key);
+                    //    addDeviceProperties.properties.Add(key);
+                    //}
+                    addDeviceProperties.pluginInfo = requiredInfo;
                     this.owner.NavigationController.PushViewController(addDeviceProperties, true);
                 }
                 catch (Exception e)
