@@ -1,37 +1,33 @@
 using System;
-using System.Collections.Generic;
-using UIKit;
-using Foundation;
-
-using Hestia.DevicesScreen.resources;
-using System.Drawing;
 using System.Collections;
-using Hestia.backend;
+using UIKit;
 using Hestia.backend.models;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.AddDeviceScreen;
+using Hestia.DevicesScreen.resources;
 
 namespace Hestia
 {
     public partial class UITableViewControllerAddDeviceProperties : UITableViewController
     {
-        UITableView table;
-
         // The table that lives in this view controller
-
+        UITableView table;
         // Plugin info set at creation in devices window
         public PluginInfo pluginInfo;
+        // Keeps track at the input fields for device properties
         public Hashtable inputFields = new Hashtable();
-        string[] propertyNames;
+       
 
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
         {
-           
         }
 
+        // Called on press of the save button. It copies the values that are input 
+        // in the text fields to the pluginInfo opbject
         public void saveFields()
         {
-            propertyNames = new string[pluginInfo.RequiredInfo.Keys.Count];
+            // Used to loop through original property names
+            string[] propertyNames = new string[pluginInfo.RequiredInfo.Keys.Count];
             pluginInfo.RequiredInfo.Keys.CopyTo(propertyNames, 0);
             foreach (string property in propertyNames)
             {
@@ -41,24 +37,30 @@ namespace Hestia
 
         public override void ViewDidLoad()
         {
-
             base.ViewDidLoad();
             table = new UITableView(View.Bounds); // defaults to Plain style
-
 
             // Contains methods that describe behavior of table
             table.Source = new TableSourceAddDeviceProperties(this);
 
-          
             // Add the table to the view
             Add(table);
 
             // Save button
-            UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
+            UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
                 this.saveFields();
                 try
                 {
                     Globals.ServerInteractor.AddDevice(pluginInfo);
+                    // UIApplication.SharedApplication.KeyWindow.RootViewController;
+                    // Console.WriteLine(tt);
+                    // rootvc.table.SetEditing(false, false);
+                    //this.NavigationController.SetEditing(false, false);
+                    //((UITableView)rootvc.View).SetEditing(false, false);
+
+                    var rootvc = this.NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
+                    rootvc.setEdit();
+                    this.NavigationController.PopToViewController(rootvc, true);
                 }
                 catch (Exception except)
                 {
@@ -68,7 +70,7 @@ namespace Hestia
                
             });
 
-            // Set right button initially to edit 
+            // Set right button to save 
             NavigationItem.RightBarButtonItem = save;
         }
 

@@ -20,7 +20,7 @@ namespace Hestia.DevicesScreen
 
 
         // The table that lives in this view controller
-        UITableView table;
+        public UITableView table;
 
 
         // Done button in top right (appears in edit mode)
@@ -36,7 +36,14 @@ namespace Hestia.DevicesScreen
             serverInteractor = Globals.ServerInteractor;
         }
 
-        public override void ViewDidLoad()
+        public void setEdit()
+        {
+            table.SetEditing(false, true);
+            NavigationItem.RightBarButtonItem = edit;
+            ((TableSource)table.Source).DidFinishTableEditing(table);
+        }
+
+		public override void ViewDidLoad()
         {
             
             base.ViewDidLoad();
