@@ -63,6 +63,7 @@ namespace Hestia
                 // Get the root view contoller and cancel the editing state
                 var rootViewController = this.NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
                 rootViewController.cancelEditingState();
+                rootViewController.refreshDeviceList();
                 // Go back to the devices main screen
                 this.NavigationController.PopToViewController(rootViewController, true);
 

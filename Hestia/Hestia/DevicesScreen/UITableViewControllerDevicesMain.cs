@@ -37,20 +37,27 @@ namespace Hestia.DevicesScreen
             ((TableSource)table.Source).DidFinishTableEditing(table);
         }
 
-		public override void ViewDidLoad()
-        { 
-            base.ViewDidLoad();
-            table = new UITableView(View.Bounds); // defaults to Plain style
-
+        public void refreshDeviceList()
+        {
             // Get the list with devices
             try
             {
                 devices = Globals.ServerInteractor.GetDevices();
             }
-            catch(Exception e){
+            catch (Exception e)
+            {
                 Console.Out.WriteLine("Exception while getting devices from server");
                 Console.Out.WriteLine(e.StackTrace);
             }
+            table.Source = new TableSource(devices, this); 
+        }
+
+		public override void ViewDidLoad()
+        { 
+            base.ViewDidLoad();
+            table = new UITableView(View.Bounds); // defaults to Plain style
+
+            refreshDeviceList();
 
             // To tap row in editing mode for changing name
             table.AllowsSelectionDuringEditing = true;
