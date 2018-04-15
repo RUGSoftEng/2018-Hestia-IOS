@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Collections;
 using Hestia.backend;
 using Hestia.backend.models;
+using Hestia.DevicesScreen.EditDevice;
 
 namespace Hestia.DevicesScreen
 {
@@ -103,9 +104,15 @@ namespace Hestia.DevicesScreen
             }
             else if(tableView.Editing)
             {
-                UIAlertController okAlertController = UIAlertController.Create("Editing Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
-                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                owner.PresentViewController(okAlertController, true, null);
+
+                UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName();
+                 this.owner.NavigationController.PushViewController(editViewController, true);
+
+          
+
+                //UIAlertController okAlertController = UIAlertController.Create("Editing Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
+               // okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+               // owner.PresentViewController(okAlertController, true, null);
                 tableView.DeselectRow(indexPath, true);
             }
         }
