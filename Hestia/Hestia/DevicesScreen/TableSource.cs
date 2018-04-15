@@ -105,8 +105,9 @@ namespace Hestia.DevicesScreen
             else if(tableView.Editing)
             {
 
-                UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName();
-                 this.owner.NavigationController.PushViewController(editViewController, true);
+                UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this.owner);
+                editViewController.device = TableItems[(indexPath.Row)];
+                this.owner.NavigationController.PushViewController(editViewController, true);
 
           
 

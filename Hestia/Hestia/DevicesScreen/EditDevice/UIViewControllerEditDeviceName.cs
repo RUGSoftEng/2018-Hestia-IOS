@@ -15,32 +15,53 @@ namespace Hestia.DevicesScreen.EditDevice
 {
     public class UIViewControllerEditDeviceName : UIViewController
     {
-        public UIViewControllerEditDeviceName()
+
+        UITableViewControllerDevicesMain owner;
+
+        public UIViewControllerEditDeviceName(UITableViewControllerDevicesMain owner)
         {
+            this.owner = owner;
         }
+
+        public Device device;
+        UIBarButtonItem saveName;
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            UIView rectangle = new UIView(new CGRect(0, 70, this.View.Bounds.Width, 50));
-            rectangle.BackgroundColor = UIColor.Cyan;
+
+            // Rectangular cell displaying the label and inputfield
+            UIView rectangle = new UIView(new CGRect(0, 80, this.View.Bounds.Width, 50));
+            rectangle.BackgroundColor = UIColor.White;
             this.View.AddSubview(rectangle);
 
+            // Label
             UILabel newName = new UILabel();
             newName.Text = "New name:";
             newName.Frame = new CGRect(15, 10, 100, 31);
             rectangle.AddSubview(newName);
 
+            // Inputfield
             UITextField changeNameField = new UITextField();
             changeNameField.Frame = new CGRect(110, 10, this.View.Bounds.Width - 125, 31);
-            changeNameField.Placeholder = "test";
+            changeNameField.Placeholder = device.Name;
             rectangle.AddSubview(changeNameField);
 
-            View.BackgroundColor = UIColor.LightGray;
-            Title = "Edit name";
+            this.View.BackgroundColor = UIColor.FromWhiteAlpha(0.95f, 1.0f);
+            Title = device.Name;
 
+
+            // Save button
+            saveName = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
+                device.Name = changeNameField.Text;
+                owner.refreshDeviceList();
+                this.NavigationController.PopViewController(true);
+            });
+
+            NavigationItem.RightBarButtonItem = saveName;
 
         }
+
 
     }
 }
