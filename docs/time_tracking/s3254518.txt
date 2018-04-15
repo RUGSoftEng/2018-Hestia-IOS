@@ -12,3 +12,16 @@ Having a meeting
 Having a meeting
 Reading through previous years project
 Reading through previous years project
+Reading up on deserializers and json
+Reading up on the Json.net package
+Coding deserializers
+Coding deserializers
+Meeting with frontend
+Meeting with backend
+Meeting with backend
+Meeting with backend
+Coding deserializers
+Coding deserializers
+Coding deserializers
+Coding deserializers
+Reviewing code

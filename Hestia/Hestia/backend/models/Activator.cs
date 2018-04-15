@@ -1,40 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using UIKit;
 
 namespace Hestia.backend.models
 {
-    class Activator
+    public class Activator
     {
-        private String activatorId;
+        private string activatorId;
+        private string name;
         private int rank;
         private ActivatorState<Object> state;
-        private String name;
         private Device device;
-        private NetworkHandler handler;
+        private NetworkHandler networkHandler;
 
-        public String ActivatorId { get; set; }
+        public string ActivatorId { get; set; }
+        public string Name { get; set; }
         public int Rank { get; set; }
-        public ActivatorState<Object> State
-        {
-            get
-            {
-                return state;
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-        public String Name { get; set; }
+        public ActivatorState<Object> State { get; set; }
         public Device Device { get; set; }
         public NetworkHandler Handler { get; set; }
 
-        public Activator(String activatorId, int rank, String name)
+        public Activator(string activatorId, int rank, string name)
         {
             this.activatorId = activatorId;
             this.rank = rank;

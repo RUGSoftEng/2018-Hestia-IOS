@@ -118,19 +118,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="activatorsPath" xml:space="preserve">
-    <value>/activators/</value>
+    <value>activators/</value>
+  </data>
+  <data name="addDeviceTitle" xml:space="preserve">
+    <value>new Add device</value>
   </data>
   <data name="appname" xml:space="preserve">
     <value>Hestia</value>
   </data>
+  <data name="autocomplete" xml:space="preserve">
+    <value>Autocomplete!</value>
+  </data>
+  <data name="changeCredsTitle" xml:space="preserve">
+    <value>Change credentials</value>
+  </data>
+  <data name="changeIpTitle" xml:space="preserve">
+    <value>Change IP</value>
+  </data>
+  <data name="changeNameTitle" xml:space="preserve">
+    <value>Change name</value>
+  </data>
   <data name="devicePath" xml:space="preserve">
     <value>devices/</value>
+  </data>
+  <data name="errorMessage" xml:space="preserve">
+    <value>An error occurred</value>
+  </data>
+  <data name="findServerTitle" xml:space="preserve">
+    <value>Find server</value>
   </data>
   <data name="hashCodeMultiplier" xml:space="preserve">
     <value>31</value>
   </data>
   <data name="hestiaIp" xml:space="preserve">
     <value>HESTIA.IP</value>
+  </data>
+  <data name="initialCount" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="ipOfServer" xml:space="preserve">
     <value>IP_OF_SERVER</value>
@@ -142,15 +166,36 @@
     <value>plugins</value>
   </data>
   <data name="pluginsPath" xml:space="preserve">
-    <value>plugins</value>
+    <value>plugins/</value>
   </data>
   <data name="pluginsPathMid" xml:space="preserve">
     <value>plugins</value>
   </data>
+  <data name="searching" xml:space="preserve">
+    <value>Searching...</value>
+  </data>
   <data name="server" xml:space="preserve">
     <value>server</value>
   </data>
+  <data name="serverFound" xml:space="preserve">
+    <value>Server Found:</value>
+  </data>
+  <data name="serverNotFound" xml:space="preserve">
+    <value>Could not connect to the server</value>
+  </data>
+  <data name="serviceName" xml:space="preserve">
+    <value>HestiaClient</value>
+  </data>
+  <data name="serviceType" xml:space="preserve">
+    <value>_hestia._tcp.</value>
+  </data>
+  <data name="setIpHint" xml:space="preserve">
+    <value>Enter ip here</value>
+  </data>
   <data name="toggleRank" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="versionTooLow" xml:space="preserve">
+    <value>Android version too low</value>
   </data>
 </root>

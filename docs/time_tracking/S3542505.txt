@@ -52,3 +52,55 @@ Setting up trello and slack
           02/00.  Same	
           02/30.  Same + Upload stuff on git
 
+19.03.    12/00.  Meeting with Lars about frontend design
+          12/30.  Meeting with the design team(Tom and Marc)
+
+21.03.    15/00.  Team meeting
+          15/30   Talking about design
+          16/00.  
+
+
+24.03.    10/00.  Reading Hello iOS example 
+          10/30.  Same
+          11/00.  Still reading
+          11/30.  Still reading
+          12/00.  Reading
+          12/30.  Reading instruction for installing Virtual Machine for MacOS
+          13/00.  Still reading
+          13/30.  Install VM
+          14/00.  Searching for copy of MacOS High Sierra
+          14/30.  Downloading HS
+          15/00.  Install VM MacOS
+          15/30   Solving compatibility issues
+          16/00.  VM doesn’t work :(
+          
+26.03     11/00.  BB Mac Lab, organisation stuff
+          11/30.  Setting all the tools to begin coding
+          12/00.  Visual Studio is not properly installed. Sent mail to admin to install VS Community
+          12/30.  Send him a link to the proper program
+          13/00.  Trying in the meantime the same VM to be able to install a program without admin rights
+          13/30. The MacOS won’t boot
+           
+27.03.    10/00   BB Mac Lab. Visual studio is correctly installed so I can begin coding 
+          10/30   Read through Marc’s classes and observed the modifications for the Edit button
+          11/00.  Go thorough tutorials of storyboards
+          11/30.  Still reading
+          12/00.  Rearranging old storyboards layout 
+          12/30.  Looking for some details on Google for storyboards
+          13/00.  Started working on the Settings screen as they are supposed to be one a menu, not a single page. Also team meeting with Feiko.
+          13/30.  Made the settings Screen as table view with 3 rows
+          14/00.  Started working with Tom to develop the settings app as his original screen was our point of start
+          14/30   Working on Account and Server Settings Screen (with Tom)
+          15/00.  Finished those Screen (with Tom). Upload to github
+          15/30.  Worked on the account inside screens(username, password etc) and classes
+          16/00.  Still working on classes for text input 
+          16/30.  Crashed storyboard. Need to start again.
+          17/00.  Finished with storyboard. Github push
+          17/30   Working with Tom on account class
+          18/30.  Working with Tom and Zino for displaying the devices from the server on the application device screen
+          19/00.  Solving Github margins issues
+          19/30.  Still working on GitHub issue
+          20/00   Finishing last problems
+          21/00.  Time tracking file working
+          
+

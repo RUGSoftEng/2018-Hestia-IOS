@@ -20,3 +20,23 @@ JustInMind prototyping
 JustInMind prototyping
 JustInMind prototyping
 JustInMind prototyping
+Meeting customer with andrei and marc to show prototyp
+Meeting customer with andrei and marc to show prototype
+installing vm with ios
+installing all necessities on vm
+learning xamarin storyboard
+learning xamarin storyboard
+trying stuff with xamarin storyboard
+trying stuff with xamarin storyboard
+practicing making login screen
+practicing making login screen
+practicing making login screen
+Making an actual settings screen
+finish the actual settings screen
+Andrei did not like settings screen, so started working with him to change it
+working with andrei on settings screen
+working with andrei on settings screen
+working with andrei on settings screen
+working with andrei on settings screen
+finalizing settings screen with front end in place but no functionality yet
+added a devices list to the table view with help of network handler
