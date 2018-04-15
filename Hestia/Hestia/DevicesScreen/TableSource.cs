@@ -77,6 +77,8 @@ namespace Hestia.DevicesScreen
                     // Keep a reference to the UISwitch - note using a Hashtable to ensure
                     // we only have one for any given row
                     Switches[indexPath.Row] = cell.AccessoryView;
+
+                    cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
                 }
             }
 
@@ -92,10 +94,20 @@ namespace Hestia.DevicesScreen
         // Should display the slider(s) ultimately
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            owner.PresentViewController(okAlertController, true, null);
-            tableView.DeselectRow(indexPath, true);
+            if (!tableView.Editing)
+            {
+                UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
+                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                owner.PresentViewController(okAlertController, true, null);
+                tableView.DeselectRow(indexPath, true);
+            }
+            else if(tableView.Editing)
+            {
+                UIAlertController okAlertController = UIAlertController.Create("Editing Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
+                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                owner.PresentViewController(okAlertController, true, null);
+                tableView.DeselectRow(indexPath, true);
+            }
         }
 
         public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
@@ -176,7 +188,9 @@ namespace Hestia.DevicesScreen
             // create a new item and add it to our underlying data 
             // This should not be permanently stored, but trigger the add new
             // device screen on touch
-            TableItems.Add(new Device(" ", "New Device", " ", null, null));
+            List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
+            NetworkHandler temp_networkhandler = new NetworkHandler("94.212.164.28", 8000);
+            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, temp_networkhandler));
 
             tableView.EndUpdates(); // applies the changes
         }

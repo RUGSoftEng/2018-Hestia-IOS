@@ -51,6 +51,9 @@ namespace Hestia.DevicesScreen
                 Console.Out.WriteLine("Exception while getting devices from server");
                 Console.Out.WriteLine(e.StackTrace);
             }
+
+            // To tap row in editing mode for changing name
+            table.AllowsSelectionDuringEditing = true;
             // Contains methods that describe behavior of table
             table.Source = new TableSource(devices, this); 
 
