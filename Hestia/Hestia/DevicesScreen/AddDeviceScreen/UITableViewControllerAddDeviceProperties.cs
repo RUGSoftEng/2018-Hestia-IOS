@@ -17,16 +17,15 @@ namespace Hestia
         // Keeps track at the input fields for device properties
         public Hashtable inputFields = new Hashtable();
        
-
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
         {
         }
 
         // Called on press of the save button. It copies the values that are input 
-        // in the text fields to the pluginInfo opbject
+        // in the text fields to the pluginInfo object
         public void saveFields()
         {
-            // Used to loop through original property names
+            // Used for loop through original property names
             string[] propertyNames = new string[pluginInfo.RequiredInfo.Keys.Count];
             pluginInfo.RequiredInfo.Keys.CopyTo(propertyNames, 0);
             foreach (string property in propertyNames)
@@ -49,32 +48,30 @@ namespace Hestia
             // Save button
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
                 this.saveFields();
+
+                // Try to add device to server
                 try
                 {
                     Globals.ServerInteractor.AddDevice(pluginInfo);
-                    // UIApplication.SharedApplication.KeyWindow.RootViewController;
-                    // Console.WriteLine(tt);
-                    // rootvc.table.SetEditing(false, false);
-                    //this.NavigationController.SetEditing(false, false);
-                    //((UITableView)rootvc.View).SetEditing(false, false);
-
-                    var rootvc = this.NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
-                    rootvc.setEdit();
-                    this.NavigationController.PopToViewController(rootvc, true);
                 }
                 catch (Exception except)
                 {
-                    Console.WriteLine("Exception while adding device");
+                    Console.WriteLine("Exception while adding device to server");
                     Console.WriteLine(except.StackTrace);
                 }
-               
+
+                // Get the root view contoller and cancel the editing state
+                var rootViewController = this.NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
+                rootViewController.cancelEditingState();
+                // Go back to the devices main screen
+                this.NavigationController.PopToViewController(rootViewController, true);
+
             });
 
             // Set right button to save 
             NavigationItem.RightBarButtonItem = save;
         }
 
-      
 
     }
 }

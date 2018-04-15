@@ -35,7 +35,7 @@ namespace Hestia.DevicesScreen
             this.collections = collections;
         }
 
-        // We have only one section with devices (thus far)
+        // We have only one section with manufacturers
         public override nint NumberOfSections(UITableView tableView)
         {
             return 1;
@@ -59,32 +59,25 @@ namespace Hestia.DevicesScreen
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
-            // The text to display on the cell is the device name
+            // The text to display on the cell is the manufacturer name
             cell.TextLabel.Text = collections[indexPath.Row];
            
             return cell;
-
         }
 
 
-        // Devices what happens if touch on row.
-        // Should display the slider(s) ultimately
+        // Touch on row should lead to next screen with device types
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-           
             UITableViewControllerAddDeviceDevice addDeviceType =
                 this.owner.Storyboard.InstantiateViewController("AddDevice") 
                     as UITableViewControllerAddDeviceDevice;
             if (addDeviceType != null)
             {
-                addDeviceType.collection = collections[indexPath.Row];
-                Console.WriteLine("Test collection hashtabel");
-                Console.WriteLine(this.plugins[collections[indexPath.Row]]);
+                addDeviceType.collection = collections[indexPath.Row]; 
                 addDeviceType.plugins = (List<string>)this.plugins[collections[indexPath.Row]];
-               // this.owner.PresentViewController(addDeviceType, true, null);
                 this.owner.NavigationController.PushViewController(addDeviceType, true);
             }
-        
 
         }
 

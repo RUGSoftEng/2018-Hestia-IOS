@@ -14,39 +14,35 @@ namespace Hestia
 {
     public partial class UITableViewControllerAddDevice : UITableViewController
     {
+        // The table that lives in this view controller
         UITableView table;
 
+        // List of manufacturers
         List<string> collections;
+        // Stores list of plugins per manufacturer
         Hashtable collection_plugins;
+
         public UITableViewControllerAddDevice (IntPtr handle) : base (handle)
         {
             collection_plugins = new Hashtable();
         }
-
-
-        // The table that lives in this view controller
-       
 
         public override void ViewDidLoad()
         {
 
             base.ViewDidLoad();
             table = new UITableView(View.Bounds); // defaults to Plain style
-            //collections = new List<string>();
-            Console.WriteLine(" Collections test");
+
             // The list with manufacturers
             try
             {
                 collections = Globals.ServerInteractor.GetCollections();
-                Console.WriteLine(" Collections test");
-                Console.WriteLine(collections);
-                foreach(string col in collections)
+                foreach(string collection in collections)
                 {
-                    Console.WriteLine(col);
-                    List<string> plugins = Globals.ServerInteractor.GetPlugins(col);
-                    Console.WriteLine(plugins[0]);
-                    Console.WriteLine(plugins[1]);
-                    collection_plugins.Add(col, plugins);
+                    // Get plugins for this collection
+                    List<string> plugins = Globals.ServerInteractor.GetPlugins(collection);
+                    // Add this collection/plugins combination to hashtable
+                    collection_plugins.Add(collection, plugins);
                 }
      
             }

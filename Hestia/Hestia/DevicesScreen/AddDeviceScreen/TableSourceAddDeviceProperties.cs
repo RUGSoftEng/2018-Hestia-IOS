@@ -14,13 +14,7 @@ namespace Hestia.DevicesScreen
 {
     public class TableSourceAddDeviceProperties : UITableViewSource
     {
-        // The viewController to which the TableView connected to this Source lives in
-        UITableViewControllerAddDeviceProperties owner;
-
-
-
-        // The list with Devices, set in the constructor. (Retrieved from server)
-        //List<string> properties;
+        // Hashtable to keep track of inputfields
         public Hashtable inputs;
         PluginInfo completeInfo;
         string[] propertyNames;
@@ -28,7 +22,7 @@ namespace Hestia.DevicesScreen
         // The kind of cell that is used in the table (set in Storyboard)
         string CellIdentifier = "tableCellProperty";
 
-        // Constructor. Gets the device data and the ViewController
+        // Constructor. Fill propertyNames with a copy of current keys
         public TableSourceAddDeviceProperties(
                     UITableViewControllerAddDeviceProperties owner)
         {
@@ -36,17 +30,15 @@ namespace Hestia.DevicesScreen
             this.completeInfo = owner.pluginInfo;
             propertyNames = new string[completeInfo.RequiredInfo.Keys.Count];
             completeInfo.RequiredInfo.Keys.CopyTo(propertyNames, 0);
-            this.owner = owner;
-
         }
 
-        // We have only one section with devices (thus far)
+        // We have only one section 
         public override nint NumberOfSections(UITableView tableView)
         {
             return 1;
         }
 
-        // The number of manufacturers in the list
+        // The number of properties in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return completeInfo.RequiredInfo.Keys.Count;
@@ -60,41 +52,16 @@ namespace Hestia.DevicesScreen
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
-                // Generate a default table cell
+                // Generate a default propertyCell
                 cell = new PropertyCell((NSString)CellIdentifier);
             }
 
-           
+            // Put the property names in the placeholder filed
             cell.UpdateCell(propertyNames[indexPath.Row]);
+            // Keep reference in hashtable
             inputs[propertyNames[indexPath.Row]] = cell;
-            // The text to display on the cell is the property name
-            // To be implemented: text fields
-            //cell.TextLabel.Text = propertyNames[indexPath.Row];
-
-           // 
-           
-          //  propertyField.Placeholder = propertyNames[indexPath.Row];
-          //  cell.ContentView.BackgroundColor = UIColor.Cyan;
-          //  UILabel test = new UILabel();
-           // test.Text = " test";
-            // Add the input textfield to the cell
-           // cell.ContentView.Add(test);
-
-            // Add it to dictionary
-          //  completeInfo.RequiredInfo[propertyNames[indexPath.Row]] = propertyField.Text;
 
             return cell;
-
-        }
-
-       
-
-        // Devices what happens if touch on row.
-       
-        public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        {
-            
-            // to be implemented
 
         }
 

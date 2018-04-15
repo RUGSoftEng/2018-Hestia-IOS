@@ -64,15 +64,15 @@ namespace Hestia.DevicesScreen
             {
                 if (act.State.Type == "bool" && (act.Name == "On/Off" || act.Name == "Activate"))
                 {
-                    UISwitch MySwitch = new UISwitch();
+                    UISwitch DeviceSwitch = new UISwitch();
                     // Set the switch's state to that of the device.
-                    MySwitch.On = (bool)act.State.RawState;
-                    MySwitch.ValueChanged += delegate (object sender, EventArgs e)
+                    DeviceSwitch.On = (bool)act.State.RawState;
+                    DeviceSwitch.ValueChanged += delegate (object sender, EventArgs e)
                     {
-                        act.State = new Hestia.backend.models.ActivatorState<object>(MySwitch.On, "bool");
+                        act.State = new Hestia.backend.models.ActivatorState<object>(DeviceSwitch.On, "bool");
                     };
                     // Replace the cell's AccessoryView with the new UISwitch
-                    cell.AccessoryView = MySwitch;
+                    cell.AccessoryView = DeviceSwitch;
 
                     // Keep a reference to the UISwitch - note using a Hashtable to ensure
                     // we only have one for any given row
@@ -147,11 +147,6 @@ namespace Hestia.DevicesScreen
         }
 
 
-        public override bool CanMoveRow(UITableView tableView, NSIndexPath indexPath)
-        {
-            return false; // return false if you don't allow re-ordering
-        }
-
         // Defines the red delete/add buttons before cell
         public override UITableViewCellEditingStyle EditingStyleForRow(UITableView tableView, NSIndexPath indexPath)
         {
@@ -181,9 +176,7 @@ namespace Hestia.DevicesScreen
             // create a new item and add it to our underlying data 
             // This should not be permanently stored, but trigger the add new
             // device screen on touch
-            List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
-            NetworkHandler temp_networkhandler = new NetworkHandler("94.212.164.28", 8000);
-            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, temp_networkhandler));
+            TableItems.Add(new Device(" ", "New Device", " ", null, null));
 
             tableView.EndUpdates(); // applies the changes
         }

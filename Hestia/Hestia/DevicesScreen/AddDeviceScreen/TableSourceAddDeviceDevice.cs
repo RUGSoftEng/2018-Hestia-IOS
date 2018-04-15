@@ -40,7 +40,7 @@ namespace Hestia.DevicesScreen
             return 1;
         }
 
-        // The number of manufacturers in the list
+        // The number of devices in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return plugins.Count;
@@ -62,32 +62,22 @@ namespace Hestia.DevicesScreen
             cell.TextLabel.Text = plugins[indexPath.Row];
 
             return cell;
-
         }
 
 
         // Pushes the properties window
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-          
             UITableViewControllerAddDeviceProperties addDeviceProperties = 
                 this.owner.Storyboard.InstantiateViewController("AddDeviceProperties") 
                     as UITableViewControllerAddDeviceProperties;
             if (addDeviceProperties != null)
             {
-
                 try
                 {
                  PluginInfo requiredInfo = 
                         Globals.ServerInteractor.GetPluginInfo(collection, (string)this.plugins[indexPath.Row]);
-                    //var keys = requiredInfo.RequiredInfo.Keys;
-
-                    //foreach (var key in keys)
-                    // {
-                    //    Console.WriteLine("key");
-                    //    Console.WriteLine(key);
-                    //    addDeviceProperties.properties.Add(key);
-                    //}
+                    
                     addDeviceProperties.pluginInfo = requiredInfo;
                     this.owner.NavigationController.PushViewController(addDeviceProperties, true);
                 }
