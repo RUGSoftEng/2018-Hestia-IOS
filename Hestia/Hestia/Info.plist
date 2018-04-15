@@ -34,7 +34,6 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -50,5 +49,7 @@
 			<string>Document Type 1</string>
 		</dict>
 	</array>
+	<key>CFBundleName</key>
+	<string>Hestia</string>
 </dict>
 </plist>

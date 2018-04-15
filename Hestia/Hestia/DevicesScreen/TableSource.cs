@@ -64,19 +64,21 @@ namespace Hestia.DevicesScreen
             {
                 if (act.State.Type == "bool" && (act.Name == "On/Off" || act.Name == "Activate"))
                 {
-                    UISwitch MySwitch = new UISwitch();
+                    UISwitch DeviceSwitch = new UISwitch();
                     // Set the switch's state to that of the device.
-                    MySwitch.On = (bool)act.State.RawState;
-                    MySwitch.ValueChanged += delegate (object sender, EventArgs e)
+                    DeviceSwitch.On = (bool)act.State.RawState;
+                    DeviceSwitch.ValueChanged += delegate (object sender, EventArgs e)
                     {
-                        act.State = new Hestia.backend.models.ActivatorState<object>(MySwitch.On, "bool");
+                        act.State = new Hestia.backend.models.ActivatorState<object>(DeviceSwitch.On, "bool");
                     };
                     // Replace the cell's AccessoryView with the new UISwitch
-                    cell.AccessoryView = MySwitch;
+                    cell.AccessoryView = DeviceSwitch;
 
                     // Keep a reference to the UISwitch - note using a Hashtable to ensure
                     // we only have one for any given row
                     Switches[indexPath.Row] = cell.AccessoryView;
+
+                    cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
                 }
             }
 
@@ -92,10 +94,20 @@ namespace Hestia.DevicesScreen
         // Should display the slider(s) ultimately
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            owner.PresentViewController(okAlertController, true, null);
-            tableView.DeselectRow(indexPath, true);
+            if (!tableView.Editing)
+            {
+                UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
+                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                owner.PresentViewController(okAlertController, true, null);
+                tableView.DeselectRow(indexPath, true);
+            }
+            else if(tableView.Editing)
+            {
+                UIAlertController okAlertController = UIAlertController.Create("Editing Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
+                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                owner.PresentViewController(okAlertController, true, null);
+                tableView.DeselectRow(indexPath, true);
+            }
         }
 
         public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
@@ -119,6 +131,12 @@ namespace Hestia.DevicesScreen
                 case UITableViewCellEditingStyle.None:
                     Console.WriteLine("CommitEditingStyle:None called");
                     break;
+                case UITableViewCellEditingStyle.Insert:
+                    UITableViewControllerAddDevice addDeviceVc = 
+                        this.owner.Storyboard.InstantiateViewController("AddManufacturer") 
+                             as UITableViewControllerAddDevice;
+                    owner.NavigationController.PushViewController(addDeviceVc, true);
+                    break;
             }
         }
 
@@ -140,11 +158,6 @@ namespace Hestia.DevicesScreen
             }
         }
 
-
-        public override bool CanMoveRow(UITableView tableView, NSIndexPath indexPath)
-        {
-            return false; // return false if you don't allow re-ordering
-        }
 
         // Defines the red delete/add buttons before cell
         public override UITableViewCellEditingStyle EditingStyleForRow(UITableView tableView, NSIndexPath indexPath)

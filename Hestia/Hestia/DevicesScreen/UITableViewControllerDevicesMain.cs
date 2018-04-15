@@ -15,13 +15,8 @@ namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerDevicesMain : UITableViewController
     {
-        ServerInteractor serverInteractor;
-        //public ServerInteractor ServerInteractor { get; set; }
-
-
         // The table that lives in this view controller
-        UITableView table;
-
+        public UITableView table;
 
         // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
@@ -33,41 +28,45 @@ namespace Hestia.DevicesScreen
         // Constructor
         public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
         {
-            serverInteractor = Globals.ServerInteractor;
         }
 
-        public override void ViewDidLoad()
+        public void cancelEditingState()
         {
-            
+            table.SetEditing(false, true);
+            NavigationItem.RightBarButtonItem = edit;
+            ((TableSource)table.Source).DidFinishTableEditing(table);
+        }
+
+		public override void ViewDidLoad()
+        { 
             base.ViewDidLoad();
             table = new UITableView(View.Bounds); // defaults to Plain style
 
-            // The list with devices
+            // Get the list with devices
             try
             {
-                devices = serverInteractor.GetDevices();
+                devices = Globals.ServerInteractor.GetDevices();
             }
             catch(Exception e){
+                Console.Out.WriteLine("Exception while getting devices from server");
                 Console.Out.WriteLine(e.StackTrace);
             }
+
+            // To tap row in editing mode for changing name
+            table.AllowsSelectionDuringEditing = true;
             // Contains methods that describe behavior of table
             table.Source = new TableSource(devices, this); 
-            //table.Source = new TableSource(tableItems, this); 
+
             // Add the table to the view
             Add(table); 
 
-
             // Done button
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
-                table.SetEditing(false, true);
-                NavigationItem.RightBarButtonItem = edit;
-                ((TableSource)table.Source).DidFinishTableEditing(table);
+                this.cancelEditingState();
             });
 
             // Edit button
             edit = new UIBarButtonItem(UIBarButtonSystemItem.Edit, (s, e) => {
-                if (table.Editing)
-                    table.SetEditing(false, true); // if we've half-swiped a row
                 ((TableSource)table.Source).WillBeginTableEditing(table);
                 table.SetEditing(true, true);
                 NavigationItem.RightBarButtonItem = done;
