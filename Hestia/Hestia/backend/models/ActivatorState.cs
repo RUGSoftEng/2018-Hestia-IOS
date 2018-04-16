@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Json;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using UIKit;
-using Newtonsoft.Json.Linq;
-
 
 /*
  * Wrapper class for the different state fields. The activator state has a type T, which is

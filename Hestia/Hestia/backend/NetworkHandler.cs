@@ -4,6 +4,8 @@ using System;
 using System.Net;
 using System.Runtime.Serialization;
 
+using Hestia.Resources;
+
 namespace Hestia.backend
 {
     public class NetworkHandler : ISerializable
@@ -96,7 +98,7 @@ namespace Hestia.backend
 
         private JToken ExecuteRequest(RestRequest request)
         {
-            request.Timeout = 2000;
+            request.Timeout = Int32.Parse(strings.requestTimeout);
 
             IRestResponse response = client.Execute(request);
             string responseString = response.Content;
