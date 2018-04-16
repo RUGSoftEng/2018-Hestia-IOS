@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Hestia.Resources;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Net;
@@ -96,7 +97,7 @@ namespace Hestia.backend
 
         private JToken ExecuteRequest(RestRequest request)
         {
-            request.Timeout = 2000;
+            request.Timeout = Int32.Parse(strings.requestTimeout);
 
             IRestResponse response = client.Execute(request);
             string responseString = response.Content;

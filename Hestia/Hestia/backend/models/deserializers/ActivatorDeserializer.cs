@@ -7,16 +7,16 @@ namespace Hestia.backend.models.deserializers
      */
     public class ActivatorDeserializer
     {
-        public Activator Deserialize(JToken jT)
+        public Activator Deserialize(JToken jsonActivator)
         {
             // get the activatorId, rank and name
-            string id = jT.Value<string>("activatorId");
-            int rank = jT.Value<int>("rank");
-            string name = jT.Value<string>("name");
+            string id = jsonActivator.Value<string>("activatorId");
+            int rank = jsonActivator.Value<int>("rank");
+            string name = jsonActivator.Value<string>("name");
 
             // get the ActivatorState
-            string type = jT.Value<string>("type");
-            string rawState = jT.Value<string>("state");
+            string type = jsonActivator.Value<string>("type");
+            string rawState = jsonActivator.Value<string>("state");
             ActivatorState<object> state = null;
 
             switch (type.ToLower())
@@ -36,6 +36,5 @@ namespace Hestia.backend.models.deserializers
 
             return activator;
         }
-
     }
 }
