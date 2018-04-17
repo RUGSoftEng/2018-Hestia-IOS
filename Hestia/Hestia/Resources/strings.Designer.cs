@@ -223,6 +223,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 2000.
+        /// </summary>
+        public static string requestTimeout {
+            get {
+                return ResourceManager.GetString("requestTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Searching....
         /// </summary>
         public static string searching {

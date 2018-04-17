@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Json;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using UIKit;
-
 
 /*
  * Wrapper class for the different state fields. The activator state has a type T, which is
@@ -21,31 +13,35 @@ namespace Hestia.backend.models
     public class ActivatorState<T>
     {
         private T rawState;
-        private String type;
+        private string type;
 
-        public T RawState { get; set; }
-        public string Type { get; set; }
+        public T RawState
+        {
+            get
+            {
+                return rawState;
+            }
+            set
+            {
+                rawState = value;
+            }
+        }
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
+        }
 
         public ActivatorState(T rawState, string type)
         {
             this.rawState = rawState;
             this.type = type;
-        }
-
-        /*
-         * Get the JSON representation of the RawS State, which could be a Boolean, a Float or a String.
-         */
-        public JsonPrimitive GetRawStateJSON ()
-        {
-            switch (this.GetType().ToString().ToLower())
-            {
-                case "bool":
-                    return new JsonPrimitive(bool.Parse(this.RawState.ToString()));
-                case "float":
-                    return new JsonPrimitive(float.Parse(this.RawState.ToString()));
-                default:
-                    return new JsonPrimitive(this.RawState.ToString());
-            }
         }
         
         override

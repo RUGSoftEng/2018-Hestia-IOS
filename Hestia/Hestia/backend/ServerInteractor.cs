@@ -1,19 +1,16 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Resources;
 using System.Runtime.Remoting;
 
 using Hestia.backend.models;
 using Hestia.backend.models.deserializers;
-
 using Hestia.Resources;
 
 namespace Hestia.backend
 {
-    class ServerInteractor
+    public class ServerInteractor
     {
         private NetworkHandler networkHandler;
-        ResourceManager rm;
 
         public ServerInteractor(NetworkHandler networkHandler)
         {
@@ -37,7 +34,7 @@ namespace Hestia.backend
             }
         }
 
-        public void AddDevice(RequiredInfo info)
+        public void AddDevice(PluginInfo info)
         {
             JObject deviceInfo = JObject.FromObject(info);
             JToken payload = networkHandler.Post(deviceInfo, strings.devicePath);
@@ -89,7 +86,7 @@ namespace Hestia.backend
             }
         }
 
-        public RequiredInfo GetRequiredInfo(string collection, string plugin)
+        public PluginInfo GetPluginInfo(string collection, string plugin)
         {
             string pluginsPath = strings.pluginsPath;
             string endpoint = pluginsPath + collection + "/" + pluginsPath + plugin;
@@ -97,13 +94,19 @@ namespace Hestia.backend
 
             if(payload["error"] == null)
             {
-                RequiredInfo info = payload.ToObject<RequiredInfo>();
+                PluginInfo info = payload.ToObject<PluginInfo>();
                 return info;
             }
             else
             {
                 throw new ServerException();
             }
+        }
+
+        public Dictionary<string, string> GetRequiredPluginInfo(string collection, string plugin)
+        {
+            PluginInfo info = GetPluginInfo(collection, plugin);
+            return info.RequiredInfo;
         }
     }
 }

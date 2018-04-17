@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Hestia.Resources;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Runtime.Remoting;
 
 namespace Hestia.backend.models
 {
@@ -9,20 +12,81 @@ namespace Hestia.backend.models
         private int rank;
         private ActivatorState<Object> state;
         private Device device;
-        private NetworkHandler networkHandler;
 
-        public string ActivatorId { get; set; }
-        public string Name { get; set; }
-        public int Rank { get; set; }
-        public ActivatorState<Object> State { get; set; }
-        public Device Device { get; set; }
-        public NetworkHandler Handler { get; set; }
+        public string ActivatorId
+        {
+            get
+            {
+                return activatorId;
+            }
+            set
+            {
+                activatorId = value;
+            }
+        }
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
+        public int Rank
+        {
+            get
+            {
+                return rank;
+            }
+            set
+            {
+                rank = value;
+            }
+        }
+        public ActivatorState<object> State
+        {
+            get
+            {
+                return state;
+            }
+            set
+            {
+                state = value;
+               
+                string endpoint = strings.devicePath + device.DeviceId + "/" + strings.activatorsPath + activatorId;
+                JObject activatorState = new JObject
+                {
+                    ["state"] = new JValue(state.RawState)
+                };
 
-        public Activator(string activatorId, int rank, string name)
+                JToken payload = Device.NetworkHandler.Post(activatorState, endpoint);
+                if (payload["error"] != null)
+                {
+                    throw new ServerException();
+                }
+            }
+        }
+        public Device Device
+        {
+            get
+            {
+                return device;
+            }
+            set
+            {
+                device = value;
+            }
+        }
+
+        public Activator(string activatorId, string name, int rank, ActivatorState<object> state)
         {
             this.activatorId = activatorId;
-            this.rank = rank;
             this.name = name;
+            this.rank = rank;
+            this.state = state;
         }
 
         new
@@ -34,10 +98,9 @@ namespace Hestia.backend.models
             }
             Activator activator = (Activator)obj;
             return (this == activator || (this.ActivatorId.Equals(activator.ActivatorId) &&
-                this.Rank.Equals(activator.Rank) &&
-                this.State.Equals(activator.State) &&
-                this.Name.Equals(activator.Name) &&
-                this.Handler.Equals(activator.Handler)));
+                rank.Equals(activator.Rank) &&
+                state.Equals(activator.State) &&
+                name.Equals(activator.Name)));
         }
 
         new

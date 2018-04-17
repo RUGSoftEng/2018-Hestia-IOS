@@ -2,7 +2,7 @@ using Foundation;
 using System;
 using UIKit;
 
-namespace Hestia
+namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerAccount : UITableViewController
     {

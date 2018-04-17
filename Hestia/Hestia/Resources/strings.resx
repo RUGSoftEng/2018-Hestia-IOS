@@ -171,6 +171,9 @@
   <data name="pluginsPathMid" xml:space="preserve">
     <value>plugins</value>
   </data>
+  <data name="requestTimeout" xml:space="preserve">
+    <value>2000</value>
+  </data>
   <data name="searching" xml:space="preserve">
     <value>Searching...</value>
   </data>

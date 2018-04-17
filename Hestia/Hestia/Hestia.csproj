@@ -68,11 +68,12 @@
     <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />
     <Compile Include="backend\models\deserializers\DeviceDeserializer.cs" />
     <Compile Include="backend\models\Device.cs" />
-    <Compile Include="backend\models\RequiredInfo.cs" />
+    <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
     <Compile Include="backend\ServerInteractor.cs" />
     <Compile Include="backend\utils\Float.cs" />
     <Compile Include="backend\utils\JsonValidator.cs" />
+    <Compile Include="backend\utils\PingServer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="GettingStarted.Xamarin" />
@@ -94,10 +95,37 @@
     <Compile Include="DevicesScreen\UITableViewControllerAccount.designer.cs">
       <DependentUpon>UITableViewControllerAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="DevicesScreen\UITableViewControllerServer.cs" />
-    <Compile Include="DevicesScreen\UITableViewControllerServer.designer.cs">
-      <DependentUpon>UITableViewControllerServer.cs</DependentUpon>
+    <Compile Include="DevicesScreen\UITableViewControllerServerConnect.cs" />
+    <Compile Include="DevicesScreen\UITableViewControllerServerConnect.designer.cs">
+      <DependentUpon>UITableViewControllerServerConnect.cs</DependentUpon>
     </Compile>
+    <Compile Include="DevicesScreen\resources\Globals.cs" />
+    <Compile Include="DevicesScreen\SettingsController.cs" />
+    <Compile Include="DevicesScreen\SettingsController.designer.cs">
+      <DependentUpon>SettingsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceManufacturer.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.designer.cs">
+      <DependentUpon>UITableViewControllerAddDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.designer.cs">
+      <DependentUpon>UITableViewControllerAddDeviceDevice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.designer.cs">
+      <DependentUpon>UITableViewControllerAddDeviceProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceProperties.cs" />
+    <Compile Include="DevicesScreen\AddDeviceScreen\PropertyCell.cs" />
+    <Compile Include="DevicesScreen\EditDevice\UIViewControllerEditDeviceName.cs" />
+    <Compile Include="DevicesScreen\UITableViewActivators.cs" />
+    <Compile Include="DevicesScreen\UITableViewActivators.designer.cs">
+      <DependentUpon>UITableViewActivators.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\TableSourceActivators.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
@@ -132,6 +160,10 @@
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DevicesScreen\resources\" />
+    <Folder Include="DevicesScreen\AddDeviceScreen\" />
+    <Folder Include="DevicesScreen\EditDevice\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

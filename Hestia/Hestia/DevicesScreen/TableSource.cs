@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
+using Hestia.DevicesScreen.resources;
 using System.Drawing;
 using System.Collections;
 using Hestia.backend;
 using Hestia.backend.models;
+using Hestia.DevicesScreen.EditDevice;
 
 namespace Hestia.DevicesScreen
 {
@@ -52,64 +54,45 @@ namespace Hestia.DevicesScreen
             UITableViewCell cell = tableView.DequeueReusableCell(CellIdentifier);
             // if there are no cells to reuse, create a new one
             if (cell == null)
-            {   
+            {
                 // Generate a default table cell
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
-            // If no devices present
-            if (indexPath.Row == 0)
-            {
-                // The text to display on the cell is the device name  
-                cell.TextLabel.Text = "New Device";
-                return cell;
-            }
-
-            // Create a new UISwitch and set up its delegate for the value changing
-            if (TableItems[(indexPath.Row)].Activators[0].State.RawState is bool)
-            {
-                UISwitch MySwitch = new UISwitch();
-                MySwitch.On = (bool)TableItems[(indexPath.Row)].Activators[0].State.RawState;
-                MySwitch.ValueChanged += delegate (object sender, EventArgs e)
-                {
-                    SwitchEventsArgs myE = new SwitchEventsArgs();
-                    myE.SwitchState = MySwitch.On;
-                    myE.indexPath = indexPath;
-                    HandleSwitchChanged(this, myE);
-                };
-
-                // Set the switch's state to that of the device.
-                MySwitch.On = (bool)TableItems[(indexPath.Row)].Activators[0].State.RawState;
-
-                // Replace the cell's AccessoryView with the new UISwitch
-                cell.AccessoryView = MySwitch;
-
-                // Keep a reference to the UISwitch - note using a Hashtable to ensure
-                // we only have one for any given row
-                Switches[indexPath.Row] = cell.AccessoryView;
-            }
-           
+            cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
+            cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
             // The text to display on the cell is the device name
             cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
 
             return cell;
         }
 
-        // Handler for switch changed events.
-        // Set the value in the Device list in this class, but 
-        protected void HandleSwitchChanged(object sender, SwitchEventsArgs e)
-        {
-            TableItems[e.indexPath.Row].Activators[0].State.RawState = e.SwitchState;
-        }
 
         // Devices what happens if touch on row.
         // Should display the slider(s) ultimately
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
-            UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            owner.PresentViewController(okAlertController, true, null);
-            tableView.DeselectRow(indexPath, true);
+            if (!tableView.Editing)
+            {
+                UITableViewActivators activator =
+                        this.owner.Storyboard.InstantiateViewController("DeviceActivators")
+                             as UITableViewActivators;
+                if (activator != null)
+                {
+                    activator.device = TableItems[indexPath.Row];
+                    owner.NavigationController.PushViewController(activator, true);
+                }
+                tableView.DeselectRow(indexPath, true);
+            }
+            // Go to edit name window for non-insert cells
+            else if(tableView.Editing && tableView.CellAt(indexPath).EditingStyle != UITableViewCellEditingStyle.Insert)
+            {
+
+                UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this.owner);
+                editViewController.device = TableItems[(indexPath.Row)];
+                this.owner.NavigationController.PushViewController(editViewController, true);
+                tableView.DeselectRow(indexPath, true);
+            }
         }
 
         public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
@@ -117,7 +100,15 @@ namespace Hestia.DevicesScreen
             switch (editingStyle)
             {
                 case UITableViewCellEditingStyle.Delete:
-                    // remove the item from the underlying data source
+                    try
+                    {
+                        // remove device from server 
+                        Globals.ServerInteractor.RemoveDevice(TableItems[indexPath.Row]);
+                    }
+                    catch(Exception e)
+                    {
+                        Console.Out.WriteLine(e.StackTrace);
+                    }
                     TableItems.RemoveAt(indexPath.Row);
                     // delete the row from the table
                     tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
@@ -125,11 +116,17 @@ namespace Hestia.DevicesScreen
                 case UITableViewCellEditingStyle.None:
                     Console.WriteLine("CommitEditingStyle:None called");
                     break;
+                case UITableViewCellEditingStyle.Insert:
+                    UITableViewControllerAddDevice addDeviceVc = 
+                        this.owner.Storyboard.InstantiateViewController("AddManufacturer") 
+                             as UITableViewControllerAddDevice;
+                    owner.NavigationController.PushViewController(addDeviceVc, true);
+                    break;
             }
         }
 
         public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
-        {   // Optional - default text is 'Delete'
+        {   // Default text is 'Delete'
             return "Remove " + TableItems[indexPath.Row].Name;
         }
 
@@ -146,11 +143,6 @@ namespace Hestia.DevicesScreen
             }
         }
 
-
-        public override bool CanMoveRow(UITableView tableView, NSIndexPath indexPath)
-        {
-            return false; // return false if you don't allow re-ordering
-        }
 
         // Defines the red delete/add buttons before cell
         public override UITableViewCellEditingStyle EditingStyleForRow(UITableView tableView, NSIndexPath indexPath)
@@ -182,7 +174,7 @@ namespace Hestia.DevicesScreen
             // This should not be permanently stored, but trigger the add new
             // device screen on touch
             List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
-            NetworkHandler temp_networkhandler = new NetworkHandler("94.212.164.28", 8000);
+            NetworkHandler temp_networkhandler = new NetworkHandler(Globals.IP, Globals.Port);
             TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, temp_networkhandler));
 
             tableView.EndUpdates(); // applies the changes
