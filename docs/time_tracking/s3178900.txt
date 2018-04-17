@@ -85,3 +85,21 @@ Fixing backend issues, and making a mistake on refactoring.
 Accepting pr's and discussing last problem with resources.
 Adding new time tracking.
 Making final adjustments to the architecture document and making PR to master.
+Helping tom resolve bugs in the integration with backend.
+Resolving the problem in backend to help frontend.
+Attending presentations.
+Attending presentations.
+Attending presentations.
+Attending presentations.
+Attending presentations.
+Attending presentations.
+Setting up meeting. Checking and merging pr's.
+Meeting with few members (Daan, Andrei, Juan and Jur)
+Meeting with few members (Daan, Andrei, Juan and Jur)
+Meeting with few members (Daan, Andrei, Juan and Jur)
+Meeting with few members (Daan, Andrei, Juan and Jur)
+Working on the architecture document
+Working on the architecture document
+Working on the architecture document
+Merging and reviewing pr's
+Creating sprint pr.
