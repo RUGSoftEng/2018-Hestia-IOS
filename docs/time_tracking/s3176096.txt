@@ -40,3 +40,40 @@ working with andrei on settings screen
 working with andrei on settings screen
 finalizing settings screen with front end in place but no functionality yet
 added a devices list to the table view with help of network handler
+Meeting with team 28-03
+Meeting with team 28-03
+Meeting with team 28-03
+Solving bugs with andrei and zino
+Solving bugs with andrei and zino
+Creating server connection screens with andrei
+Creating server connection screens with andrei
+Creating server connection screens with andrei
+Figuring out how to pass variables between screens with andrei
+Figuring out how to pass variables between screens with andrei
+Figuring out how to pass variables between screens 
+Figuring out how to pass variables between screens
+Figuring out how to manually code to go to next segue
+Figuring out how to manually code to go to next segue
+Figuring out how to manually code to go to next segue
+Figuring out how to manually code to go to next segue
+finalized connection screen + added global variables class for device screens
+finalized connection screen + added global variables class for device screens
+fixing csproj
+fixing csproj
+Researching implemtation of 2 different lists in table view
+Researching implemtation of 2 different lists in table view
+Researching implemtation of 2 different lists in table view
+Not a single solution applicable to our problem.
+Understanding marks' tableview implementation
+Understanding marks' tableview implementation
+Understanding marks' tableview implementation
+This made it easy to implement a new activator screen
+implementing the new screen
+implementing the new screen
+implementing the new screen
+implementing the new screen
+bugfixing the screen
+bugfixing the screen
+finished an unpolished device activator screen
+
+
