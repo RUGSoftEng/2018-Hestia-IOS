@@ -59,35 +59,12 @@ namespace Hestia.DevicesScreen
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
+            cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
+            cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+            // The text to display on the cell is the device name
+            cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
 
-            // Create a new UISwitch and set up its delegate for the value changing
-            foreach (Hestia.backend.models.Activator act in TableItems[(indexPath.Row)].Activators)
-            {
-                if (act.State.Type == "bool" && (act.Name == "On/Off" || act.Name == "Activate"))
-                {
-                    UISwitch DeviceSwitch = new UISwitch();
-                    // Set the switch's state to that of the device.
-                    DeviceSwitch.On = (bool)act.State.RawState;
-                    DeviceSwitch.ValueChanged += delegate (object sender, EventArgs e)
-                    {
-                        act.State = new Hestia.backend.models.ActivatorState<object>(DeviceSwitch.On, "bool");
-                    };
-                    // Replace the cell's AccessoryView with the new UISwitch
-                    cell.AccessoryView = DeviceSwitch;
-
-                    // Keep a reference to the UISwitch - note using a Hashtable to ensure
-                    // we only have one for any given row
-                    Switches[indexPath.Row] = cell.AccessoryView;
-
-                    cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
-                }
-            }
-
-                // The text to display on the cell is the device name
-                cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
-
-                return cell;
-            
+            return cell;
         }
 
 
@@ -97,9 +74,14 @@ namespace Hestia.DevicesScreen
         {
             if (!tableView.Editing)
             {
-                UIAlertController okAlertController = UIAlertController.Create("Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
-                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                owner.PresentViewController(okAlertController, true, null);
+                UITableViewActivators activator =
+                        this.owner.Storyboard.InstantiateViewController("DeviceActivators")
+                             as UITableViewActivators;
+                if (activator != null)
+                {
+                    activator.device = TableItems[indexPath.Row];
+                    owner.NavigationController.PushViewController(activator, true);
+                }
                 tableView.DeselectRow(indexPath, true);
             }
             else if(tableView.Editing)

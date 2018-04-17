@@ -121,6 +121,11 @@
     <Compile Include="DevicesScreen\AddDeviceScreen\TableSourceAddDeviceProperties.cs" />
     <Compile Include="DevicesScreen\AddDeviceScreen\PropertyCell.cs" />
     <Compile Include="DevicesScreen\EditDevice\UIViewControllerEditDeviceName.cs" />
+    <Compile Include="DevicesScreen\UITableViewActivators.cs" />
+    <Compile Include="DevicesScreen\UITableViewActivators.designer.cs">
+      <DependentUpon>UITableViewActivators.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DevicesScreen\TableSourceActivators.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
