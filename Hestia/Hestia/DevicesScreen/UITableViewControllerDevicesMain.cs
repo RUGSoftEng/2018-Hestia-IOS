@@ -10,7 +10,6 @@ using Hestia.DevicesScreen.resources;
 using Hestia.backend;
 using Hestia.backend.models;
 
-
 namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerDevicesMain : UITableViewController
@@ -35,6 +34,13 @@ namespace Hestia.DevicesScreen
             table.SetEditing(false, true);
             NavigationItem.RightBarButtonItem = edit;
             ((TableSource)table.Source).DidFinishTableEditing(table);
+        }
+
+        public void setEditingState()
+        {
+            ((TableSource)table.Source).WillBeginTableEditing(table);
+            table.SetEditing(true, true);
+            NavigationItem.RightBarButtonItem = done;
         }
 
         public void refreshDeviceList()
@@ -74,9 +80,7 @@ namespace Hestia.DevicesScreen
 
             // Edit button
             edit = new UIBarButtonItem(UIBarButtonSystemItem.Edit, (s, e) => {
-                ((TableSource)table.Source).WillBeginTableEditing(table);
-                table.SetEditing(true, true);
-                NavigationItem.RightBarButtonItem = done;
+                this.setEditingState();
             });
 
             // Set right button initially to edit 

@@ -84,18 +84,13 @@ namespace Hestia.DevicesScreen
                 }
                 tableView.DeselectRow(indexPath, true);
             }
-            else if(tableView.Editing)
+            // Go to edit name window for non-insert cells
+            else if(tableView.Editing && tableView.CellAt(indexPath).EditingStyle != UITableViewCellEditingStyle.Insert)
             {
 
                 UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this.owner);
                 editViewController.device = TableItems[(indexPath.Row)];
                 this.owner.NavigationController.PushViewController(editViewController, true);
-
-          
-
-                //UIAlertController okAlertController = UIAlertController.Create("Editing Row Selected", TableItems[indexPath.Row].Name, UIAlertControllerStyle.Alert);
-               // okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-               // owner.PresentViewController(okAlertController, true, null);
                 tableView.DeselectRow(indexPath, true);
             }
         }
@@ -131,7 +126,7 @@ namespace Hestia.DevicesScreen
         }
 
         public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
-        {   // Optional - default text is 'Delete'
+        {   // Default text is 'Delete'
             return "Remove " + TableItems[indexPath.Row].Name;
         }
 
@@ -179,7 +174,7 @@ namespace Hestia.DevicesScreen
             // This should not be permanently stored, but trigger the add new
             // device screen on touch
             List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
-            NetworkHandler temp_networkhandler = new NetworkHandler("94.212.164.28", 8000);
+            NetworkHandler temp_networkhandler = new NetworkHandler(Globals.IP, Globals.Port);
             TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, temp_networkhandler));
 
             tableView.EndUpdates(); // applies the changes
