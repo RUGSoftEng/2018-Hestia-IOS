@@ -120,6 +120,39 @@ Working on add device screen (properties screen)
 Working on add device screen (properties screen)
 Working on add device screen (properties screen)
 Working out meeting notes 27&28 March + uploading backlog
-
+Review PR Zino + adding screenshots to presentation
+Adding screenshots to presentation
+Working on add devices screen. Fixed loading collection list
+Working on add devices screen. Fixed loading collection list
+Working on add devices property screen.
+Trying to get a textfield in cell for properties screen
+Editing presentation
+Repeating presentation content + made the demo movie
+Repeating presentation content + made the demo movie
+Rehearsing presentation with Jur and Andrei
+Rehearsing presentation with Jur and Andrei
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Code cleanup devices screen + fixing comments Feiko
+Editing accessory in devices screen with edit devices window
+Editing accessory in devices screen with edit devices window
+Editing accessory in devices screen with edit devices window
+Editing accessory in devices screen with edit devices window
+Editing accessory in devices screen with edit devices window
+Reading about testing of app on device (device provisioning)
+Fixing Feiko’s  feedback in devices screen
+Filling in peer review + discussions on slack
+Filling in peer review + discussions on slack
+Writing introduction architecture document and other small additions/fixes
+Writing introduction architecture document and other small additions/fixes
 
 
