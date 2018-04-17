@@ -54,7 +54,11 @@ namespace Hestia.DevicesScreen.EditDevice
             // Save button
             saveName = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
                 device.Name = changeNameField.Text;
+                // Reset editing mode to be abel to correctly update cell contents
+                owner.cancelEditingState();
+
                 owner.refreshDeviceList();
+                owner.setEditingState();
                 this.NavigationController.PopViewController(true);
             });
 
