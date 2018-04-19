@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hestia", "Hestia\Hestia.csproj", "{74863A16-A63B-4DF6-B46D-8A9FB0A45833}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestHestia", "UnitTestHestia\UnitTestHestia.csproj", "{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhone = Debug|iPhone
@@ -21,6 +23,14 @@ Global
 		{74863A16-A63B-4DF6-B46D-8A9FB0A45833}.Release|iPhone.Build.0 = Release|iPhone
 		{74863A16-A63B-4DF6-B46D-8A9FB0A45833}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{74863A16-A63B-4DF6-B46D-8A9FB0A45833}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}.Debug|iPhone.Build.0 = Debug|iPhone
+		{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}.Release|iPhone.ActiveCfg = Release|iPhone
+		{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}.Release|iPhone.Build.0 = Release|iPhone
+		{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{FB39732A-3C13-46A9-AB59-0DD8FA5B694B}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
