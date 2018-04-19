@@ -8,10 +8,10 @@ namespace UnitTestHestia.backend.models
     public class DeviceTest
     {
         [Test]
-        public void Pass()
+        public void ConstructorTest()
         {
             Device device = new Device("testId", "test", "bool", null, null);
-
+            Assert.NotNull(device);
         }
 
         [Test]
