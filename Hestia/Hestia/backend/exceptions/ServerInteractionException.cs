@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Resources;
-using System.Text;
-
-using Foundation;
-using UIKit;
 
 namespace Hestia.backend.exceptions
 {
-    class ServerInteractionException : Exception
+    public class ServerInteractionException : Exception
     {
         public ServerInteractionException()
         {
@@ -18,6 +10,11 @@ namespace Hestia.backend.exceptions
 
         public ServerInteractionException(string message)
             : base(message)
+        {
+        }
+
+        public ServerInteractionException(string message, Exception innerException)
+            : base(message, innerException)
         {
         }
     }
