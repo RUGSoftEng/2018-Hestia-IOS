@@ -48,7 +48,7 @@ namespace Hestia.DevicesScreen
             // Get the list with devices
             try
             {
-                devices = Globals.ServerInteractor.GetDevices();
+                devices = Globals.getDevices();
             }
             catch (Exception e)
             {
@@ -61,6 +61,11 @@ namespace Hestia.DevicesScreen
 		public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
+
+            // TEMPORARY FOR TESTING
+            Globals.LocalLogin = true;
+            //=====
+
             table = new UITableView(View.Bounds); // defaults to Plain style
 
             refreshDeviceList();

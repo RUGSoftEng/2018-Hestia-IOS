@@ -11,7 +11,7 @@ namespace Hestia.DevicesScreen
 
         Device device;
         List<backend.models.Activator> activators;
-        String CellIdentifier = "TableCell";
+        String CellIdentifier = "activatorcell";
         Hashtable actAccessories = new Hashtable();
 
         public TableSourceActivators(Device device)

@@ -103,7 +103,7 @@ namespace Hestia.DevicesScreen
                     try
                     {
                         // remove device from server 
-                        Globals.ServerInteractor.RemoveDevice(TableItems[indexPath.Row]);
+                        Globals.LocalServerInteractor.RemoveDevice(TableItems[indexPath.Row]);
                     }
                     catch(Exception e)
                     {

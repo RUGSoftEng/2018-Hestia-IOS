@@ -36,11 +36,11 @@ namespace Hestia
             // The list with manufacturers
             try
             {
-                collections = Globals.ServerInteractor.GetCollections();
+                collections = Globals.LocalServerInteractor.GetCollections();
                 foreach(string collection in collections)
                 {
                     // Get plugins for this collection
-                    List<string> plugins = Globals.ServerInteractor.GetPlugins(collection);
+                    List<string> plugins = Globals.LocalServerInteractor.GetPlugins(collection);
                     // Add this collection/plugins combination to hashtable
                     collection_plugins.Add(collection, plugins);
                 }
