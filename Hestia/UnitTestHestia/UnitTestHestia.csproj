@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="backend\models\ActivatorTest.cs" />
     <Compile Include="backend\models\deserializers\ActivatorDeserializerTest.cs" />
+    <Compile Include="backend\models\deserializers\DeviceDeserializerTest.cs" />
     <Compile Include="backend\models\DeviceTest.cs" />
     <Compile Include="backend\NetworkHandlerTest.cs" />
     <Compile Include="backend\ServerInteractorTest.cs" />
