@@ -62,7 +62,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="backend\exceptions\ComFaultException.cs" />
+    <Compile Include="backend\exceptions\ServerInteractionException.cs" />
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
     <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />

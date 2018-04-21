@@ -4,6 +4,7 @@ using System;
 using System.Net;
 using System.Runtime.Serialization;
 
+using Hestia.backend.exceptions;
 using Hestia.Resources;
 
 namespace Hestia.backend
@@ -102,7 +103,7 @@ namespace Hestia.backend
 
             IRestResponse response = client.Execute(request);
             string responseString = response.Content;
-            JToken responseJson;
+            JToken responseJson = null;
 
             if (response.IsSuccessful && response.ErrorException == null)
             {
@@ -110,26 +111,26 @@ namespace Hestia.backend
                 {
                     responseJson = JToken.Parse(responseString);
                 }
-                else
-                {
-                    string jsonSuccess = "{ \"message\": \"success\" }";
-                    responseJson = JToken.Parse(jsonSuccess);
-                }
             }
             else
             {
                 if (JsonValidator.IsValidJson(responseString))
                 {
                     responseJson = JToken.Parse(responseString);
-                    if(responseJson["error"] == null)
+                    if (responseJson["message"] != null)
                     {
-                        responseJson["error"] = "something went wrong";
+                        throw new ServerInteractionException(responseJson["message"].ToString());
+                    } else if (responseJson["error"] != null)
+                    {
+                        throw new ServerInteractionException(responseJson["error"].ToString());
+                    } else
+                    {
+                        throw new ServerInteractionException();
                     }
                 }
                 else
                 {
-                    string jsonError = "{ \"error\": \"something went wrong\" }";
-                    responseJson = JToken.Parse(jsonError);
+                    throw new ServerInteractionException(response.ErrorMessage, response.ErrorException);
                 }
             }
 
