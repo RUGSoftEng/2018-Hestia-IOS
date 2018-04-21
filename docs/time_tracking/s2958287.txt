@@ -94,3 +94,7 @@ Detecting and fixing bug in RequiredInfo.cs and add new method to PluginInfo.cs 
 Changing backend code based on Feiko's feedback
 Meeting with Andrei Juanjo and Zino
 Adding information about the network hanlder and server interactor to the architecture document
+Improve error handling in network handler
+Improve error handling in network handler
+Improve error handling in network handler
+Improve error handling in network handler
