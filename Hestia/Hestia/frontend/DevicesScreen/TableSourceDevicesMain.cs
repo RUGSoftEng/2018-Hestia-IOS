@@ -10,6 +10,7 @@ using Hestia.backend;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
 
+
 namespace Hestia.DevicesScreen
 {
     public class TableSource : UITableViewSource
@@ -59,8 +60,12 @@ namespace Hestia.DevicesScreen
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
-            cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
-            cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+            if (TableItems[(indexPath.Row)].Name != "New Device ")
+            {
+                cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
+                cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+            }
+
             // The text to display on the cell is the device name
             cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
 
@@ -117,10 +122,19 @@ namespace Hestia.DevicesScreen
                     Console.WriteLine("CommitEditingStyle:None called");
                     break;
                 case UITableViewCellEditingStyle.Insert:
-                    UITableViewControllerAddDevice addDeviceVc = 
-                        this.owner.Storyboard.InstantiateViewController("AddManufacturer") 
-                             as UITableViewControllerAddDevice;
-                    owner.NavigationController.PushViewController(addDeviceVc, true);
+                    if (Globals.LocalLogin)
+                    {
+                        UITableViewControllerAddDevice addDeviceVc =
+                            this.owner.Storyboard.InstantiateViewController("AddManufacturer")
+                                 as UITableViewControllerAddDevice;
+                        owner.NavigationController.PushViewController(addDeviceVc, true);
+                    }
+                    else
+                    {
+                        var addDeviceChooseServer =
+                            this.owner.Storyboard.InstantiateViewController("AddDeviceChooseServer") as UITableViewControllerAddDeviceChooseServer;                      
+                        owner.NavigationController.PushViewController(addDeviceChooseServer, true);
+                    }
                     break;
             }
         }

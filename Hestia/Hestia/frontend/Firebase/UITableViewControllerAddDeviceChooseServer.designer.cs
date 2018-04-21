@@ -14,5 +14,8 @@ namespace Hestia
     [Register ("UITableViewControllerAddDeviceChooseServer")]
     partial class UITableViewControllerAddDeviceChooseServer
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }
