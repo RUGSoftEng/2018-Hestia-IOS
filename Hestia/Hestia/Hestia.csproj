@@ -20,7 +20,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -136,6 +136,7 @@
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="DevicesScreen\Devices1.storyboard" />
+    <InterfaceDefinition Include="LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -164,6 +165,24 @@
     <Folder Include="DevicesScreen\resources\" />
     <Folder Include="DevicesScreen\AddDeviceScreen\" />
     <Folder Include="DevicesScreen\EditDevice\" />
+    <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie120.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie80kopie.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie87.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie60kopie.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie40kopie.png" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie1024kopie.png" />
+    <ImageAsset Include="Assets.xcassets\LogoLaunchscreen.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\LogoLaunchscreen.imageset\hestialogo_white.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork" />
+    <ITunesArtwork Include="iTunesArtwork%402x" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

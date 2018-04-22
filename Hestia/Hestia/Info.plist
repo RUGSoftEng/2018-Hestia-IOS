@@ -51,5 +51,7 @@
 	</array>
 	<key>CFBundleName</key>
 	<string>Hestia</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>
 </plist>
