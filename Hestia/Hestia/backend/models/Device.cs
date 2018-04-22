@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.Remoting;
 
+using Hestia.backend.exceptions;
 using Hestia.Resources;
 
 namespace Hestia.backend.models
@@ -42,10 +43,13 @@ namespace Hestia.backend.models
                     ["name"] = name
                 };
 
-                JToken payload = networkHandler.Put(deviceName, endpoint);
-                if (payload["error"] != null)
+                try
                 {
-                    throw new ServerException();
+                    networkHandler.Put(deviceName, endpoint);
+                }
+                catch (ServerInteractionException ex)
+                {
+                    throw;
                 }
             }
         }
