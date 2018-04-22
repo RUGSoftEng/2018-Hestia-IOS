@@ -52,7 +52,7 @@ namespace Hestia
                 // Try to add device to server
                 try
                 {
-                    Globals.ServerInteractor.AddDevice(pluginInfo);
+                    Globals.LocalServerInteractor.AddDevice(pluginInfo);
                 }
                 catch (Exception except)
                 {
