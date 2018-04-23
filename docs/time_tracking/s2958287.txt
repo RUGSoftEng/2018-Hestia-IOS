@@ -100,3 +100,4 @@ Improve error handling in network handler
 Improve error handling in network handler
 Add new server interaction exception to front end
 Test app on older IOS versions
+Test app on older IOS versions
