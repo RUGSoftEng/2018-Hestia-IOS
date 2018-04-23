@@ -35,6 +35,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Firebase"/>
+                                <connections>
+                                    <segue id="6548" destination="6426" kind="show"/>
+                                </connections>
                             </button>
                         </subviews>
                     </view>
@@ -51,5 +54,42 @@
             </objects>
             <point key="canvasLocation" x="423" y="-28"/>
         </scene>
+        <scene sceneID="6425">
+            <objects>
+                <viewController id="6426" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6423"/>
+                        <viewControllerLayoutGuide type="bottom" id="6424"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6427">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="6600" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES" text="Here should come the firebase login if that is ready">
+                                <rect key="frame" x="49" y="105" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9251" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="0.0" y="241" width="320" height="211"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Go back"/>
+                                <connections>
+                                    <segue id="10000" destination="BYZ-38-t0r" kind="show"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6428" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="518" y="32"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="LogoLaunchscreen" width="431" height="206"/>
+    </resources>
 </document>
