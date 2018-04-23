@@ -7,9 +7,9 @@ using Hestia.DevicesScreen.resources;
 using System.Drawing;
 using System.Collections;
 using Hestia.backend;
+using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
-
 
 namespace Hestia.DevicesScreen
 {
@@ -110,9 +110,10 @@ namespace Hestia.DevicesScreen
                         // remove device from server 
                         Globals.LocalServerInteractor.RemoveDevice(TableItems[indexPath.Row]);
                     }
-                    catch(Exception e)
+                    catch(ServerInteractionException ex)
                     {
-                        Console.Out.WriteLine(e.StackTrace);
+                        Console.WriteLine("Exception while removing device");
+                        Console.Out.WriteLine(ex.ToString());
                     }
                     TableItems.RemoveAt(indexPath.Row);
                     // delete the row from the table

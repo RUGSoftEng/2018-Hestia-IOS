@@ -8,7 +8,7 @@ using System.Drawing;
 using System.Collections;
 using Hestia.backend;
 using Hestia.backend.models;
-
+using Hestia.backend.exceptions;
 
 namespace Hestia
 {
@@ -19,6 +19,7 @@ namespace Hestia
 
         // List of manufacturers
         List<string> collections;
+        
         // Stores list of plugins per manufacturer
         Hashtable collection_plugins;
 
@@ -46,11 +47,12 @@ namespace Hestia
                 }
      
             }
-            catch (Exception e)
+            catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while using serverInteractor");
-                Console.WriteLine(e.StackTrace);
+                Console.WriteLine(ex.ToString());
             }
+            
             // Contains methods that describe behavior of table
             table.Source = new TableSourceAddDeviceManufacturer(collections, collection_plugins, this);
 

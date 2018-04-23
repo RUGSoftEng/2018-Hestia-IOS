@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UIKit;
+using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.AddDeviceScreen;
@@ -54,10 +55,10 @@ namespace Hestia
                 {
                     Globals.LocalServerInteractor.AddDevice(pluginInfo);
                 }
-                catch (Exception except)
+                catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while adding device to server");
-                    Console.WriteLine(except.StackTrace);
+                    Console.WriteLine(ex.ToString());
                 }
 
                 // Get the root view contoller and cancel the editing state
