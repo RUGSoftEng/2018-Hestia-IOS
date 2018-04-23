@@ -173,17 +173,39 @@
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
   </ItemGroup>
   <ItemGroup>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie120.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie80kopie.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie60kopie.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie40kopie.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie1024kopie.png" />
-    <ImageAsset Include="Assets.xcassets\LogoLaunchscreen.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LogoLaunchscreen.imageset\hestialogo_white.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie80kopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie60kopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie40kopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie1024kopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LogoLaunchscreen.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LogoLaunchscreen.imageset\hestialogo_white.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
