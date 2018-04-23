@@ -7,8 +7,8 @@ using Hestia.DevicesScreen.resources;
 using System.Drawing;
 using System.Collections;
 using Hestia.backend;
-using Hestia.backend.models;
 using Hestia.backend.exceptions;
+using Hestia.backend.models;
 
 namespace Hestia
 {
