@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 using Hestia.DevicesScreen.resources;
-using Hestia.backend;
+using Hestia.backend.exceptions;
 using Hestia.backend.models;
 
 namespace Hestia.DevicesScreen
@@ -50,10 +50,10 @@ namespace Hestia.DevicesScreen
             {
                 devices = Globals.getDevices();
             }
-            catch (Exception e)
+            catch (ServerInteractionException ex)
             {
                 Console.Out.WriteLine("Exception while getting devices from server");
-                Console.Out.WriteLine(e.StackTrace);
+                Console.Out.WriteLine(ex.ToString());
             }
             table.Source = new TableSource(devices, this); 
         }

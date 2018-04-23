@@ -7,6 +7,7 @@ using Hestia.DevicesScreen.resources;
 using System.Drawing;
 using System.Collections;
 using Hestia.backend;
+using Hestia.backend.exceptions;
 using Hestia.backend.models;
 
 namespace Hestia.DevicesScreen
@@ -75,16 +76,16 @@ namespace Hestia.DevicesScreen
             {
                 try
                 {
-                 PluginInfo requiredInfo = 
-                        Globals.LocalServerInteractor.GetPluginInfo(collection, (string)this.plugins[indexPath.Row]);
+                    PluginInfo requiredInfo = 
+                    Globals.LocalServerInteractor.GetPluginInfo(collection, (string)this.plugins[indexPath.Row]);
                     
                     addDeviceProperties.pluginInfo = requiredInfo;
                     this.owner.NavigationController.PushViewController(addDeviceProperties, true);
                 }
-                catch (Exception e)
+                catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while getting required info");
-                    Console.WriteLine(e.StackTrace);
+                    Console.WriteLine(ex.ToString());
                 }
             }
 
