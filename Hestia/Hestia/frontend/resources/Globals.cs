@@ -15,9 +15,8 @@ namespace Hestia.DevicesScreen.resources
         public static String IP { get; set; }
 
         // In case of Firebase login
-        public static List<NetworkHandler> FirebaseNetworkHandlers { get; set; }
-        public static List<ServerInteractor> FirebaseServerInteractors { get; set; }
-
+        public static List<FireBaseServer> FireBaseServers { get; set; }
+        
         // Get devices for only local servers or all Firebase Servers
         public static List<Device> getDevices()
         {
@@ -29,9 +28,9 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                foreach (ServerInteractor interactor in FirebaseServerInteractors)
+                foreach (FireBaseServer server in FireBaseServers)
                 {
-                    devices.AddRange(interactor.GetDevices());
+                    devices.AddRange(server.Interactor.GetDevices());
                 }
             }
 

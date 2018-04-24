@@ -70,6 +70,7 @@
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
+    <Compile Include="backend\FireBaseServer.cs" />
     <Compile Include="backend\ServerInteractor.cs" />
     <Compile Include="backend\utils\Float.cs" />
     <Compile Include="backend\utils\JsonValidator.cs" />
@@ -164,12 +165,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="frontend\" />
-    <Folder Include="frontend\DevicesScreen\" />
-    <Folder Include="frontend\Local\" />
-    <Folder Include="frontend\Firebase\" />
-    <Folder Include="frontend\DevicesScreen\ActivatorScreen\" />
-    <Folder Include="frontend\resources\" />
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
   </ItemGroup>
   <ItemGroup>
