@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
 using Hestia.DevicesScreen.resources;
-using System.Drawing;
-using System.Collections;
-using Hestia.backend;
-using Hestia.backend.models;
 
 namespace Hestia
 {
@@ -16,7 +11,7 @@ namespace Hestia
         // The viewController to which the TableView connected to this Source lives in
         UITableViewControllerAddDeviceChooseServer owner;
 
-    // The kind of cell that is used in the table (set in Storyboard)
+        // The kind of cell that is used in the table (set in Storyboard)
         string CellIdentifier = "servercell";
 
         // Constructor. Gets the device data and the ViewController
@@ -34,7 +29,7 @@ namespace Hestia
         // The number of devices in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return Globals.FirebaseServerInteractors.Count;
+            return Globals.FirebaseServers.Count;
         }
 
         // Important method. Called to generate a cell to display
@@ -50,7 +45,7 @@ namespace Hestia
             }
 
             // The text to display on the cell is the plugin name
-            cell.TextLabel.Text = Globals.FirebaseServerInteractors[indexPath.Row].ToString();
+            cell.TextLabel.Text = Globals.FirebaseServers[indexPath.Row].ToString();
 
             return cell;
         }
