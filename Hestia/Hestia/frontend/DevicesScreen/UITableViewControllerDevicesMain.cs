@@ -1,10 +1,7 @@
-using Foundation;
 using System;
 using UIKit;
 
-using System.Drawing; 
 using System.Collections.Generic;
-using System.Collections;
 
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
@@ -48,7 +45,7 @@ namespace Hestia.DevicesScreen
             // Get the list with devices
             try
             {
-                devices = Globals.getDevices();
+                devices = Globals.GetDevices();
             }
             catch (ServerInteractionException ex)
             {
