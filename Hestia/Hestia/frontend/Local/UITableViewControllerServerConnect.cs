@@ -10,8 +10,6 @@ using Hestia.backend.utils;
 
 namespace Hestia.DevicesScreen
 {
-
-
     public partial class UITableViewControllerServerConnect : UITableViewController
     {
 
@@ -19,7 +17,6 @@ namespace Hestia.DevicesScreen
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
         {
-            
         }
 
         public override void ViewDidLoad()
@@ -30,7 +27,6 @@ namespace Hestia.DevicesScreen
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
-
            bool validIp = false;
            if (debug)
                 {

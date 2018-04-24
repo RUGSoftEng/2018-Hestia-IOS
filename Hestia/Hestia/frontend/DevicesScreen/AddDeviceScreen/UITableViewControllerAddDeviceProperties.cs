@@ -11,8 +11,6 @@ namespace Hestia
 {
     public partial class UITableViewControllerAddDeviceProperties : UITableViewController
     {
-        // The table that lives in this view controller
-        //UITableView table;
         // Plugin info set at creation in devices window
         public PluginInfo pluginInfo;
         // Keeps track at the input fields for device properties
@@ -38,11 +36,9 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-           
 
             // Contains methods that describe behavior of table
             TableView.Source = new TableSourceAddDeviceProperties(this);
-
 
             // Save button
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
@@ -65,13 +61,11 @@ namespace Hestia
                 rootViewController.refreshDeviceList();
                 // Go back to the devices main screen
                 this.NavigationController.PopToViewController(rootViewController, true);
-
             });
 
             // Set right button to save 
             NavigationItem.RightBarButtonItem = save;
         }
-
 
     }
 }

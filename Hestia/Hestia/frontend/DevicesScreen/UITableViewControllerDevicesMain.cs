@@ -11,10 +11,7 @@ namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerDevicesMain : UITableViewController
     {
-        // The table that lives in this view controller
-       // public UITableView DevicesTable;
-
-        // Done button in top right (appears in edit mode)
+       // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
         // Edit button in top right (is shown initially)
         UIBarButtonItem edit;
@@ -63,24 +60,17 @@ namespace Hestia.DevicesScreen
             Globals.LocalLogin = true;
             //=====
 
-            //DevicesTable = new UITableView(View.Bounds); // defaults to Plain style
-
             refreshDeviceList();
 
             // To tap row in editing mode for changing name
             DevicesTable.AllowsSelectionDuringEditing = true;
             // Contains methods that describe behavior of table
-            DevicesTable.Source = new TableSource(devices, this); 
+            DevicesTable.Source = new TableSource(devices, this);  
 
-            // Add the table to the view
-            //Add(DevicesTable); 
-
-            // Done button
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 this.cancelEditingState();
             });
 
-            // Edit button
             edit = new UIBarButtonItem(UIBarButtonSystemItem.Edit, (s, e) => {
                 this.setEditingState();
             });
