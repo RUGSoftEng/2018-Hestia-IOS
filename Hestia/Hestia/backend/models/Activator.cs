@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Runtime.Remoting;
+using Hestia.backend.exceptions;
 
 namespace Hestia.backend.models
 {

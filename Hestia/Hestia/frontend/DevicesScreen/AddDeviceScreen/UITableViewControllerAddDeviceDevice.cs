@@ -31,10 +31,9 @@ namespace Hestia
             table = new UITableView(View.Bounds); // defaults to Plain style
 
             // Contains methods that describe behavior of table
-            table.Source = new TableSourceAddDeviceDevice(plugins, collection, this);
+            Devices.Source = new TableSourceAddDeviceDevice(plugins, collection, this);
 
-            // Add the table to the view
-            Add(table);
+
 
         }
 

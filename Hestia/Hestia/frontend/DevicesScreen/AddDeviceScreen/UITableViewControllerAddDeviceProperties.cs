@@ -12,7 +12,7 @@ namespace Hestia
     public partial class UITableViewControllerAddDeviceProperties : UITableViewController
     {
         // The table that lives in this view controller
-        UITableView table;
+        //UITableView table;
         // Plugin info set at creation in devices window
         public PluginInfo pluginInfo;
         // Keeps track at the input fields for device properties
@@ -38,13 +38,11 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            table = new UITableView(View.Bounds); // defaults to Plain style
+           
 
             // Contains methods that describe behavior of table
-            table.Source = new TableSourceAddDeviceProperties(this);
+            TableView.Source = new TableSourceAddDeviceProperties(this);
 
-            // Add the table to the view
-            Add(table);
 
             // Save button
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
