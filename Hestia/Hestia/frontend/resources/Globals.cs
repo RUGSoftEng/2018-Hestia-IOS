@@ -8,7 +8,6 @@ namespace Hestia.DevicesScreen.resources
     public static class Globals
     {
         public static bool LocalLogin { get; set; }
-
         public static ServerInteractor LocalServerInteractor { get; set; }
         public static String ServerName { get; set; }
         public static int Port { get; set; }
@@ -21,7 +20,6 @@ namespace Hestia.DevicesScreen.resources
         public static List<Device> getDevices()
         {
             List<Device> devices = new List<Device>();
-
             if (LocalLogin)
             {
                 devices = LocalServerInteractor.GetDevices();
@@ -33,7 +31,6 @@ namespace Hestia.DevicesScreen.resources
                     devices.AddRange(server.Interactor.GetDevices());
                 }
             }
-
             return devices;
         }
     
