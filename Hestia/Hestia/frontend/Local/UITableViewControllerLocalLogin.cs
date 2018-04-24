@@ -18,6 +18,7 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            LoginUserName.BecomeFirstResponder();
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)

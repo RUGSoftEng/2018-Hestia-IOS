@@ -101,10 +101,6 @@
     </Compile>
     <Compile Include="frontend\DevicesScreen\EditDevice\UIViewControllerEditDeviceName.cs" />
     <Compile Include="frontend\DevicesScreen\TableSourceDevicesMain.cs" />
-    <Compile Include="frontend\DevicesScreen\UITableViewCellDevice.cs" />
-    <Compile Include="frontend\DevicesScreen\UITableViewCellDevice.designer.cs">
-      <DependentUpon>..\..\DevicesScreen\UITableViewCellDevice.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\DevicesScreen\UITableViewControllerDevicesMain.cs" />
     <Compile Include="frontend\DevicesScreen\UITableViewControllerDevicesMain.designer.cs">
       <DependentUpon>..\..\DevicesScreen\UITableViewControllerDevicesMain.cs</DependentUpon>

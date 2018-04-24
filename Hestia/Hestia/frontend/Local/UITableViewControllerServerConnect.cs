@@ -25,6 +25,7 @@ namespace Hestia.DevicesScreen
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            newServerName.BecomeFirstResponder();
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
