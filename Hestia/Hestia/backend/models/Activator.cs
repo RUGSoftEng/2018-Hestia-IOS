@@ -62,11 +62,16 @@ namespace Hestia.backend.models
                     ["state"] = new JValue(state.RawState)
                 };
 
-                JToken payload = Device.NetworkHandler.Post(activatorState, endpoint);
-                if (payload["error"] != null)
+                try
                 {
-                    throw new ServerException();
+                    Device.NetworkHandler.Post(activatorState, endpoint);
                 }
+                catch(ServerInteractionException ex)
+                {
+                    Console.WriteLine("Exception while setting activator state");
+                    Console.WriteLine(ex.ToString());
+                }
+
             }
         }
         public Device Device
