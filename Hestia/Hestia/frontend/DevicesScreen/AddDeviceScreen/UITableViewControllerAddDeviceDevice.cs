@@ -14,9 +14,6 @@ namespace Hestia
 {
     public partial class UITableViewControllerAddDeviceDevice : UITableViewController
     {
-        // The table that lives in this view controller
-        UITableView table;
-
         public List<string> plugins;
         public string collection;
 
@@ -26,16 +23,10 @@ namespace Hestia
 
         public override void ViewDidLoad()
         {
-
             base.ViewDidLoad();
-            table = new UITableView(View.Bounds); // defaults to Plain style
 
             // Contains methods that describe behavior of table
-            table.Source = new TableSourceAddDeviceDevice(plugins, collection, this);
-
-            // Add the table to the view
-            Add(table);
-
+            Devices.Source = new TableSourceAddDeviceDevice(plugins, collection, this);
         }
 
     }

@@ -13,7 +13,6 @@ namespace Hestia.DevicesScreen
 {
     public partial class UITableViewActivators : UITableViewController
     {
-        public UITableView table;
         public Device device;
         public Device Device { get; set; }
 
@@ -24,15 +23,9 @@ namespace Hestia.DevicesScreen
 		{
             base.ViewDidLoad();
             Title = device.Name;
-            table = new UITableView(View.Bounds)
-            {
 
-                // Contains methods that describe behavior of table
-                Source = new TableSourceActivators(device)
-            };
-
-            // Add the table to the view
-            Add(table); 
+            // Contains methods that describe behavior of table
+            TableView.Source = new TableSourceActivators(device);
 
 		}
 	}

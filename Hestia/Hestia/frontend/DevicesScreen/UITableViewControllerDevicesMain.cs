@@ -11,10 +11,7 @@ namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerDevicesMain : UITableViewController
     {
-        // The table that lives in this view controller
-        public UITableView table;
-
-        // Done button in top right (appears in edit mode)
+       // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
         // Edit button in top right (is shown initially)
         UIBarButtonItem edit;
@@ -28,15 +25,15 @@ namespace Hestia.DevicesScreen
 
         public void cancelEditingState()
         {
-            table.SetEditing(false, true);
+            DevicesTable.SetEditing(false, true);
             NavigationItem.RightBarButtonItem = edit;
-            ((TableSource)table.Source).DidFinishTableEditing(table);
+            ((TableSource)DevicesTable.Source).DidFinishTableEditing(DevicesTable);
         }
 
         public void setEditingState()
         {
-            ((TableSource)table.Source).WillBeginTableEditing(table);
-            table.SetEditing(true, true);
+            ((TableSource)DevicesTable.Source).WillBeginTableEditing(DevicesTable);
+            DevicesTable.SetEditing(true, true);
             NavigationItem.RightBarButtonItem = done;
         }
 
@@ -52,7 +49,7 @@ namespace Hestia.DevicesScreen
                 Console.Out.WriteLine("Exception while getting devices from server");
                 Console.Out.WriteLine(ex.ToString());
             }
-            table.Source = new TableSource(devices, this); 
+            DevicesTable.Source = new TableSource(devices, this); 
         }
 
 		public override void ViewDidLoad()
@@ -63,24 +60,17 @@ namespace Hestia.DevicesScreen
             Globals.LocalLogin = true;
             //=====
 
-            table = new UITableView(View.Bounds); // defaults to Plain style
-
             refreshDeviceList();
 
             // To tap row in editing mode for changing name
-            table.AllowsSelectionDuringEditing = true;
+            DevicesTable.AllowsSelectionDuringEditing = true;
             // Contains methods that describe behavior of table
-            table.Source = new TableSource(devices, this); 
+            DevicesTable.Source = new TableSource(devices, this);  
 
-            // Add the table to the view
-            Add(table); 
-
-            // Done button
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 this.cancelEditingState();
             });
 
-            // Edit button
             edit = new UIBarButtonItem(UIBarButtonSystemItem.Edit, (s, e) => {
                 this.setEditingState();
             });

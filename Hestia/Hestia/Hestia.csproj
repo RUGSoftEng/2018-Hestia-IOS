@@ -101,10 +101,6 @@
     </Compile>
     <Compile Include="frontend\DevicesScreen\EditDevice\UIViewControllerEditDeviceName.cs" />
     <Compile Include="frontend\DevicesScreen\TableSourceDevicesMain.cs" />
-    <Compile Include="frontend\DevicesScreen\UITableViewCellDevice.cs" />
-    <Compile Include="frontend\DevicesScreen\UITableViewCellDevice.designer.cs">
-      <DependentUpon>..\..\DevicesScreen\UITableViewCellDevice.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\DevicesScreen\UITableViewControllerDevicesMain.cs" />
     <Compile Include="frontend\DevicesScreen\UITableViewControllerDevicesMain.designer.cs">
       <DependentUpon>..\..\DevicesScreen\UITableViewControllerDevicesMain.cs</DependentUpon>
@@ -146,7 +142,7 @@
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="frontend\Devices2.storyboard" />
-    <InterfaceDefinition Include="LaunchScreen.storyboard" />
+    <InterfaceDefinition Include="LaunchScreenHestia.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

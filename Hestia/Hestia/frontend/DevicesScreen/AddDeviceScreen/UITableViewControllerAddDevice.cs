@@ -14,9 +14,7 @@ namespace Hestia
 {
     public partial class UITableViewControllerAddDevice : UITableViewController
     {
-        // The table that lives in this view controller
-        UITableView table;
-
+      
         // List of manufacturers
         List<string> collections;
         
@@ -30,10 +28,8 @@ namespace Hestia
 
         public override void ViewDidLoad()
         {
-
             base.ViewDidLoad();
-            table = new UITableView(View.Bounds); // defaults to Plain style
-
+           
             // The list with manufacturers
             try
             {
@@ -54,11 +50,7 @@ namespace Hestia
             }
             
             // Contains methods that describe behavior of table
-            table.Source = new TableSourceAddDeviceManufacturer(collections, collection_plugins, this);
-
-            // Add the table to the view
-            Add(table);
-
+            TableView.Source = new TableSourceAddDeviceManufacturer(collections, collection_plugins, this);
         }
     }
 }
