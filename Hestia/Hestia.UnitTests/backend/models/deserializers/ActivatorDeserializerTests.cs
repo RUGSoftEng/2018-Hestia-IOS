@@ -1,14 +1,14 @@
 ﻿using Hestia.backend.models;
-using NUnit.Framework;
-using Newtonsoft.Json.Linq;
 using Hestia.backend.models.deserializers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 
-namespace UnitTestHestia.backend.models.deserializers
+namespace Hestia.UnitTests
 {
-    [TestFixture]
-    class ActivatorDeserializerTest
+    [TestClass]
+    public class ActivatorDeserializerTest
     {
-        [Test]
+        [TestMethod]
         public void DeserializeHappyTest()
         {
             Activator testActivator = new Activator("1", "testActivator", 1, new ActivatorState<object>(true, "bool"));
@@ -18,7 +18,7 @@ namespace UnitTestHestia.backend.models.deserializers
 
             Activator newActivator = deserializer.Deserialize(jObjectTestActivator);
 
-            Assert.True(testActivator.Equals(newActivator));
+            Assert.IsTrue(testActivator.Equals(newActivator));
         }
     }
 }

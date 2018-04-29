@@ -1,48 +1,41 @@
-﻿using Hestia.backend;
+﻿using System;
+using Hestia.backend;
 using Hestia.Resources;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
-using NUnit.Framework;
 
-namespace UnitTestHestia.backend
+namespace Hestia.UnitTests
 {
-    [TestFixture]
-    public class NetworkHandlerTest
+    [TestClass]
+    public class NetworkHandlerTests
     {
         private NetworkHandler dummyNetworkHandler;
         private string dummyIp = "0.0.0.0";
         private int dummyPort = 1000;
 
-        [SetUp]
+        [TestInitialize]
         public void SetUpNetworkHandler()
         {
             dummyNetworkHandler = new NetworkHandler(dummyIp, dummyPort);
             Assert.IsNotNull(dummyNetworkHandler);
         }
 
-        [Test]
+        [TestMethod]
         public void SetAndGetIpTest()
         {
             Assert.AreEqual(dummyIp, dummyNetworkHandler.Ip);
-            string newIp = "94.212.164.28";
+            string newIp = "1.0.0.0";
             dummyNetworkHandler.Ip = newIp;
             Assert.AreEqual(newIp, dummyNetworkHandler.Ip);
         }
 
-        [Test]
+        [TestMethod]
         public void SetAndGetPortTest()
         {
             Assert.AreEqual(dummyPort, dummyNetworkHandler.Port);
-            int newPort = 8000;
+            int newPort = 2000;
             dummyNetworkHandler.Port = newPort;
             Assert.AreEqual(newPort, dummyNetworkHandler.Port);
-        }
-
-        [Test]
-        public void ExecuteGetRequestTest()
-        {
-            string endpoint = strings.devicePath;
-            JToken response = dummyNetworkHandler.Get(endpoint);
-            Assert.IsTrue(JsonValidator.IsValidJson(response.ToString()));
         }
     }
 }
