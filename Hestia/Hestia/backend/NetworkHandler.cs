@@ -78,7 +78,7 @@ namespace Hestia.backend
             return jsonResponse;
         }
 
-        public JToken Put(JObject payload, string endpoint)
+        public virtual JToken Put(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.PUT);
 
