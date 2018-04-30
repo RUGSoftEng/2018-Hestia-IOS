@@ -12,10 +12,17 @@ namespace Hestia.backend
     public class ServerInteractor
     {
         private NetworkHandler networkHandler;
-
-        public NetworkHandler GetNetworkHandler()
+      
+        public NetworkHandler NetworkHandler
         {
-            return networkHandler;
+            get
+            {
+                return networkHandler;
+            }
+            set
+            {
+                networkHandler = value;
+            }
         }
 
         public ServerInteractor(NetworkHandler networkHandler)

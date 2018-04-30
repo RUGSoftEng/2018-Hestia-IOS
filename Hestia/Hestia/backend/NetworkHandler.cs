@@ -51,7 +51,7 @@ namespace Hestia.backend
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         }
 
-        public JToken Get(string endpoint)
+        public virtual JToken Get(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.GET);
             JToken jsonResponse = ExecuteRequest(request);
@@ -59,7 +59,7 @@ namespace Hestia.backend
             return jsonResponse;
         }
 
-        public JToken Post(JObject payload, string endpoint)
+        public virtual JToken Post(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.POST);
 
@@ -70,7 +70,7 @@ namespace Hestia.backend
             return jsonResponse;
         }
         
-        public JToken Delete(string endpoint)
+        public virtual JToken Delete(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.DELETE);
             JToken jsonResponse = ExecuteRequest(request);
@@ -78,7 +78,7 @@ namespace Hestia.backend
             return jsonResponse;
         }
 
-        public JToken Put(JObject payload, string endpoint)
+        public virtual JToken Put(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.PUT);
 

@@ -14,7 +14,7 @@ namespace Hestia.backend.models.deserializers
             // get id, name and type
             string id = jT.Value<string>("deviceId");
             string name = jT.Value<string>("name");
-            string type = jT.Value<string>("name");
+            string type = jT.Value<string>("type");
 
             // get activators
             JToken activators = jT.SelectToken("activators");
