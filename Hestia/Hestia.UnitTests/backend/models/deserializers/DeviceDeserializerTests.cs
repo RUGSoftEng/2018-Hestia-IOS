@@ -1,15 +1,15 @@
 ﻿using Hestia.backend.models;
-using NUnit.Framework;
-using Newtonsoft.Json.Linq;
 using Hestia.backend.models.deserializers;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace UnitTestHestia.backend.models.deserializers
+namespace Hestia.UnitTests.backend
 {
-    [TestFixture]
-    class DeviceDeserializerTest
+    [TestClass]
+    public class DeviceDeserializerTests
     {
-        [Test]
+        [TestMethod]
         public void DeserializeHappyTest()
         {
             Device testDevice = new Device("1", "deviceName", "deviceType", new List<Activator>(), new Hestia.backend.NetworkHandler("ip", 8000));
@@ -19,7 +19,7 @@ namespace UnitTestHestia.backend.models.deserializers
 
             Device newDevice = deserializer.Deserialize(jObjectTestDevice, new Hestia.backend.NetworkHandler("ip", 8000));
 
-            Assert.True(testDevice.Equals(newDevice));
+            Assert.IsTrue(testDevice.Equals(newDevice));
         }
     }
 }

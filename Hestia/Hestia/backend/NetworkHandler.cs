@@ -51,14 +51,6 @@ namespace Hestia.backend
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         }
 
-        public void SetIpAndPort(string ip, int port)
-        {
-            this.ip = ip;
-            this.port = port;
-
-            SetRestClient();
-        }
-
         public JToken Get(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.GET);
