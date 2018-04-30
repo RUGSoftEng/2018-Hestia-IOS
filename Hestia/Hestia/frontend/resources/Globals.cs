@@ -33,6 +33,20 @@ namespace Hestia.DevicesScreen.resources
             }
             return devices;
         }
+
+        public static NetworkHandler getTemporyNetworkHandler()
+        {
+            NetworkHandler temp_networkhandler;
+            if(LocalLogin)
+            {
+                temp_networkhandler = new NetworkHandler(Globals.IP, Globals.Port);
+            }
+            else
+            {
+                temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.GetNetworkHandler().Ip, FirebaseServers[0].Interactor.GetNetworkHandler().Port);
+            }
+            return temp_networkhandler;
+        }
     
     }
 }

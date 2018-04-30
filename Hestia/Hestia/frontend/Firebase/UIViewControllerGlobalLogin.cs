@@ -17,12 +17,13 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Globals.LocalLogin = false;
             Globals.FirebaseServers = new List<FireBaseServer>();
             // suppose list of server is retrieved from server
             // a list with ip addresses and ports
             List<string> ipadresses = new List<string>
             {"94.212.164.28", "94.212.164.28","94.212.164.28" };
-            List<int> ports = new List<int> { 8000, 8000, 8000 };
+
 
             foreach(string ip in ipadresses)
             {

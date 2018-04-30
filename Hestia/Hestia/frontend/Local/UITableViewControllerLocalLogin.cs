@@ -1,6 +1,7 @@
 using Foundation;
 using System;
 using UIKit;
+using Hestia.DevicesScreen.resources;
 
 namespace Hestia
 {
@@ -22,6 +23,7 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Globals.LocalLogin = true;
             // Get Shared User Defaults
             LoginUserName.BecomeFirstResponder();
             userDefaults = NSUserDefaults.StandardUserDefaults;
