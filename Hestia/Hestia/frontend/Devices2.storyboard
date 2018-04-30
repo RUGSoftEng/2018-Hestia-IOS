@@ -11,7 +11,7 @@
         <!--Devices-->
         <scene sceneID="206">
             <objects>
-                <tableViewController id="207" customClass="UITableViewControllerDevicesMain" sceneMemberID="viewController">
+                <tableViewController id="207" customClass="UITableViewControllerDevicesMain" sceneMemberID="viewController" storyboardIdentifier="DevicesMainViewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="208">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -42,7 +42,7 @@
         <!--Navigation Controller-->
         <scene sceneID="439">
             <objects>
-                <navigationController id="440" sceneMemberID="viewController">
+                <navigationController id="440" sceneMemberID="viewController" storyboardIdentifier="navigationDevicesMain">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="442">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

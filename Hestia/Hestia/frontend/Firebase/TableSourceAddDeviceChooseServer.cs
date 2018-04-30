@@ -53,7 +53,8 @@ namespace Hestia
 
         // Pushes the properties window
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
-        {
+        { 
+            Globals.serverToAddDeviceTo = Globals.FirebaseServers[indexPath.Row].Interactor;
             UITableViewControllerAddDevice addDevice =
                 this.owner.Storyboard.InstantiateViewController("AddManufacturer")
                     as UITableViewControllerAddDevice;

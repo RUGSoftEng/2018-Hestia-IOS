@@ -80,7 +80,7 @@
         <!--View Controller-->
         <scene sceneID="6425">
             <objects>
-                <viewController id="6426" sceneMemberID="viewController">
+                <viewController id="6426" sceneMemberID="viewController" customClass="UIViewControllerGlobalLogin">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6423"/>
                         <viewControllerLayoutGuide type="bottom" id="6424"/>
@@ -104,6 +104,14 @@
                                     <segue destination="BYZ-38-t0r" kind="show" id="10000"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="11075" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="59" y="510" width="193" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue id="11907" destination="11023" kind="presentation"/>
+                                </connections>
+                                <state key="normal" title="DevicesMain"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -111,6 +119,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6428" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="518" y="32"/>
+        </scene>
+        <scene sceneID="11022">
+            <objects>
+                <viewControllerPlaceholder id="11023" sceneMemberID="viewController" storyboardName="Devices3"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="11024" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="326" y="838"/>
         </scene>
     </scenes>
     <resources>

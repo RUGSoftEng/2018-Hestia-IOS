@@ -63,7 +63,7 @@ namespace Hestia
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
             // The text to display on the cell is the plugin name
-            cell.TextLabel.Text = Globals.FirebaseServers[indexPath.Row].Interactor.getIP();
+            cell.TextLabel.Text = Globals.FirebaseServers[indexPath.Row].Interactor.ToString();
 
             return cell;
 		}

@@ -108,7 +108,7 @@ namespace Hestia.DevicesScreen
                     try
                     {
                         // remove device from server 
-                        Globals.LocalServerInteractor.RemoveDevice(TableItems[indexPath.Row]);
+                        Globals.LocalServerinteractor.RemoveDevice(TableItems[indexPath.Row]);
                     }
                     catch(ServerInteractionException ex)
                     {
@@ -125,6 +125,7 @@ namespace Hestia.DevicesScreen
                 case UITableViewCellEditingStyle.Insert:
                     if (Globals.LocalLogin)
                     {
+                        Globals.serverToAddDeviceTo = Globals.LocalServerinteractor;
                         UITableViewControllerAddDevice addDeviceVc =
                             this.owner.Storyboard.InstantiateViewController("AddManufacturer")
                                  as UITableViewControllerAddDevice;
@@ -189,8 +190,9 @@ namespace Hestia.DevicesScreen
             // This should not be permanently stored, but trigger the add new
             // device screen on touch
             List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
-            NetworkHandler temp_networkhandler = new NetworkHandler(Globals.IP, Globals.Port);
-            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, temp_networkhandler));
+
+
+            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, Globals.getTemporyNetworkHandler()));
 
             tableView.EndUpdates(); // applies the changes
         }

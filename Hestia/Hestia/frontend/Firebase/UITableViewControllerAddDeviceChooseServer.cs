@@ -14,26 +14,17 @@ namespace Hestia
 {
     public partial class UITableViewControllerAddDeviceChooseServer : UITableViewController
     {
-        // The table that lives in this view controller
-        UITableView table;
-
+        
         public UITableViewControllerAddDeviceChooseServer(IntPtr handle) : base(handle)
         {
         }
 
         public override void ViewDidLoad()
         {
-
             base.ViewDidLoad();
-            table = new UITableView(View.Bounds); // defaults to Plain style
-
-      
+               
             // Contains methods that describe behavior of table
-            table.Source = new TableSourceAddDeviceChooseServer(this);
-
-            // Add the table to the view
-            Add(table);
-
+            TableView.Source = new TableSourceAddDeviceChooseServer(this);
         }
     }
 }
