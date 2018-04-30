@@ -14,6 +14,7 @@ namespace Hestia
         {
         }
 
+        // This should be moved to the serverList class later
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -30,6 +31,7 @@ namespace Hestia
                 var networkhandler = new NetworkHandler(ip, 8000);
                 var serverinteractor = new ServerInteractor(networkhandler);
                 var fbserver = new FireBaseServer(true, serverinteractor);
+                fbserver.Selected = false;
                 Globals.FirebaseServers.Add(fbserver);
             }
         }

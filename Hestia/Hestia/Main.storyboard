@@ -122,7 +122,7 @@
         </scene>
         <scene sceneID="11022">
             <objects>
-                <viewControllerPlaceholder id="11023" sceneMemberID="viewController" storyboardName="Devices2" referencedIdentifier="navigationDevicesMain"/>
+                <viewControllerPlaceholder id="11023" sceneMemberID="viewController" storyboardName="Devices3"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11024" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="326" y="838"/>

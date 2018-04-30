@@ -29,13 +29,6 @@
                             <outlet property="delegate" destination="261" id="265"/>
                         </connections>
                     </tableView>
-                    <navigationItem id="8563" key="navigationItem" title="Servers">
-                        <barButtonItem key="rightBarButtonItem" title="Done" id="9972">
-                            <connections>
-                                <segue id="14158" destination="10191" kind="show"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="268" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,9 +73,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Devices" id="10192">
                         <barButtonItem key="leftBarButtonItem" id="14212" title="Servers">
-                            <connections>
-                                <segue id="14949" destination="261" kind="show"/>
-                            </connections>
+                            <connections/>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
