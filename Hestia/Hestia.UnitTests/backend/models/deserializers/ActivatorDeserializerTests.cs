@@ -11,7 +11,7 @@ namespace Hestia.UnitTests
         [TestMethod]
         public void DeserializeHappyTest()
         {
-            Activator testActivator = new Activator("1", "testActivator", 1, new ActivatorState<object>(true, "bool"));
+            Activator testActivator = new Activator("1", "testActivator", 1, new ActivatorState(true, "bool"));
 
             JObject jObjectTestActivator = JObject.FromObject(testActivator);
             ActivatorDeserializer deserializer = new ActivatorDeserializer();

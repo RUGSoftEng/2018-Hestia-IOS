@@ -17,15 +17,15 @@ namespace Hestia.backend.models.deserializers
             // get the ActivatorState
             string type = jsonActivator.Value<string>("type");
             string rawState = jsonActivator.Value<string>("state");
-            ActivatorState<object> state = null;
+            ActivatorState state = null;
 
             switch (type.ToLower())
             {
                 case "bool":
-                    state = new ActivatorState<object>(bool.Parse(rawState), "bool");
+                    state = new ActivatorState(bool.Parse(rawState), "bool");
                     break;
                 case "float":
-                    state = new ActivatorState<object>(float.Parse(rawState), "float");
+                    state = new ActivatorState(float.Parse(rawState), "float");
                     break;
                 default:
                     break;
