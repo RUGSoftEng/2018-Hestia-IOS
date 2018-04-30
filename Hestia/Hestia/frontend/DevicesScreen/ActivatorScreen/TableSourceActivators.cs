@@ -38,7 +38,7 @@ namespace Hestia.DevicesScreen
                 DeviceSwitch.On = (bool)act.State.RawState;
                 DeviceSwitch.ValueChanged += delegate (object sender, EventArgs e)
                 {
-                    act.State = new ActivatorState<object>(DeviceSwitch.On, "bool");
+                    act.State = new ActivatorState(DeviceSwitch.On, "bool");
                 };
                 // Replace the cell's AccessoryView with the new UISwitch
                 cell.AccessoryView = DeviceSwitch;
@@ -56,7 +56,7 @@ namespace Hestia.DevicesScreen
                 slider.Value = (float)act.State.RawState;
                 slider.TouchUpInside += delegate (object sender, EventArgs e)
                 {
-                    act.State = new ActivatorState<object>(slider.Value, "float");
+                    act.State = new ActivatorState(slider.Value, "float");
                 };
 
                 // Replace the cell's AccessoryView with the new UISwitch

@@ -12,8 +12,10 @@ namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerServerConnect : UITableViewController
     {
-
-        private bool debug = false;
+        string serverNameHestia = "servernameHestia";
+        string ipHestia = "ipHestia";
+        string portHestia = "portHestia";
+        NSUserDefaults userDefaults;
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
         {
@@ -23,49 +25,61 @@ namespace Hestia.DevicesScreen
         {
             base.ViewDidLoad();
             newServerName.BecomeFirstResponder();
+
+            userDefaults = NSUserDefaults.StandardUserDefaults;
+            var defaultServerName = userDefaults.StringForKey(serverNameHestia);
+            if (defaultServerName != null)
+            {
+                newServerName.Text = defaultServerName;
+                newServerName.Placeholder = defaultServerName;
+            }
+
+            var defaultIP = userDefaults.StringForKey(ipHestia);
+            if (defaultIP != null)
+            {
+                newIP.Text = defaultIP;
+                newIP.Placeholder = defaultIP;
+            }
+            var defaultPort = userDefaults.StringForKey(portHestia);
+            if (defaultPort != null)
+            {
+                newPort.Text = defaultPort;
+                newPort.Placeholder = defaultPort;
+            }
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
-           bool validIp = false;
-           if (debug)
-                {
-                    newServerName.Text = "Hestia_Server2018";
-                    newIP.Text = "94.212.164.28";
-                    newPort.Text = "8000";
-                    Globals.ServerName = newServerName.Text;
-                    Globals.IP = newIP.Text;
-                    Globals.Port = int.Parse(newPort.Text);
-                    ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
-                    Globals.LocalServerInteractor = serverInteractor;
-                    return true;
-                }
+            bool validIp = false;
+
+            try
+            {
+                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+            }
+            catch (Exception exception)
+            {
+                Console.Write(exception.StackTrace);
+                displayWarningMessage();
+                return false;
+            }
+            if (validIp)
+            {
+                userDefaults.SetString(newServerName.Text, serverNameHestia);
+                userDefaults.SetString(newIP.Text, ipHestia);
+                userDefaults.SetString(newPort.Text, portHestia);
+
+                Globals.ServerName = newServerName.Text;
+                Globals.IP = newIP.Text;
+                Globals.Port = int.Parse(newPort.Text);
+                ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                Globals.LocalServerinteractor = serverInteractor;
+
+                return true;
+            }
             else
             {
-                try
-                {
-                    validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
-                }
-                catch (Exception exception)
-                {
-                    Console.Write(exception.StackTrace);
-                    displayWarningMessage();
-                    return false;
-                }
-                if (validIp)
-                {
-                    Globals.ServerName = newServerName.Text;
-                    Globals.IP = newIP.Text;
-                    Globals.Port = int.Parse(newPort.Text);
-                    ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
-                    Globals.LocalServerInteractor = serverInteractor;
-                    return true;
-                }
-                else
-                {
-                    displayWarningMessage();
-                    return false;
-                }
+                displayWarningMessage();
+                return false;
             }
         }
 
@@ -79,11 +93,6 @@ namespace Hestia.DevicesScreen
             alert.AddButton("OK");
             alert.Show();
             connectButton.Selected = false;
-        }
-
-        public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-        {
-            base.PrepareForSegue(segue, sender);
         }
     }
 }

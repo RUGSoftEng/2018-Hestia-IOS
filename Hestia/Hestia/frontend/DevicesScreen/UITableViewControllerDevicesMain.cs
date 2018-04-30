@@ -56,10 +56,6 @@ namespace Hestia.DevicesScreen
         { 
             base.ViewDidLoad();
 
-            // TEMPORARY FOR TESTING
-            Globals.LocalLogin = true;
-            //=====
-
             refreshDeviceList();
 
             // To tap row in editing mode for changing name

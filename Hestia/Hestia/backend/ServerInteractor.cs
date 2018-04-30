@@ -12,6 +12,18 @@ namespace Hestia.backend
     public class ServerInteractor
     {
         private NetworkHandler networkHandler;
+      
+        public NetworkHandler NetworkHandler
+        {
+            get
+            {
+                return networkHandler;
+            }
+            set
+            {
+                networkHandler = value;
+            }
+        }
 
         public ServerInteractor(NetworkHandler networkHandler)
         {
@@ -26,7 +38,7 @@ namespace Hestia.backend
             {
                 payload = networkHandler.Get(strings.devicePath);
             }
-            catch(ServerInteractionException ex)
+            catch(ServerInteractionException)
             {
                 throw;
             }
@@ -45,7 +57,7 @@ namespace Hestia.backend
             {
                 networkHandler.Post(deviceInfo, strings.devicePath);
             }
-            catch(ServerInteractionException ex)
+            catch(ServerInteractionException)
             {
                 throw;
             }
@@ -59,7 +71,7 @@ namespace Hestia.backend
             {
                 networkHandler.Delete(endpoint);
             }
-            catch(ServerInteractionException ex)
+            catch(ServerInteractionException)
             {
                 throw;
             }
@@ -73,7 +85,7 @@ namespace Hestia.backend
             {
                 payload = networkHandler.Get(strings.pluginsPath);
             }
-            catch(ServerInteractionException ex)
+            catch(ServerInteractionException)
             {
                 throw;
             } 
@@ -91,7 +103,7 @@ namespace Hestia.backend
             {
                 payload = networkHandler.Get(endpoint);
             }
-            catch(ServerInteractionException ex)
+            catch(ServerInteractionException)
             {
                 throw;
             }
@@ -110,7 +122,7 @@ namespace Hestia.backend
             {
                 payload = networkHandler.Get(endpoint);
             }
-            catch(ServerInteractionException ex)
+            catch(ServerInteractionException)
             {
                 throw;
             }

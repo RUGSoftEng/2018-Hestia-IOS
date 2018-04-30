@@ -1,6 +1,7 @@
 using Foundation;
 using System;
 using UIKit;
+using Hestia.DevicesScreen.resources;
 
 namespace Hestia
 {
@@ -10,6 +11,10 @@ namespace Hestia
     {
         string username = "admin";
         string password = "admin";
+        string usernameHestia = "usernameHestia";
+        string passwordHestia = "passwordHestia";
+        NSUserDefaults userDefaults;
+        string loginToConnectSegue = "loginToConnect";
 
         public UITableViewControllerLocalLogin(IntPtr handle) : base(handle)
         {
@@ -18,15 +23,35 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Globals.LocalLogin = true;
+            // Get Shared User Defaults
             LoginUserName.BecomeFirstResponder();
+            userDefaults = NSUserDefaults.StandardUserDefaults;
+
+            var defaultUserName = userDefaults.StringForKey(usernameHestia);
+            if (defaultUserName != null)
+            {
+                LoginUserName.Text = defaultUserName;
+                LoginUserName.Placeholder = defaultUserName;
+            }
+
+            var defaultPassWord = userDefaults.StringForKey(passwordHestia);
+            if (defaultPassWord != null)
+            {
+                LoginPassword.Text = defaultPassWord;
+                LoginPassword.Placeholder = defaultPassWord;
+            }
+
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
-            if (segueIdentifier == "loginToConnect")
+            if (segueIdentifier == loginToConnectSegue)
             {
                 if (LoginUserName.Text == username && LoginPassword.Text == password)
                 {
+                    userDefaults.SetString(LoginUserName.Text, usernameHestia);
+                    userDefaults.SetString(LoginPassword.Text, usernameHestia);
                     return true;
                 }
                 else

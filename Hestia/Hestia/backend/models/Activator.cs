@@ -11,7 +11,7 @@ namespace Hestia.backend.models
         private string activatorId;
         private string name;
         private int rank;
-        private ActivatorState<Object> state;
+        private ActivatorState state;
         private Device device;
 
         public string ActivatorId
@@ -47,7 +47,7 @@ namespace Hestia.backend.models
                 rank = value;
             }
         }
-        public ActivatorState<object> State
+        public ActivatorState State
         {
             get
             {
@@ -87,7 +87,7 @@ namespace Hestia.backend.models
             }
         }
 
-        public Activator(string activatorId, string name, int rank, ActivatorState<object> state)
+        public Activator(string activatorId, string name, int rank, ActivatorState state)
         {
             this.activatorId = activatorId;
             this.name = name;

@@ -47,7 +47,7 @@ namespace Hestia
                 // Try to add device to server
                 try
                 {
-                    Globals.LocalServerInteractor.AddDevice(pluginInfo);
+                    Globals.serverToAddDeviceTo.AddDevice(pluginInfo);
                 }
                 catch (ServerInteractionException ex)
                 {

@@ -11,6 +11,7 @@ using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
 
+
 namespace Hestia.DevicesScreen
 {
     public class TableSource : UITableViewSource
@@ -64,6 +65,15 @@ namespace Hestia.DevicesScreen
             {
                 cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
                 cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+                if (TableItems[(indexPath.Row)].Type == "Light")
+                {
+                    cell.ImageView.Image = UIImage.FromBundle("Images/lightbulb");
+                }
+                if(TableItems[(indexPath.Row)].Type == "Lock")
+                {
+                    cell.ImageView.Image = UIImage.FromBundle("Images/lock.png");
+                }
+
             }
 
             // The text to display on the cell is the device name
@@ -108,7 +118,7 @@ namespace Hestia.DevicesScreen
                     try
                     {
                         // remove device from server 
-                        Globals.LocalServerInteractor.RemoveDevice(TableItems[indexPath.Row]);
+                        Globals.LocalServerinteractor.RemoveDevice(TableItems[indexPath.Row]);
                     }
                     catch(ServerInteractionException ex)
                     {
@@ -125,6 +135,7 @@ namespace Hestia.DevicesScreen
                 case UITableViewCellEditingStyle.Insert:
                     if (Globals.LocalLogin)
                     {
+                        Globals.serverToAddDeviceTo = Globals.LocalServerinteractor;
                         UITableViewControllerAddDevice addDeviceVc =
                             this.owner.Storyboard.InstantiateViewController("AddManufacturer")
                                  as UITableViewControllerAddDevice;
@@ -189,8 +200,9 @@ namespace Hestia.DevicesScreen
             // This should not be permanently stored, but trigger the add new
             // device screen on touch
             List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
-            NetworkHandler temp_networkhandler = new NetworkHandler(Globals.IP, Globals.Port);
-            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, temp_networkhandler));
+
+
+            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, Globals.getTemporyNetworkHandler()));
 
             tableView.EndUpdates(); // applies the changes
         }

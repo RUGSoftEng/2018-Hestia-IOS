@@ -132,6 +132,16 @@
     <Compile Include="frontend\Local\UITableViewControllerLocalLogin.designer.cs">
       <DependentUpon>UITableViewControllerLocalLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frontend\Firebase\UIViewControllerGlobalLogin.cs" />
+    <Compile Include="frontend\Firebase\UIViewControllerGlobalLogin.designer.cs">
+      <DependentUpon>UIViewControllerGlobalLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\Firebase\TableSourceServerDevices.cs" />
+    <Compile Include="frontend\Firebase\TableSourceServerList.cs" />
+    <Compile Include="frontend\Firebase\UITableViewControllerServerDevice.cs" />
+    <Compile Include="frontend\Firebase\UITableViewControllerServerDevice.designer.cs" />
+    <Compile Include="frontend\Firebase\UITableViewServerList.cs" />
+    <Compile Include="frontend\Firebase\UITableViewServerList.designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
@@ -143,6 +153,7 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="frontend\Devices2.storyboard" />
     <InterfaceDefinition Include="LaunchScreenHestia.storyboard" />
+    <InterfaceDefinition Include="frontend\Devices3.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -169,6 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="frontend\" />
@@ -217,6 +229,10 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images\lock.png" />
+    <BundleResource Include="Resources\Images\lightbulb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

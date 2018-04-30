@@ -14,13 +14,7 @@ namespace Hestia
 {
     public partial class UITableViewServerList : UITableViewController
     {
-        
-        List<FireBaseServer> serverList = new List<FireBaseServer>()
-        {
-            new FireBaseServer(false, new ServerInteractor(new NetworkHandler("94.212.164.28", 8000))),
-            new FireBaseServer(false, new ServerInteractor(new NetworkHandler("94.212.164.26", 8000))),
-            new FireBaseServer(false, new ServerInteractor(new NetworkHandler("94.212.164.27", 8000))),
-        };
+        UIBarButtonItem done;
 
         public UITableViewServerList (IntPtr handle) : base (handle)
         {
@@ -29,10 +23,20 @@ namespace Hestia
 		public override void ViewDidLoad()
 		{
             base.ViewDidLoad();
-            Globals.LocalLogin = false;
-            TableView.Source = new TableSourceServerList(serverList, this);
+           // Globals.LocalLogin = false;
+            TableView.Source = new TableSourceServerList(Globals.FirebaseServers, this);
 
+            done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
+                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
+
+                var devicesMain = devicesMainStoryboard.InstantiateViewController("DevicesMainViewController") as UITableViewControllerDevicesMain;
+                this.ShowViewController(devicesMain, this);
+            });
+
+            NavigationItem.RightBarButtonItem = done;
 		}
+
+       
 
 
 
