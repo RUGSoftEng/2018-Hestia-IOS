@@ -12,6 +12,7 @@ namespace Hestia.DevicesScreen.resources
         public static String ServerName { get; set; }
         public static int Port { get; set; }
         public static String IP { get; set; }
+        public static int count { get; set; }
 
         // In case of Firebase login
         public static List<FireBaseServer> FirebaseServers { get; set; }
