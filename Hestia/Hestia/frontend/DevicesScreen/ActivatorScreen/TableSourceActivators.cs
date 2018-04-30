@@ -56,12 +56,8 @@ namespace Hestia.DevicesScreen
                 slider.Value = (float)act.State.RawState;
                 slider.TouchUpInside += delegate (object sender, EventArgs e)
                 {
-                    //Console.WriteLine(slider.Value);
-                    act.State.RawState = slider.Value;
-                    act.State = act.State;
-
+                    act.State = new ActivatorState<object>(slider.Value, "float");
                 };
-
 
                 // Replace the cell's AccessoryView with the new UISwitch
                 cell.AccessoryView = slider;
