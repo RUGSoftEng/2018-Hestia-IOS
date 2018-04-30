@@ -13,6 +13,18 @@ namespace Hestia.backend
     {
         private NetworkHandler networkHandler;
 
+        public NetworkHandler NetworkHandler
+        {
+            get
+            {
+                return networkHandler;
+            }
+            set
+            {
+                networkHandler = value;
+            }
+        }
+
         public ServerInteractor(NetworkHandler networkHandler)
         {
             this.networkHandler = networkHandler;
