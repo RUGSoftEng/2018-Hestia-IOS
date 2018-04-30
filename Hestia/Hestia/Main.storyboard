@@ -130,5 +130,7 @@
     </scenes>
     <resources>
         <image name="LogoLaunchscreen" width="431" height="206"/>
+        <image name="Images/Light.png" width="512" height="405"/>
+        <image name="Images/Lock.png" width="614" height="460"/>
     </resources>
 </document>

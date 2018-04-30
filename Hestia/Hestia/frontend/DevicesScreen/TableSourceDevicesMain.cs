@@ -11,6 +11,7 @@ using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
 
+
 namespace Hestia.DevicesScreen
 {
     public class TableSource : UITableViewSource
@@ -64,6 +65,15 @@ namespace Hestia.DevicesScreen
             {
                 cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
                 cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+                if (TableItems[(indexPath.Row)].Type == "Light")
+                {
+                    cell.ImageView.Image = UIImage.FromBundle("Images/lightbulb");
+                }
+                if(TableItems[(indexPath.Row)].Type == "Lock")
+                {
+                    cell.ImageView.Image = UIImage.FromBundle("Images/lock.png");
+                }
+
             }
 
             // The text to display on the cell is the device name
