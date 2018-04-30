@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
+    <Folder Include="Resources\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="frontend\" />
@@ -217,6 +218,10 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Images\lock.png" />
+    <BundleResource Include="Resources\Images\lightbulb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
