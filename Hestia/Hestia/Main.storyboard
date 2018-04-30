@@ -80,7 +80,7 @@
         <!--View Controller-->
         <scene sceneID="6425">
             <objects>
-                <viewController id="6426" sceneMemberID="viewController">
+                <viewController id="6426" sceneMemberID="viewController" customClass="UIViewControllerGlobalLogin">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6423"/>
                         <viewControllerLayoutGuide type="bottom" id="6424"/>
