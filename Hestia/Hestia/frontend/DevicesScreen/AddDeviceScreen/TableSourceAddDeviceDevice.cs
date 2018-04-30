@@ -78,8 +78,7 @@ namespace Hestia.DevicesScreen
                 try
                 {
                     PluginInfo requiredInfo = 
-                    Globals.LocalServerInteractor.GetPluginInfo(collection, (string)this.plugins[indexPath.Row]);
-                    
+                        Globals.serverToAddDeviceTo.GetPluginInfo(collection, (string)this.plugins[indexPath.Row]);
                     addDeviceProperties.pluginInfo = requiredInfo;
                     this.owner.NavigationController.PushViewController(addDeviceProperties, true);
                 }

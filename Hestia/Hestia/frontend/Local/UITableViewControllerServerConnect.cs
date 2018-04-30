@@ -72,7 +72,7 @@ namespace Hestia.DevicesScreen
                 Globals.IP = newIP.Text;
                 Globals.Port = int.Parse(newPort.Text);
                 ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
-                Globals.LocalServerInteractor = serverInteractor;
+                Globals.LocalServerinteractor = serverInteractor;
 
                 return true;
             }

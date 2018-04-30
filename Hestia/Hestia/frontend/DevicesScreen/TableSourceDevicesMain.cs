@@ -108,7 +108,7 @@ namespace Hestia.DevicesScreen
                     try
                     {
                         // remove device from server 
-                        Globals.LocalServerInteractor.RemoveDevice(TableItems[indexPath.Row]);
+                        Globals.LocalServerinteractor.RemoveDevice(TableItems[indexPath.Row]);
                     }
                     catch(ServerInteractionException ex)
                     {
@@ -125,6 +125,7 @@ namespace Hestia.DevicesScreen
                 case UITableViewCellEditingStyle.Insert:
                     if (Globals.LocalLogin)
                     {
+                        Globals.serverToAddDeviceTo = Globals.LocalServerinteractor;
                         UITableViewControllerAddDevice addDeviceVc =
                             this.owner.Storyboard.InstantiateViewController("AddManufacturer")
                                  as UITableViewControllerAddDevice;

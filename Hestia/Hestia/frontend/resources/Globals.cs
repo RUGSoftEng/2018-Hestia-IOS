@@ -8,10 +8,12 @@ namespace Hestia.DevicesScreen.resources
     public static class Globals
     {
         public static bool LocalLogin { get; set; }
-        public static ServerInteractor LocalServerInteractor { get; set; }
+        public static ServerInteractor LocalServerinteractor { get; set; }
         public static String ServerName { get; set; }
         public static int Port { get; set; }
         public static String IP { get; set; }
+
+        public static ServerInteractor serverToAddDeviceTo { get; set; }
 
         // In case of Firebase login
         public static List<FireBaseServer> FirebaseServers { get; set; }
@@ -22,7 +24,7 @@ namespace Hestia.DevicesScreen.resources
             List<Device> devices = new List<Device>();
             if (LocalLogin)
             {
-                devices = LocalServerInteractor.GetDevices();
+                devices = LocalServerinteractor.GetDevices();
             }
             else
             {

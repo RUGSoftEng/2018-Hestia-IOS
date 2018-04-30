@@ -33,11 +33,11 @@ namespace Hestia
             // The list with manufacturers
             try
             {
-                collections = Globals.LocalServerInteractor.GetCollections();
+                collections = Globals.serverToAddDeviceTo.GetCollections();
                 foreach(string collection in collections)
                 {
                     // Get plugins for this collection
-                    List<string> plugins = Globals.LocalServerInteractor.GetPlugins(collection);
+                    List<string> plugins = Globals.serverToAddDeviceTo.GetPlugins(collection);
                     // Add this collection/plugins combination to hashtable
                     collection_plugins.Add(collection, plugins);
                 }
