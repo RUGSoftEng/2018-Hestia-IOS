@@ -24,7 +24,7 @@ namespace Hestia.UnitTests.backend.models
         [TestInitialize]
         public void SetUpDevice()
         {
-            ActivatorState<object> activatorState = new ActivatorState<object>(false, "bool");
+            ActivatorState activatorState = new ActivatorState(false, "bool");
             string activatorId = "1234";
             string activatorName = "bob";
             int activatorRank = 0;
@@ -101,7 +101,7 @@ namespace Hestia.UnitTests.backend.models
             Assert.IsTrue(device.Activators.Count == 1);
             Assert.AreEqual(activators, device.Activators);
 
-            ActivatorState<object> newActivatorState = new ActivatorState<object>(0.8, "float");
+            ActivatorState newActivatorState = new ActivatorState(0.8, "float");
             string newActivatorId = "1000";
             string newActivatorName = "slider";
             int newActivatorRank = 15;
