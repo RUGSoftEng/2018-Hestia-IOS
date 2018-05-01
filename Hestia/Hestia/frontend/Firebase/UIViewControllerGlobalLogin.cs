@@ -19,19 +19,21 @@ namespace Hestia
         {
             base.ViewDidLoad();
             Globals.LocalLogin = false;
-            Globals.FirebaseServers = new List<FireBaseServer>();
+            Globals.FirebaseServers = new List<WebServer>();
             // suppose list of server is retrieved from server
             // a list with ip addresses and ports
             // This is a temporary solution to show the functionality
             // Should be replaced with list from webserver
             List<string> ipadresses = new List<string>
-            {"94.212.164.28", "94.212.164.28","94.212.164.28" };
+            {   Resources.strings.ipDaan, 
+                Resources.strings.ipDaan,
+                Resources.strings.ipDaan };
 
             foreach(string ip in ipadresses)
             {
-                var networkhandler = new NetworkHandler(ip, 8000);
+                var networkhandler = new NetworkHandler(ip, int.Parse(Resources.strings.defaultPort));
                 var serverinteractor = new ServerInteractor(networkhandler);
-                var firebaseserver = new FireBaseServer(true, serverinteractor);
+                var firebaseserver = new WebServer(true, serverinteractor);
                 firebaseserver.Selected = false;
                 Globals.FirebaseServers.Add(firebaseserver);
             }

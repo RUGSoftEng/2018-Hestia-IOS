@@ -61,11 +61,29 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to activatorcell.
+        /// </summary>
+        public static string activatorCell {
+            get {
+                return ResourceManager.GetString("activatorCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to activators/.
         /// </summary>
         public static string activatorsPath {
             get {
                 return ResourceManager.GetString("activatorsPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to servercelladddevice.
+        /// </summary>
+        public static string addDeviceChooseServerCell {
+            get {
+                return ResourceManager.GetString("addDeviceChooseServerCell", resourceCulture);
             }
         }
         
@@ -124,11 +142,101 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        public static string defaultNumberOfSections {
+            get {
+                return ResourceManager.GetString("defaultNumberOfSections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        public static string defaultNumberOfServers {
+            get {
+                return ResourceManager.GetString("defaultNumberOfServers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8000.
+        /// </summary>
+        public static string defaultPort {
+            get {
+                return ResourceManager.GetString("defaultPort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ipHestia.
+        /// </summary>
+        public static string defaultsIpHestia {
+            get {
+                return ResourceManager.GetString("defaultsIpHestia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to passwordHestia.
+        /// </summary>
+        public static string defaultsPasswordHestia {
+            get {
+                return ResourceManager.GetString("defaultsPasswordHestia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to portHestia.
+        /// </summary>
+        public static string defaultsPortHestia {
+            get {
+                return ResourceManager.GetString("defaultsPortHestia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to servernameHestia.
+        /// </summary>
+        public static string defaultsServerNameHestia {
+            get {
+                return ResourceManager.GetString("defaultsServerNameHestia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to usernameHestia.
+        /// </summary>
+        public static string defaultsUsernameHestia {
+            get {
+                return ResourceManager.GetString("defaultsUsernameHestia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to devices/.
         /// </summary>
         public static string devicePath {
             get {
                 return ResourceManager.GetString("devicePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tableCell.
+        /// </summary>
+        public static string devicesMainCell {
+            get {
+                return ResourceManager.GetString("devicesMainCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tableCellDeviceType.
+        /// </summary>
+        public static string deviceTypeCell {
+            get {
+                return ResourceManager.GetString("deviceTypeCell", resourceCulture);
             }
         }
         
@@ -178,6 +286,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 94.212.164.28.
+        /// </summary>
+        public static string ipDaan {
+            get {
+                return ResourceManager.GetString("ipDaan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP_OF_SERVER.
         /// </summary>
         public static string ipOfServer {
@@ -192,6 +309,42 @@ namespace Hestia.Resources {
         public static string loginPath {
             get {
                 return ResourceManager.GetString("loginPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to loginToConnect.
+        /// </summary>
+        public static string loginToConnectSegue {
+            get {
+                return ResourceManager.GetString("loginToConnectSegue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tableCellManufacturer.
+        /// </summary>
+        public static string manufacturerCell {
+            get {
+                return ResourceManager.GetString("manufacturerCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Device.
+        /// </summary>
+        public static string newDeviceName {
+            get {
+                return ResourceManager.GetString("newDeviceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to admin.
+        /// </summary>
+        public static string password {
+            get {
+                return ResourceManager.GetString("password", resourceCulture);
             }
         }
         
@@ -223,6 +376,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to tableCellProperty.
+        /// </summary>
+        public static string propertyCell {
+            get {
+                return ResourceManager.GetString("propertyCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2000.
         /// </summary>
         public static string requestTimeout {
@@ -246,6 +408,24 @@ namespace Hestia.Resources {
         public static string server {
             get {
                 return ResourceManager.GetString("server", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to servercell.
+        /// </summary>
+        public static string serverCell {
+            get {
+                return ResourceManager.GetString("serverCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ServerToDevices.
+        /// </summary>
+        public static string serverConnectToDevicesSegue {
+            get {
+                return ResourceManager.GetString("serverConnectToDevicesSegue", resourceCulture);
             }
         }
         
@@ -300,6 +480,15 @@ namespace Hestia.Resources {
         public static string toggleRank {
             get {
                 return ResourceManager.GetString("toggleRank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to admin.
+        /// </summary>
+        public static string username {
+            get {
+                return ResourceManager.GetString("username", resourceCulture);
             }
         }
         

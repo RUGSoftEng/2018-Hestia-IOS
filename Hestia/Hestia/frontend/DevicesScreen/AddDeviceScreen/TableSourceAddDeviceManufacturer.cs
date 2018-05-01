@@ -22,13 +22,9 @@ namespace Hestia.DevicesScreen
         // The list with collections, set in the constructor. (Retrieved from server)
         List<string> collections;
 
-        // The kind of cell that is used in the table (set in Storyboard)
-        string CellIdentifier = "tableCellManufacturer";
-
         // Constructor. Gets the device data and the ViewController
         public TableSourceAddDeviceManufacturer(List<string> collections,
-                                    Hashtable plugins,
-                    UITableViewControllerAddDevice owner)
+              Hashtable plugins, UITableViewControllerAddDevice owner)
         {
             this.plugins = plugins;
             this.owner = owner;
@@ -38,7 +34,7 @@ namespace Hestia.DevicesScreen
         // We have only one section with manufacturers
         public override nint NumberOfSections(UITableView tableView)
         {
-            return 1;
+            return int.Parse(Resources.strings.defaultNumberOfSections);
         }
 
         // The number of manufacturers in the list
@@ -51,12 +47,12 @@ namespace Hestia.DevicesScreen
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(CellIdentifier);
+            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.manufacturerCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.manufacturerCell);
             }
 
             // The text to display on the cell is the manufacturer name

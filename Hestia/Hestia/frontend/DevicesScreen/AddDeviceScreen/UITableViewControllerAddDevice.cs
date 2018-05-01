@@ -14,7 +14,6 @@ namespace Hestia
 {
     public partial class UITableViewControllerAddDevice : UITableViewController
     {
-      
         // List of manufacturers
         List<string> collections;
         
@@ -29,7 +28,6 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-           
             // The list with manufacturers
             try
             {
@@ -41,7 +39,6 @@ namespace Hestia
                     // Add this collection/plugins combination to hashtable
                     collection_plugins.Add(collection, plugins);
                 }
-     
             }
             catch (ServerInteractionException ex)
             {

@@ -75,5 +75,35 @@ implementing the new screen
 bugfixing the screen
 bugfixing the screen
 finished an unpolished device activator screen
-
-
+meeting with team
+meeting with team
+meeting with team
+meeting with team
+Making a design for login screen
+Making a design for login screen
+Making a design for login screen
+Making a design for login screen
+Making a design for login screen
+Making a design for login screen
+Researching how to let sliders move slower
+Researching how to let sliders move slower
+Researching how to let sliders move slower
+Trying to figure out how cancellation tokens work
+Trying to figure out how cancellation tokens work
+Trying to figure out how cancellation tokens work
+Trying to add it to the code
+Trying to add it to the code
+Noticed the slider value changed is only updating every 200ms this made the cancellation token useless
+Touch upinside easy fix
+Touch upinside easy fix
+Figuring out how to import images in code
+Figuring out how to import images in code
+Figuring out how to import images in code
+Finding ok images.
+Putting them in the cell.
+Introduced an indentation bug.
+Looking for possible fixes
+Looking for possible fixes
+Nothing online.
+Tried to scan the code but nothing that would seemingly indent twice.
+Tried to scan the code but nothing that would seemingly indent twice.
