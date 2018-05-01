@@ -1,5 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Foundation;
+using UIKit;
+using System.Drawing;
+
+using System.Collections;
+using CoreGraphics;
 using Hestia.backend;
 using Hestia.backend.models;
 
@@ -12,6 +18,7 @@ namespace Hestia.DevicesScreen.resources
         public static String ServerName { get; set; }
         public static int Port { get; set; }
         public static String IP { get; set; }
+        public static UIColor defaultLightGray { get; set; }
 
         public static ServerInteractor serverToAddDeviceTo { get; set; }
 
