@@ -124,7 +124,7 @@
     <value>activators/</value>
   </data>
   <data name="addDeviceChooseServerCell" xml:space="preserve">
-    <value>addDeviceChooseServer</value>
+    <value>servercelladddevice</value>
   </data>
   <data name="addDeviceTitle" xml:space="preserve">
     <value>new Add device</value>
@@ -147,6 +147,9 @@
   <data name="defaultNumberOfSections" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="defaultNumberOfServers" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="defaultPort" xml:space="preserve">
     <value>8000</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="devicePath" xml:space="preserve">
     <value>devices/</value>
+  </data>
+  <data name="devicesMainCell" xml:space="preserve">
+    <value>tableCell</value>
   </data>
   <data name="deviceTypeCell" xml:space="preserve">
     <value>tableCellDeviceType</value>

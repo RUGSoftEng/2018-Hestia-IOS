@@ -79,7 +79,7 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to addDeviceChooseServer.
+        ///   Looks up a localized string similar to servercelladddevice.
         /// </summary>
         public static string addDeviceChooseServerCell {
             get {
@@ -151,6 +151,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        public static string defaultNumberOfServers {
+            get {
+                return ResourceManager.GetString("defaultNumberOfServers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 8000.
         /// </summary>
         public static string defaultPort {
@@ -210,6 +219,15 @@ namespace Hestia.Resources {
         public static string devicePath {
             get {
                 return ResourceManager.GetString("devicePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to tableCell.
+        /// </summary>
+        public static string devicesMainCell {
+            get {
+                return ResourceManager.GetString("devicesMainCell", resourceCulture);
             }
         }
         
