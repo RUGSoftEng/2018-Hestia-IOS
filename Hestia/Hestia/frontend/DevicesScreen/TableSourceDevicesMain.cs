@@ -267,7 +267,8 @@ namespace Hestia.DevicesScreen
             if (tableView.Editing)
             {
                 // Add new device below table
-                if (indexPath.Row == tableView.NumberOfRowsInSection(0) - 1)
+                if (indexPath.Row == tableView.NumberOfRowsInSection(tableView.NumberOfSections() - 1) - 1
+                    && indexPath.Section == tableView.NumberOfSections() - 1)
                     return UITableViewCellEditingStyle.Insert;
                 else
                     return UITableViewCellEditingStyle.Delete;
@@ -339,5 +340,17 @@ namespace Hestia.DevicesScreen
             tableView.EndUpdates(); // applies the changes
         }
 
-    }
+		public override string TitleForHeader(UITableView tableView, nint section)
+		{
+            if(Globals.LocalLogin)
+            {
+                return base.TitleForHeader(tableView, section);
+            }
+            else
+            {
+                return Globals.GetSelectedServers()[(int)section].ToString();
+            }
+        }
+
+	}
 }

@@ -29,7 +29,7 @@ namespace Hestia
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
 
-                var devicesMain = devicesMainStoryboard.InstantiateViewController("DevicesMainViewController") as UITableViewControllerDevicesMain;
+                var devicesMain = devicesMainStoryboard.InstantiateViewController("navigationDevicesMain") as UINavigationController;
                 this.ShowViewController(devicesMain, this);
             });
 
