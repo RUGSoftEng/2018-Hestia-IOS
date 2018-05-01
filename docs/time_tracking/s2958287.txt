@@ -102,3 +102,53 @@ Add new server interaction exception to front end
 Test app on older IOS versions
 Test app on older IOS versions
 Writing unit tests for network handler
+Meeting with team
+Meeting with team
+Fixing broken MacOS virtualbox setup
+Fixing broken MacOS virtualbox setup
+Fixing broken MacOS virtualbox setup
+Fixing broken MacOS virtualbox setup
+Fixing broken MacOS virtualbox setup
+Fixing broken MacOS virtualbox setup
+Fixing broken MacOS virtualbox setup
+Fixing broken MacOS virtualbox setup
+Convert Xamarin IOS project to C# Unit testing project
+Convert Xamarin IOS project to C# Unit testing project
+Convert Xamarin IOS project to C# Unit testing project
+Creating unit tests for the server interactor class
+Creating unit tests for the server interactor class
+Creating unit tests for the server interactor class
+Creating unit tests for the server interactor class
+Creating unit tests for the server interactor class
+Creating unit tests for the server interactor class
+Creating unit tests for the server interactor class
+Creating unit tests for the server interactor class
+Creating unit tests for the device class
+Creating unit tests for the device class
+Creating unit tests for the device class
+Creating unit tests for the device class
+Creating unit tests for the device class
+Creating unit tests for the plugin info class
+Trying to make the interactor state class work with types "bool" and "float" instead of only "object" (unsuccessful)
+Trying to make the interactor state class work with types "bool" and "float" instead of only "object" (unsuccessful)
+Trying to make the interactor state class work with types "bool" and "float" instead of only "object" (unsuccessful)
+Trying to make the interactor state class work with types "bool" and "float" instead of only "object" (unsuccessful)
+Creating unit tests for the interactor state
+Writing unit tests for jsonvalidator, activator and serverinteractionexception
+Writing unit tests for jsonvalidator, activator and serverinteractionexception
+Writing unit tests for jsonvalidator, activator and serverinteractionexception
+Writing unit tests for jsonvalidator, activator and serverinteractionexception
+Fixing and extending unit tests for the activator and device deserializers
+Fixing and extending unit tests for the activator and device deserializers
+Fixing and extending unit tests for the activator and device deserializers
+Fixing and extending unit tests for the activator and device deserializers
+Fixing and extending unit tests for the activator and device deserializers
+Fixing and extending unit tests for the activator and device deserializers
+Fixing and extending unit tests for the activator and device deserializers
+Fixing and extending unit tests for the activator and device deserializers
+Creating class diagram for back end
+Creating class diagram for back end
+Creating class diagram for back end
+Creating class diagram for back end
+Creating class diagram for back end
+Creating class diagram for back end
