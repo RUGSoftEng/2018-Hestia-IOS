@@ -18,9 +18,6 @@ namespace Hestia.DevicesScreen
         public Hashtable inputs;
         PluginInfo completeInfo;
         string[] propertyNames;
-            
-        // The kind of cell that is used in the table (set in Storyboard)
-        string CellIdentifier = "tableCellProperty";
 
         // Constructor. Fill propertyNames with a copy of current keys
         public TableSourceAddDeviceProperties(
@@ -35,7 +32,7 @@ namespace Hestia.DevicesScreen
         // We have only one section 
         public override nint NumberOfSections(UITableView tableView)
         {
-            return 1;
+            return int.Parse(Resources.strings.defaultNumberOfSections);
         }
 
         // The number of properties in the list
@@ -48,12 +45,12 @@ namespace Hestia.DevicesScreen
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            PropertyCell cell = tableView.DequeueReusableCell(CellIdentifier) as PropertyCell;
+            PropertyCell cell = tableView.DequeueReusableCell(Resources.strings.propertyCell) as PropertyCell;
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default propertyCell
-                cell = new PropertyCell((NSString)CellIdentifier);
+                cell = new PropertyCell((NSString)Resources.strings.propertyCell);
             }
 
             // Put the property names in the placeholder filed

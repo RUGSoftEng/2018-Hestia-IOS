@@ -11,10 +11,6 @@ namespace Hestia
         // The viewController to which the TableView connected to this Source lives in
         UITableViewControllerAddDeviceChooseServer owner;
 
-        // The kind of cell that is used in the table (set in Storyboard)
-        string CellIdentifier = "servercelladddevice";
-        const int sections = 1;
-
         public TableSourceAddDeviceChooseServer(UITableViewControllerAddDeviceChooseServer owner)
         {
             this.owner = owner;
@@ -22,7 +18,7 @@ namespace Hestia
 
         public override nint NumberOfSections(UITableView tableView)
         {
-            return sections;
+            return int.Parse(Resources.strings.defaultNumberOfSections);
         }
 
         public override nint RowsInSection(UITableView tableview, nint section)
@@ -34,12 +30,12 @@ namespace Hestia
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(CellIdentifier);
+            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.addDeviceChooseServerCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.addDeviceChooseServerCell);
             }
 
             cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].ToString();
