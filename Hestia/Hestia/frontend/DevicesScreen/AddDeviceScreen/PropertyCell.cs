@@ -13,14 +13,12 @@ namespace Hestia.DevicesScreen.AddDeviceScreen
             // Create inputfield and add it to the cell
             inputField = new UITextField();
             ContentView.AddSubviews(new UIView[] {inputField});
-
         }
 
         // Sets the placeholder from the required info
         public void UpdateCell(string placeholder)
         {
             inputField.Placeholder = placeholder;
-                       
         }
 
         public override void LayoutSubviews()

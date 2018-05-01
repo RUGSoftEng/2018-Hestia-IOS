@@ -21,6 +21,7 @@ namespace Hestia.DevicesScreen
         // List with plugins and collection they belong to
         List<string> plugins;
         string collection;
+        const int sections = 1;
 
         // The kind of cell that is used in the table (set in Storyboard)
         string CellIdentifier = "tableCellDeviceType";
@@ -39,7 +40,7 @@ namespace Hestia.DevicesScreen
         // We have only one section with devices (thus far)
         public override nint NumberOfSections(UITableView tableView)
         {
-            return 1;
+            return sections;
         }
 
         // The number of devices in the list
