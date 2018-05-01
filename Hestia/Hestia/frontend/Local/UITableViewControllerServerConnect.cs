@@ -15,6 +15,7 @@ namespace Hestia.DevicesScreen
         string serverNameHestia = "servernameHestia";
         string ipHestia = "ipHestia";
         string portHestia = "portHestia";
+        string serverConnectToDevicesSegue = "ServerToDevices";
         NSUserDefaults userDefaults;
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
@@ -116,9 +117,9 @@ namespace Hestia.DevicesScreen
             {
                 // Remove keyboard, then connect
                 textfield.ResignFirstResponder();
-                if (ShouldPerformSegue("ServerToDevices", this))
+                if (ShouldPerformSegue(serverConnectToDevicesSegue, this))
                 {
-                    PerformSegue("ServerToDevices", this);
+                    PerformSegue(serverConnectToDevicesSegue, this);
                 }
             }
             return false; //No line-breaks.

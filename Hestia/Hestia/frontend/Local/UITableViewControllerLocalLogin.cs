@@ -24,6 +24,13 @@ namespace Hestia
         {
             base.ViewDidLoad();
             Globals.LocalLogin = true;
+
+            LoginUserName.ShouldReturn += TextFieldShouldReturn;
+            LoginPassword.ShouldReturn += TextFieldShouldReturn;
+
+            LoginUserName.Tag = 1;
+            LoginPassword.Tag = 2;
+
             // Get Shared User Defaults
             LoginUserName.BecomeFirstResponder();
             userDefaults = NSUserDefaults.StandardUserDefaults;
@@ -70,6 +77,26 @@ namespace Hestia
             {
                 return true;
             }
+        }
+
+        private bool TextFieldShouldReturn(UITextField textfield)
+        {
+            int nextTag = (int)textfield.Tag + 1;
+            UIResponder nextResponder = this.View.ViewWithTag(nextTag);
+            if (nextResponder != null)
+            {
+                nextResponder.BecomeFirstResponder();
+            }
+            else
+            {
+                // Remove keyboard, then connect
+                textfield.ResignFirstResponder();
+                if (ShouldPerformSegue(loginToConnectSegue, this))
+                {
+                    PerformSegue(loginToConnectSegue, this);
+                }
+            }
+            return false; //No line-breaks.
         }
     }
 }
