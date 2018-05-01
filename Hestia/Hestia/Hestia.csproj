@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -74,7 +74,6 @@
     <Compile Include="backend\NetworkHandler.cs" />
     <Compile Include="backend\FireBaseServer.cs" />
     <Compile Include="backend\ServerInteractor.cs" />
-    <Compile Include="backend\utils\Float.cs" />
     <Compile Include="backend\utils\JsonValidator.cs" />
     <Compile Include="backend\utils\PingServer.cs" />
     <Compile Include="Main.cs" />
@@ -171,19 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
-    <Folder Include="Resources\Images\" />
-    <Folder Include="frontend\SettingsScreen\" />
-    <Folder Include="frontend\Firebase\ServerSelectScreen\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="frontend\" />
-    <Folder Include="frontend\DevicesScreen\" />
-    <Folder Include="frontend\Local\" />
-    <Folder Include="frontend\Firebase\" />
-    <Folder Include="frontend\DevicesScreen\ActivatorScreen\" />
-    <Folder Include="frontend\resources\" />
-    <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
