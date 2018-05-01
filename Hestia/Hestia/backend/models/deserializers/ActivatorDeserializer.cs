@@ -7,25 +7,24 @@ namespace Hestia.backend.models.deserializers
      */
     public class ActivatorDeserializer
     {
-        public Activator Deserialize(JToken jsonActivator)
+        public Activator DeserializeActivator(JToken jsonActivator)
         {
             // get the activatorId, rank and name
             string id = jsonActivator.Value<string>("activatorId");
             int rank = jsonActivator.Value<int>("rank");
             string name = jsonActivator.Value<string>("name");
-
-            // get the ActivatorState
+            
+            // get the state type
             string type = jsonActivator.Value<string>("type");
-            string rawState = jsonActivator.Value<string>("state");
             ActivatorState state = null;
 
             switch (type.ToLower())
             {
                 case "bool":
-                    state = new ActivatorState(bool.Parse(rawState), "bool");
+                    state = new ActivatorState(jsonActivator.Value<bool>("state"), "bool");
                     break;
                 case "float":
-                    state = new ActivatorState(float.Parse(rawState), "float");
+                    state = new ActivatorState(jsonActivator.Value<float>("state"), "float");
                     break;
                 default:
                     break;
