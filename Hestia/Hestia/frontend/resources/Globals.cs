@@ -17,8 +17,21 @@ namespace Hestia.DevicesScreen.resources
 
         // In case of Firebase login
         public static List<FireBaseServer> FirebaseServers { get; set; }
-        
-        // Get devices for only local servers or all Firebase Servers
+
+        public static List<ServerInteractor> GetSelectedServers()
+        {
+            List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
+            foreach(FireBaseServer firebaseserver in FirebaseServers)
+            {
+                if(firebaseserver.Selected)
+                {
+                    serverInteractors.Add(firebaseserver.Interactor);
+                }
+            }
+            return serverInteractors;
+        }
+
+        // Get devices for only local servers or selected Firebase Servers
         public static List<Device> GetDevices()
         {
             List<Device> devices = new List<Device>();
@@ -28,9 +41,9 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                foreach (FireBaseServer server in FirebaseServers)
+                foreach (ServerInteractor server in GetSelectedServers())
                 {
-                    devices.AddRange(server.Interactor.GetDevices());
+                    devices.AddRange(server.GetDevices());
                 }
             }
             return devices;
