@@ -27,26 +27,90 @@ namespace Hestia.DevicesScreen
         // The list with Devices, set in the constructor. (Retrieved from server)
         List<Device> TableItems;
 
+        Device GetSectionRow(NSIndexPath indexPath)
+        {
+            if (Globals.LocalLogin)
+            {
+                return TableItems[(int)indexPath.Row];
+            }
+            else
+            {
+            return serverDevices[(int)indexPath.Section][(int)indexPath.Row];
+            }
+                
+         }
+
+        void RemoveDeviceAt(NSIndexPath indexPath)
+        {
+            if (Globals.LocalLogin)
+            {
+                TableItems.RemoveAt((int)indexPath.Row);
+            }
+            else
+            {
+                serverDevices[(int)indexPath.Section].RemoveAt((int)indexPath.Row);
+            }
+        }
+
+        void AddDevice(NSIndexPath indexPath, Device device)
+        {
+            if (Globals.LocalLogin)
+            {
+                TableItems.Add(device);
+            }
+            else
+            {
+                serverDevices[(int)indexPath.Section].Add(device);
+            }
+        }
+
         // The kind of cell that is used in the table (set in Storyboard)
         string CellIdentifier = "tableCell";
+
+        // Multiple Server case
+        nint numberOfServers;
+        List<List<Device>> serverDevices;
 
         // Constructor. Gets the device data and the ViewController
         public TableSource(List<Device> items, UITableViewControllerDevicesMain owner)
         {
             TableItems = items;
             this.owner = owner;
+            if(!Globals.LocalLogin)
+            {
+                serverDevices = new List<List<Device>>();
+                numberOfServers = Globals.GetNumberOfSelectedServers();
+                foreach(ServerInteractor interactor in Globals.GetSelectedServers())
+                {
+                    serverDevices.Add(interactor.GetDevices());
+                }
+            }
         }
 
         // We have only one section with devices (thus far)
         public override nint NumberOfSections(UITableView tableView)
         {
-            return 1;
+            if (Globals.LocalLogin)
+            {
+                return 1;
+            }
+            else
+            {
+                return numberOfServers;
+            }
         }
 
         // The number of devices in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return TableItems.Count;
+            if (Globals.LocalLogin)
+            {
+                return TableItems.Count;
+            }
+            else
+            {
+                return serverDevices[(int)section].Count;
+            }
         }
 
         // Important method. Called to generate a cell to display
@@ -77,7 +141,14 @@ namespace Hestia.DevicesScreen
             //}
 
             // The text to display on the cell is the device name
-            cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
+            if (Globals.LocalLogin)
+            {
+                cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
+            }
+            else
+            {
+                cell.TextLabel.Text = serverDevices[indexPath.Section][indexPath.Row].Name;
+            }
 
             return cell;
         }
@@ -94,7 +165,7 @@ namespace Hestia.DevicesScreen
                              as UITableViewActivators;
                 if (activator != null)
                 {
-                    activator.device = TableItems[indexPath.Row];
+                    activator.device = GetSectionRow(indexPath);
                     owner.NavigationController.PushViewController(activator, true);
                 }
                 tableView.DeselectRow(indexPath, true);
@@ -104,7 +175,7 @@ namespace Hestia.DevicesScreen
             {
 
                 UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this.owner);
-                editViewController.device = TableItems[(indexPath.Row)];
+                editViewController.device = GetSectionRow(indexPath);
                 this.owner.NavigationController.PushViewController(editViewController, true);
                 tableView.DeselectRow(indexPath, true);
             }
@@ -143,7 +214,9 @@ namespace Hestia.DevicesScreen
                             Console.Out.WriteLine(ex.ToString());
                         }
                     }
-                    TableItems.RemoveAt(indexPath.Row);
+                    RemoveDeviceAt(indexPath);
+
+                    //TableItems.RemoveAt(indexPath.Row);
                     // delete the row from the table
                     tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
                     break;
@@ -208,31 +281,61 @@ namespace Hestia.DevicesScreen
         public void WillBeginTableEditing(UITableView tableView)
         {
             tableView.BeginUpdates();
-
-            // insert the 'ADD NEW' row at the end of table display
-            tableView.InsertRows(new NSIndexPath[] {
+            if (Globals.LocalLogin)
+            {
+                // insert the 'ADD NEW' row at the end of table display
+                tableView.InsertRows(new NSIndexPath[] {
                  NSIndexPath.FromRowSection (tableView.NumberOfRowsInSection (0), 0)
                  }, UITableViewRowAnimation.Fade);
 
-            // create a new item and add it to our underlying data 
-            // This should not be permanently stored, but trigger the add new
-            // device screen on touch
-            List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
+                // create a new item and add it to our underlying data 
+                // This should not be permanently stored, but trigger the add new
+                // device screen on touch
+                List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
 
 
-            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, Globals.GetTemporyNetworkHandler()));
+                TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, Globals.GetTemporyNetworkHandler()));
+            }
+            else
+            {
+                // insert the 'ADD NEW' row at the end of table display
+                var insertIndexpath = new NSIndexPath[] {
+                    NSIndexPath.FromRowSection (tableView.NumberOfRowsInSection (tableView.NumberOfSections() - 1),
+                                                tableView.NumberOfSections() - 1)
+                };
+
+                tableView.InsertRows(insertIndexpath, UITableViewRowAnimation.Fade);
+
+                // create a new item and add it to our underlying data 
+                // This should not be permanently stored, but trigger the add new
+                // device screen on touch
+                List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
+                AddDevice(insertIndexpath[0], new Device(" ", "New Device ", " ", temp_activator, Globals.GetTemporyNetworkHandler()));
+            }
 
             tableView.EndUpdates(); // applies the changes
         }
         public void DidFinishTableEditing(UITableView tableView)
         {
             tableView.BeginUpdates();
+            if (Globals.LocalLogin)
+            {
+                // remove our 'New device' row from the underlying data
+                TableItems.RemoveAt((int)tableView.NumberOfRowsInSection(0) - 1); // zero based :)
+                                                                                  // remove the row from the table display
+                tableView.DeleteRows(new NSIndexPath[] { NSIndexPath.FromRowSection(tableView.NumberOfRowsInSection(0) - 1, 0) }, UITableViewRowAnimation.Fade);
+            }
+            else
+            {
+                var insertIndexpath = new NSIndexPath[] {
+                    NSIndexPath.FromRowSection (tableView.NumberOfRowsInSection (tableView.NumberOfSections() - 1) - 1,
+                                                tableView.NumberOfSections() - 1)};
 
-            // remove our 'New device' row from the underlying data
-            TableItems.RemoveAt((int)tableView.NumberOfRowsInSection(0) - 1); // zero based :)
-                                                                              // remove the row from the table display
-            tableView.DeleteRows(new NSIndexPath[] { NSIndexPath.FromRowSection(tableView.NumberOfRowsInSection(0) - 1, 0) }, UITableViewRowAnimation.Fade);
+                RemoveDeviceAt(insertIndexpath[0]);
+                tableView.DeleteRows(new NSIndexPath[] { NSIndexPath.FromRowSection(tableView.NumberOfRowsInSection(tableView.NumberOfSections() - 1) - 1, 
+                                                                                    tableView.NumberOfSections() - 1) }, UITableViewRowAnimation.Fade);
 
+            }
             tableView.EndUpdates(); // applies the changes
         }
 

@@ -31,6 +31,11 @@ namespace Hestia.DevicesScreen.resources
             return serverInteractors;
         }
 
+        public static nint GetNumberOfSelectedServers()
+        {
+            return GetSelectedServers().Count;
+        }
+
         // Get devices for only local servers or selected Firebase Servers
         public static List<Device> GetDevices()
         {
