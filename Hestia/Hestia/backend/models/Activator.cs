@@ -56,7 +56,7 @@ namespace Hestia.backend.models
             set
             {
                 state = value;
-               
+
                 string endpoint = strings.devicePath + device.DeviceId + "/" + strings.activatorsPath + activatorId;
                 JObject activatorState = new JObject
                 {
