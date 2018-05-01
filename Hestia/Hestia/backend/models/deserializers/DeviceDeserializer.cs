@@ -9,7 +9,7 @@ namespace Hestia.backend.models.deserializers
     public class DeviceDeserializer
     {
         // deserialize a single device from a JToken
-        public Device Deserialize(JToken jT, NetworkHandler networkHandler)
+        public Device DeserializeDevice(JToken jT, NetworkHandler networkHandler)
         {
             // get id, name and type
             string id = jT.Value<string>("deviceId");
@@ -23,7 +23,7 @@ namespace Hestia.backend.models.deserializers
 
             foreach(JToken activator in activators)
             {
-                activatorList.Add(activatorDeserializer.Deserialize(activator));
+                activatorList.Add(activatorDeserializer.DeserializeActivator(activator));
             }
 
             Device device = new Device(id, name, type, activatorList, networkHandler);
@@ -44,7 +44,7 @@ namespace Hestia.backend.models.deserializers
             
             foreach(JToken device in devices)
             {
-                deviceList.Add(Deserialize(device, networkHandler));
+                deviceList.Add(DeserializeDevice(device, networkHandler));
             }
 
             return deviceList;
