@@ -115,15 +115,33 @@ namespace Hestia.DevicesScreen
             switch (editingStyle)
             {
                 case UITableViewCellEditingStyle.Delete:
-                    try
+                    if (Globals.LocalLogin)
                     {
-                        // remove device from server 
-                        Globals.LocalServerinteractor.RemoveDevice(TableItems[indexPath.Row]);
+                        try
+                        {
+                            // remove device from server 
+                            Globals.LocalServerinteractor.RemoveDevice(TableItems[indexPath.Row]);
+                        }
+                        catch (ServerInteractionException ex)
+                        {
+                            Console.WriteLine("Exception while removing device");
+                            Console.Out.WriteLine(ex.ToString());
+                        }
                     }
-                    catch(ServerInteractionException ex)
+                    else
                     {
-                        Console.WriteLine("Exception while removing device");
-                        Console.Out.WriteLine(ex.ToString());
+                        var deviceInRow = TableItems[indexPath.Row];
+                        var deviceNetworkHanlder = deviceInRow.NetworkHandler;
+                        var deviceServerInteractor = new ServerInteractor(deviceNetworkHanlder);
+                        try
+                        {
+                            deviceServerInteractor.RemoveDevice(deviceInRow);
+                        }
+                        catch (ServerInteractionException ex)
+                        {
+                            Console.WriteLine("Exception while removing device");
+                            Console.Out.WriteLine(ex.ToString());
+                        }
                     }
                     TableItems.RemoveAt(indexPath.Row);
                     // delete the row from the table
