@@ -36,7 +36,7 @@ namespace Hestia.DevicesScreen.resources
             return devices;
         }
 
-        public static NetworkHandler getTemporyNetworkHandler()
+        public static NetworkHandler GetTemporyNetworkHandler()
         {
             NetworkHandler temp_networkhandler;
             if(LocalLogin)
@@ -45,10 +45,9 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.GetNetworkHandler().Ip, FirebaseServers[0].Interactor.GetNetworkHandler().Port);
+                temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.NetworkHandler.Ip, FirebaseServers[0].Interactor.NetworkHandler.Port);
             }
             return temp_networkhandler;
         }
-    
     }
 }
