@@ -24,6 +24,15 @@ namespace Hestia.DevicesScreen
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            newServerName.ShouldReturn += TextFieldShouldReturn;
+            newIP.ShouldReturn += TextFieldShouldReturn;
+            newPort.ShouldReturn += TextFieldShouldReturn;
+
+            newServerName.Tag = 1;
+            newIP.Tag = 2;
+            newPort.Tag = 3;
+
             newServerName.BecomeFirstResponder();
 
             userDefaults = NSUserDefaults.StandardUserDefaults;
@@ -93,6 +102,26 @@ namespace Hestia.DevicesScreen
             alert.AddButton("OK");
             alert.Show();
             connectButton.Selected = false;
+        }
+
+        private bool TextFieldShouldReturn(UITextField textfield)
+        {
+            int nextTag = (int)textfield.Tag + 1;
+            UIResponder nextResponder = this.View.ViewWithTag(nextTag);
+            if (nextResponder != null)
+            {
+                nextResponder.BecomeFirstResponder();
+            }
+            else
+            {
+                // Remove keyboard, then connect
+                textfield.ResignFirstResponder();
+                if (ShouldPerformSegue("ServerToDevices", this))
+                {
+                    PerformSegue("ServerToDevices", this);
+                }
+            }
+            return false; //No line-breaks.
         }
     }
 }
