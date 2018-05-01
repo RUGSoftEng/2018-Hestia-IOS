@@ -59,13 +59,10 @@ namespace Hestia.DevicesScreen
 		public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
-
             refreshDeviceList();
 
             // To tap row in editing mode for changing name
-            DevicesTable.AllowsSelectionDuringEditing = true;
-            // Contains methods that describe behavior of table
-            DevicesTable.Source = new TableSource(devices, this);  
+            DevicesTable.AllowsSelectionDuringEditing = true;  
 
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 this.cancelEditingState();

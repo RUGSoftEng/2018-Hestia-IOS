@@ -42,7 +42,7 @@ namespace Hestia
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
-            cell.TextLabel.Text = Globals.GetSelectedServers().ToString();
+            cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].ToString();
 
             return cell;
         }
