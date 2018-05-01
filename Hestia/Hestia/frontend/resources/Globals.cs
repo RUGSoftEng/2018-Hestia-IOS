@@ -23,12 +23,12 @@ namespace Hestia.DevicesScreen.resources
         public static ServerInteractor serverToAddDeviceTo { get; set; }
 
         // In case of Firebase login
-        public static List<FireBaseServer> FirebaseServers { get; set; }
+        public static List<WebServer> FirebaseServers { get; set; }
 
         public static List<ServerInteractor> GetSelectedServers()
         {
             List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
-            foreach(FireBaseServer firebaseserver in FirebaseServers)
+            foreach(WebServer firebaseserver in FirebaseServers)
             {
                 if(firebaseserver.Selected)
                 {
