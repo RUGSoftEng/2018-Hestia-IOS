@@ -52,6 +52,7 @@ namespace Hestia
                 {
                     userDefaults.SetString(LoginUserName.Text, usernameHestia);
                     userDefaults.SetString(LoginPassword.Text, usernameHestia);
+                    Globals.userName = username;
                     return true;
                 }
                 else

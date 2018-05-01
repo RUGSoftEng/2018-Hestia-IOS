@@ -125,3 +125,45 @@ Setting up trello and slack
 02.04.    17/30.  Modifying stuff from presentation according to Feiko's suggestions
           18/00.  Still doing that
           18/30   Finished with last modifications
+
+03.04.    11-14/00.  Presentation ( one of the speaker for first about about general information of the application, use cases etc) 
+
+16.04.    15/00.  Started modifying architectural document screenshots and description
+          15/30.  Working on Devices page description
+          16/00.  Updating images in the document for the devices screen
+          16/30.  Asking questions on Slack with teamates
+          17/00.  Working on the log in screen section
+          17/30.  Updating images and taking screenshots of the application
+          18/00.  Working on settings section
+          18/30.  Updating screenshots
+
+19/04.    9/00    Meeting with the team
+          9/30.   Discussing about future plans of the application
+          10/00.  Meeting with Lars & Feiko
+          10/30.  Demo to Lars & Feiko
+          11/00.  Solving some design issues
+          11/30.  Try to deploy(Not working :( )
+
+21.04.    10/00   Reading on how to deploy an iOS application from Xamarine
+          10/30.  Still reading
+          11/00.  Trying to deploy it on on iPod touch with iOS 8( not working unfortunately )
+
+
+26/04.    13.00.  Meeting with the team
+          13/30.  Dividing task and future plans
+          14/00.  Redistribution of Geany's tasks
+          
+1/05.     17/00.  Tutorial on layout on xamarine
+          17/30.  Still tutorial
+          18/00.  Working on Contact page layout
+          18/30.  Still working because it wasn't working
+          19/00   Talk with Zino on Slack
+          19/30.  Watch another tutorial(better one)
+          20/30.  Worked on Globals variables and Settings screen (added name of the user)
+          21/00.  Contact layout fixed
+          21/30.  Loading page layout fixed and added a new element
+          22/00.  Working on the Main page layout and temp firebase page layout
+          22/30.  Added Log out button 
+          23/00.  Added time-tracking new info for period 03.04 - 1.05 
+               
+          
