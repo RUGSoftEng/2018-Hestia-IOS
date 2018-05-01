@@ -12,24 +12,22 @@ namespace Hestia
         UITableViewControllerAddDeviceChooseServer owner;
 
         // The kind of cell that is used in the table (set in Storyboard)
-        string CellIdentifier = "servercell";
+        string CellIdentifier = "servercelladddevice";
+        const int sections = 1;
 
-        // Constructor. Gets the device data and the ViewController
         public TableSourceAddDeviceChooseServer(UITableViewControllerAddDeviceChooseServer owner)
         {
             this.owner = owner;
         }
 
-        // We have only one section with devices (thus far)
         public override nint NumberOfSections(UITableView tableView)
         {
-            return 1;
+            return sections;
         }
 
-        // The number of devices in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return Globals.FirebaseServers.Count;
+            return Globals.GetNumberOfSelectedServers();
         }
 
         // Important method. Called to generate a cell to display
@@ -44,17 +42,15 @@ namespace Hestia
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
-            // The text to display on the cell is the plugin name
-            cell.TextLabel.Text = Globals.FirebaseServers[indexPath.Row].ToString();
+            cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].ToString();
 
             return cell;
         }
 
-
         // Pushes the properties window
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         { 
-            Globals.serverToAddDeviceTo = Globals.FirebaseServers[indexPath.Row].Interactor;
+            Globals.serverToAddDeviceTo = Globals.GetSelectedServers()[indexPath.Row];
             UITableViewControllerAddDevice addDevice =
                 this.owner.Storyboard.InstantiateViewController("AddManufacturer")
                     as UITableViewControllerAddDevice;
@@ -62,8 +58,6 @@ namespace Hestia
             {
                 this.owner.NavigationController.PushViewController(addDevice, true);
             }
-
         }
-
     }
 }

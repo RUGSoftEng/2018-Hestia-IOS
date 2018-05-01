@@ -16,16 +16,16 @@ namespace Hestia
         UITableViewServerList owner;
         // The kind of cell that is used in the table (set in Storyboard)
         string CellIdentifier = "servercell";
-
-        public TableSourceServerList(List<FireBaseServer> item, UITableViewServerList owner)
+        const int sections = 1;
+        public TableSourceServerList(List<FireBaseServer> serverlist, UITableViewServerList owner)
         {
-            Globals.FirebaseServers = item;
+            Globals.FirebaseServers = serverlist;
             this.owner = owner;
         }
 
 		public override nint NumberOfSections(UITableView tableView)
 		{
-            return 1;
+            return sections;
 		}
 
 		public override nint RowsInSection(UITableView tableview, nint section)
@@ -33,6 +33,7 @@ namespace Hestia
             return Globals.FirebaseServers.Count;
 		}
 
+        // Sets the checkmarks
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
             UITableViewCell cell = tableView.CellAt(indexPath);
@@ -49,9 +50,7 @@ namespace Hestia
             }
             tableView.DeselectRow(indexPath, true);
 		}
-
-
-		
+        		
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
             // request a recycled cell to save memory
@@ -62,7 +61,7 @@ namespace Hestia
                 // Generate a default table cell
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
-            // The text to display on the cell is the plugin name
+            // The text to display on the cell is the server info
             cell.TextLabel.Text = Globals.FirebaseServers[indexPath.Row].Interactor.ToString();
 
             return cell;

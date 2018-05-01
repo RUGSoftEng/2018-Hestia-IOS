@@ -22,23 +22,17 @@ namespace Hestia
 
 		public override void ViewDidLoad()
 		{
-            base.ViewDidLoad();
-           // Globals.LocalLogin = false;
+            base.ViewDidLoad(); 
             TableView.Source = new TableSourceServerList(Globals.FirebaseServers, this);
 
+            // The done button that loads the devicesMainScreen with the selected servers
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
 
-                var devicesMain = devicesMainStoryboard.InstantiateViewController("DevicesMainViewController") as UITableViewControllerDevicesMain;
-                this.ShowViewController(devicesMain, this);
+                var devicesMain = devicesMainStoryboard.InstantiateViewController("navigationDevicesMain") as UINavigationController;
+                ShowViewController(devicesMain, this);
             });
-
             NavigationItem.RightBarButtonItem = done;
 		}
-
-       
-
-
-
 	}
 }

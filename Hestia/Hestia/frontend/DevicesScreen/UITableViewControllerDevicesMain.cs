@@ -40,28 +40,29 @@ namespace Hestia.DevicesScreen
         public void refreshDeviceList()
         {
             // Get the list with devices
-            try
+            if (Globals.LocalLogin)
             {
-                devices = Globals.GetDevices();
+                try
+                {
+                    devices = Globals.GetDevices();
+                }
+                catch (ServerInteractionException ex)
+                {
+                    Console.Out.WriteLine("Exception while getting devices from server");
+                    Console.Out.WriteLine(ex.ToString());
+                }
             }
-            catch (ServerInteractionException ex)
-            {
-                Console.Out.WriteLine("Exception while getting devices from server");
-                Console.Out.WriteLine(ex.ToString());
-            }
+            // In case of Global login, devices are fetch in construtor of TableSource
             DevicesTable.Source = new TableSource(devices, this); 
         }
 
 		public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
-
             refreshDeviceList();
 
             // To tap row in editing mode for changing name
-            DevicesTable.AllowsSelectionDuringEditing = true;
-            // Contains methods that describe behavior of table
-            DevicesTable.Source = new TableSource(devices, this);  
+            DevicesTable.AllowsSelectionDuringEditing = true;  
 
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 this.cancelEditingState();

@@ -113,15 +113,7 @@
     <Compile Include="frontend\DevicesScreen\ActivatorScreen\UITableViewActivators.designer.cs">
       <DependentUpon>..\..\..\DevicesScreen\UITableViewActivators.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\UITableViewControllerAccount.cs" />
-    <Compile Include="frontend\UITableViewControllerAccount.designer.cs">
-      <DependentUpon>..\DevicesScreen\UITableViewControllerAccount.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\DevicesScreen\ActivatorScreen\TableSourceActivators.cs" />
-    <Compile Include="frontend\SettingsController.cs" />
-    <Compile Include="frontend\SettingsController.designer.cs">
-      <DependentUpon>..\DevicesScreen\SettingsController.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\resources\Globals.cs" />
     <Compile Include="frontend\Firebase\UITableViewControllerAddDeviceChooseServer.cs" />
     <Compile Include="frontend\Firebase\UITableViewControllerAddDeviceChooseServer.designer.cs">
@@ -136,19 +128,18 @@
     <Compile Include="frontend\Firebase\UIViewControllerGlobalLogin.designer.cs">
       <DependentUpon>UIViewControllerGlobalLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Firebase\TableSourceServerDevices.cs" />
-    <Compile Include="frontend\Firebase\TableSourceServerList.cs" />
-    <Compile Include="frontend\Firebase\UITableViewControllerServerDevice.cs" />
-    <Compile Include="frontend\Firebase\UITableViewControllerServerDevice.designer.cs" />
-    <Compile Include="frontend\Firebase\UITableViewServerList.cs" />
-    <Compile Include="frontend\Firebase\UITableViewServerList.designer.cs" />
+    <Compile Include="frontend\SettingsScreen\SettingsController.cs" />
+    <Compile Include="frontend\SettingsScreen\SettingsController.designer.cs">
+      <DependentUpon>..\..\DevicesScreen\SettingsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\Firebase\ServerSelectScreen\TableSourceServerList.cs" />
+    <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.cs" />
+    <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
+      <DependentUpon>UITableViewServerList.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
-    <Compile Include="ViewController.designer.cs">
-      <DependentUpon>ViewController.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ViewController.cs" />
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="frontend\Devices2.storyboard" />
@@ -181,6 +172,8 @@
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
     <Folder Include="Resources\Images\" />
+    <Folder Include="frontend\SettingsScreen\" />
+    <Folder Include="frontend\Firebase\ServerSelectScreen\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="frontend\" />
