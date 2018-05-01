@@ -103,3 +103,34 @@ Working on the architecture document
 Working on the architecture document
 Merging and reviewing pr's
 Creating sprint pr.
+Meeting with team.
+Meeting with team.
+Meeting with customer and TA
+Meeting with customer and TA
+Meeting with team.
+Creating unit testing project
+Creating unit testing project
+Writing a basic test.
+Merging and reviewing pr's by peers. Resolving merge conflicts.
+Arranging meeting and explaining and dividing the tasks to/between peers.
+Making a 'firebase server' to be able to be selected or not.
+Cleaning and adapting frontend code to fit the new class. Making pr and resolving merge conflicts.
+Meeting with group and dividing tasks.
+Meeting with group and dividing tasks.
+Meeting with group and dividing tasks, and creating trello cards to manage.
+Talk with the webdev team to learn on how to communicate with them through rest req.
+Explaining backend choices from webdev to backed and reviewing and merging.
+More reviewing and merging; also some conflicts resolved. 
+Researching automatic server discovery based on protocol on local network.
+Trying some tests with foreign TCP server response time.
+Updated and uploaded new and updated documents for minutes on github.
+Merging pull request and checking other peoples code. 
+Merging pull request and checking other peoples code. 
+Merging pull request and checking other peoples code. 
+Conversing with peers on how to implement server discovery and pinging server.
+Creating readme.
+Creating readme.
+Bug fixing the readme. And some styling fixes.
+Writing test for "WebServer" class, also refactoring some files and class names.
+Making sure everyone is handing in their work on time and helping out with some minor problems for peers.
+Time tracking (collection of all the seperate minutes of adding time here)
