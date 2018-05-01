@@ -1,6 +1,6 @@
 # 2018-Hestia-IOS
-Reference-style: 
-![alt text][logo] A home automation system.
+![(Logo here)][logo]
+A home automation system.
 
 ## General
 This repository exists out of the iOS clientside code of the __Hestia__ home automation system. The home automation system consists out of various parts, below is a list with hyperlinks to the respective repositories containing them.
@@ -17,4 +17,4 @@ Because the application is still in alpha/beta fase the iOS application is not y
 ## Usage
 When opening the app the user will be presented with a first time login screen which allows the user to set a pin code/login information. When using the application an active server must be available either through the web server or a localy hosted server. Once the user enters a valid server they will be presented with a list of devices that are on the server and can edit and change these as they see fit. The devices are created using plugins, for more on this please refer to previosly stated repositories. Currently it is only possible to turn devices on and off or use a slider. e.g. to change the brightness of a light.
 
-[logo]: https://github.com/RUGSoftEng/2018-Hestia-IOS/tree/development/docs/images/logo_transparent.png "Hestia logo"
+[logo]: /docs/images/logo_transparent.png "Hestia logo"
