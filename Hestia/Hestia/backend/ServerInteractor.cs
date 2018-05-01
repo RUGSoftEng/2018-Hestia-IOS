@@ -136,5 +136,11 @@ namespace Hestia.backend
             PluginInfo info = GetPluginInfo(collection, plugin);
             return info.RequiredInfo;
         }
+
+        override
+        public string ToString()
+        {
+            return networkHandler.ToString();
+        }
     }
 }
