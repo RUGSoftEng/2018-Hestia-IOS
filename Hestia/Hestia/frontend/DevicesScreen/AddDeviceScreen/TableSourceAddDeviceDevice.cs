@@ -21,10 +21,6 @@ namespace Hestia.DevicesScreen
         // List with plugins and collection they belong to
         List<string> plugins;
         string collection;
-        const int sections = 1;
-
-        // The kind of cell that is used in the table (set in Storyboard)
-        string CellIdentifier = "tableCellDeviceType";
 
         // Constructor. Gets the device data and the ViewController
         public TableSourceAddDeviceDevice(List<string> plugins,
@@ -40,7 +36,7 @@ namespace Hestia.DevicesScreen
         // We have only one section with devices (thus far)
         public override nint NumberOfSections(UITableView tableView)
         {
-            return sections;
+            return int.Parse(Resources.strings.defaultNumberOfSections);
         }
 
         // The number of devices in the list
@@ -53,12 +49,12 @@ namespace Hestia.DevicesScreen
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(CellIdentifier);
+            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.deviceTypeCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.deviceTypeCell);
             }
 
             // The text to display on the cell is the plugin name

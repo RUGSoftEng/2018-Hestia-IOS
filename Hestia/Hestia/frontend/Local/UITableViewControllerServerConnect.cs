@@ -12,10 +12,6 @@ namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerServerConnect : UITableViewController
     {
-        string serverNameHestia = "servernameHestia";
-        string ipHestia = "ipHestia";
-        string portHestia = "portHestia";
-        string serverConnectToDevicesSegue = "ServerToDevices";
         NSUserDefaults userDefaults;
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
@@ -37,20 +33,20 @@ namespace Hestia.DevicesScreen
             newServerName.BecomeFirstResponder();
 
             userDefaults = NSUserDefaults.StandardUserDefaults;
-            var defaultServerName = userDefaults.StringForKey(serverNameHestia);
+            var defaultServerName = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
             if (defaultServerName != null)
             {
                 newServerName.Text = defaultServerName;
                 newServerName.Placeholder = defaultServerName;
             }
 
-            var defaultIP = userDefaults.StringForKey(ipHestia);
+            var defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
             if (defaultIP != null)
             {
                 newIP.Text = defaultIP;
                 newIP.Placeholder = defaultIP;
             }
-            var defaultPort = userDefaults.StringForKey(portHestia);
+            var defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
             if (defaultPort != null)
             {
                 newPort.Text = defaultPort;
@@ -74,9 +70,9 @@ namespace Hestia.DevicesScreen
             }
             if (validIp)
             {
-                userDefaults.SetString(newServerName.Text, serverNameHestia);
-                userDefaults.SetString(newIP.Text, ipHestia);
-                userDefaults.SetString(newPort.Text, portHestia);
+                userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
+                userDefaults.SetString(newIP.Text, Resources.strings.defaultsIpHestia);
+                userDefaults.SetString(newPort.Text, Resources.strings.defaultsPortHestia);
 
                 Globals.ServerName = newServerName.Text;
                 Globals.IP = newIP.Text;
@@ -117,9 +113,9 @@ namespace Hestia.DevicesScreen
             {
                 // Remove keyboard, then connect
                 textfield.ResignFirstResponder();
-                if (ShouldPerformSegue(serverConnectToDevicesSegue, this))
+                if (ShouldPerformSegue(Resources.strings.serverConnectToDevicesSegue, this))
                 {
-                    PerformSegue(serverConnectToDevicesSegue, this);
+                    PerformSegue(Resources.strings.serverConnectToDevicesSegue, this);
                 }
             }
             return false; //No line-breaks.

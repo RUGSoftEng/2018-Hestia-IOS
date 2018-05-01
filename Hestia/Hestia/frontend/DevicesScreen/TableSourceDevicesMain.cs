@@ -38,9 +38,6 @@ namespace Hestia.DevicesScreen
             serverDevices[(int)indexPath.Section].Add(device);
         }
 
-        // The kind of cell that is used in the table (set in Storyboard)
-        string CellIdentifier = "tableCell";
-
         // Constructor. Gets the device data (local) and the ViewController
         public TableSource(List<Device> items, UITableViewControllerDevicesMain owner)
         {
@@ -48,7 +45,7 @@ namespace Hestia.DevicesScreen
             this.owner = owner;
             if (Globals.LocalLogin)
             {
-                numberOfServers = 1;
+                numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
                 serverDevices = new List<List<Device>>();
                 serverDevices.Add(TableItems);
             }
@@ -78,12 +75,12 @@ namespace Hestia.DevicesScreen
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(CellIdentifier);
+            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.devicesMainCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.devicesMainCell);
             }
 
             if (serverDevices[indexPath.Section][indexPath.Row].Name != "New Device")
