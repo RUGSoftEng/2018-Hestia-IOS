@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace Hestia.UnitTests.backend
+namespace Hestia.UnitTests.backend.models.deserializers
 {
     [TestClass]
     public class DeviceDeserializerTests

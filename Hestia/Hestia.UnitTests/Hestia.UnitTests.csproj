@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="backend\exceptions\ServerInteractionExceptionTests.cs" />
     <Compile Include="backend\models\ActivatorStateTests.cs" />
     <Compile Include="backend\models\ActivatorTests.cs" />
     <Compile Include="backend\models\DeviceTests.cs" />
@@ -72,6 +73,8 @@
     <Compile Include="backend\models\deserializers\ActivatorDeserializerTests.cs" />
     <Compile Include="backend\models\deserializers\DeviceDeserializerTests.cs" />
     <Compile Include="backend\NetworkHandlerTests.cs" />
+    <Compile Include="backend\utils\JsonValidatorTests.cs" />
+    <Compile Include="backend\utils\PingServerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
