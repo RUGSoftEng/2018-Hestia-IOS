@@ -49,38 +49,6 @@
             </objects>
             <point key="canvasLocation" x="-250" y="45"/>
         </scene>
-        <scene sceneID="10190">
-            <objects>
-                <tableViewController id="10191" sceneMemberID="viewController" customClass="UITableViewControllerServerDevice">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="10193">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="10196" reuseIdentifier="serverdevicecell">
-                                <rect key="frame" x="0.0" y="28" width="414" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="10196" id="10197">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="10191" id="10194"/>
-                            <outlet property="delegate" destination="10191" id="10195"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Devices" id="10192">
-                        <barButtonItem key="leftBarButtonItem" id="14212" title="Servers">
-                            <connections/>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="10198" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1106" y="30"/>
-        </scene>
     </scenes>
     <resources>
         <image name="LogoLaunchscreen" width="431" height="206"/>

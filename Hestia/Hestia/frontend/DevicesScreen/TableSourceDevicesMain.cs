@@ -127,8 +127,8 @@ namespace Hestia.DevicesScreen
 
             //if (TableItems[(indexPath.Row)].Name != "New Device")
             //{
-            //    cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
-            //    cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+                  cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
+                  cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
             //    if (TableItems[(indexPath.Row)].Type == "Light")
             //    {
             //        cell.ImageView.Image = UIImage.FromBundle("Images/lightbulb");
@@ -344,7 +344,7 @@ namespace Hestia.DevicesScreen
 		{
             if(Globals.LocalLogin)
             {
-                return base.TitleForHeader(tableView, section);
+                return Globals.LocalServerinteractor.ToString();
             }
             else
             {
