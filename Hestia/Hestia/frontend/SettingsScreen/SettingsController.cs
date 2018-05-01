@@ -15,7 +15,7 @@ namespace Hestia.DevicesScreen
         {
             base.ViewDidLoad();
             serverName.Text = Globals.ServerName;
-            userName.Text = Globals.userName;
+            userName.Text = Globals.UserName;
         }
     }
 

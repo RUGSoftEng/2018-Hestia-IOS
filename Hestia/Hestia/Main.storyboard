@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -17,11 +17,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="203">
-                                <rect key="frame" x="20" y="249" width="280" height="40"/>
+                                <rect key="frame" x="20" y="298.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.29803921568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Sign in">
@@ -35,7 +35,7 @@
                                 </constraints>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1150">
-                                <rect key="frame" x="20" y="327" width="280" height="40"/>
+                                <rect key="frame" x="20" y="376.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Firebase">
@@ -49,7 +49,7 @@
                                 </constraints>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10460">
-                                <rect key="frame" x="20" y="375" width="280" height="40"/>
+                                <rect key="frame" x="20" y="424.5" width="335" height="40"/>
                                 <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Github">
@@ -60,13 +60,13 @@
                                 </constraints>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLaunchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="10465">
-                                <rect key="frame" x="23" y="75" width="274" height="124"/>
+                                <rect key="frame" x="23" y="75" width="329" height="124"/>
                                 <constraints>
                                     <constraint id="15847" firstItem="10465" firstAttribute="height" constant="124"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10466">
-                                <rect key="frame" x="139" y="298" width="42" height="21"/>
+                                <rect key="frame" x="139" y="347.5" width="97" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -117,11 +117,11 @@
                         <viewControllerLayoutGuide type="bottom" id="6424"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6427">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Here should come the firebase login if that is ready" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6600">
-                                <rect key="frame" x="40" y="105" width="240" height="128"/>
+                                <rect key="frame" x="40" y="105" width="295" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -130,7 +130,7 @@
                                 </constraints>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9251">
-                                <rect key="frame" x="0.0" y="241" width="320" height="211"/>
+                                <rect key="frame" x="0.0" y="241" width="375" height="211"/>
                                 <state key="normal" title="Go back"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="10000"/>
@@ -140,7 +140,7 @@
                                 </constraints>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="11075" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="64" y="523" width="193" height="36"/>
+                                <rect key="frame" x="64" y="523" width="248" height="36"/>
                                 <connections>
                                     <segue id="11907" destination="11023" kind="presentation"/>
                                 </connections>

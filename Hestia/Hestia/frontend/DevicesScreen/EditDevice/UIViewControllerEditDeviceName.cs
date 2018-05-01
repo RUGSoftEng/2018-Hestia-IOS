@@ -46,7 +46,7 @@ namespace Hestia.DevicesScreen.EditDevice
             changeNameField.Frame = new CGRect(110, 10, this.View.Bounds.Width - 125, 31);
             changeNameField.Placeholder = device.Name;
             rectangle.AddSubview(changeNameField);
-            View.BackgroundColor = Globals.defaultLightGray;
+            View.BackgroundColor = Globals.DefaultLightGray;
             Title = device.Name;
 
             // Save button
