@@ -10,7 +10,7 @@ This repository exists out of the iOS clientside code of the __Hestia__ home aut
 - [Web server](https://github.com/RUGSoftEng/2018-Hestia-Web)
 
 The android and iOS app both try to stay withing the look and feel of their respective host' system. This way there usage will be intuitive and stylish.
-For additional information on how interaction is handled and how the code works refer to the respective parts of the system.
+For additional information on how interaction and rest requests are handled and how the code works refer to the respective parts of the system.
 
 ## Deployment
 Because the application is still in alpha/beta fase the iOS application is not yet available in the app store and is only deployable through a mac with a developer account. Furthermore when using the system the server must be run in a local network or must be run through the web server which makes it accessible throughout the world. For more on registering your local server on the website please refer to the web server' repository.
