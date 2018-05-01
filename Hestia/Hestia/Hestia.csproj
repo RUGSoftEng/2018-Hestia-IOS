@@ -72,7 +72,7 @@
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
-    <Compile Include="backend\FireBaseServer.cs" />
+    <Compile Include="backend\WebServer.cs" />
     <Compile Include="backend\ServerInteractor.cs" />
     <Compile Include="backend\utils\JsonValidator.cs" />
     <Compile Include="backend\utils\PingServer.cs" />
