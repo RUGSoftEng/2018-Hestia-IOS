@@ -202,7 +202,7 @@ namespace Hestia.DevicesScreen
             List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
 
 
-            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, Globals.getTemporyNetworkHandler()));
+            TableItems.Add(new Device(" ", "New Device ", " ", temp_activator, Globals.GetTemporyNetworkHandler()));
 
             tableView.EndUpdates(); // applies the changes
         }
