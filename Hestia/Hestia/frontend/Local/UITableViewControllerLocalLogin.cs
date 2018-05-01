@@ -19,7 +19,7 @@ namespace Hestia
         {
             base.ViewDidLoad();
             Globals.LocalLogin = true;
-
+            Globals.defaultLightGray = TableView.BackgroundColor;
             LoginUserName.ShouldReturn += TextFieldShouldReturn;
             LoginPassword.ShouldReturn += TextFieldShouldReturn;
 

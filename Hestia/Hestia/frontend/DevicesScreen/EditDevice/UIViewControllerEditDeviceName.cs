@@ -46,10 +46,8 @@ namespace Hestia.DevicesScreen.EditDevice
             changeNameField.Frame = new CGRect(110, 10, this.View.Bounds.Width - 125, 31);
             changeNameField.Placeholder = device.Name;
             rectangle.AddSubview(changeNameField);
-
-            this.View.BackgroundColor = UIColor.FromWhiteAlpha(0.95f, 1.0f);
+            View.BackgroundColor = Globals.defaultLightGray;
             Title = device.Name;
-
 
             // Save button
             saveName = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
@@ -61,12 +59,8 @@ namespace Hestia.DevicesScreen.EditDevice
                 owner.setEditingState();
                 this.NavigationController.PopViewController(true);
             });
-
             NavigationItem.RightBarButtonItem = saveName;
-
         }
-
-
     }
 }
 

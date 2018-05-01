@@ -24,8 +24,7 @@ namespace Hestia.DevicesScreen
 
         // Constructor. Gets the device data and the ViewController
         public TableSourceAddDeviceManufacturer(List<string> collections,
-                                    Hashtable plugins,
-                    UITableViewControllerAddDevice owner)
+              Hashtable plugins, UITableViewControllerAddDevice owner)
         {
             this.plugins = plugins;
             this.owner = owner;
