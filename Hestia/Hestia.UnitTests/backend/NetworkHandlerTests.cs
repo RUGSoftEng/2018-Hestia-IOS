@@ -4,7 +4,7 @@ using Hestia.Resources;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 
-namespace Hestia.UnitTests
+namespace Hestia.UnitTests.backend
 {
     [TestClass]
     public class NetworkHandlerTests

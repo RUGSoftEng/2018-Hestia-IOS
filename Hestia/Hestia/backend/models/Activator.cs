@@ -69,8 +69,7 @@ namespace Hestia.backend.models
                 }
                 catch(ServerInteractionException ex)
                 {
-                    Console.WriteLine("Exception while setting activator state");
-                    Console.WriteLine(ex.ToString());
+                    throw;
                 }
 
             }
