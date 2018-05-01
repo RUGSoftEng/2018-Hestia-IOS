@@ -40,15 +40,19 @@ namespace Hestia.DevicesScreen
         public void refreshDeviceList()
         {
             // Get the list with devices
-            try
+            if (Globals.LocalLogin)
             {
-                devices = Globals.GetDevices();
+                try
+                {
+                    devices = Globals.GetDevices();
+                }
+                catch (ServerInteractionException ex)
+                {
+                    Console.Out.WriteLine("Exception while getting devices from server");
+                    Console.Out.WriteLine(ex.ToString());
+                }
             }
-            catch (ServerInteractionException ex)
-            {
-                Console.Out.WriteLine("Exception while getting devices from server");
-                Console.Out.WriteLine(ex.ToString());
-            }
+            // In case of Global login, devices are fetch in construtor of TableSource
             DevicesTable.Source = new TableSource(devices, this); 
         }
 
