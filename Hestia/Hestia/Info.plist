@@ -5,15 +5,15 @@
 	<key>CFBundleDisplayName</key>
 	<string>Hestia</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.rugged.Hestia</string>
+	<string>com.ruggedHestia.Hestia</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>1.0.6</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>10.3</string>
+	<string>9.0</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Usage Description</string>
 	<key>NSMicrophoneUsageDescription</key>
@@ -23,7 +23,7 @@
 		<integer>1</integer>
 	</array>
 	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
+	<string>LaunchScreenHestia</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -51,5 +51,7 @@
 	</array>
 	<key>CFBundleName</key>
 	<string>Hestia</string>
+	<key>XSAppIconAssets</key>
+	<string>Assets.xcassets/AppIcon.appiconset</string>
 </dict>
 </plist>

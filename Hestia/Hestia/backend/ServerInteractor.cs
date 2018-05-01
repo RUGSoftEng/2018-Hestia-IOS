@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Remoting;
 
+using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.backend.models.deserializers;
 using Hestia.Resources;
@@ -11,6 +12,18 @@ namespace Hestia.backend
     public class ServerInteractor
     {
         private NetworkHandler networkHandler;
+      
+        public NetworkHandler NetworkHandler
+        {
+            get
+            {
+                return networkHandler;
+            }
+            set
+            {
+                networkHandler = value;
+            }
+        }
 
         public ServerInteractor(NetworkHandler networkHandler)
         {
@@ -19,94 +32,115 @@ namespace Hestia.backend
 
         public List<Device> GetDevices()
         {
-            JToken payload = networkHandler.Get(strings.devicePath);
+            JToken payload = null;
 
-            if(payload is JArray)
+            try
             {
-                DeviceDeserializer deserializer = new DeviceDeserializer();
-                var devices = deserializer.DeserializeDevices(payload, networkHandler);
+                payload = networkHandler.Get(strings.devicePath);
+            }
+            catch(ServerInteractionException)
+            {
+                throw;
+            }
 
-                return devices;
-            }
-            else
-            {
-                throw new ServerException();
-            }
+            DeviceDeserializer deserializer = new DeviceDeserializer();
+            var devices = deserializer.DeserializeDevices(payload, networkHandler);
+
+            return devices;
         }
 
         public void AddDevice(PluginInfo info)
         {
             JObject deviceInfo = JObject.FromObject(info);
-            JToken payload = networkHandler.Post(deviceInfo, strings.devicePath);
 
-            if(payload["error"] != null)
+            try
             {
-                throw new ServerException();
+                networkHandler.Post(deviceInfo, strings.devicePath);
+            }
+            catch(ServerInteractionException)
+            {
+                throw;
             }
         }
 
         public void RemoveDevice(Device device)
         {
             string endpoint = strings.devicePath + device.DeviceId;
-            JToken payload = networkHandler.Delete(endpoint);
 
-            if(payload["error"] != null)
+            try
             {
-                throw new ServerException();
+                networkHandler.Delete(endpoint);
+            }
+            catch(ServerInteractionException)
+            {
+                throw;
             }
         }
 
         public List<string> GetCollections()
         {
-            JToken payload = networkHandler.Get(strings.pluginsPath);
+            JToken payload = null;
 
-            if(payload is JArray)
+            try
             {
-                List<string> collections = payload.ToObject<List<string>>();
-                return collections;
-            } else
-            {
-                throw new ServerException();
+                payload = networkHandler.Get(strings.pluginsPath);
             }
+            catch(ServerInteractionException)
+            {
+                throw;
+            } 
+
+            List<string> collections = payload.ToObject<List<string>>();
+            return collections;
         }
 
         public List<string> GetPlugins(string collection)
         {
             string endpoint = strings.pluginsPath + collection + "/";
-            JToken payload = networkHandler.Get(endpoint);
+            JToken payload = null;
 
-            if (payload is JArray)
+            try
             {
-                List<string> plugins = payload.ToObject<List<string>>();
-                return plugins;
+                payload = networkHandler.Get(endpoint);
             }
-            else
+            catch(ServerInteractionException)
             {
-                throw new ServerException();
+                throw;
             }
+
+            List<string> plugins = payload.ToObject<List<string>>();
+            return plugins;
         }
 
         public PluginInfo GetPluginInfo(string collection, string plugin)
         {
             string pluginsPath = strings.pluginsPath;
             string endpoint = pluginsPath + collection + "/" + pluginsPath + plugin;
-            JToken payload = networkHandler.Get(endpoint);
+            JToken payload = null;
 
-            if(payload["error"] == null)
+            try
             {
-                PluginInfo info = payload.ToObject<PluginInfo>();
-                return info;
+                payload = networkHandler.Get(endpoint);
             }
-            else
+            catch(ServerInteractionException)
             {
-                throw new ServerException();
+                throw;
             }
+
+            PluginInfo info = payload.ToObject<PluginInfo>();
+            return info;
         }
 
         public Dictionary<string, string> GetRequiredPluginInfo(string collection, string plugin)
         {
             PluginInfo info = GetPluginInfo(collection, plugin);
             return info.RequiredInfo;
+        }
+
+        override
+        public string ToString()
+        {
+            return networkHandler.ToString();
         }
     }
 }

@@ -10,12 +10,12 @@
  */
 namespace Hestia.backend.models
 {
-    public class ActivatorState<T>
+    public class ActivatorState
     {
-        private T rawState;
+        private object rawState;
         private string type;
 
-        public T RawState
+        public object RawState
         {
             get
             {
@@ -38,7 +38,7 @@ namespace Hestia.backend.models
             }
         }
 
-        public ActivatorState(T rawState, string type)
+        public ActivatorState(object rawState, string type)
         {
             this.rawState = rawState;
             this.type = type;
@@ -54,7 +54,7 @@ namespace Hestia.backend.models
         public bool Equals(Object obj)
         {
             if (!(obj.GetType() == this.GetType())) return false;
-            ActivatorState<T> activatorState = (ActivatorState<T>) obj;
+            ActivatorState activatorState = (ActivatorState) obj;
             return (this == activatorState || (this.GetType().Equals(activatorState.GetType()) &&
                     this.RawState.Equals(activatorState.RawState)));
         }

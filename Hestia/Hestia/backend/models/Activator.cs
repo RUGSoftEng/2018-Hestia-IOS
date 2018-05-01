@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Runtime.Remoting;
+using Hestia.backend.exceptions;
 
 namespace Hestia.backend.models
 {
@@ -10,7 +11,7 @@ namespace Hestia.backend.models
         private string activatorId;
         private string name;
         private int rank;
-        private ActivatorState<Object> state;
+        private ActivatorState state;
         private Device device;
 
         public string ActivatorId
@@ -46,7 +47,7 @@ namespace Hestia.backend.models
                 rank = value;
             }
         }
-        public ActivatorState<object> State
+        public ActivatorState State
         {
             get
             {
@@ -55,18 +56,22 @@ namespace Hestia.backend.models
             set
             {
                 state = value;
-               
+
                 string endpoint = strings.devicePath + device.DeviceId + "/" + strings.activatorsPath + activatorId;
                 JObject activatorState = new JObject
                 {
                     ["state"] = new JValue(state.RawState)
                 };
 
-                JToken payload = Device.NetworkHandler.Post(activatorState, endpoint);
-                if (payload["error"] != null)
+                try
                 {
-                    throw new ServerException();
+                    Device.NetworkHandler.Post(activatorState, endpoint);
                 }
+                catch(ServerInteractionException ex)
+                {
+                    throw;
+                }
+
             }
         }
         public Device Device
@@ -81,7 +86,7 @@ namespace Hestia.backend.models
             }
         }
 
-        public Activator(string activatorId, string name, int rank, ActivatorState<object> state)
+        public Activator(string activatorId, string name, int rank, ActivatorState state)
         {
             this.activatorId = activatorId;
             this.name = name;
