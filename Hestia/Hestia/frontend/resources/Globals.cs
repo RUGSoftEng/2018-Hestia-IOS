@@ -36,7 +36,7 @@ namespace Hestia.DevicesScreen.resources
             return devices;
         }
 
-        public static NetworkHandler getTemporyNetworkHandler()
+        public static NetworkHandler GetTemporyNetworkHandler()
         {
             NetworkHandler temp_networkhandler;
             if(LocalLogin)
@@ -49,6 +49,5 @@ namespace Hestia.DevicesScreen.resources
             }
             return temp_networkhandler;
         }
-    
     }
 }
