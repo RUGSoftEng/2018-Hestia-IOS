@@ -70,6 +70,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to addDeviceChooseServer.
+        /// </summary>
+        public static string addDeviceChooseServerCell {
+            get {
+                return ResourceManager.GetString("addDeviceChooseServerCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to new Add device.
         /// </summary>
         public static string addDeviceTitle {
@@ -120,6 +129,15 @@ namespace Hestia.Resources {
         public static string changeNameTitle {
             get {
                 return ResourceManager.GetString("changeNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        public static string defaultNumberOfSections {
+            get {
+                return ResourceManager.GetString("defaultNumberOfSections", resourceCulture);
             }
         }
         

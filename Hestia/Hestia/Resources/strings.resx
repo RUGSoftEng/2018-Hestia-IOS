@@ -120,6 +120,9 @@
   <data name="activatorsPath" xml:space="preserve">
     <value>activators/</value>
   </data>
+  <data name="addDeviceChooseServerCell" xml:space="preserve">
+    <value>addDeviceChooseServer</value>
+  </data>
   <data name="addDeviceTitle" xml:space="preserve">
     <value>new Add device</value>
   </data>
@@ -137,6 +140,9 @@
   </data>
   <data name="changeNameTitle" xml:space="preserve">
     <value>Change name</value>
+  </data>
+  <data name="defaultNumberOfSections" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="devicePath" xml:space="preserve">
     <value>devices/</value>
