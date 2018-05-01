@@ -190,7 +190,7 @@ namespace Hestia.DevicesScreen
         {
             if (Globals.LocalLogin)
             {
-                Globals.serverToAddDeviceTo = Globals.LocalServerinteractor;
+                Globals.ServerToAddDeviceTo = Globals.LocalServerinteractor;
                 UITableViewControllerAddDevice addDeviceVc =
                     this.owner.Storyboard.InstantiateViewController("AddManufacturer")
                          as UITableViewControllerAddDevice;

@@ -19,7 +19,7 @@ namespace Hestia
         {
             base.ViewDidLoad();
             Globals.LocalLogin = true;
-            Globals.defaultLightGray = TableView.BackgroundColor;
+            Globals.DefaultLightGray = TableView.BackgroundColor;
             LoginUserName.ShouldReturn += TextFieldShouldReturn;
             LoginPassword.ShouldReturn += TextFieldShouldReturn;
 
@@ -52,8 +52,11 @@ namespace Hestia
             {
                 if (LoginUserName.Text == Resources.strings.username && LoginPassword.Text == Resources.strings.password)
                 {
+
                     userDefaults.SetString(LoginUserName.Text, Resources.strings.defaultsUsernameHestia);
                     userDefaults.SetString(LoginPassword.Text, Resources.strings.defaultsUsernameHestia);
+                    Globals.UserName = LoginUserName.Text;
+
                     return true;
                 }
                 else

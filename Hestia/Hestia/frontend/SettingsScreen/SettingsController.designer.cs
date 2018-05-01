@@ -16,13 +16,31 @@ namespace Hestia.DevicesScreen
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITableViewCell logOutButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel serverName { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel userName { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (logOutButton != null) {
+                logOutButton.Dispose ();
+                logOutButton = null;
+            }
+
             if (serverName != null) {
                 serverName.Dispose ();
                 serverName = null;
+            }
+
+            if (userName != null) {
+                userName.Dispose ();
+                userName = null;
             }
         }
     }

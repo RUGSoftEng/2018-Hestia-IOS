@@ -18,9 +18,13 @@ namespace Hestia.DevicesScreen.resources
         public static String ServerName { get; set; }
         public static int Port { get; set; }
         public static String IP { get; set; }
-        public static UIColor defaultLightGray { get; set; }
 
-        public static ServerInteractor serverToAddDeviceTo { get; set; }
+        public static String UserName { get; set; }
+
+        public static UIColor DefaultLightGray { get; set; }
+
+
+        public static ServerInteractor ServerToAddDeviceTo { get; set; }
 
         // In case of Firebase login
         public static List<WebServer> FirebaseServers { get; set; }
