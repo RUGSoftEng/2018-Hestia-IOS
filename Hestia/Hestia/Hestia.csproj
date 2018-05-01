@@ -136,12 +136,7 @@
     <Compile Include="frontend\Firebase\UIViewControllerGlobalLogin.designer.cs">
       <DependentUpon>UIViewControllerGlobalLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Firebase\TableSourceServerDevices.cs" />
     <Compile Include="frontend\Firebase\TableSourceServerList.cs" />
-    <Compile Include="frontend\Firebase\UITableViewControllerServerDevice.cs" />
-    <Compile Include="frontend\Firebase\UITableViewControllerServerDevice.designer.cs">
-	<DependentUpon> UITableViewControllerServerDevice.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\Firebase\UITableViewServerList.cs" />
     <Compile Include="frontend\Firebase\UITableViewServerList.designer.cs">
 	<DependentUpon>UITableViewServerList.cs</DependentUpon>

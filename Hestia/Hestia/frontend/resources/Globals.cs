@@ -45,7 +45,7 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.GetNetworkHandler().Ip, FirebaseServers[0].Interactor.GetNetworkHandler().Port);
+                temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.NetworkHandler.Ip, FirebaseServers[0].Interactor.NetworkHandler.Port);
             }
             return temp_networkhandler;
         }

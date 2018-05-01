@@ -61,20 +61,20 @@ namespace Hestia.DevicesScreen
                 cell = new UITableViewCell(UITableViewCellStyle.Default, CellIdentifier);
             }
 
-            if (TableItems[(indexPath.Row)].Name != "New Device ")
-            {
-                cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
-                cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-                if (TableItems[(indexPath.Row)].Type == "Light")
-                {
-                    cell.ImageView.Image = UIImage.FromBundle("Images/lightbulb");
-                }
-                if(TableItems[(indexPath.Row)].Type == "Lock")
-                {
-                    cell.ImageView.Image = UIImage.FromBundle("Images/lock.png");
-                }
+            //if (TableItems[(indexPath.Row)].Name != "New Device")
+            //{
+            //    cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
+            //    cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
+            //    if (TableItems[(indexPath.Row)].Type == "Light")
+            //    {
+            //        cell.ImageView.Image = UIImage.FromBundle("Images/lightbulb");
+            //    }
+            //    if(TableItems[(indexPath.Row)].Type == "Lock")
+            //    {
+            //        cell.ImageView.Image = UIImage.FromBundle("Images/lock.png");
+            //    }
 
-            }
+            //}
 
             // The text to display on the cell is the device name
             cell.TextLabel.Text = TableItems[(indexPath.Row)].Name;
