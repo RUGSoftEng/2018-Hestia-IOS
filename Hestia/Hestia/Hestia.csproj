@@ -128,14 +128,14 @@
     <Compile Include="frontend\Firebase\UIViewControllerGlobalLogin.designer.cs">
       <DependentUpon>UIViewControllerGlobalLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Firebase\TableSourceServerList.cs" />
-    <Compile Include="frontend\Firebase\UITableViewServerList.cs" />
-    <Compile Include="frontend\Firebase\UITableViewServerList.designer.cs">
-	<DependentUpon>UITableViewServerList.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\SettingsScreen\SettingsController.cs" />
     <Compile Include="frontend\SettingsScreen\SettingsController.designer.cs">
       <DependentUpon>..\..\DevicesScreen\SettingsController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\Firebase\ServerSelectScreen\TableSourceServerList.cs" />
+    <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.cs" />
+    <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
+      <DependentUpon>UITableViewServerList.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -173,6 +173,7 @@
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
     <Folder Include="Resources\Images\" />
     <Folder Include="frontend\SettingsScreen\" />
+    <Folder Include="frontend\Firebase\ServerSelectScreen\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="frontend\" />

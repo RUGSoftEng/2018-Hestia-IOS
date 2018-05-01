@@ -59,7 +59,7 @@ namespace Hestia.DevicesScreen.resources
             NetworkHandler temp_networkhandler;
             if(LocalLogin)
             {
-                temp_networkhandler = new NetworkHandler(Globals.IP, Globals.Port);
+                temp_networkhandler = new NetworkHandler(IP, Port);
             }
             else
             {

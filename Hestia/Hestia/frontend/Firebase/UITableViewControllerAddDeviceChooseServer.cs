@@ -21,8 +21,7 @@ namespace Hestia
 
         public override void ViewDidLoad()
         {
-            base.ViewDidLoad();
-               
+            base.ViewDidLoad(); 
             // Contains methods that describe behavior of table
             TableView.Source = new TableSourceAddDeviceChooseServer(this);
         }
