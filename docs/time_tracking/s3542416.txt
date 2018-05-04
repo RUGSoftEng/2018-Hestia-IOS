@@ -70,3 +70,46 @@ Date Hour Activity
 	17:30	Meeting with part of the group.
 	18:00	Meeting with part of the group.
 	18:30	Meeting with part of the group.
+
+16/4/18 10:00 Creating the list of servers for Auth Zero.
+	10:30 Creating the list of servers for Auth Zero.
+	11:00 Creating the list of servers for Auth Zero.
+
+17/4/18 9:00 Server multiple choice.
+	9:30 Server multiple choice.
+	10:00 Server multiple choice.
+	10:30 Server multiple choice.
+	11:00 Server multiple choice.
+
+19/4/18 11:00 Server multiple choice.
+	11:30 Server multiple choice.
+	12:00 Server multiple choice.
+	12:30 Server multiple choice.
+
+24/4/18 9:00 Adding screen to not local login.
+	9:30 Adding screen to not local login.
+	10:00 Adding screen to not local login.
+	10:30 Adding screen to not local login.
+	11:00 Adding screen to not local login.
+
+26/4/18 9:00 Adding screen to not local login.
+	9:30 Adding screen to not local login.
+	10:00 Adding screen to not local login.
+	15:00 Meeting with the group.
+	15:30 Meeting with the group.
+	16:00 Meeting with the group.
+
+30/4/18 9:30 Creating the new edit device screen.
+	10:00 Creating the new edit device screen.
+	10:30 Adding pull to refresh to device list.
+	11:00 Adding pull to refresh to device list.
+
+3/4/18 9:00 Meeting with the group.
+	9:30 Meeting with the group.
+	10:00 Meeting with the group.
+	10:30 Meeting with the group.
+
+4/4/18 9:00 Adding accessory to add device.
+	9:30 Adding accessory to add device.
+	10:00 Adding accessory to add device.
+	10:30 Adding accessory to add device.

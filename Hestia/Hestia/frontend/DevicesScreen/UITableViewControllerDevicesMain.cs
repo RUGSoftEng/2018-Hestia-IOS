@@ -18,6 +18,8 @@ namespace Hestia.DevicesScreen
 
         List<Device> devices = new List<Device>();
 
+
+
         // Constructor
         public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
         {
@@ -72,9 +74,22 @@ namespace Hestia.DevicesScreen
                 this.setEditingState();
             });
 
+            //Pull to refresh
+            RefreshControl = new UIRefreshControl();
+            RefreshControl.ValueChanged += refreshTable;
+            TableView.Add(RefreshControl);
+
             // Set right button initially to edit 
             NavigationItem.RightBarButtonItem = edit;
          
+        }
+
+        //Method Pull to refresh
+        private void refreshTable(object sender, EventArgs e)
+        {
+            RefreshControl.BeginRefreshing();
+            RefreshControl.EndRefreshing();
+            TableView.ReloadData();
         }
     }
 }
