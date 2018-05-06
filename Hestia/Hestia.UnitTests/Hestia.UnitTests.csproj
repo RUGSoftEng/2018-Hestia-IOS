@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="backend\authentication\Auth0Tests.cs" />
     <Compile Include="backend\exceptions\ServerInteractionExceptionTests.cs" />
     <Compile Include="backend\models\ActivatorStateTests.cs" />
     <Compile Include="backend\models\ActivatorTests.cs" />
