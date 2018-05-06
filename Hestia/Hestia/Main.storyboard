@@ -27,9 +27,7 @@
                                 <state key="normal" title="Sign in">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <action selector="ButtonPressed:" destination="BYZ-38-t0r" id="22178"/>
-                                </connections>
+                                <connections/>
                                 <constraints>
                                     <constraint id="13352" firstItem="203" firstAttribute="height" constant="40"/>
                                 </constraints>
@@ -108,7 +106,7 @@
         <!--Devices2-->
         <scene sceneID="4844">
             <objects>
-                <viewControllerPlaceholder storyboardName="Devices2" id="4845" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Devices2" id="4845" sceneMemberID="viewController" referencedIdentifier="navigationDevicesMain"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4846" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-593" y="11"/>
@@ -182,7 +180,7 @@
         </scene>
         <scene sceneID="19562">
             <objects>
-                <viewControllerPlaceholder id="19563" sceneMemberID="viewController" storyboardName="Devices2" referencedIdentifier="DevicesMainViewController"/>
+                <viewControllerPlaceholder id="19563" sceneMemberID="viewController" storyboardName="Devices2"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19564" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-487" y="91"/>

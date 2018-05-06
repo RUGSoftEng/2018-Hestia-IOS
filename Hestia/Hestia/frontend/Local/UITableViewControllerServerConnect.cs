@@ -54,30 +54,21 @@ namespace Hestia.DevicesScreen
             newServerName.BecomeFirstResponder();
         }
 
-		public override void ViewDidAppear(bool animated)
-		{
-            base.ViewDidAppear(animated);
-            if (defaultServerName != null && defaultIP != null && defaultPort != null)
-            {
-                if (ShouldPerformSegue(Resources.strings.serverConnectToDevicesSegue, this))
-                {
-                    PerformSegue(Resources.strings.serverConnectToDevicesSegue, this);
-                }
-            }
-		}
-
-		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
-		{
-            base.PrepareForSegue(segue, sender);
-            Globals.LocalLogin = true;
-		}
 
 		public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
             bool validIp = false;
 
-            validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
-
+            try
+            {
+                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+            }
+            catch (Exception exception)
+            {
+                Console.Write(exception.StackTrace);
+                displayWarningMessage();
+                return false;
+            }
             if (validIp)
             {
                 userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);

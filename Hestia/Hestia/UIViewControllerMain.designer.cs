@@ -18,10 +18,6 @@ namespace Hestia
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton LocalSignInButton { get; set; }
 
-        [Action ("ButtonPressed:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void ButtonPressed (UIKit.UIButton sender);
-
         void ReleaseDesignerOutlets ()
         {
             if (LocalSignInButton != null) {
