@@ -33,15 +33,7 @@ namespace Hestia.backend
         public List<Device> GetDevices()
         {
             JToken payload = null;
-
-            try
-            {
-                payload = networkHandler.Get(strings.devicePath);
-            }
-            catch(ServerInteractionException ex)
-            {
-                throw ex;
-            }
+            payload = networkHandler.Get(strings.devicePath);
 
             DeviceDeserializer deserializer = new DeviceDeserializer();
             var devices = deserializer.DeserializeDevices(payload, networkHandler);
@@ -52,43 +44,21 @@ namespace Hestia.backend
         public void AddDevice(PluginInfo info)
         {
             JObject deviceInfo = JObject.FromObject(info);
-
-            try
-            {
-                networkHandler.Post(deviceInfo, strings.devicePath);
-            }
-            catch(ServerInteractionException)
-            {
-                throw;
-            }
+            networkHandler.Post(deviceInfo, strings.devicePath);
+            
         }
 
         public void RemoveDevice(Device device)
         {
             string endpoint = strings.devicePath + device.DeviceId;
-
-            try
-            {
-                networkHandler.Delete(endpoint);
-            }
-            catch(ServerInteractionException)
-            {
-                throw;
-            }
+            networkHandler.Delete(endpoint);
         }
 
         public List<string> GetCollections()
         {
             JToken payload = null;
-
-            try
-            {
-                payload = networkHandler.Get(strings.pluginsPath);
-            }
-            catch(ServerInteractionException)
-            {
-                throw;
-            } 
+            payload = networkHandler.Get(strings.pluginsPath);
+            
 
             List<string> collections = payload.ToObject<List<string>>();
             return collections;
@@ -98,15 +68,7 @@ namespace Hestia.backend
         {
             string endpoint = strings.pluginsPath + collection + "/";
             JToken payload = null;
-
-            try
-            {
-                payload = networkHandler.Get(endpoint);
-            }
-            catch(ServerInteractionException)
-            {
-                throw;
-            }
+            payload = networkHandler.Get(endpoint);
 
             List<string> plugins = payload.ToObject<List<string>>();
             return plugins;
@@ -117,16 +79,8 @@ namespace Hestia.backend
             string pluginsPath = strings.pluginsPath;
             string endpoint = pluginsPath + collection + "/" + pluginsPath + plugin;
             JToken payload = null;
-
-            try
-            {
-                payload = networkHandler.Get(endpoint);
-            }
-            catch(ServerInteractionException)
-            {
-                throw;
-            }
-
+            payload = networkHandler.Get(endpoint);
+            
             PluginInfo info = payload.ToObject<PluginInfo>();
             return info;
         }
