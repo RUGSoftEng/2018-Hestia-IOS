@@ -38,9 +38,9 @@ namespace Hestia.backend
             {
                 payload = networkHandler.Get(strings.devicePath);
             }
-            catch(ServerInteractionException)
+            catch(ServerInteractionException ex)
             {
-                throw;
+                throw ex;
             }
 
             DeviceDeserializer deserializer = new DeviceDeserializer();
