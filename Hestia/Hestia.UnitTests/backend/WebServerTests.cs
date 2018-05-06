@@ -41,13 +41,16 @@ namespace Hestia.UnitTests.backend
             dummyServer.Interactor = dummyServerInteractor;
             Assert.IsTrue(dummyServer.Interactor.Equals(dummyServerInteractor));
         }
-        
+
         [TestMethod]
         public void GetServerInteractor()
         {
-            // This test will fail because there has not been a good .Equals implemented for the interactor and handler.
+            NetworkHandler dummyNetworkHandler = new NetworkHandler(ip, port);
+            ServerInteractor dummyServerInteractor = new ServerInteractor(dummyNetworkHandler);
+            dummyServer.Interactor = dummyServerInteractor;
             ServerInteractor testInteractor = dummyServer.Interactor;
-            Assert.IsTrue(dummyServer.Interactor.Equals(testInteractor));
+            Assert.IsTrue(testInteractor.NetworkHandler.Ip == dummyServer.Interactor.NetworkHandler.Ip);
+            Assert.IsTrue(testInteractor.NetworkHandler.Port == dummyServer.Interactor.NetworkHandler.Port);
         }
     }
 }
