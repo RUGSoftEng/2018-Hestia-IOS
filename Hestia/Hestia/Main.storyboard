@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController" customClass="UIViewControllerMain">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -28,7 +28,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="4845" kind="show" id="5095"/>
+                                    <action selector="ButtonPressed:" destination="BYZ-38-t0r" id="22178"/>
                                 </connections>
                                 <constraints>
                                     <constraint id="13352" firstItem="203" firstAttribute="height" constant="40"/>
@@ -95,6 +95,11 @@
                             <constraint id="16997" firstItem="8bC-Xf-vdC" firstAttribute="trailingMargin" secondItem="10460" secondAttribute="trailing" constant="4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue id="20703" destination="19563" kind="presentation" identifier="mainToServerConnect"/>
+                        <segue id="20796" destination="4845" kind="presentation" identifier="mainToDevicesMain"/>
+                        <outlet property="LocalSignInButton" destination="203" id="name-outlet-203"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +111,7 @@
                 <viewControllerPlaceholder storyboardName="Devices2" id="4845" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4846" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="423" y="-28"/>
+            <point key="canvasLocation" x="-593" y="11"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6425">
@@ -174,6 +179,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11024" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="326" y="838"/>
+        </scene>
+        <scene sceneID="19562">
+            <objects>
+                <viewControllerPlaceholder id="19563" sceneMemberID="viewController" storyboardName="Devices2" referencedIdentifier="DevicesMainViewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="19564" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-487" y="91"/>
         </scene>
     </scenes>
     <resources>

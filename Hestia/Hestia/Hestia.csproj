@@ -136,6 +136,10 @@
     <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
       <DependentUpon>UITableViewServerList.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIViewControllerMain.cs" />
+    <Compile Include="UIViewControllerMain.designer.cs">
+      <DependentUpon>UIViewControllerMain.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />

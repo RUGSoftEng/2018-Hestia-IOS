@@ -13,6 +13,9 @@ namespace Hestia.DevicesScreen
     public partial class UITableViewControllerServerConnect : UITableViewController
     {
         NSUserDefaults userDefaults;
+        string defaultServerName;
+        string defaultIP;
+        string defaultPort;
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
         {
@@ -21,6 +24,24 @@ namespace Hestia.DevicesScreen
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            userDefaults = NSUserDefaults.StandardUserDefaults;
+            defaultServerName = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
+            defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
+            defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
+
+            if (defaultServerName != null)
+            {
+                newServerName.Text = defaultServerName;
+            }
+            if (defaultIP != null)
+            {
+                newIP.Text = defaultIP;
+            }
+            if (defaultPort != null)
+            {
+                newPort.Text = defaultPort;
+            }
 
             newServerName.ShouldReturn += TextFieldShouldReturn;
             newIP.ShouldReturn += TextFieldShouldReturn;
@@ -31,43 +52,32 @@ namespace Hestia.DevicesScreen
             newPort.Tag = 3;
 
             newServerName.BecomeFirstResponder();
-
-            userDefaults = NSUserDefaults.StandardUserDefaults;
-            var defaultServerName = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
-            if (defaultServerName != null)
-            {
-                newServerName.Text = defaultServerName;
-                newServerName.Placeholder = defaultServerName;
-            }
-
-            var defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
-            if (defaultIP != null)
-            {
-                newIP.Text = defaultIP;
-                newIP.Placeholder = defaultIP;
-            }
-            var defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
-            if (defaultPort != null)
-            {
-                newPort.Text = defaultPort;
-                newPort.Placeholder = defaultPort;
-            }
         }
 
-        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+		public override void ViewDidAppear(bool animated)
+		{
+            base.ViewDidAppear(animated);
+            if (defaultServerName != null && defaultIP != null && defaultPort != null)
+            {
+                if (ShouldPerformSegue(Resources.strings.serverConnectToDevicesSegue, this))
+                {
+                    PerformSegue(Resources.strings.serverConnectToDevicesSegue, this);
+                }
+            }
+		}
+
+		public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
+		{
+            base.PrepareForSegue(segue, sender);
+            Globals.LocalLogin = true;
+		}
+
+		public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
             bool validIp = false;
 
-            try
-            {
-                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
-            }
-            catch (Exception exception)
-            {
-                Console.Write(exception.StackTrace);
-                displayWarningMessage();
-                return false;
-            }
+            validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+
             if (validIp)
             {
                 userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
