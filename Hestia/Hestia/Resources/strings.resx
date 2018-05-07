@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="activatorCell" xml:space="preserve">
+    <value>activatorcell</value>
+  </data>
   <data name="activatorsPath" xml:space="preserve">
     <value>activators/</value>
+  </data>
+  <data name="addDeviceChooseServerCell" xml:space="preserve">
+    <value>servercelladddevice</value>
   </data>
   <data name="addDeviceTitle" xml:space="preserve">
     <value>new Add device</value>
@@ -138,8 +144,38 @@
   <data name="changeNameTitle" xml:space="preserve">
     <value>Change name</value>
   </data>
+  <data name="defaultNumberOfSections" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="defaultNumberOfServers" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="defaultPort" xml:space="preserve">
+    <value>8000</value>
+  </data>
+  <data name="defaultsIpHestia" xml:space="preserve">
+    <value>ipHestia</value>
+  </data>
+  <data name="defaultsPasswordHestia" xml:space="preserve">
+    <value>passwordHestia</value>
+  </data>
+  <data name="defaultsPortHestia" xml:space="preserve">
+    <value>portHestia</value>
+  </data>
+  <data name="defaultsServerNameHestia" xml:space="preserve">
+    <value>servernameHestia</value>
+  </data>
+  <data name="defaultsUsernameHestia" xml:space="preserve">
+    <value>usernameHestia</value>
+  </data>
   <data name="devicePath" xml:space="preserve">
     <value>devices/</value>
+  </data>
+  <data name="devicesMainCell" xml:space="preserve">
+    <value>tableCell</value>
+  </data>
+  <data name="deviceTypeCell" xml:space="preserve">
+    <value>tableCellDeviceType</value>
   </data>
   <data name="errorMessage" xml:space="preserve">
     <value>An error occurred</value>
@@ -156,11 +192,26 @@
   <data name="initialCount" xml:space="preserve">
     <value>10</value>
   </data>
+  <data name="ipDaan" xml:space="preserve">
+    <value>94.212.164.28</value>
+  </data>
   <data name="ipOfServer" xml:space="preserve">
     <value>IP_OF_SERVER</value>
   </data>
   <data name="loginPath" xml:space="preserve">
     <value>login</value>
+  </data>
+  <data name="loginToConnectSegue" xml:space="preserve">
+    <value>loginToConnect</value>
+  </data>
+  <data name="manufacturerCell" xml:space="preserve">
+    <value>tableCellManufacturer</value>
+  </data>
+  <data name="newDeviceName" xml:space="preserve">
+    <value>New Device</value>
+  </data>
+  <data name="password" xml:space="preserve">
+    <value>admin</value>
   </data>
   <data name="pluginPathFront" xml:space="preserve">
     <value>plugins</value>
@@ -171,11 +222,23 @@
   <data name="pluginsPathMid" xml:space="preserve">
     <value>plugins</value>
   </data>
+  <data name="propertyCell" xml:space="preserve">
+    <value>tableCellProperty</value>
+  </data>
+  <data name="requestTimeout" xml:space="preserve">
+    <value>2000</value>
+  </data>
   <data name="searching" xml:space="preserve">
     <value>Searching...</value>
   </data>
   <data name="server" xml:space="preserve">
     <value>server</value>
+  </data>
+  <data name="serverCell" xml:space="preserve">
+    <value>servercell</value>
+  </data>
+  <data name="serverConnectToDevicesSegue" xml:space="preserve">
+    <value>ServerToDevices</value>
   </data>
   <data name="serverFound" xml:space="preserve">
     <value>Server Found:</value>
@@ -194,6 +257,9 @@
   </data>
   <data name="toggleRank" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="username" xml:space="preserve">
+    <value>admin</value>
   </data>
   <data name="versionTooLow" xml:space="preserve">
     <value>Android version too low</value>

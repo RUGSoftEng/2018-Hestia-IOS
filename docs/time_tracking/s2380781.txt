@@ -100,5 +100,129 @@ Working with team on app. Working on log-in screen. Delegated it to Geanne when 
 Working with team on app. Working on log-in screen. Delegated it to Geanne when she arrived. First tried Monotouch.dialog but was not good.
 Working with team on app. Helping Juanjo with device edit screen
 Working with team on app. Helping Geanne with log-in screen
-
-
+Updated architecture document with new description of device screen tap action
+Working on devices screen, trying to fix bug in switches 
+Working on devices screen, trying to fix bug in switches 
+Working on devices screen, still trying to fix bug in switches
+Working on devices screen, still trying to fix bug in switches (turned out to be in back end part)
+Working on front end presentation contents
+Fixing indentation in connect to server screen (such that is can be displayed on smaller screen also)
+Working on front end presentation contents and slides
+Working on front end presentation contents and slides
+Implementing remove device from server functionality
+Working on add device screen (manufacturer and device type)
+Working on add device screen (manufacturer and device type)
+Working on add device screen (manufacturer and device type)
+Working on add device screen (manufacturer and device type)
+Working on add device screen (manufacturer and device type)
+Working on add device screen (manufacturer and device type)
+Working on add device screen (properties screen)
+Working on add device screen (properties screen)
+Working on add device screen (properties screen)
+Working out meeting notes 27&28 March + uploading backlog
+Review PR Zino + adding screenshots to presentation
+Adding screenshots to presentation
+Working on add devices screen. Fixed loading collection list
+Working on add devices screen. Fixed loading collection list
+Working on add devices property screen.
+Trying to get a textfield in cell for properties screen
+Editing presentation
+Repeating presentation content + made the demo movie
+Repeating presentation content + made the demo movie
+Rehearsing presentation with Jur and Andrei
+Rehearsing presentation with Jur and Andrei
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Working on add device screen, properties screen
+Code cleanup devices screen + fixing comments Feiko
+Editing accessory in devices screen with edit devices window
+Editing accessory in devices screen with edit devices window
+Editing accessory in devices screen with edit devices window
+Editing accessory in devices screen with edit devices window
+Editing accessory in devices screen with edit devices window
+Reading about testing of app on device (device provisioning)
+Fixing Feiko’s  feedback in devices screen
+Filling in peer review + discussions on slack
+Filling in peer review + discussions on slack
+Writing introduction architecture document and other small additions/fixes
+Writing introduction architecture document and other small additions/fixes
+Meeting with team
+Meeting with team and Lars and Feiko
+Meeting with team
+Working out meeting notes + sending email to Lars
+Trying to get the app on my iPhone with iMacs in Bernoulliborg + sending email to Remco Wouts
+Device bundling in devices main screen + structuring folders of front end
+Device bundling in devices main screen + structuring folders of front end
+Device bundling in devices main screen + structuring folders of front end
+Device bundling + fix disclosure indicator for cells in editing mode
+Device bundling + fix disclosure indicator for cells in editing mode
+Device bundling + fix disclosure indicator for cells in editing mode
+Review PR Daan + creating and adding app icons
+Review PR Daan + creating and adding app icons
+Creating launch screen
+Creating local login + testing if all front end functionality still works
+Creating local login + testing if all front end functionality still works
+Preparing the app for Deployment. Removed hardcode server. Redirected settings screen back to login/ server connect.
+Preparing the app for Deployment. Removed hardcode server. Redirected settings screen back to login/ server connect.
+Preparing the app for Deployment. Removed hardcode server. Redirected settings screen back to login/ server connect.
+Preparing the app for Deployment. Removed hardcode server. Redirected settings screen back to login/ server connect.
+Preparing the app for Deployment. Removed hardcode server. Redirected settings screen back to login/ server connect.
+Preparing the app for Deployment. Removed hardcode server. Redirected settings screen back to login/ server connect.
+Creating PR for the deployment fixes + discussion on Slack
+Helping Juan with Github + fixing double line bug
+Fixing double line bug + exception checking with pingServer in ServerConnectScreen + code cleanup (tableViewControllers) + making Trello cards
+Fixing double line bug + exception checking with pingServer in ServerConnectScreen + code cleanup (tableViewControllers) + making Trello cards
+Fixing double line bug + exception checking with pingServer in ServerConnectScreen + code cleanup (tableViewControllers) + making Trello cards
+Fixing double line bug + exception checking with pingServer in ServerConnectScreen + code cleanup (tableViewControllers) + making Trello cards
+Fixing double line bug + exception checking with pingServer in ServerConnectScreen + code cleanup (tableViewControllers) + making Trello cards
+Fixing double line bug + exception checking with pingServer in ServerConnectScreen + code cleanup (tableViewControllers) + making Trello cards
+Fixing double line bug + exception checking with pingServer in ServerConnectScreen + code cleanup (tableViewControllers) + making Trello cards
+Fixing double line bug + exception checking with pingServer in ServerConnectScreen + code cleanup (tableViewControllers) + making Trello cards
+Putting app on Lars’s iPhone + working on remembering entered login and server
+Putting app on Lars’s iPhone + working on remembering entered login and server
+Meeting with team 
+Meeting with team + helping Juan with Github
+Updating requirements document
+Updating requirements document
+Updating requirements document
+Updating requirements document
+Cleaning code in login and connect screen
+Looking at bug cleaning secure textfield
+Looking at bug cleaning secure textfield
+Updating virtual machine with Sierra 10.13.4 and xcode 9.3 (had to install new virtual machine because it couldn’t update)
+Updating virtual machine with Sierra 10.13.4 and xcode 9.3 (had to install new virtual machine because it couldn’t update)
+Updating virtual machine with Sierra 10.13.4 and xcode 9.3 (had to install new virtual machine because it couldn’t update)
+Reading about UI testing and re-installing virtual machine
+Reading about UI testing and re-installing virtual machine
+Reading about UI testing and re-installing virtual machine
+Reading about UI testing and re-installing virtual machine
+Reading about UI testing and re-installing virtual machine
+Reading about UI testing and fixing login screen
+Reviewing PRs + resolve merge conflict login screen
+Added the serverlist files to project, integrating it with other parts of server bundling
+Integrating server bundling in main devices screen / add devices screen
+Integrating server bundling in main devices screen / add devices screen
+Integrating server bundling in main devices screen / add devices screen
+Reviewed PRs deleted old branches
+Fixed .designer.cs dependencies in Juan’s files + integrating select Firebase servers with the other screens
+Fixed .designer.cs dependencies in Juan’s files + integrating select Firebase servers with the other screens
+Fixed .designer.cs dependencies in Juan’s files + integrating select Firebase servers with the other screens
+Group devices by server
+Group devices by server
+Group devices by server, adding section headers
+Group devices by server, adding section headers
+Code cleanup device main tablesource
+Code cleanup device main tablesource
+Smooth through server connect screen
+Smooth through login + fix Feiko’s comments
+Smooth through login + fix Feiko’s comments
+Replacing constants by resources
+Replacing constants by resources

@@ -25,3 +25,25 @@ Coding deserializers
 Coding deserializers
 Coding deserializers
 Reviewing code
+making presentation slides
+preparing presentation
+preparing presentation
+meeting before presentation
+meeting before presentation
+attending presentations
+attending presentations
+attending presentations
+attending presentations
+attending presentations
+attending presentations
+presenting
+meeting to discuss what to do before sprint 4
+meeting to discuss what to do before sprint 4
+working on architecture document
+attending meeting
+attending meeting
+attending meeting
+producing unit tests
+producing unit tests
+attempting to install virtualbox with macOS
+attempting to install virtualbox with macOS

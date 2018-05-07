@@ -40,3 +40,70 @@ working with andrei on settings screen
 working with andrei on settings screen
 finalizing settings screen with front end in place but no functionality yet
 added a devices list to the table view with help of network handler
+Meeting with team 28-03
+Meeting with team 28-03
+Meeting with team 28-03
+Solving bugs with andrei and zino
+Solving bugs with andrei and zino
+Creating server connection screens with andrei
+Creating server connection screens with andrei
+Creating server connection screens with andrei
+Figuring out how to pass variables between screens with andrei
+Figuring out how to pass variables between screens with andrei
+Figuring out how to pass variables between screens 
+Figuring out how to pass variables between screens
+Figuring out how to manually code to go to next segue
+Figuring out how to manually code to go to next segue
+Figuring out how to manually code to go to next segue
+Figuring out how to manually code to go to next segue
+finalized connection screen + added global variables class for device screens
+finalized connection screen + added global variables class for device screens
+fixing csproj
+fixing csproj
+Researching implemtation of 2 different lists in table view
+Researching implemtation of 2 different lists in table view
+Researching implemtation of 2 different lists in table view
+Not a single solution applicable to our problem.
+Understanding marks' tableview implementation
+Understanding marks' tableview implementation
+Understanding marks' tableview implementation
+This made it easy to implement a new activator screen
+implementing the new screen
+implementing the new screen
+implementing the new screen
+implementing the new screen
+bugfixing the screen
+bugfixing the screen
+finished an unpolished device activator screen
+meeting with team
+meeting with team
+meeting with team
+meeting with team
+Making a design for login screen
+Making a design for login screen
+Making a design for login screen
+Making a design for login screen
+Making a design for login screen
+Making a design for login screen
+Researching how to let sliders move slower
+Researching how to let sliders move slower
+Researching how to let sliders move slower
+Trying to figure out how cancellation tokens work
+Trying to figure out how cancellation tokens work
+Trying to figure out how cancellation tokens work
+Trying to add it to the code
+Trying to add it to the code
+Noticed the slider value changed is only updating every 200ms this made the cancellation token useless
+Touch upinside easy fix
+Touch upinside easy fix
+Figuring out how to import images in code
+Figuring out how to import images in code
+Figuring out how to import images in code
+Finding ok images.
+Putting them in the cell.
+Introduced an indentation bug.
+Looking for possible fixes
+Looking for possible fixes
+Nothing online.
+Tried to scan the code but nothing that would seemingly indent twice.
+Tried to scan the code but nothing that would seemingly indent twice.
