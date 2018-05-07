@@ -264,4 +264,7 @@
   <data name="versionTooLow" xml:space="preserve">
     <value>Android version too low</value>
   </data>
+  <data name="clientId" xml:space="preserve">
+    <value />
+  </data>
 </root>

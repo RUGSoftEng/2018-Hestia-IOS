@@ -10,8 +10,8 @@ namespace Hestia.backend.authentication
         {
             Auth0Client client = new Auth0Client(new Auth0ClientOptions
             {
-                Domain = "hestio.eu.auth0.com",
-                ClientId = "_1wsVGXJbkEm8kwcueB5seyxm37E1rWl",
+                Domain = "https://hest.io",
+                ClientId = Resources.strings.clientId,
                 Controller = uIViewController
             });
             return client;

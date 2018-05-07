@@ -21,7 +21,7 @@ namespace Hestia
 		public override void ViewDidLoad()
 		{
             base.ViewDidLoad();
-            GetLoginResult();
+            Task<LoginResult> loginResult = GetLoginResult();
 
 		}
 
