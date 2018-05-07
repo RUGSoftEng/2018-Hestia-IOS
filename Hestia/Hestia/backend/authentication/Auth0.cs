@@ -7,7 +7,7 @@ namespace Hestia.backend.authentication
     {
         public Auth0Client CreateAuthClient(UITableViewController uITableViewController)
         {
-            var client = new Auth0Client(new Auth0ClientOptions
+            Auth0Client client = new Auth0Client(new Auth0ClientOptions
             {
                 Domain = "hestio.eu.auth0.com",
                 ClientId = "_1wsVGXJbkEm8kwcueB5seyxm37E1rWl",
