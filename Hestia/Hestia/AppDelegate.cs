@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using UIKit;
+using Auth0.OidcClient;
 
 namespace Hestia
 {
@@ -55,5 +56,11 @@ namespace Hestia
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
-    }
+
+		public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+		{
+            ActivityMediator.Instance.Send(url.AbsoluteString);
+            return true;
+		}
+	}
 }
