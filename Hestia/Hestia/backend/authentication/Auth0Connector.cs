@@ -10,9 +10,10 @@ namespace Hestia.backend.authentication
         {
             Auth0Client client = new Auth0Client(new Auth0ClientOptions
             {
-                Domain = "https://hest.io",
+                Domain = Resources.strings.domainAuth0,
                 ClientId = Resources.strings.clientId,
-                Controller = uIViewController
+                Controller = uIViewController,
+                Scope = "openid"
             });
             return client;
         }
