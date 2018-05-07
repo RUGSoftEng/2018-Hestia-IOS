@@ -1,17 +1,18 @@
-﻿using Auth0.OidcClient;
+﻿using System.Threading;
+using Auth0.OidcClient;
 using UIKit;
 
 namespace Hestia.backend.authentication
 {
-    public class Auth0
+    public class Auth0Connector
     {
-        public Auth0Client CreateAuthClient(UITableViewController uITableViewController)
+        public static Auth0Client CreateAuthClient(UIViewController uIViewController)
         {
             var client = new Auth0Client(new Auth0ClientOptions
             {
                 Domain = "hestio.eu.auth0.com",
                 ClientId = "_1wsVGXJbkEm8kwcueB5seyxm37E1rWl",
-                Controller = uITableViewController
+                Controller = uIViewController
             });
             return client;
         }

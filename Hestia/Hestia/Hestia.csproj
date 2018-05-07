@@ -64,7 +64,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="backend\authentication\Auth0.cs" />
+    <Compile Include="backend\authentication\Auth0Connector.cs" />
     <Compile Include="backend\exceptions\ServerInteractionException.cs" />
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
@@ -137,6 +137,10 @@
     <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.cs" />
     <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
       <DependentUpon>UITableViewServerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITableViewControllerMainLogin.cs" />
+    <Compile Include="UITableViewControllerMainLogin.designer.cs">
+      <DependentUpon>UITableViewControllerMainLogin.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
