@@ -1,28 +1,19 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Runtime.Remoting;
-
-using Hestia.backend.exceptions;
-using Hestia.backend.models;
+﻿using Hestia.backend.models;
 using Hestia.backend.models.deserializers;
 using Hestia.Resources;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Hestia.backend
 {
     public class ServerInteractor
     {
         private NetworkHandler networkHandler;
-      
+
         public NetworkHandler NetworkHandler
         {
-            get
-            {
-                return networkHandler;
-            }
-            set
-            {
-                networkHandler = value;
-            }
+            get => networkHandler;
+            set => networkHandler = value;
         }
 
         public ServerInteractor(NetworkHandler networkHandler)
@@ -45,7 +36,6 @@ namespace Hestia.backend
         {
             JObject deviceInfo = JObject.FromObject(info);
             networkHandler.Post(deviceInfo, strings.devicePath);
-            
         }
 
         public void RemoveDevice(Device device)
@@ -59,7 +49,6 @@ namespace Hestia.backend
             JToken payload = null;
             payload = networkHandler.Get(strings.pluginsPath);
             
-
             List<string> collections = payload.ToObject<List<string>>();
             return collections;
         }
