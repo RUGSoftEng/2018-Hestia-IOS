@@ -31,13 +31,28 @@ namespace Hestia.backend.utils.server_discovery
             UpdateUI();
         }
 
-        public void NetServiceBrowser(NSNetServiceBrowser browser, NSDictionary errorDict)
+        public void NetServiceBrowserDidNotSearch(NSNetServiceBrowser browser, NSDictionary errorDict)
         {
             Searching = false;
             HandleError(errorDict);
         }
 
+        public void NetServiceBrowserDidFindServiceMoreComing(NSNetServiceBrowser browser, 
+            NSNetService aNetService, bool moreComing)
+        {
+            Services.Add(aNetService);
+            if(!moreComing)
+            {
+                UpdateUI();
+            }
+        }
 
+        public void NetServiceBrowserDidRemoveServiceMoreComing(NSNetServiceBrowser browser,
+            NSNetService aNetService, bool moreComing)
+        {
+            nint idx = (nint) Services.IndexOf(aNetService);
+            Services.RemoveObject(idx);
+        }
 
         public void HandleError(NSDictionary errorDict)
         {
