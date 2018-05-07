@@ -2,6 +2,7 @@
 using System.Collections;
 using UIKit;
 using Hestia.backend.models;
+using Hestia.backend.exceptions;
 using System.Collections.Generic;
 using Foundation;
 
@@ -37,7 +38,19 @@ namespace Hestia.DevicesScreen
                 DeviceSwitch.On = (bool)act.State.RawState;
                 DeviceSwitch.ValueChanged += delegate (object sender, EventArgs e)
                 {
-                    act.State = new ActivatorState(DeviceSwitch.On, "bool");
+                    try 
+                    {
+                        act.State = new ActivatorState(DeviceSwitch.On, "bool");
+                    } catch(ServerInteractionException ex) {
+                        Console.WriteLine("Exception while changing activator state");
+                        Console.WriteLine(ex.ToString());
+
+                        string title = "Could not change activator state";
+                        string message = "Exception while changing activator state";
+                        var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+                        okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                        PresentViewController(okAlertController, true, null);
+                    }
                 };
                 // Replace the cell's AccessoryView with the new UISwitch
                 cell.AccessoryView = DeviceSwitch;

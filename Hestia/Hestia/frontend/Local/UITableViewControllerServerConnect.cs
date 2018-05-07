@@ -91,13 +91,11 @@ namespace Hestia.DevicesScreen
 
         public void displayWarningMessage()
         {
-            UIAlertView alert = new UIAlertView()
-            {
-                Title = "Could not connect to server",
-                Message = "Invalid server information"
-            };
-            alert.AddButton("OK");
-            alert.Show();
+            string title = "Could not connect to server";
+            string message = "Invalid server information";
+            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            PresentViewController(okAlertController, true, null);
             connectButton.Selected = false;
         }
 
