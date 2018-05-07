@@ -264,7 +264,13 @@
   <data name="versionTooLow" xml:space="preserve">
     <value>Android version too low</value>
   </data>
+  <data name="apiURL" xml:space="preserve">
+    <value>https://hest.io</value>
+  </data>
   <data name="clientId" xml:space="preserve">
-    <value />
+    <value>_1wsVGXJbkEm8kwcueB5seyxm37E1rWl</value>
+  </data>
+  <data name="domainAuth0" xml:space="preserve">
+    <value>hestio.eu.auth0.com</value>
   </data>
 </root>

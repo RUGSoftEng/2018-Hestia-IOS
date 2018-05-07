@@ -26,7 +26,7 @@ namespace Hestia
 		}
 
         public async Task<LoginResult> GetLoginResult() {
-            var loginResult = await client.LoginAsync();
+            var loginResult = await client.LoginAsync(new { audience = Resources.strings.apiURL});
             if (loginResult.IsError)
             {
                 Debug.WriteLine($"An error occurred during login: {loginResult.Error}");
