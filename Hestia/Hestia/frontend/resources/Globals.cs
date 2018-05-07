@@ -32,11 +32,11 @@ namespace Hestia.DevicesScreen.resources
         public static List<ServerInteractor> GetSelectedServers()
         {
             List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
-            foreach(WebServer firebaseserver in Auth0Servers)
+            foreach(WebServer auth0server in Auth0Servers)
             {
-                if(firebaseserver.Selected)
+                if(auth0server.Selected)
                 {
-                    serverInteractors.Add(firebaseserver.Interactor);
+                    serverInteractors.Add(auth0server.Interactor);
                 }
             }
             return serverInteractors;
