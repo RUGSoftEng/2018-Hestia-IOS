@@ -14,11 +14,12 @@ namespace Hestia.backend.utils.server_discovery
         {
             // Setup of the service browser.
             NSNetServiceBrowser browser = new NSNetServiceBrowser();
-            NSNetServiceDelegate @delegate = new NSNetServiceDelegate();
+            ServerDelegate @delegate = new ServerDelegate();
             browser.Init();
             browser.Delegate = (INSNetServiceBrowserDelegate) @delegate;
             
             browser.SearchForServices("_hestia._tcp", @"local");
+            return null;
         }
     }
 }
