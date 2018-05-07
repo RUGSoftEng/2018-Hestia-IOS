@@ -5,6 +5,7 @@ using Hestia.backend.authentication;
 using Auth0.OidcClient;
 using System.Threading.Tasks;
 using IdentityModel.OidcClient;
+using System.Diagnostics;
 
 namespace Hestia
 {
@@ -26,7 +27,15 @@ namespace Hestia
 
         public async Task<LoginResult> GetLoginResult() {
             var loginResult = await client.LoginAsync();
-
+            if (loginResult.IsError)
+            {
+                Debug.WriteLine($"An error occurred during login: {loginResult.Error}");
+            }
+            else
+            {
+                Debug.WriteLine($"id_token: {loginResult.IdentityToken}");
+                Debug.WriteLine($"access_token: {loginResult.AccessToken}");
+            }
         }
 	}
 }

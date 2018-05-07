@@ -27,12 +27,12 @@ namespace Hestia.DevicesScreen.resources
         public static ServerInteractor ServerToAddDeviceTo { get; set; }
 
         // In case of Firebase login
-        public static List<WebServer> FirebaseServers { get; set; }
+        public static List<WebServer> Auth0Servers { get; set; }
 
         public static List<ServerInteractor> GetSelectedServers()
         {
             List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
-            foreach(WebServer firebaseserver in FirebaseServers)
+            foreach(WebServer firebaseserver in Auth0Servers)
             {
                 if(firebaseserver.Selected)
                 {
@@ -74,7 +74,7 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.NetworkHandler.Ip, FirebaseServers[0].Interactor.NetworkHandler.Port);
+                temp_networkhandler = new NetworkHandler(Auth0Servers[0].Interactor.NetworkHandler.Ip, Auth0Servers[0].Interactor.NetworkHandler.Port);
             }
             return temp_networkhandler;
         }

@@ -19,7 +19,7 @@ namespace Hestia
         {
             base.ViewDidLoad();
             Globals.LocalLogin = false;
-            Globals.FirebaseServers = new List<WebServer>();
+            Globals.Auth0Servers = new List<WebServer>();
             // suppose list of server is retrieved from server
             // a list with ip addresses and ports
             // This is a temporary solution to show the functionality
@@ -35,7 +35,7 @@ namespace Hestia
                 var serverinteractor = new ServerInteractor(networkhandler);
                 var firebaseserver = new WebServer(true, serverinteractor);
                 firebaseserver.Selected = false;
-                Globals.FirebaseServers.Add(firebaseserver);
+                Globals.Auth0Servers.Add(firebaseserver);
             }
         }
     }
