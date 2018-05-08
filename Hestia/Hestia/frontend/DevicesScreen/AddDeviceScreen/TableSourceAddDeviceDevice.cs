@@ -68,16 +68,16 @@ namespace Hestia.DevicesScreen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewControllerAddDeviceProperties addDeviceProperties = 
-                this.owner.Storyboard.InstantiateViewController("AddDeviceProperties") 
+                owner.Storyboard.InstantiateViewController("AddDeviceProperties") 
                     as UITableViewControllerAddDeviceProperties;
             if (addDeviceProperties != null)
             {
                 try
                 {
                     PluginInfo requiredInfo = 
-                        Globals.ServerToAddDeviceTo.GetPluginInfo(collection, (string)this.plugins[indexPath.Row]);
+                        Globals.ServerToAddDeviceTo.GetPluginInfo(collection, plugins[indexPath.Row]);
                     addDeviceProperties.pluginInfo = requiredInfo;
-                    this.owner.NavigationController.PushViewController(addDeviceProperties, true);
+                    owner.NavigationController.PushViewController(addDeviceProperties, true);
                 }
                 catch (ServerInteractionException ex)
                 {
@@ -85,8 +85,6 @@ namespace Hestia.DevicesScreen
                     Console.WriteLine(ex.ToString());
                 }
             }
-
         }
-
     }
 }

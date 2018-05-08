@@ -11,7 +11,6 @@ using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
 
-
 namespace Hestia.DevicesScreen
 {
     public class TableSource : UITableViewSource
@@ -55,7 +54,14 @@ namespace Hestia.DevicesScreen
                 numberOfServers = Globals.GetNumberOfSelectedServers();
                 foreach (ServerInteractor interactor in Globals.GetSelectedServers())
                 {
-                    serverDevices.Add(interactor.GetDevices());
+                    try
+                    {
+                        serverDevices.Add(interactor.GetDevices());
+                    } catch(ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while getting devices from server " + interactor.ToString());
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
             }
         }
@@ -85,7 +91,6 @@ namespace Hestia.DevicesScreen
 
             if (serverDevices[indexPath.Section][indexPath.Row].Name != "New Device")
             {
-
                 cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
                 cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
                 //    if (TableItems[(indexPath.Row)].Type == "Light")
@@ -96,16 +101,13 @@ namespace Hestia.DevicesScreen
                 //    {
                 //        cell.ImageView.Image = UIImage.FromBundle("Images/lock.png");
                 //    }
-
             }
 
             // The text to display on the cell is the device name
-
             cell.TextLabel.Text = serverDevices[indexPath.Section][indexPath.Row].Name;
 
             return cell;
         }
-
 
         // Devices what happens if touch on row.
         // Should display the slider(s) ultimately
@@ -126,7 +128,6 @@ namespace Hestia.DevicesScreen
             // Go to edit name window for non-insert cells
             else if (tableView.Editing && tableView.CellAt(indexPath).EditingStyle != UITableViewCellEditingStyle.Insert)
             {
-
                 UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this.owner);
                 editViewController.device = GetSectionRow(indexPath);
                 this.owner.NavigationController.PushViewController(editViewController, true);
@@ -149,7 +150,7 @@ namespace Hestia.DevicesScreen
                         try
                         {
                             // remove device from server 
-                            Globals.LocalServerinteractor.RemoveDevice(serverDevices[(int)indexPath.Section][(int)indexPath.Row]);
+                            Globals.LocalServerinteractor.RemoveDevice(serverDevices[indexPath.Section][indexPath.Row]);
                         }
                         catch (ServerInteractionException ex)
                         {
@@ -159,7 +160,7 @@ namespace Hestia.DevicesScreen
                     }
                     else
                     {
-                        var deviceInRow = serverDevices[(int)indexPath.Section][(int)indexPath.Row];
+                        var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
                         var deviceNetworkHanlder = deviceInRow.NetworkHandler;
                         var deviceServerInteractor = new ServerInteractor(deviceNetworkHanlder);
                         try
@@ -258,6 +259,7 @@ namespace Hestia.DevicesScreen
 
             tableView.EndUpdates(); // applies the changes
         }
+
         public void DidFinishTableEditing(UITableView tableView)
         {
             tableView.BeginUpdates();
