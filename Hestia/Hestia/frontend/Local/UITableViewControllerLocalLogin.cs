@@ -5,8 +5,6 @@ using Hestia.DevicesScreen.resources;
 
 namespace Hestia
 {
-
-
     public partial class UITableViewControllerLocalLogin : UITableViewController
     {
         NSUserDefaults userDefaults;
