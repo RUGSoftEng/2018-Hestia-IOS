@@ -140,6 +140,10 @@
     <Compile Include="UIViewControllerMain.designer.cs">
       <DependentUpon>UIViewControllerMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="UIViewControllerLocalGlobal.cs" />
+    <Compile Include="UIViewControllerLocalGlobal.designer.cs">
+      <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
