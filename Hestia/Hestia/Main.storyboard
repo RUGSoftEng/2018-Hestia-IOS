@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="21200">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -11,31 +11,29 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController" customClass="UIViewControllerMain">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="203">
-                                <rect key="frame" x="20" y="298.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="249" width="280" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.29803921568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Sign in">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <connections>
-                                    <segue destination="4845" kind="show" id="5095"/>
-                                </connections>
+                                <connections/>
                                 <constraints>
                                     <constraint id="13352" firstItem="203" firstAttribute="height" constant="40"/>
                                 </constraints>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1150">
-                                <rect key="frame" x="20" y="376.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="327" width="280" height="40"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Firebase">
@@ -49,7 +47,7 @@
                                 </constraints>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10460">
-                                <rect key="frame" x="20" y="424.5" width="335" height="40"/>
+                                <rect key="frame" x="20" y="375" width="280" height="40"/>
                                 <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Github">
@@ -60,13 +58,13 @@
                                 </constraints>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLaunchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="10465">
-                                <rect key="frame" x="23" y="75" width="329" height="124"/>
+                                <rect key="frame" x="23" y="75" width="274" height="124"/>
                                 <constraints>
                                     <constraint id="15847" firstItem="10465" firstAttribute="height" constant="124"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10466">
-                                <rect key="frame" x="139" y="347.5" width="97" height="21"/>
+                                <rect key="frame" x="139" y="298" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -95,6 +93,11 @@
                             <constraint id="16997" firstItem="8bC-Xf-vdC" firstAttribute="trailingMargin" secondItem="10460" secondAttribute="trailing" constant="4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue id="20703" destination="19563" kind="presentation"/>
+                        <segue id="20796" destination="4845" kind="presentation" identifier="mainToDevicesMain"/>
+                        <outlet property="LocalSignInButton" destination="203" id="name-outlet-203"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -103,10 +106,10 @@
         <!--Devices2-->
         <scene sceneID="4844">
             <objects>
-                <viewControllerPlaceholder storyboardName="Devices2" id="4845" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Devices2" id="4845" sceneMemberID="viewController" referencedIdentifier="navigationDevicesMain"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4846" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="423" y="-28"/>
+            <point key="canvasLocation" x="-593" y="11"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="6425">
@@ -117,11 +120,11 @@
                         <viewControllerLayoutGuide type="bottom" id="6424"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6427">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Here should come the firebase login if that is ready" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6600">
-                                <rect key="frame" x="40" y="105" width="295" height="128"/>
+                                <rect key="frame" x="40" y="105" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -130,7 +133,7 @@
                                 </constraints>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9251">
-                                <rect key="frame" x="0.0" y="241" width="375" height="211"/>
+                                <rect key="frame" x="0.0" y="241" width="320" height="211"/>
                                 <state key="normal" title="Go back"/>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="show" id="10000"/>
@@ -140,7 +143,7 @@
                                 </constraints>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="11075" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="64" y="523" width="248" height="36"/>
+                                <rect key="frame" x="64" y="523" width="193" height="36"/>
                                 <connections>
                                     <segue id="11907" destination="11023" kind="presentation"/>
                                 </connections>
@@ -174,6 +177,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11024" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="326" y="838"/>
+        </scene>
+        <scene sceneID="19562">
+            <objects>
+                <viewControllerPlaceholder id="19563" sceneMemberID="viewController" storyboardName="Devices2"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="19564" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-487" y="91"/>
+        </scene>
+        <scene sceneID="21199">
+            <objects>
+                <viewController id="21200" sceneMemberID="viewController" customClass="UIViewControllerLocalGlobal">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="21197"/>
+                        <viewControllerLayoutGuide type="bottom" id="21198"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="21201">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="1" green="0.45490196078431372" blue="0" alpha="1"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="21963" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="34" y="221" width="252" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Local">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="1" green="0.32549019607843138" blue="0" alpha="1"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="24862" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                <rect key="frame" x="34" y="306" width="252" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <state key="normal" title="Global">
+                                    <color key="titleColor" colorSpace="calibratedRGB" red="1" green="0.32549019607843138" blue="0" alpha="1"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute keyPath="layer.cornerRadius" type="number">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="ToLocalButton" destination="21963" id="name-outlet-21963"/>
+                        <outlet property="ToGlobalButton" destination="24862" id="name-outlet-24862"/>
+                        <segue id="27976" destination="27948" kind="presentation" identifier="mainToDevicesMain"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="21202" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-635" y="432"/>
+        </scene>
+        <scene sceneID="27947">
+            <objects>
+                <viewControllerPlaceholder id="27948" sceneMemberID="viewController" referencedIdentifier="navigationDevicesMain" storyboardName="Devices2"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="27949" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-174" y="719"/>
         </scene>
     </scenes>
     <resources>
