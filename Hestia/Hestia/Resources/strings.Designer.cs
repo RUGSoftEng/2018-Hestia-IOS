@@ -178,6 +178,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to localHestia.
+        /// </summary>
+        public static string defaultsLocalHestia {
+            get {
+                return ResourceManager.GetString("defaultsLocalHestia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to passwordHestia.
         /// </summary>
         public static string defaultsPasswordHestia {
@@ -318,6 +327,33 @@ namespace Hestia.Resources {
         public static string loginToConnectSegue {
             get {
                 return ResourceManager.GetString("loginToConnectSegue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mainToAuth0.
+        /// </summary>
+        public static string mainToAuth0 {
+            get {
+                return ResourceManager.GetString("mainToAuth0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mainToDevicesMain.
+        /// </summary>
+        public static string mainToDevicesMain {
+            get {
+                return ResourceManager.GetString("mainToDevicesMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to mainToServerConnect.
+        /// </summary>
+        public static string mainToServerConnect {
+            get {
+                return ResourceManager.GetString("mainToServerConnect", resourceCulture);
             }
         }
         
