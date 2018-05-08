@@ -1,49 +1,48 @@
 {
   "images": [
     {
-      "filename": "HestiaIcon40.png",
+      "filename": "appiconkopie40kopie.png",
       "size": "20x20",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "HestiaIcon60.png",
+      "filename": "appiconkopie60kopie.png",
       "size": "20x20",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "HestiaIcon58.png",
       "size": "29x29",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "HestiaIcon87.png",
+      "filename": "appiconkopie87.png",
       "size": "29x29",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "HestiaIcon80.png",
+      "filename": "appiconkopie80kopie.png",
       "size": "40x40",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "HestiaIcon120.png",
+      "filename": "appiconkopie120.png",
       "size": "40x40",
       "scale": "3x",
       "idiom": "iphone"
     },
     {
-      "filename": "HestiaIcon120.png",
+      "filename": "appiconkopie120.png",
       "size": "60x60",
       "scale": "2x",
       "idiom": "iphone"
     },
     {
-      "filename": "HestiaIcon180.png",
+      "filename": "appiconkopie.png",
       "size": "60x60",
       "scale": "3x",
       "idiom": "iphone"
@@ -94,7 +93,7 @@
       "idiom": "ipad"
     },
     {
-      "filename": "HestiaIcon1024.png",
+      "filename": "appiconkopie1024kopie.png",
       "size": "1024x1024",
       "scale": "1x",
       "idiom": "ios-marketing"

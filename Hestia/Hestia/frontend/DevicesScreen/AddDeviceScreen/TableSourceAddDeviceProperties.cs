@@ -69,20 +69,10 @@ namespace Hestia.DevicesScreen
 
 		public override void AccessoryButtonTapped(UITableView tableView, NSIndexPath indexPath)
 		{
-            if(propertyNames[indexPath.Row]=="ip")
-            {
-                info = "The IP should be like X.X.X.X, where X has to be between 0 and 255";
-            }
-            if(propertyNames[indexPath.Row]=="name")
-            {
-                info = "The name can be whatever you want";
-            }
-            if(propertyNames[indexPath.Row] == "port")
-            {
-                info = "Insert the correspondat port of the server";
-            }
             
-            UIAlertController alertController = UIAlertController.Create(propertyNames[indexPath.Row], info , UIAlertControllerStyle.Alert);
+            info = completeInfo.RequiredInfo.GetValueOrDefault(propertyNames[indexPath.Row]);
+            
+            UIAlertController alertController = UIAlertController.Create(propertyNames[indexPath.Row].ToUpper(), info , UIAlertControllerStyle.Alert);
             alertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
             
             owner.PresentViewController(alertController, true, null);

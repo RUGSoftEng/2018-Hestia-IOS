@@ -5,6 +5,8 @@ using Hestia.DevicesScreen.resources;
 
 namespace Hestia
 {
+
+
     public partial class UITableViewControllerLocalLogin : UITableViewController
     {
         NSUserDefaults userDefaults;
@@ -41,6 +43,7 @@ namespace Hestia
                 LoginPassword.Text = defaultPassWord;
                 LoginPassword.Placeholder = defaultPassWord;
             }
+
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)

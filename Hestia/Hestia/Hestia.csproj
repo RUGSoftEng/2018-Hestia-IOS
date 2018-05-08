@@ -187,6 +187,27 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie120.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie80kopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie87.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie60kopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie40kopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\appiconkopie1024kopie.png">
+      <Visible>false</Visible>
+    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LogoLaunchscreen.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -196,14 +217,6 @@
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon40.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon60.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon58.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon87.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon80.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon120.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon180.png" />
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon1024.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

@@ -88,8 +88,10 @@ namespace Hestia.DevicesScreen
         private void refreshTable(object sender, EventArgs e)
         {
             RefreshControl.BeginRefreshing();
-            RefreshControl.EndRefreshing();
+            refreshDeviceList();
             TableView.ReloadData();
+            RefreshControl.EndRefreshing();
+
         }
     }
 }

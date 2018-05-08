@@ -104,12 +104,21 @@ Date Hour Activity
 	10:30 Adding pull to refresh to device list.
 	11:00 Adding pull to refresh to device list.
 
-3/4/18 9:00 Meeting with the group.
+3/5/18 9:00 Meeting with the group.
 	9:30 Meeting with the group.
 	10:00 Meeting with the group.
 	10:30 Meeting with the group.
 
-4/4/18 9:00 Adding accessory to add device.
+4/5/18 9:00 Adding accessory to add device.
 	9:30 Adding accessory to add device.
 	10:00 Adding accessory to add device.
 	10:30 Adding accessory to add device.
+
+7/5/18	9:00 Fixing error on addDevice screen.
+	9:30 Fixing error on addDevice screen.
+	10:00 Fixing pull to refresh.
+	10:30 Finding big bugs on the app.
+
+8/5/18	9:00 Trying out pull to refresh action and working with the server.
+	9:30 Trying out pull to refresh action.
+	10:00 Finding big bugs.
