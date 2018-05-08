@@ -88,6 +88,5 @@ namespace Hestia.DevicesScreen
             owner.PresentViewController(alertController, true, null);
             tableView.DeselectRow(indexPath, true);
 		}
-
 	}
 }
