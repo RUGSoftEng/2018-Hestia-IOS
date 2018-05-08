@@ -2,9 +2,9 @@
 
 namespace Hestia.backend.utils.server_discovery
 {
-    class AutoServerDicovery
+    public class AutoServerDicovery
     {
-        public ServerDelegate Discover()
+        public static ServerDelegate Discover()
         {
             // Setup of the service browser.
             NSNetServiceBrowser browser = new NSNetServiceBrowser();
