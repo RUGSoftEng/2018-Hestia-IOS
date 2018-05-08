@@ -65,7 +65,7 @@ namespace Hestia.DevicesScreen
             catch (Exception exception)
             {
                 Console.Write(exception.StackTrace);
-                displayWarningMessage();
+                DisplayWarningMessage();
                 return false;
             }
             if (validIp)
@@ -84,18 +84,19 @@ namespace Hestia.DevicesScreen
             }
             else
             {
-                displayWarningMessage();
+                DisplayWarningMessage();
                 return false;
             }
         }
 
-        public void displayWarningMessage()
+        public void DisplayWarningMessage()
         {
             string title = "Could not connect to server";
             string message = "Invalid server information";
             var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
             okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
             PresentViewController(okAlertController, true, null);
+
             connectButton.Selected = false;
         }
 

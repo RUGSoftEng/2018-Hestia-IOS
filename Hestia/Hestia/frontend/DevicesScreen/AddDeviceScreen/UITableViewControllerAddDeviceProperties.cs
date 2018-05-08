@@ -22,7 +22,7 @@ namespace Hestia
 
         // Called on press of the save button. It copies the values that are input 
         // in the text fields to the pluginInfo object
-        public void saveFields()
+        public void SaveFields()
         {
             // Used for loop through original property names
             string[] propertyNames = new string[pluginInfo.RequiredInfo.Keys.Count];
@@ -42,7 +42,7 @@ namespace Hestia
 
             // Save button
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
-                this.saveFields();
+                SaveFields();
 
                 // Try to add device to server
                 try
@@ -57,15 +57,14 @@ namespace Hestia
 
                 // Get the root view contoller and cancel the editing state
                 var rootViewController = this.NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
-                rootViewController.cancelEditingState();
-                rootViewController.refreshDeviceList();
+                rootViewController.CancelEditingState();
+                rootViewController.RefreshDeviceList();
                 // Go back to the devices main screen
-                this.NavigationController.PopToViewController(rootViewController, true);
+                NavigationController.PopToViewController(rootViewController, true);
             });
 
             // Set right button to save 
             NavigationItem.RightBarButtonItem = save;
         }
-
     }
 }

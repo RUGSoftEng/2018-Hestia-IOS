@@ -8,8 +8,8 @@ using Foundation;
 
 namespace Hestia.DevicesScreen
 {
-    public class TableSourceActivators : UITableViewSource {
-
+    public class TableSourceActivators : UITableViewSource
+    {
         Device device;
         List<backend.models.Activator> activators;
         Hashtable actAccessories = new Hashtable();
@@ -19,11 +19,13 @@ namespace Hestia.DevicesScreen
             this.device = device;
             activators = device.Activators;
         }
-		public override nint RowsInSection(UITableView tableview, nint section)
+
+        public override nint RowsInSection(UITableView tableview, nint section)
 		{
             return activators.Count;
 		}
-		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+
+        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
             UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.activatorCell);
             backend.models.Activator act = activators[indexPath.Row];
@@ -34,6 +36,7 @@ namespace Hestia.DevicesScreen
             if (act.State.Type == "bool")
             {
                 UISwitch DeviceSwitch = new UISwitch();
+
                 // Set the switch's state to that of the device.
                 DeviceSwitch.On = (bool)act.State.RawState;
                 DeviceSwitch.ValueChanged += delegate (object sender, EventArgs e)
@@ -44,12 +47,6 @@ namespace Hestia.DevicesScreen
                     } catch(ServerInteractionException ex) {
                         Console.WriteLine("Exception while changing activator state");
                         Console.WriteLine(ex.ToString());
-
-                        string title = "Could not change activator state";
-                        string message = "Exception while changing activator state";
-                        var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-                        okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                        PresentViewController(okAlertController, true, null);
                     }
                 };
                 // Replace the cell's AccessoryView with the new UISwitch
@@ -63,12 +60,18 @@ namespace Hestia.DevicesScreen
             {
                 UISlider slider = new UISlider();
 
-
                 // Set the switch's state to that of the device.
                 slider.Value = (float)act.State.RawState;
                 slider.TouchUpInside += delegate (object sender, EventArgs e)
                 {
-                    act.State = new ActivatorState(slider.Value, "float");
+                    try
+                    {
+                        act.State = new ActivatorState(slider.Value, "float");
+                    } catch(ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while changing activator state");
+                        Console.WriteLine(ex.ToString());
+                    }   
                 };
 
                 // Replace the cell's AccessoryView with the new UISwitch
@@ -79,7 +82,6 @@ namespace Hestia.DevicesScreen
                 actAccessories[indexPath.Row] = cell.AccessoryView;
             }
             cell.TextLabel.Text = act.Name;
-
 
             return cell;
 		}

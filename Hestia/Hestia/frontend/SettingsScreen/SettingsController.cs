@@ -11,6 +11,7 @@ namespace Hestia.DevicesScreen
         public SettingsController (IntPtr handle) : base (handle)
         {
         }
+
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
@@ -18,5 +19,4 @@ namespace Hestia.DevicesScreen
             userName.Text = Globals.UserName;
         }
     }
-
 }

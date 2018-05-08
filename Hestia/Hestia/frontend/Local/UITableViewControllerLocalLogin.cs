@@ -43,7 +43,6 @@ namespace Hestia
                 LoginPassword.Text = defaultPassWord;
                 LoginPassword.Placeholder = defaultPassWord;
             }
-
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
@@ -52,7 +51,6 @@ namespace Hestia
             {
                 if (LoginUserName.Text == Resources.strings.username && LoginPassword.Text == Resources.strings.password)
                 {
-
                     userDefaults.SetString(LoginUserName.Text, Resources.strings.defaultsUsernameHestia);
                     userDefaults.SetString(LoginPassword.Text, Resources.strings.defaultsUsernameHestia);
                     Globals.UserName = LoginUserName.Text;
