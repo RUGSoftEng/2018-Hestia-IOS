@@ -13,20 +13,38 @@ namespace Hestia.backend.models
         [JsonProperty("collection")]
         public string Collection
         {
-            get => collection;
-            set => collection = value;
+            get
+            {
+                return collection;
+            }
+            set
+            {
+                collection = value;
+            }
         }
         [JsonProperty("plugin_name")]
         public string Plugin
         {
-            get => plugin;
-            set => plugin = value;
+            get
+            {
+                return plugin;
+            }
+            set
+            {
+                plugin = value;
+            }
         }
         [JsonProperty("required_info")]
         public Dictionary<string, string> RequiredInfo
         {
-            get => requiredInfo;
-            set => requiredInfo = value;
+            get
+            {
+                return requiredInfo;
+            }
+            set
+            {
+                requiredInfo = value;
+            }
         }
 
         public PluginInfo(string collection, string plugin, Dictionary<String, String> requiredInfo)

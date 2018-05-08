@@ -24,6 +24,7 @@ namespace Hestia
         // in the text fields to the pluginInfo object
         public void saveFields()
         {
+            
             // Used for loop through original property names
             string[] propertyNames = new string[pluginInfo.RequiredInfo.Keys.Count];
             pluginInfo.RequiredInfo.Keys.CopyTo(propertyNames, 0);

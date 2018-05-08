@@ -70,5 +70,9 @@ namespace Hestia.DevicesScreen
 
             return cell;
 		}
+		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
+		{
+            tableView.DeselectRow(indexPath, false);
+		}
 	}
 }

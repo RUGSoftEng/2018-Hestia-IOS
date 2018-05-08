@@ -1,10 +1,11 @@
-﻿using Hestia.backend.exceptions;
-using Hestia.Resources;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Net;
 using System.Runtime.Serialization;
+
+using Hestia.backend.exceptions;
+using Hestia.Resources;
 
 namespace Hestia.backend
 {
@@ -16,7 +17,10 @@ namespace Hestia.backend
 
         public string Ip
         {
-            get => ip;
+            get
+            {
+                return ip;
+            }
             set
             {
                 ip = value;
@@ -25,7 +29,10 @@ namespace Hestia.backend
         }
         public int Port
         {
-            get => port;
+            get
+            {
+                return port;
+            }
             set
             {
                 port = value;

@@ -89,7 +89,7 @@ namespace Hestia.DevicesScreen
             }
         }
 
-        void displayWarningMessage()
+        public void displayWarningMessage()
         {
             UIAlertView alert = new UIAlertView()
             {

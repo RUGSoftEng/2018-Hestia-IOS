@@ -1,4 +1,5 @@
-﻿using Hestia.Resources;
+﻿using Hestia.backend.exceptions;
+using Hestia.Resources;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,21 @@ namespace Hestia.backend.models
 
         public string DeviceId
         {
-            get => deviceId;
-            set => deviceId = value;  
+            get
+            {
+                return deviceId;
+            }
+            set
+            {
+                deviceId = value;
+            }   
         }
         public string Name
         {
-            get => name;
+            get
+            {
+                return name;
+            }
             set
             {
                 name = value;
@@ -31,23 +41,48 @@ namespace Hestia.backend.models
                     ["name"] = name
                 };
 
-                networkHandler.Put(deviceName, endpoint);
+                try
+                {
+                    networkHandler.Put(deviceName, endpoint);
+                }
+                catch (ServerInteractionException ex)
+                {
+                    throw;
+                }
             }
         }
         public string Type
         {
-            get => type;
-            set => type = value;
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
         }
         public List<Activator> Activators
         {
-            get => activators;
-            set => activators = value;
+            get
+            {
+                return activators;
+            }
+            set
+            {
+                activators = value;
+            }
         }
         public NetworkHandler NetworkHandler
         {
-            get => networkHandler;
-            set => networkHandler = value;
+            get
+            {
+                return networkHandler;
+            }
+            set
+            {
+                networkHandler = value;
+            }
         }
         
         public Device(string deviceId, string name, string type, List<Activator> activators, NetworkHandler networkHandler)

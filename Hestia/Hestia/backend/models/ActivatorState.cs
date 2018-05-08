@@ -17,13 +17,25 @@ namespace Hestia.backend.models
 
         public object RawState
         {
-            get => rawState;
-            set => rawState = value;
+            get
+            {
+                return rawState;
+            }
+            set
+            {
+                rawState = value;
+            }
         }
         public string Type
         {
-            get => type;
-            set => type = value;
+            get
+            {
+                return type;
+            }
+            set
+            {
+                type = value;
+            }
         }
 
         public ActivatorState(object rawState, string type)
@@ -35,7 +47,7 @@ namespace Hestia.backend.models
         override
         public String ToString()
         {
-            return type + " - " + rawState.ToString();
+            return this.type + " - " + this.rawState.ToString();
         }
 
         new
