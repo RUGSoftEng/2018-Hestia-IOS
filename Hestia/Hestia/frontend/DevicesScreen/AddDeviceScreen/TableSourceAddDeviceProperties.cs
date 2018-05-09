@@ -55,12 +55,11 @@ namespace Hestia.DevicesScreen
 
             // Put the property names in the placeholder filed
             cell.UpdateCell(propertyNames[indexPath.Row]);
+
             // Keep reference in hashtable
             inputs[propertyNames[indexPath.Row]] = cell;
 
             return cell;
-
         }
-
-    }
+	}
 }

@@ -23,8 +23,8 @@ namespace Hestia.DevicesScreen.AddDeviceScreen
 
         public override void LayoutSubviews()
         {
-           base.LayoutSubviews();
-           inputField.Frame = new CGRect(15, 4, ContentView.Bounds.Width - 30, ContentView.Bounds.Height - 8);
+            base.LayoutSubviews();
+            inputField.Frame = new CGRect(15, 4, ContentView.Bounds.Width - 30, ContentView.Bounds.Height - 8);
         }
     }
 }
