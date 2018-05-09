@@ -90,7 +90,7 @@ namespace Hestia.DevicesScreen
             }
         }
 
-        public void DisplayWarningMessage()
+        private void DisplayWarningMessage()
         {
             string title = "Could not connect to server";
             string message = "Invalid server information";
