@@ -6,7 +6,6 @@ using Hestia.backend;
 using Hestia.Resources;
 using Hestia.DevicesScreen.resources;
 
-
 namespace Hestia
 {   // This view controller belongs to the first window that can be shown on loading the app
     // if no user defaults are present
@@ -15,13 +14,17 @@ namespace Hestia
         string defaultServerName;
         string defaultIP;
         string defaultPort;
-
+        NSUserDefaults userDefaults;
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
         {
         }
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            userDefaults = NSUserDefaults.StandardUserDefaults;
+            userDefaults.RemoveObject(strings.defaultsServerNameHestia);
+            userDefaults.RemoveObject(strings.defaultsIpHestia);
+            userDefaults.RemoveObject(strings.defaultsPortHestia);
         }
 
         void SetValuesAndSegueToDevicesMain()
@@ -40,7 +43,6 @@ namespace Hestia
             base.ViewDidAppear(animated);
             bool validIp = false;
 
-            NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
             defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);

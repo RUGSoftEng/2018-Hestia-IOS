@@ -231,6 +231,7 @@
                         <outlet property="ToLocalButton" destination="21963" id="name-outlet-21963"/>
                         <outlet property="ToGlobalButton" destination="24862" id="name-outlet-24862"/>
                         <segue id="27976" destination="27948" kind="presentation" identifier="mainToDevicesMain"/>
+                        <segue id="29117" destination="19563" kind="show" identifier="mainToServerConnect"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21202" userLabel="First Responder" sceneMemberID="firstResponder"/>
