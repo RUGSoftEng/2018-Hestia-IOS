@@ -5,6 +5,7 @@ using Hestia.DevicesScreen.resources;
 using Hestia.backend.utils;
 using Hestia.backend;
 using System;
+using Hestia.Resources;
 
 namespace Hestia
 {
@@ -59,13 +60,18 @@ namespace Hestia
             // If not required for your application you can safely delete this method
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
-            //Globals.ResetUserDefaults();
+            // For Debugging
+           // Globals.ResetUserDefaults();
+           // userDefaults.RemoveObject(strings.defaultsServerNameHestia);
+           // userDefaults.RemoveObject(strings.defaultsIpHestia);
+           // userDefaults.RemoveObject(strings.defaultsPortHestia);
+           // userDefaults.RemoveObject(strings.defaultsLocalHestia);
 
             string defaultLocal = userDefaults.StringForKey(Resources.strings.defaultsLocalHestia);
             defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
             defaultServername = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
-            Console.Write("defaultport:" + defaultPort);
+
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             // No previous login information available. Go to local/global choose screen.
@@ -83,7 +89,6 @@ namespace Hestia
 
                 if(IsServerValid())
                 {
-                    Console.Write("servervalid");
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController("navigationDevicesMain")
                                     as UINavigationController;
                     Window.RootViewController = navigationController;
@@ -103,8 +108,6 @@ namespace Hestia
                 //TODO Make a method in serverconnect that check login, if so perform already next segue
                 Window.MakeKeyAndVisible();
             }
-
-
 
             return true;
         }

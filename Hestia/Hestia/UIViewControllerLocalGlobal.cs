@@ -15,6 +15,7 @@ namespace Hestia
         string defaultIP;
         string defaultPort;
         NSUserDefaults userDefaults;
+
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
         {
         }
@@ -32,7 +33,6 @@ namespace Hestia
             defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
-            string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);
 
             // Already anticipate local login
             // Check if local serverinformation is present and correct
