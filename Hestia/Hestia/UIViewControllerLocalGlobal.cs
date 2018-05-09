@@ -8,7 +8,7 @@ using Hestia.DevicesScreen.resources;
 
 namespace Hestia
 {   // This view controller belongs to the first window that can be shown on loading the app
-    // if no user defaults are present
+    // if no user defaults are present. You can then choose local/global
     public partial class UIViewControllerLocalGlobal : UIViewController
     {
         string defaultServerName;
@@ -22,20 +22,9 @@ namespace Hestia
         {
             base.ViewDidLoad();
             userDefaults = NSUserDefaults.StandardUserDefaults;
-            userDefaults.RemoveObject(strings.defaultsServerNameHestia);
-            userDefaults.RemoveObject(strings.defaultsIpHestia);
-            userDefaults.RemoveObject(strings.defaultsPortHestia);
-        }
-
-        void SetValuesAndSegueToDevicesMain()
-        {
-            Globals.LocalLogin = true;
-            Globals.ServerName = defaultServerName;
-            Globals.IP = defaultIP;
-            Globals.Port = int.Parse(defaultPort);
-            Globals.LocalServerinteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
-            Console.WriteLine("To devices main");
-            PerformSegue(strings.mainToDevicesMain, this);
+            //userDefaults.RemoveObject(strings.defaultsServerNameHestia);
+            //userDefaults.RemoveObject(strings.defaultsIpHestia);
+            //userDefaults.RemoveObject(strings.defaultsPortHestia);
         }
 
 		public override void ViewDidAppear(bool animated)
@@ -103,5 +92,16 @@ namespace Hestia
             }
         
 		}
+
+        void SetValuesAndSegueToDevicesMain()
+        {
+            Globals.LocalLogin = true;
+            Globals.ServerName = defaultServerName;
+            Globals.IP = defaultIP;
+            Globals.Port = int.Parse(defaultPort);
+            Globals.LocalServerinteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Console.WriteLine("To devices main");
+            PerformSegue(strings.mainToDevicesMain, this);
+        }
 	}
 }

@@ -1,5 +1,7 @@
 ﻿using Foundation;
 using UIKit;
+using Hestia.DevicesScreen;
+using Hestia.DevicesScreen.resources;
 
 namespace Hestia
 {
@@ -17,10 +19,46 @@ namespace Hestia
             set;
         }
 
+        public static UIStoryboard mainStoryboard = UIStoryboard.FromName("Main", null);
+        public static UIStoryboard devices2Storyboard = UIStoryboard.FromName("Devices2", null);
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
+            NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
+
+            userDefaults.RemoveObject(Resources.strings.defaultsLocalHestia);
+
+            string defaultLocal = userDefaults.StringForKey(Resources.strings.defaultsLocalHestia);
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+            // No previous login information available. Go to local/global choose screen.
+            if (defaultLocal == null)
+            {
+                UIViewControllerLocalGlobal localGlobalViewController = mainStoryboard.InstantiateInitialViewController() as UIViewControllerLocalGlobal;
+                Window.RootViewController = localGlobalViewController;
+                Window.MakeKeyAndVisible();
+            }
+            else if(defaultLocal == bool.TrueString)
+            {
+                Globals.LocalLogin = true;
+                UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
+                Window.RootViewController = serverConnectViewController;
+                // Make a method in serverconnect that check login, if so perform already next segue
+                Window.MakeKeyAndVisible();
+            }
+            else
+            {
+                Globals.LocalLogin = false;
+                UIViewControllerMain auth0ViewController = mainStoryboard.InstantiateViewController("auth0ViewController") as UIViewControllerMain;
+                Window.RootViewController = auth0ViewController;
+                // Make a method in serverconnect that check login, if so perform already next segue
+
+                Window.MakeKeyAndVisible();
+            }
+
+
 
             return true;
         }

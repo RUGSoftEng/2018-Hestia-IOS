@@ -621,7 +621,7 @@
         <!--Table View Controller Server Connect-->
         <scene sceneID="18545">
             <objects>
-                <tableViewController id="18546" customClass="UITableViewControllerServerConnect" sceneMemberID="viewController">
+                <tableViewController id="18546" customClass="UITableViewControllerServerConnect" sceneMemberID="viewController" storyboardIdentifier="serverConnectViewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="18547">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
