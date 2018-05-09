@@ -22,9 +22,6 @@ namespace Hestia
         {
             base.ViewDidLoad();
             userDefaults = NSUserDefaults.StandardUserDefaults;
-            //userDefaults.RemoveObject(strings.defaultsServerNameHestia);
-            //userDefaults.RemoveObject(strings.defaultsIpHestia);
-            //userDefaults.RemoveObject(strings.defaultsPortHestia);
         }
 
 		public override void ViewDidAppear(bool animated)
@@ -44,36 +41,12 @@ namespace Hestia
                 validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
             }
 
-            // Check if a last startup option is unknown
-            if (defaultLocal == null)
+
+            ToLocalButton.TouchUpInside += delegate (object sender, EventArgs e)
             {
-                ToLocalButton.TouchUpInside += delegate (object sender, EventArgs e)
-                {
-                    userDefaults.SetString(bool.TrueString, strings.defaultsLocalHestia);
+                userDefaults.SetString(bool.TrueString, strings.defaultsLocalHestia);
+                Globals.LocalLogin = true;
 
-                    if (validIp)
-                    {
-                        SetValuesAndSegueToDevicesMain();
-                    }
-                    else
-                    {
-                        Console.WriteLine("To serverconnect");
-                        PerformSegue(strings.mainToServerConnect, this);
-                    }
-                };
-
-                ToGlobalButton.TouchUpInside += delegate (object sender, EventArgs e)
-                {
-                    Globals.LocalLogin = false;
-                    userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
-
-                    Console.WriteLine("To auth0login");
-                    //PerformSegue(strings.mainToServerConnect, this);
-                };
-            }
-            // Last login was local
-            else if (bool.Parse(defaultLocal))
-            {
                 if (validIp)
                 {
                     SetValuesAndSegueToDevicesMain();
@@ -83,13 +56,17 @@ namespace Hestia
                     Console.WriteLine("To serverconnect");
                     PerformSegue(strings.mainToServerConnect, this);
                 }
-            }
-            else // Previous time global login
+            };
+
+            ToGlobalButton.TouchUpInside += delegate (object sender, EventArgs e)
             {
-                // Should ultimately go direct to multiple server screen
+                Globals.LocalLogin = false;
+                userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
+
                 Console.WriteLine("To auth0login");
-                PerformSegue(strings.mainToAuth0, this);
-            }
+                //PerformSegue(strings.mainToServerConnect, this);
+            };
+    
         
 		}
 

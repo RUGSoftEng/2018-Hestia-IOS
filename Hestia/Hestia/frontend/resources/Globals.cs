@@ -8,6 +8,7 @@ using System.Collections;
 using CoreGraphics;
 using Hestia.backend;
 using Hestia.backend.models;
+using Hestia.Resources;
 
 namespace Hestia.DevicesScreen.resources
 {
@@ -75,6 +76,15 @@ namespace Hestia.DevicesScreen.resources
                 temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.NetworkHandler.Ip, FirebaseServers[0].Interactor.NetworkHandler.Port);
             }
             return temp_networkhandler;
+        }
+
+        public static void ResetUserDefaults()
+        {
+            NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
+            userDefaults.RemoveObject(strings.defaultsServerNameHestia);
+            userDefaults.RemoveObject(strings.defaultsIpHestia);
+            userDefaults.RemoveObject(strings.defaultsPortHestia);
+            userDefaults.RemoveObject(strings.defaultsLocalHestia);
         }
     }
 }

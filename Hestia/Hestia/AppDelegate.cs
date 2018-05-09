@@ -2,6 +2,9 @@
 using UIKit;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
+using Hestia.backend.utils;
+using Hestia.backend;
+using System;
 
 namespace Hestia
 {
@@ -22,15 +25,47 @@ namespace Hestia
         public static UIStoryboard mainStoryboard = UIStoryboard.FromName("Main", null);
         public static UIStoryboard devices2Storyboard = UIStoryboard.FromName("Devices2", null);
 
+        string defaultServername;
+        string defaultIP;
+        string defaultPort;
+
+        public bool IsServerValid()
+        {
+            try
+            {
+                bool validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
+            }
+            catch (Exception exception)
+            {
+                Console.Write(exception.StackTrace);
+                return false;
+            }
+            return true;
+        }
+
+        public void SetGlobalsToDefaults()
+        {
+            Globals.ServerName = defaultServername;
+            Globals.IP = defaultIP;
+
+            Globals.Port = int.Parse(defaultPort);
+            ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.LocalServerinteractor = serverInteractor;
+        }
+
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
-            userDefaults.RemoveObject(Resources.strings.defaultsLocalHestia);
+            //Globals.ResetUserDefaults();
 
             string defaultLocal = userDefaults.StringForKey(Resources.strings.defaultsLocalHestia);
+            defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
+            defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
+            defaultServername = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
+            Console.Write("defaultport:" + defaultPort);
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
             // No previous login information available. Go to local/global choose screen.
@@ -44,8 +79,20 @@ namespace Hestia
             {
                 Globals.LocalLogin = true;
                 UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
-                Window.RootViewController = serverConnectViewController;
-                // Make a method in serverconnect that check login, if so perform already next segue
+                //Window.RootViewController = serverConnectViewController;
+
+                if(IsServerValid())
+                {
+                    Console.Write("servervalid");
+                    UINavigationController navigationController = devices2Storyboard.InstantiateViewController("navigationDevicesMain")
+                                    as UINavigationController;
+                    Window.RootViewController = navigationController;
+                    SetGlobalsToDefaults();
+                }
+                else
+                {
+                    Window.RootViewController = serverConnectViewController;
+                }
                 Window.MakeKeyAndVisible();
             }
             else
@@ -53,8 +100,7 @@ namespace Hestia
                 Globals.LocalLogin = false;
                 UIViewControllerMain auth0ViewController = mainStoryboard.InstantiateViewController("auth0ViewController") as UIViewControllerMain;
                 Window.RootViewController = auth0ViewController;
-                // Make a method in serverconnect that check login, if so perform already next segue
-
+                //TODO Make a method in serverconnect that check login, if so perform already next segue
                 Window.MakeKeyAndVisible();
             }
 
@@ -62,6 +108,7 @@ namespace Hestia
 
             return true;
         }
+
 
         public override void OnResignActivation(UIApplication application)
         {
