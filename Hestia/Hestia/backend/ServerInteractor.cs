@@ -23,8 +23,7 @@ namespace Hestia.backend
 
         public List<Device> GetDevices()
         {
-            JToken payload = null;
-            payload = networkHandler.Get(strings.devicePath);
+            JToken payload = networkHandler.Get(strings.devicePath);
 
             DeviceDeserializer deserializer = new DeviceDeserializer();
             var devices = deserializer.DeserializeDevices(payload, networkHandler);
@@ -46,8 +45,7 @@ namespace Hestia.backend
 
         public List<string> GetCollections()
         {
-            JToken payload = null;
-            payload = networkHandler.Get(strings.pluginsPath);
+            JToken payload = networkHandler.Get(strings.pluginsPath);
             
             List<string> collections = payload.ToObject<List<string>>();
             return collections;
@@ -56,8 +54,7 @@ namespace Hestia.backend
         public List<string> GetPlugins(string collection)
         {
             string endpoint = strings.pluginsPath + collection + "/";
-            JToken payload = null;
-            payload = networkHandler.Get(endpoint);
+            JToken payload = networkHandler.Get(endpoint);
 
             List<string> plugins = payload.ToObject<List<string>>();
             return plugins;
@@ -67,8 +64,7 @@ namespace Hestia.backend
         {
             string pluginsPath = strings.pluginsPath;
             string endpoint = pluginsPath + collection + "/" + pluginsPath + plugin;
-            JToken payload = null;
-            payload = networkHandler.Get(endpoint);
+            JToken payload = networkHandler.Get(endpoint);
             
             PluginInfo info = payload.ToObject<PluginInfo>();
             return info;
@@ -78,6 +74,13 @@ namespace Hestia.backend
         {
             PluginInfo info = GetPluginInfo(collection, plugin);
             return info.RequiredInfo;
+        }
+
+        public List<string> GetServers()
+        {
+            string endpoint = strings.auth0ServersPath + '/';
+            JToken payload = networkHandler.Get(endpoint);
+
         }
 
         override

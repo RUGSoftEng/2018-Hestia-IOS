@@ -106,6 +106,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to servers.
+        /// </summary>
+        public static string auth0ServersPath {
+            get {
+                return ResourceManager.GetString("auth0ServersPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Autocomplete!.
         /// </summary>
         public static string autocomplete {

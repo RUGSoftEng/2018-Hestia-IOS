@@ -146,7 +146,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\strings.Designer.cs" />
+    <Compile Include="Resources\strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="frontend\Devices2.storyboard" />
@@ -178,19 +182,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
-    <Folder Include="Resources\Images\" />
-    <Folder Include="frontend\SettingsScreen\" />
-    <Folder Include="frontend\Firebase\ServerSelectScreen\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="frontend\" />
-    <Folder Include="frontend\DevicesScreen\" />
-    <Folder Include="frontend\Local\" />
-    <Folder Include="frontend\Firebase\" />
-    <Folder Include="frontend\DevicesScreen\ActivatorScreen\" />
-    <Folder Include="frontend\resources\" />
-    <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
