@@ -83,7 +83,7 @@ namespace Hestia.DevicesScreen.EditDevice
             changePortField.Placeholder = device.NetworkHandler.Port.ToString();
             rectangle3.AddSubview(changePortField);
 
-            View.BackgroundColor = UIColor.FromWhiteAlpha(0.9f, 1f);
+            View.BackgroundColor = Globals.DefaultLightGray;
             Title = device.Name;
 
             // Save button
