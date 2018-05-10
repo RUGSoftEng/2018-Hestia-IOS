@@ -167,7 +167,7 @@
                 <viewControllerPlaceholder id="11023" sceneMemberID="viewController" storyboardName="Devices3"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11024" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="326" y="838"/>
+            <point key="canvasLocation" x="369" y="1186"/>
         </scene>
         <scene sceneID="19562">
             <objects>
@@ -224,6 +224,7 @@
                         <segue id="27976" destination="27948" kind="presentation" identifier="mainToDevicesMain"/>
                         <segue id="29117" destination="19563" kind="show" identifier="mainToServerConnect"/>
                         <segue id="31838" destination="29491" kind="show" identifier="localGlobalToAuth0"/>
+                        <segue id="36529" destination="11023" kind="show" identifier="localGlobalToServerSelect"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21202" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -235,7 +236,7 @@
                 <viewControllerPlaceholder id="27948" sceneMemberID="viewController" referencedIdentifier="navigationDevicesMain" storyboardName="Devices2"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27949" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-174" y="719"/>
+            <point key="canvasLocation" x="35" y="648"/>
         </scene>
         <scene sceneID="29490">
             <objects>
