@@ -26,8 +26,8 @@ namespace Hestia
             base.ViewDidLoad();
             Task<LoginResult> loginResult = GetLoginResult();
 
-            userDefaults.SetString(loginResult.Result.IdentityToken, strings.defaultsIdentityTokenHestia);
-            userDefaults.SetString(loginResult.Result.AccessToken, strings.defaultsAccessTokenHestia);
+            //userDefaults.SetString(loginResult.Result.IdentityToken, strings.defaultsIdentityTokenHestia);
+            //userDefaults.SetString(loginResult.Result.AccessToken, strings.defaultsAccessTokenHestia);
         
             // PerformSegue...
         }

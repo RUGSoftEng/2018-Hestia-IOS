@@ -148,8 +148,8 @@
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Resources\AppDelegate.cs" />
     <Compile Include="backend\authentication\Auth0Connector.cs" />
+    <Compile Include="AppDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />

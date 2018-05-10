@@ -178,7 +178,7 @@
         </scene>
         <scene sceneID="21199">
             <objects>
-                <viewController id="21200" sceneMemberID="viewController" customClass="UIViewControllerLocalGlobal">
+                <viewController id="21200" sceneMemberID="viewController" customClass="UIViewControllerLocalGlobal" storyboardIdentifier="localGlobalViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="21197"/>
                         <viewControllerLayoutGuide type="bottom" id="21198"/>
