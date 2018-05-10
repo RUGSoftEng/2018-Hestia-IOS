@@ -97,6 +97,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://hest.io.
+        /// </summary>
+        public static string apiURL {
+            get {
+                return ResourceManager.GetString("apiURL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hestia.
         /// </summary>
         public static string appname {
@@ -147,6 +156,15 @@ namespace Hestia.Resources {
         public static string changeNameTitle {
             get {
                 return ResourceManager.GetString("changeNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to _1wsVGXJbkEm8kwcueB5seyxm37E1rWl.
+        /// </summary>
+        public static string clientId {
+            get {
+                return ResourceManager.GetString("clientId", resourceCulture);
             }
         }
         
@@ -282,6 +300,15 @@ namespace Hestia.Resources {
         public static string deviceTypeCell {
             get {
                 return ResourceManager.GetString("deviceTypeCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to hestio.eu.auth0.com.
+        /// </summary>
+        public static string domainAuth0 {
+            get {
+                return ResourceManager.GetString("domainAuth0", resourceCulture);
             }
         }
         
