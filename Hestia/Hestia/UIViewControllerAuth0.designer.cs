@@ -14,5 +14,8 @@ namespace Hestia
     [Register ("UIViewControllerAuth0")]
     partial class UIViewControllerAuth0
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }
