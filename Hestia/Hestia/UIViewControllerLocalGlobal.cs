@@ -35,12 +35,6 @@ namespace Hestia
         {
             base.ViewDidLoad();
             userDefaults = NSUserDefaults.StandardUserDefaults;
-        }
-
-		public override void ViewDidAppear(bool animated)
-		{
-            base.ViewDidAppear(animated);
-
             defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
@@ -67,25 +61,43 @@ namespace Hestia
                 }
             };
 
-            ToGlobalButton.TouchUpInside += delegate (object sender, EventArgs e)
+            ToGlobalButton.TouchUpInside += async delegate (object sender, EventArgs e)
             {
-                Globals.LocalLogin = false;
-                userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
-
-                Console.WriteLine("To auth0login");
-                Task<LoginResult> loginResult = GetLoginResult();
-
                 if (HasValidGlobalLogin())
                 {
                     SetValuesAndSegueToServerSelect();
                 }
-
-                userDefaults.SetString(loginResult.Result.IdentityToken, strings.defaultsIdentityTokenHestia);
-                userDefaults.SetString(loginResult.Result.AccessToken, strings.defaultsAccessTokenHestia);
-
-                SetValuesAndSegueToServerSelect();
+                else
+                {
+                    Task<LoginResult> loginResult = GetLoginResult();
+                    LoginResult logResult = await loginResult;
+                    HandleGlobalButtonTouchResult(logResult);
+                }
             };
         }
+
+        void HandleGlobalButtonTouchResult(LoginResult loginResult)
+        {
+            Globals.LocalLogin = false;
+            userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
+
+            if (!loginResult.IsError)
+            {
+                Console.WriteLine("No error");
+                userDefaults.SetString(loginResult.IdentityToken, strings.defaultsIdentityTokenHestia);
+                userDefaults.SetString(loginResult.AccessToken, strings.defaultsAccessTokenHestia);
+                // TODO edit values in to serverselect
+                SetValuesAndSegueToServerSelect();
+            }
+            else if(!(loginResult.Error == "UserCancel"))
+            {
+                string title = "Login failed";
+                string message = loginResult.Error;
+                var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                PresentViewController(okAlertController, true, null);
+            }
+         }
 
         bool CheckLocalLoginDefaults()
         {
@@ -105,9 +117,12 @@ namespace Hestia
             return false;
         }
 
-        public void CalledFromAppDelegate()
+        public async Task CalledFromAppDelegateAsync()
         {
+            Console.Write("Called from appdelegate");
             Task<LoginResult> loginResult = GetLoginResult();
+            LoginResult logResult = await loginResult;
+            HandleGlobalButtonTouchResult(logResult);
         }
 
         public async Task<LoginResult> GetLoginResult()
