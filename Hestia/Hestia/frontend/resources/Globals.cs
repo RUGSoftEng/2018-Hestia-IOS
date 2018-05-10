@@ -8,6 +8,7 @@ using System.Collections;
 using CoreGraphics;
 using Hestia.backend;
 using Hestia.backend.models;
+using Hestia.Resources;
 
 namespace Hestia.DevicesScreen.resources
 {
@@ -25,16 +26,16 @@ namespace Hestia.DevicesScreen.resources
 
         // Variables for global server
         public static ServerInteractor ServerToAddDeviceTo { get; set; }
-        public static List<WebServer> FirebaseServers { get; set; }
+        public static List<WebServer> Auth0Servers { get; set; }
 
         public static List<ServerInteractor> GetSelectedServers()
         {
             List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
-            foreach(WebServer firebaseserver in FirebaseServers)
+            foreach(WebServer auth0server in Auth0Servers)
             {
-                if(firebaseserver.Selected)
+                if(auth0server.Selected)
                 {
-                    serverInteractors.Add(firebaseserver.Interactor);
+                    serverInteractors.Add(auth0server.Interactor);
                 }
             }
             return serverInteractors;
@@ -72,9 +73,18 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.NetworkHandler.Ip, FirebaseServers[0].Interactor.NetworkHandler.Port);
+                temp_networkhandler = new NetworkHandler(Auth0Servers[0].Interactor.NetworkHandler.Ip, Auth0Servers[0].Interactor.NetworkHandler.Port);
             }
             return temp_networkhandler;
+        }
+
+        public static void ResetUserDefaults()
+        {
+            NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
+            userDefaults.RemoveObject(strings.defaultsServerNameHestia);
+            userDefaults.RemoveObject(strings.defaultsIpHestia);
+            userDefaults.RemoveObject(strings.defaultsPortHestia);
+            userDefaults.RemoveObject(strings.defaultsLocalHestia);
         }
     }
 }

@@ -136,13 +136,13 @@
     <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
       <DependentUpon>UITableViewServerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIViewControllerMain.cs" />
-    <Compile Include="UIViewControllerMain.designer.cs">
-      <DependentUpon>UIViewControllerMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="UIViewControllerLocalGlobal.cs" />
     <Compile Include="UIViewControllerLocalGlobal.designer.cs">
       <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UIViewControllerAuth0.cs" />
+    <Compile Include="UIViewControllerAuth0.designer.cs">
+      <DependentUpon>UIViewControllerAuth0.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

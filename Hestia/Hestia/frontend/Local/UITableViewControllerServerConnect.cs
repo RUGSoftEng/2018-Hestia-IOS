@@ -19,16 +19,17 @@ namespace Hestia.DevicesScreen
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
         {
-        }
-
-        public override void ViewDidLoad()
-        {
-            base.ViewDidLoad();
-
             userDefaults = NSUserDefaults.StandardUserDefaults;
             defaultServerName = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
             defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
+        }
+
+
+
+        public override void ViewDidLoad()
+        {
+            base.ViewDidLoad();
 
             if (defaultServerName != null)
             {
@@ -89,6 +90,7 @@ namespace Hestia.DevicesScreen
                 return false;
             }
         }
+
 
         private void DisplayWarningMessage()
         {

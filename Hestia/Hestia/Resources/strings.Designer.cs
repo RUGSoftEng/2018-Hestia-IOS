@@ -106,6 +106,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to auth0ViewController.
+        /// </summary>
+        public static string auth0ViewController {
+            get {
+                return ResourceManager.GetString("auth0ViewController", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Autocomplete!.
         /// </summary>
         public static string autocomplete {
@@ -169,6 +178,24 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to accessTokenHestia.
+        /// </summary>
+        public static string defaultsAccessTokenHestia {
+            get {
+                return ResourceManager.GetString("defaultsAccessTokenHestia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to identityTokenHestia.
+        /// </summary>
+        public static string defaultsIdentityTokenHestia {
+            get {
+                return ResourceManager.GetString("defaultsIdentityTokenHestia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ipHestia.
         /// </summary>
         public static string defaultsIpHestia {
@@ -228,6 +255,15 @@ namespace Hestia.Resources {
         public static string devicePath {
             get {
                 return ResourceManager.GetString("devicePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Devices2.
+        /// </summary>
+        public static string devices2StoryBoard {
+            get {
+                return ResourceManager.GetString("devices2StoryBoard", resourceCulture);
             }
         }
         
@@ -331,6 +367,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Main.
+        /// </summary>
+        public static string mainStoryBoard {
+            get {
+                return ResourceManager.GetString("mainStoryBoard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to mainToAuth0.
         /// </summary>
         public static string mainToAuth0 {
@@ -363,6 +408,15 @@ namespace Hestia.Resources {
         public static string manufacturerCell {
             get {
                 return ResourceManager.GetString("manufacturerCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to navigationDevicesMain.
+        /// </summary>
+        public static string navigationControllerDevicesMain {
+            get {
+                return ResourceManager.GetString("navigationControllerDevicesMain", resourceCulture);
             }
         }
         
