@@ -22,16 +22,17 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Devices" id="487">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="704">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="62309" width="74.5">
                             <connections>
-                                <action selector="UIBarButtonItem704_Activated:" destination="207" id="5429"/>
-                                <segue destination="725" kind="show" id="4968"/>
+                                <action selector="UIBarButtonItem704_Activated:" destination="62311" id="62310"/>
+                                <segue id="62870" destination="725" kind="show"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="DevicesMainNavBar" destination="487" id="name-outlet-487"/>
                         <outlet property="DevicesTable" destination="208" id="name-outlet-208"/>
+                        <outlet property="SettingsButton" destination="62309" id="name-outlet-62309"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="213" userLabel="First Responder" sceneMemberID="firstResponder"/>

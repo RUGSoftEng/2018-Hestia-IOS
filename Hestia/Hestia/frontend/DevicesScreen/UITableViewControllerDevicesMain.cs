@@ -26,7 +26,7 @@ namespace Hestia.DevicesScreen
         public void CancelEditingState()
         {
             DevicesTable.SetEditing(false, true);
-            NavigationItem.RightBarButtonItem = edit;
+            NavigationItem.LeftBarButtonItem = edit;
             ((TableSource)DevicesTable.Source).DidFinishTableEditing(DevicesTable);
         }
 
@@ -34,7 +34,7 @@ namespace Hestia.DevicesScreen
         {
             ((TableSource)DevicesTable.Source).WillBeginTableEditing(DevicesTable);
             DevicesTable.SetEditing(true, true);
-            NavigationItem.RightBarButtonItem = done;
+            NavigationItem.LeftBarButtonItem = done;
         }
 
         public void RefreshDeviceList()
@@ -78,7 +78,8 @@ namespace Hestia.DevicesScreen
             TableView.Add(RefreshControl);
 
             // Set right button initially to edit 
-            NavigationItem.RightBarButtonItem = edit;
+            NavigationItem.LeftBarButtonItem = edit;
+            NavigationItem.RightBarButtonItem = SettingsButton;
         }
 
         //Method Pull to refresh
