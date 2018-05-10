@@ -64,7 +64,7 @@ namespace Hestia
                 userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
 
                 Console.WriteLine("To auth0login");
-                //PerformSegue(strings.mainToServerConnect, this);
+                PerformSegue("localGlobalToAuth0" , this);
             };
     
         

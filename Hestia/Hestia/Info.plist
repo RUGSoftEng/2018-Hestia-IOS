@@ -39,7 +39,11 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>URL Type 1</string>
+			<string>Auth0</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.ruggedHestia.Hestia</string>
+			</array>
 		</dict>
 	</array>
 	<key>CFBundleDocumentTypes</key>
