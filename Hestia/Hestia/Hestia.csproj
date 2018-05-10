@@ -64,6 +64,7 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="backend\authentication\Auth0Connector.cs" />
     <Compile Include="backend\exceptions\ServerInteractionException.cs" />
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
@@ -151,7 +152,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\strings.Designer.cs" />
+    <Compile Include="Resources\strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="frontend\Devices2.storyboard" />

@@ -4,9 +4,8 @@ using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.utils;
 using Hestia.backend;
-
+using Auth0.OidcClient;
 using System;
-using System.Collections.Generic;
 using Hestia.Resources;
 
 namespace Hestia
@@ -168,5 +167,10 @@ namespace Hestia
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
 
+        public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+        {
+            ActivityMediator.Instance.Send(url.AbsoluteString);
+            return true;
+        }
     }
 }

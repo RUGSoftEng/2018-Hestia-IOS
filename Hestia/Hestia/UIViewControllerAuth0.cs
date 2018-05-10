@@ -3,6 +3,7 @@ using System;
 using UIKit;
 using Hestia.Resources;
 using Auth0.OidcClient;
+using Hestia.backend.authentication;
 using System.Threading.Tasks;
 using IdentityModel.OidcClient;
 using System.Diagnostics;
@@ -33,6 +34,7 @@ namespace Hestia
 
         public async Task<LoginResult> GetLoginResult()
         {
+            client = Auth0Connector.CreateAuthClient(this);
             var loginResult = await client.LoginAsync(new { audience = Resources.strings.apiURL });
             if (loginResult.IsError)
             {
