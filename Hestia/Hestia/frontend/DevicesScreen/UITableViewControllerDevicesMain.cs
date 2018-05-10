@@ -82,6 +82,30 @@ namespace Hestia.DevicesScreen
             NavigationItem.RightBarButtonItem = SettingsButton;
         }
 
+        partial void SettingsButton_Activated(UIBarButtonItem sender)
+        {
+            if(Globals.LocalLogin)
+            {
+                UITableViewControllerLocalSettingsScreen uITableViewControllerLocalSettingsScreen =
+                     this.Storyboard.InstantiateViewController("LocalSettingsScreen")
+                          as UITableViewControllerLocalSettingsScreen;
+                if (uITableViewControllerLocalSettingsScreen != null)
+                {
+                    NavigationController.PushViewController(uITableViewControllerLocalSettingsScreen, true);
+                }
+            }
+            else
+            {
+                UITableViewControllerGlobalSettingsScreen uITableViewControllerGlobalSettingsScreen =
+                    this.Storyboard.InstantiateViewController("GlobalSettingsScreen")
+                         as UITableViewControllerGlobalSettingsScreen;
+                if (uITableViewControllerGlobalSettingsScreen != null)
+                {
+                    NavigationController.PushViewController(uITableViewControllerGlobalSettingsScreen, true);
+                }
+            }
+        }
+
         //Method Pull to refresh
         private void RefreshTable(object sender, EventArgs e)
         {

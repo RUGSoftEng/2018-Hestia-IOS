@@ -127,9 +127,9 @@
     <Compile Include="frontend\Firebase\UIViewControllerGlobalLogin.designer.cs">
       <DependentUpon>UIViewControllerGlobalLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\SettingsScreen\SettingsController.cs" />
-    <Compile Include="frontend\SettingsScreen\SettingsController.designer.cs">
-      <DependentUpon>..\..\DevicesScreen\SettingsController.cs</DependentUpon>
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.cs" />
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.designer.cs">
+      <DependentUpon>UITableViewControllerLocalSettingsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="frontend\Firebase\ServerSelectScreen\TableSourceServerList.cs" />
     <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.cs" />
@@ -143,6 +143,10 @@
     <Compile Include="UIViewControllerAuth0.cs" />
     <Compile Include="UIViewControllerAuth0.designer.cs">
       <DependentUpon>UIViewControllerAuth0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.cs" />
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
+      <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

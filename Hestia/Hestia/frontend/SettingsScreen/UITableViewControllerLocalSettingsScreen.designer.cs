@@ -9,38 +9,33 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Hestia.DevicesScreen
+namespace Hestia
 {
-    [Register ("SettingsController")]
-    partial class SettingsController
+    [Register ("UITableViewControllerLocalSettingsScreen")]
+    partial class UITableViewControllerLocalSettingsScreen
     {
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITableViewCell logOutButton { get; set; }
-
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel serverName { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UILabel userName { get; set; }
+        UIKit.UIButton ToRemote { get; set; }
+
+        [Action ("ToRemote_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void ToRemote_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
-            if (logOutButton != null) {
-                logOutButton.Dispose ();
-                logOutButton = null;
-            }
-
             if (serverName != null) {
                 serverName.Dispose ();
                 serverName = null;
             }
 
-            if (userName != null) {
-                userName.Dispose ();
-                userName = null;
+            if (ToRemote != null) {
+                ToRemote.Dispose ();
+                ToRemote = null;
             }
         }
     }

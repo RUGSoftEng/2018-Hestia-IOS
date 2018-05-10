@@ -26,6 +26,10 @@ namespace Hestia.DevicesScreen
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIBarButtonItem SettingsButton { get; set; }
 
+        [Action ("SettingsButton_Activated:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void SettingsButton_Activated (UIKit.UIBarButtonItem sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (DevicesMainNavBar != null) {
