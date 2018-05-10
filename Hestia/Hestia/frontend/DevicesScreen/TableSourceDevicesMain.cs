@@ -205,11 +205,6 @@ namespace Hestia.DevicesScreen
             }
         }
 
-        public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
-        {   // Default text is 'Delete'
-            return "Remove " + serverDevices[(int)indexPath.Section][(int)indexPath.Row].Name;
-        }
-
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
         {
             if (tableView.Editing)
