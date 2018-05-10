@@ -4,7 +4,9 @@ using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.utils;
 using Hestia.backend;
+
 using System;
+using System.Collections.Generic;
 using Hestia.Resources;
 
 namespace Hestia
@@ -23,12 +25,14 @@ namespace Hestia
             set;
         }
 
-        public static UIStoryboard mainStoryboard = UIStoryboard.FromName("Main", null);
-        public static UIStoryboard devices2Storyboard = UIStoryboard.FromName("Devices2", null);
+        public static UIStoryboard mainStoryboard = UIStoryboard.FromName(strings.mainStoryBoard, null);
+        public static UIStoryboard devices2Storyboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
 
         string defaultServername;
         string defaultIP;
         string defaultPort;
+        string defaultAuth0AccessToken;
+        string defaultAuth0IdentityToken;
 
         public bool IsServerValid()
         {
@@ -44,7 +48,13 @@ namespace Hestia
             return true;
         }
 
-        public void SetGlobalsToDefaults()
+        public bool IsAuth0LoginValid()
+        {
+            //TODO possibly a backend method that checks if token is still valid
+            return true;
+        }
+
+        public void SetGlobalsToDefaultsLocalLogin()
         {
             Globals.ServerName = defaultServername;
             Globals.IP = defaultIP;
@@ -52,6 +62,11 @@ namespace Hestia
             Globals.Port = int.Parse(defaultPort);
             ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
             Globals.LocalServerinteractor = serverInteractor;
+        }
+
+        public void SetGlobalsToDefaultsGlobalLogin()
+        {
+            //Globals.Auth0Servers = GetServers from auth0 backend method
         }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
@@ -85,14 +100,13 @@ namespace Hestia
             {
                 Globals.LocalLogin = true;
                 UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
-                //Window.RootViewController = serverConnectViewController;
 
                 if(IsServerValid())
                 {
-                    UINavigationController navigationController = devices2Storyboard.InstantiateViewController("navigationDevicesMain")
+                    UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
                                     as UINavigationController;
                     Window.RootViewController = navigationController;
-                    SetGlobalsToDefaults();
+                    SetGlobalsToDefaultsLocalLogin();
                 }
                 else
                 {
@@ -103,15 +117,25 @@ namespace Hestia
             else
             {
                 Globals.LocalLogin = false;
-                UIViewControllerMain auth0ViewController = mainStoryboard.InstantiateViewController("auth0ViewController") as UIViewControllerMain;
-                Window.RootViewController = auth0ViewController;
-                //TODO Make a method in serverconnect that check login, if so perform already next segue
+                UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
+
+                //TODO check auth0 token.. set 
+
+                if(IsAuth0LoginValid())
+                {
+                    UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
+                            as UINavigationController;
+                    Window.RootViewController = navigationController;
+                    SetGlobalsToDefaultsGlobalLogin();
+                }
+                else
+                {
+                    Window.RootViewController = auth0ViewController;
+                }
                 Window.MakeKeyAndVisible();
             }
-
             return true;
         }
-
 
         public override void OnResignActivation(UIApplication application)
         {
@@ -143,5 +167,6 @@ namespace Hestia
         {
             // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
+
     }
 }
