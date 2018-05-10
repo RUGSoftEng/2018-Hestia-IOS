@@ -276,4 +276,22 @@
   <data name="mainToServerConnect" xml:space="preserve">
     <value>mainToServerConnect</value>
   </data>
+  <data name="auth0ViewController" xml:space="preserve">
+    <value>auth0ViewController</value>
+  </data>
+  <data name="defaultsAccessTokenHestia" xml:space="preserve">
+    <value>accessTokenHestia</value>
+  </data>
+  <data name="defaultsIdentityTokenHestia" xml:space="preserve">
+    <value>identityTokenHestia</value>
+  </data>
+  <data name="devices2StoryBoard" xml:space="preserve">
+    <value>Devices2</value>
+  </data>
+  <data name="mainStoryBoard" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="navigationControllerDevicesMain" xml:space="preserve">
+    <value>navigationDevicesMain</value>
+  </data>
 </root>
