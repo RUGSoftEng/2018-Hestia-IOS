@@ -28,5 +28,12 @@ namespace Hestia.UnitTests.backend.utils.server_discovery
         {
 
         }
+
+        [TestMethod]
+        public void GetDelegateTest()
+        {
+            ServerDelegate serverDelegate = discoverer.Delegate;
+
+        }
     }
 }
