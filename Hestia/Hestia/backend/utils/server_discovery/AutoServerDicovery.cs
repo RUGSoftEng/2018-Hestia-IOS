@@ -10,6 +10,8 @@ namespace Hestia.backend.utils.server_discovery
     {
         public NSNetServiceBrowser Browser { get; }
         public ServerDelegate Delegate { get; }
+        private const string PROTOCOL = "_hestia._tcp";
+        private const string DOMAIN = @"local";
 
         public AutoServerDicovery()
         {
@@ -22,12 +24,17 @@ namespace Hestia.backend.utils.server_discovery
 
         public void Search()
         {
-            Browser.SearchForServices("_hestia._tcp", @"local");
+            Browser.SearchForServices(PROTOCOL, DOMAIN);
         }
 
         public void Stop()
         {
             Browser.Stop();
+        }
+
+        public NSMutableArray GetServices()
+        {
+            return Delegate.Services;
         }
     }
 }
