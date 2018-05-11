@@ -20,7 +20,7 @@ namespace Hestia.backend.utils.server_discovery
             Browser.Delegate = Delegate;            
         }
 
-        public void Discover()
+        public void Search()
         {
             Browser.SearchForServices("_hestia._tcp", @"local");
         }
