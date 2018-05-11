@@ -8,10 +8,25 @@ namespace Hestia.UnitTests.backend.utils.server_discovery
     [TestClass]
     public class AutoServerDiscoveryTests
     {
-        [Test]
-        public void TestDiscover()
+        AutoServerDicovery discoverer;
+
+        [TestInitialize]
+        public void Setup()
         {
-            
+            discoverer = new AutoServerDicovery();
+            Assert.IsNotNull(discoverer);
+        }
+
+        [TestMethod]
+        public void DelegateTest()
+        {
+            Assert.IsNotNull(discoverer.Delegate);  
+        }
+
+        [TestMethod]
+        public void DiscoverTest()
+        {
+
         }
     }
 }

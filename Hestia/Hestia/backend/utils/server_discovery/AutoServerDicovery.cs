@@ -8,8 +8,8 @@ namespace Hestia.backend.utils.server_discovery
     /// </summary>
     public class AutoServerDicovery
     {
-        public NSNetServiceBrowser Browser { get; set; }
-        public ServerDelegate Delegate { get; set; }
+        public NSNetServiceBrowser Browser { get; }
+        public ServerDelegate Delegate { get; }
 
         public AutoServerDicovery()
         {
