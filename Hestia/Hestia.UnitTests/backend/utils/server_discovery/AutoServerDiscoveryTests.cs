@@ -16,12 +16,6 @@ namespace Hestia.UnitTests.backend.utils.server_discovery
         }
 
         [TestMethod]
-        public void DelegateTest()
-        {
-            Assert.IsNotNull(discoverer.Delegate);  
-        }
-
-        [TestMethod]
         public void DiscoverAndStopTest()
         {
             ServerDelegate serverDelegate = discoverer.Delegate;
