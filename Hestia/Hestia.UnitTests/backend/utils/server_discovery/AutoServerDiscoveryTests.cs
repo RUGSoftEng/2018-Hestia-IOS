@@ -1,6 +1,4 @@
-﻿using System;
-
-using Hestia.backend.utils.server_discovery;
+﻿using Hestia.backend.utils.server_discovery;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hestia.UnitTests.backend.utils.server_discovery
@@ -24,16 +22,21 @@ namespace Hestia.UnitTests.backend.utils.server_discovery
         }
 
         [TestMethod]
-        public void DiscoverTest()
+        public void DiscoverAndStopTest()
         {
-
+            ServerDelegate serverDelegate = discoverer.Delegate;
+            discoverer.Search();
+            Assert.IsTrue(serverDelegate.Searching);
+            discoverer.Stop();
+            Assert.IsFalse(serverDelegate.Searching);
         }
 
         [TestMethod]
         public void GetDelegateTest()
         {
             ServerDelegate serverDelegate = discoverer.Delegate;
-
+            Assert.IsNotNull(serverDelegate);
+            Assert.IsFalse(serverDelegate.Searching);
         }
     }
 }
