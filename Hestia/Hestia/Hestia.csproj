@@ -150,6 +150,8 @@
     </Compile>
     <Compile Include="backend\authentication\Auth0Connector.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.cs" />
+    <Compile Include="frontend\Local\TableSourceServerDiscovery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
