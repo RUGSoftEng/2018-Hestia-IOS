@@ -73,6 +73,7 @@
     <Compile Include="backend\models\deserializers\ActivatorDeserializerTests.cs" />
     <Compile Include="backend\models\deserializers\DeviceDeserializerTests.cs" />
     <Compile Include="backend\NetworkHandlerTests.cs" />
+    <Compile Include="backend\utils\server_discovery\AutoServerDiscoveryTests.cs" />
     <Compile Include="backend\WebServerTests.cs" />
     <Compile Include="backend\utils\JsonValidatorTests.cs" />
     <Compile Include="backend\utils\PingServerTests.cs" />
