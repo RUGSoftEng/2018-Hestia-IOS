@@ -137,7 +137,7 @@ namespace Hestia
                 else
                 {
                     Window.RootViewController = uIViewControllerLocalGlobal;
-                    uIViewControllerLocalGlobal.CalledFromAppDelegateAsync();
+					uIViewControllerLocalGlobal.CalledFromAppDelegateAsync();
                 }
                 Window.MakeKeyAndVisible();
             }

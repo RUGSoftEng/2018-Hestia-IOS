@@ -10,15 +10,15 @@ using System.Diagnostics;
 
 namespace Hestia
 {
+	// TODO remove if local/global is finished
     public partial class UIViewControllerAuth0 : UIViewController
     {
-        private Auth0Client client;
+        Auth0Client client;
         NSUserDefaults userDefaults;
 
         public UIViewControllerAuth0(IntPtr handle) : base(handle)
         {
             userDefaults = NSUserDefaults.StandardUserDefaults;
-
         }
 
         public override void ViewDidLoad()

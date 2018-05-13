@@ -65,7 +65,7 @@ namespace Hestia
             {
                 if (HasValidGlobalLogin())
                 {
-                    SetValuesAndSegueToServerSelect();
+					SetValuesAndSegueToServerSelectGlobal();
                 }
                 else
                 {
@@ -87,7 +87,7 @@ namespace Hestia
                 userDefaults.SetString(loginResult.IdentityToken, strings.defaultsIdentityTokenHestia);
                 userDefaults.SetString(loginResult.AccessToken, strings.defaultsAccessTokenHestia);
                 // TODO edit values in to serverselect
-                SetValuesAndSegueToServerSelect();
+                SetValuesAndSegueToServerSelectGlobal();
             }
             else if(!(loginResult.Error == "UserCancel"))
             {
@@ -123,8 +123,8 @@ namespace Hestia
             Task<LoginResult> loginResult = GetLoginResult();
             LoginResult logResult = await loginResult;
             HandleGlobalButtonTouchResult(logResult);
-        }
-
+        }  
+ 
         public async Task<LoginResult> GetLoginResult()
         {
             client = Auth0Connector.CreateAuthClient(this);
@@ -152,7 +152,7 @@ namespace Hestia
             PerformSegue(strings.mainToDevicesMain, this);
         }
 
-        void SetValuesAndSegueToServerSelect()
+        void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
             List<ServerInteractor> serverInteractors = new List<ServerInteractor>();

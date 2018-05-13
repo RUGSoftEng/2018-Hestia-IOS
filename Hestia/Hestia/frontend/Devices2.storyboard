@@ -982,7 +982,7 @@
         </scene>
         <scene sceneID="73501">
             <objects>
-                <viewControllerPlaceholder id="73502" sceneMemberID="viewController" storyboardName="Main" referencedIdentifier="auth0ViewController"/>
+                <viewControllerPlaceholder id="73502" sceneMemberID="viewController" storyboardName="Main"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73503" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="281" y="837"/>

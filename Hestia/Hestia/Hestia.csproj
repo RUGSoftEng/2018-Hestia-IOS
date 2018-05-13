@@ -136,14 +136,6 @@
     <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
       <DependentUpon>UITableViewServerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIViewControllerLocalGlobal.cs" />
-    <Compile Include="UIViewControllerLocalGlobal.designer.cs">
-      <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UIViewControllerAuth0.cs" />
-    <Compile Include="UIViewControllerAuth0.designer.cs">
-      <DependentUpon>UIViewControllerAuth0.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
@@ -152,6 +144,14 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.cs" />
     <Compile Include="frontend\Local\TableSourceServerDiscovery.cs" />
+    <Compile Include="frontend\EntryScreen\UIViewControllerAuth0.cs" />
+    <Compile Include="frontend\EntryScreen\UIViewControllerAuth0.designer.cs">
+      <DependentUpon>UIViewControllerAuth0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\EntryScreen\UIViewControllerLocalGlobal.cs" />
+    <Compile Include="frontend\EntryScreen\UIViewControllerLocalGlobal.designer.cs">
+      <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs" />
@@ -214,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
+    <Folder Include="frontend\EntryScreen\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
