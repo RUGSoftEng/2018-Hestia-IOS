@@ -105,6 +105,7 @@ namespace Hestia.backend
             {
                 request.AddParameter("authorization", string.Format("Bearer " + auth0AccessToken), ParameterType.HttpHeader);
             }
+            Console.WriteLine(request.ToString());
 
             IRestResponse response = client.Execute(request);
             string responseString = response.Content;

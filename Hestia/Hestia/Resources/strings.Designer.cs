@@ -106,7 +106,16 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to servers.
+        ///   Looks up a localized string similar to request.
+        /// </summary>
+        public static string auth0RequestPath {
+            get {
+                return ResourceManager.GetString("auth0RequestPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to servers/.
         /// </summary>
         public static string auth0ServersPath {
             get {
