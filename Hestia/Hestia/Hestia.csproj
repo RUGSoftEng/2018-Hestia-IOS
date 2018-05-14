@@ -144,6 +144,7 @@
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frontend\DevicesScreen\ActivatorScreen\PopoverDelegate.cs" />
     <Compile Include="backend\authentication\Auth0Connector.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="frontend\Local\TableSourceServerDiscovery.cs" />

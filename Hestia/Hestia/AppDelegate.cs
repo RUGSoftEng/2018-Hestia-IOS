@@ -8,11 +8,6 @@ using Auth0.OidcClient;
 using System;
 using Hestia.Resources;
 
-using Hestia.backend.authentication;
-using System.Threading.Tasks;
-using IdentityModel.OidcClient;
-using System.Diagnostics;
-
 namespace Hestia
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -38,7 +33,6 @@ namespace Hestia
         string defaultAuth0AccessToken;
         string defaultAuth0IdentityToken;
 
-        // Returns false if defaultIP or port is not set yet
         public bool IsServerValid()
         {
             try
@@ -56,7 +50,7 @@ namespace Hestia
         public bool IsAuth0LoginValid()
         {
             //TODO possibly a backend method that checks if token is still valid
-            return false;
+            return true;
         }
 
         public void SetGlobalsToDefaultsLocalLogin()
@@ -65,7 +59,7 @@ namespace Hestia
             Globals.IP = defaultIP;
 
             Globals.Port = int.Parse(defaultPort);
-            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
             Globals.LocalServerinteractor = serverInteractor;
         }
 
@@ -76,6 +70,8 @@ namespace Hestia
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+            Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
@@ -122,10 +118,8 @@ namespace Hestia
             else
             {
                 Globals.LocalLogin = false;
-                //UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
-                UIViewControllerLocalGlobal uIViewControllerLocalGlobal = 
-                    mainStoryboard.InstantiateViewController("localGlobalViewController")
-                                                            as UIViewControllerLocalGlobal;
+                UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
+
                 //TODO check auth0 token.. set 
 
                 if(IsAuth0LoginValid())
@@ -137,15 +131,14 @@ namespace Hestia
                 }
                 else
                 {
-                    Window.RootViewController = uIViewControllerLocalGlobal;
-					uIViewControllerLocalGlobal.CalledFromAppDelegateAsync();
+                    Window.RootViewController = auth0ViewController;
                 }
                 Window.MakeKeyAndVisible();
             }
             return true;
         }
 
-        public override void OnResignActivation(UIApplication application)
+	public override void OnResignActivation(UIApplication application)
         {
             // Invoked when the application is about to move from active to inactive state.
             // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) 

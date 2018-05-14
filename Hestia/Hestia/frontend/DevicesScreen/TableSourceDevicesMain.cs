@@ -6,6 +6,7 @@ using Foundation;
 using Hestia.DevicesScreen.resources;
 using System.Drawing;
 using System.Collections;
+using Hestia.DevicesScreen.ActivatorScreen;
 using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
@@ -115,13 +116,21 @@ namespace Hestia.DevicesScreen
         {
             if (!tableView.Editing)
             {
-                UITableViewActivators activator =
-                        this.owner.Storyboard.InstantiateViewController("DeviceActivators")
-                             as UITableViewActivators;
-                if (activator != null)
+                var d = GetSectionRow(indexPath);
+                if (d.Activators.Count != 0)
                 {
-                    activator.device = GetSectionRow(indexPath);
-                    owner.NavigationController.PushViewController(activator, true);
+                    var popupNavVC = new UITableViewActivators();
+                    popupNavVC.device = d;
+                    nfloat heightPop = tableView.RowHeight * 2;
+                    popupNavVC.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
+                    popupNavVC.ModalPresentationStyle = UIModalPresentationStyle.Popover;
+                    var popPresenter = popupNavVC.PopoverPresentationController;
+                    popPresenter.SourceView = this.owner.View;
+                    popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight/2-heightPop, 0, 0);
+                    popPresenter.Delegate = new PopoverDelegate();
+                    popPresenter.PermittedArrowDirections = 0;
+                    popPresenter.BackgroundColor = UIColor.White;
+                    this.owner.PresentViewController(popupNavVC, true, null);
                 }
                 tableView.DeselectRow(indexPath, true);
             }
