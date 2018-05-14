@@ -502,6 +502,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to request.
+        /// </summary>
+        public static string requestPath {
+            get {
+                return ResourceManager.GetString("requestPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 2000.
         /// </summary>
         public static string requestTimeout {
@@ -561,6 +570,15 @@ namespace Hestia.Resources {
         public static string serverNotFound {
             get {
                 return ResourceManager.GetString("serverNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to servers/.
+        /// </summary>
+        public static string serversPath {
+            get {
+                return ResourceManager.GetString("serversPath", resourceCulture);
             }
         }
         

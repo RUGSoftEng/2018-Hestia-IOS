@@ -53,7 +53,7 @@ namespace Hestia.DevicesScreen
             {
                 serverDevices = new List<List<Device>>();
                 numberOfServers = Globals.GetNumberOfSelectedServers();
-                foreach (ServerInteractor interactor in Globals.GetSelectedServers())
+                foreach (HestiaServerInteractor interactor in Globals.GetSelectedServers())
                 {
                     try
                     {
@@ -171,7 +171,7 @@ namespace Hestia.DevicesScreen
                     {
                         var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
                         var deviceNetworkHanlder = deviceInRow.NetworkHandler;
-                        var deviceServerInteractor = new ServerInteractor(deviceNetworkHanlder);
+                        var deviceServerInteractor = new HestiaServerInteractor(deviceNetworkHanlder);
                         try
                         {
                             deviceServerInteractor.RemoveDevice(deviceInRow);

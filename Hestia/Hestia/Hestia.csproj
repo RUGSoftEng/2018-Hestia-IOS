@@ -64,23 +64,23 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="backend\authentication\Auth0Connector.cs" />
     <Compile Include="backend\exceptions\ServerInteractionException.cs" />
+    <Compile Include="backend\HestiaWebServerInteractor.cs" />
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
     <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />
     <Compile Include="backend\models\deserializers\DeviceDeserializer.cs" />
+    <Compile Include="backend\models\deserializers\HestiaServerDeserializer.cs" />
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
     <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
     <Compile Include="backend\utils\server_discovery\ServerDelegate.cs" />
-    <Compile Include="backend\WebServer.cs" />
-    <Compile Include="backend\ServerInteractor.cs" />
+    <Compile Include="backend\models\HestiaServer.cs" />
+    <Compile Include="backend\HestiaServerInteractor.cs" />
     <Compile Include="backend\utils\JsonValidator.cs" />
     <Compile Include="backend\utils\PingServer.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="AppDelegate.cs" />
     <None Include="app.config" />
     <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
@@ -140,19 +140,26 @@
     <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
       <DependentUpon>UITableViewServerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="UIViewControllerLocalGlobal.cs" />
-    <Compile Include="UIViewControllerLocalGlobal.designer.cs">
-      <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UIViewControllerAuth0.cs" />
-    <Compile Include="UIViewControllerAuth0.designer.cs">
-      <DependentUpon>UIViewControllerAuth0.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="frontend\DevicesScreen\ActivatorScreen\PopoverDelegate.cs" />
+    <Compile Include="backend\authentication\Auth0Connector.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="frontend\Local\TableSourceServerDiscovery.cs" />
+    <Compile Include="frontend\EntryScreen\UIViewControllerAuth0.cs" />
+    <Compile Include="frontend\EntryScreen\UIViewControllerAuth0.designer.cs">
+      <DependentUpon>UIViewControllerAuth0.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\EntryScreen\UIViewControllerLocalGlobal.cs" />
+    <Compile Include="frontend\EntryScreen\UIViewControllerLocalGlobal.designer.cs">
+      <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.cs" />
+    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery4.designer.cs">
+      <DependentUpon>UITableViewControllerServerDiscovery.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -198,15 +205,15 @@
       <HintPath>..\packages\RestSharp.106.2.1\lib\netstandard2.0\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.3\lib\netstandard1.4\System.IdentityModel.Tokens.Jwt.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Json" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.3\lib\netstandard1.4\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entitlements.plist" />

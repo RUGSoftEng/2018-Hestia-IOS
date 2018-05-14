@@ -22,19 +22,19 @@ namespace Hestia.DevicesScreen.resources
         public static int ScreenWidth { get; set;  }
 
         // Variables for local server
-        public static ServerInteractor LocalServerinteractor { get; set; }
+        public static HestiaServerInteractor LocalServerinteractor { get; set; }
         public static String ServerName { get; set; }
         public static int Port { get; set; }
         public static String IP { get; set; }
 
         // Variables for global server
-        public static ServerInteractor ServerToAddDeviceTo { get; set; }
-        public static List<WebServer> Auth0Servers { get; set; }
+        public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
+        public static List<HestiaServer> Auth0Servers { get; set; }
 
-        public static List<ServerInteractor> GetSelectedServers()
+        public static List<HestiaServerInteractor> GetSelectedServers()
         {
-            List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
-            foreach(WebServer auth0server in Auth0Servers)
+            List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
+            foreach(HestiaServer auth0server in Auth0Servers)
             {
                 if(auth0server.Selected)
                 {
@@ -59,7 +59,7 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                foreach (ServerInteractor server in GetSelectedServers())
+                foreach (HestiaServerInteractor server in GetSelectedServers())
                 {
                     devices.AddRange(server.GetDevices());
                 }
@@ -81,13 +81,17 @@ namespace Hestia.DevicesScreen.resources
             return temp_networkhandler;
         }
 
-        public static void ResetUserDefaults()
+        public static void ResetAllUserDefaults()
         {
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
             userDefaults.RemoveObject(strings.defaultsServerNameHestia);
             userDefaults.RemoveObject(strings.defaultsIpHestia);
             userDefaults.RemoveObject(strings.defaultsPortHestia);
             userDefaults.RemoveObject(strings.defaultsLocalHestia);
+            userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
+            userDefaults.RemoveObject(strings.defaultsIdentityTokenHestia);
         }
+
+       // public static Reset
     }
 }

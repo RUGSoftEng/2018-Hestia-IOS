@@ -7,13 +7,13 @@ namespace Hestia.backend.utils
     {
         public static bool Check(string address, int port)
         {
-            ServerInteractor interactor = new ServerInteractor(new NetworkHandler(address, port));
+            HestiaServerInteractor interactor = new HestiaServerInteractor(new NetworkHandler(address, port));
             try
             {
                 interactor.GetDevices();
                 return true;
             }
-            catch (ServerInteractionException ex)
+            catch (ServerInteractionException)
             {
                 Console.Out.Write("No such server exists");
                 return false;

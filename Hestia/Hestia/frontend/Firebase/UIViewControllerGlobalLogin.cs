@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UIKit;
 using Hestia.backend;
 using Hestia.DevicesScreen.resources;
+using Hestia.backend.models;
 
 namespace Hestia
 {
@@ -19,7 +20,7 @@ namespace Hestia
         {
             base.ViewDidLoad();
             Globals.LocalLogin = false;
-            Globals.Auth0Servers = new List<WebServer>();
+            Globals.Auth0Servers = new List<HestiaServer>();
             // suppose list of server is retrieved from server
             // a list with ip addresses and ports
             // This is a temporary solution to show the functionality
@@ -32,8 +33,8 @@ namespace Hestia
             foreach(string ip in ipadresses)
             {
                 var networkhandler = new NetworkHandler(ip, int.Parse(Resources.strings.defaultPort));
-                var serverinteractor = new ServerInteractor(networkhandler);
-                var firebaseserver = new WebServer(true, serverinteractor);
+                var serverinteractor = new HestiaServerInteractor(networkhandler);
+                var firebaseserver = new HestiaServer(true, serverinteractor);
                 firebaseserver.Selected = false;
                 Globals.Auth0Servers.Add(firebaseserver);
             }
