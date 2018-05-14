@@ -18,24 +18,11 @@ namespace Hestia
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel serverName { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton ToRemote { get; set; }
-
-        [Action ("ToRemote_TouchUpInside:")]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        partial void ToRemote_TouchUpInside (UIKit.UIButton sender);
-
         void ReleaseDesignerOutlets ()
         {
             if (serverName != null) {
                 serverName.Dispose ();
                 serverName = null;
-            }
-
-            if (ToRemote != null) {
-                ToRemote.Dispose ();
-                ToRemote = null;
             }
         }
     }

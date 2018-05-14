@@ -20,7 +20,11 @@ namespace Hestia.DevicesScreen
 
         // List with plugins and collection they belong to
 		NSMutableArray services = new NSMutableArray();
-        
+
+        public void UpdateServices(NSMutableArray newservices)
+        {
+            this.services = newservices;
+        }
         // Constructor. Gets the device data and the ViewController
 		public TableSourceServerDiscovery(NSMutableArray services,
 		                UITableViewControllerServerDiscovery owner)
@@ -54,7 +58,7 @@ namespace Hestia.DevicesScreen
             }
 
             // The text to display on the cell is the plugin name
-			//cell.TextLabel.Text = services[indexPath.Row];
+            cell.TextLabel.Text = services.GetItem<NSNetService>((nuint)indexPath.Row).HostName;
             
             return cell;
         }

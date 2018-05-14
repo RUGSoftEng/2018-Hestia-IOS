@@ -13,7 +13,7 @@ namespace Hestia.backend.utils
                 interactor.GetDevices();
                 return true;
             }
-            catch (ServerInteractionException ex)
+            catch (ServerInteractionException)
             {
                 Console.Out.Write("No such server exists");
                 return false;
