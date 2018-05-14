@@ -303,4 +303,10 @@
   <data name="domainAuth0" xml:space="preserve">
     <value>hestio.eu.auth0.com</value>
   </data>
+  <data name="requestPath" xml:space="preserve">
+    <value>request</value>
+  </data>
+  <data name="serversPath" xml:space="preserve">
+    <value>servers/</value>
+  </data>
 </root>

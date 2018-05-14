@@ -37,7 +37,7 @@ namespace Hestia.UnitTests.backend
         public void SetServerInteractor()
         {
             NetworkHandler dummyNetworkHandler = new NetworkHandler(ip, port);
-            ServerInteractor dummyServerInteractor = new ServerInteractor(dummyNetworkHandler);
+            HestiaServerInteractor dummyServerInteractor = new HestiaServerInteractor(dummyNetworkHandler);
             dummyServer.Interactor = dummyServerInteractor;
             Assert.IsTrue(dummyServer.Interactor.Equals(dummyServerInteractor));
         }
@@ -46,9 +46,9 @@ namespace Hestia.UnitTests.backend
         public void GetServerInteractor()
         {
             NetworkHandler dummyNetworkHandler = new NetworkHandler(ip, port);
-            ServerInteractor dummyServerInteractor = new ServerInteractor(dummyNetworkHandler);
+            HestiaServerInteractor dummyServerInteractor = new HestiaServerInteractor(dummyNetworkHandler);
             dummyServer.Interactor = dummyServerInteractor;
-            ServerInteractor testInteractor = dummyServer.Interactor;
+            HestiaServerInteractor testInteractor = dummyServer.Interactor;
             Assert.IsTrue(testInteractor.NetworkHandler.Ip == dummyServer.Interactor.NetworkHandler.Ip);
             Assert.IsTrue(testInteractor.NetworkHandler.Port == dummyServer.Interactor.NetworkHandler.Port);
         }
