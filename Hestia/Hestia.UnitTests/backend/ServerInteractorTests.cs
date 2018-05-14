@@ -12,7 +12,7 @@ namespace Hestia.UnitTests.backend
     public class ServerInteractorTests
     {
         private NetworkHandler dummyNetworkHandler;
-        private ServerInteractor dummyServerInteractor;
+        private HestiaServerInteractor dummyServerInteractor;
         private string ip = "0.0.0.0";
         private int port = 1000;
 
@@ -20,7 +20,7 @@ namespace Hestia.UnitTests.backend
         public void SetUpServerInteractor()
         {
             dummyNetworkHandler = new NetworkHandler(ip, port);
-            dummyServerInteractor = new ServerInteractor(dummyNetworkHandler);
+            dummyServerInteractor = new HestiaServerInteractor(dummyNetworkHandler);
 
             Assert.IsNotNull(dummyServerInteractor);
         }

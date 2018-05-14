@@ -147,7 +147,7 @@ namespace Hestia
             Globals.ServerName = defaultServerName;
             Globals.IP = defaultIP;
             Globals.Port = int.Parse(defaultPort);
-            Globals.LocalServerinteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
             Console.WriteLine("To devices main local");
             PerformSegue(strings.mainToDevicesMain, this);
         }
@@ -155,7 +155,7 @@ namespace Hestia
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
-            List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
+            List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
             // TODO Backend method that gets Auth0Servers
             //
 
