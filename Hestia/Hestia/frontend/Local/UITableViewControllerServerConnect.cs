@@ -60,8 +60,16 @@ namespace Hestia.DevicesScreen
         {
             bool validIp = false;
 
-            validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
-          
+            try
+            {
+                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+            }
+            catch (Exception exception)
+            {
+                Console.Write(exception.StackTrace);
+                DisplayWarningMessage();
+                return false;
+            }
             if (validIp)
             {
                 userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
