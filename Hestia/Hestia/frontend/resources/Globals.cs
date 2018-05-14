@@ -18,19 +18,19 @@ namespace Hestia.DevicesScreen.resources
         public static String UserName { get; set; }
 
         // Variables for local server
-        public static ServerInteractor LocalServerinteractor { get; set; }
+        public static HestiaServerInteractor LocalServerinteractor { get; set; }
         public static String ServerName { get; set; }
         public static int Port { get; set; }
         public static String IP { get; set; }
 
         // Variables for global server
-        public static ServerInteractor ServerToAddDeviceTo { get; set; }
-        public static List<WebServer> FirebaseServers { get; set; }
+        public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
+        public static List<HestiaServer> FirebaseServers { get; set; }
 
-        public static List<ServerInteractor> GetSelectedServers()
+        public static List<HestiaServerInteractor> GetSelectedServers()
         {
-            List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
-            foreach(WebServer firebaseserver in FirebaseServers)
+            List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
+            foreach(HestiaServer firebaseserver in FirebaseServers)
             {
                 if(firebaseserver.Selected)
                 {
@@ -55,7 +55,7 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                foreach (ServerInteractor server in GetSelectedServers())
+                foreach (HestiaServerInteractor server in GetSelectedServers())
                 {
                     devices.AddRange(server.GetDevices());
                 }

@@ -484,6 +484,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to servers/.
+        /// </summary>
+        public static string serversPath {
+            get {
+                return ResourceManager.GetString("serversPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HestiaClient.
         /// </summary>
         public static string serviceName {

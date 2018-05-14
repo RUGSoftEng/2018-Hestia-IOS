@@ -15,7 +15,7 @@ namespace Hestia
     {
         UITableViewServerList owner;
 
-        public TableSourceServerList(List<WebServer> serverlist, UITableViewServerList owner)
+        public TableSourceServerList(List<HestiaServer> serverlist, UITableViewServerList owner)
         {
             Globals.FirebaseServers = serverlist;
             this.owner = owner;

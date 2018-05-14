@@ -276,4 +276,7 @@
   <data name="mainToServerConnect" xml:space="preserve">
     <value>mainToServerConnect</value>
   </data>
+  <data name="serversPath" xml:space="preserve">
+    <value>servers/</value>
+  </data>
 </root>
