@@ -64,19 +64,18 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="backend\Auth0ServerInteractor.cs" />
-    <Compile Include="backend\HestiaServerInteractorRemote.cs" />
-    <Compile Include="backend\IHestiaServerInteractor.cs" />
+    <Compile Include="backend\HestiaWebServerInteractor.cs" />
     <Compile Include="backend\exceptions\ServerInteractionException.cs" />
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
     <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />
     <Compile Include="backend\models\deserializers\DeviceDeserializer.cs" />
+    <Compile Include="backend\models\deserializers\HestiaServerDeserializer.cs" />
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
-    <Compile Include="backend\WebServer.cs" />
-    <Compile Include="backend\HestiaServerInteractorLocal.cs" />
+    <Compile Include="backend\models\HestiaServer.cs" />
+    <Compile Include="backend\HestiaServerInteractor.cs" />
     <Compile Include="backend\utils\JsonValidator.cs" />
     <Compile Include="backend\utils\PingServer.cs" />
     <Compile Include="Main.cs" />

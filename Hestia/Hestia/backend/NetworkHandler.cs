@@ -14,7 +14,7 @@ namespace Hestia.backend
         private int port;
         private RestClient client;
         private bool auth0;
-        private string auth0AccessToken;
+        private string accessToken; // auth0 access token
 
         public string Ip
         {
@@ -34,6 +34,10 @@ namespace Hestia.backend
                 SetRestClient();
             }
         }
+        public bool Auth0
+        {
+            get => auth0;
+        }
 
         public NetworkHandler(string ip, int port)
         {
@@ -47,12 +51,12 @@ namespace Hestia.backend
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         }
 
-        public NetworkHandler(string ip, int port, string auth0AccessToken)
+        public NetworkHandler(string ip, int port, string accessToken)
         {
             this.ip = ip;
             this.port = port;
             this.auth0 = true;
-            this.auth0AccessToken = auth0AccessToken;
+            this.accessToken = accessToken;
 
             SetRestClient();
 
@@ -103,7 +107,7 @@ namespace Hestia.backend
             request.Timeout = Int32.Parse(strings.requestTimeout);
             if(auth0)
             {
-                request.AddParameter("authorization", string.Format("Bearer " + auth0AccessToken), ParameterType.HttpHeader);
+                request.AddParameter("authorization", string.Format("Bearer " + accessToken), ParameterType.HttpHeader);
             }
             Console.WriteLine(request.ToString());
 

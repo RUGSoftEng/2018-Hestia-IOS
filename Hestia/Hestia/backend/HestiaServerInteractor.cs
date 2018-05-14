@@ -6,23 +6,56 @@ using System.Collections.Generic;
 
 namespace Hestia.backend
 {
-    public class HestiaServerInteractorLocal : IHestiaServerInteractor
+    public class HestiaServerInteractor
     {
         private NetworkHandler networkHandler;
+        private bool isRemoteServer;
+        private string serverId;
 
         public NetworkHandler NetworkHandler
         {
             get => networkHandler;
             set => networkHandler = value;
         }
+        public bool IsRemoteServer
+        {
+            get => isRemoteServer;
+        }
 
-        public HestiaServerInteractorLocal(NetworkHandler networkHandler)
+        public HestiaServerInteractor(NetworkHandler networkHandler)
         {
             this.networkHandler = networkHandler;
+            this.isRemoteServer = false;
+        }
+
+        public HestiaServerInteractor(NetworkHandler networkHandler, string serverId)
+        {
+            this.networkHandler = networkHandler;
+            this.serverId = serverId;
+            this.isRemoteServer = true;
         }
 
         public List<Device> GetDevices()
         {
+            JToken responsePayload = null;
+
+            if(isRemoteServer)
+            {
+                JObject requestPayload = new JObject
+                {
+                    { "requestType", "GET" },
+                    { "endpoint", '/' + strings.devicePath },
+                    { "optionalPayload", null }
+                };
+                string endpoint = strings.serversPath + serverId + '/';
+                responsePayload = networkHandler.Post(requestPayload, endpoint);
+
+                string requestType = "";
+            } else
+            {
+
+            }
+
             JToken payload = networkHandler.Get(strings.devicePath);
 
             DeviceDeserializer deserializer = new DeviceDeserializer();

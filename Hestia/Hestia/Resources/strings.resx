@@ -276,10 +276,10 @@
   <data name="mainToServerConnect" xml:space="preserve">
     <value>mainToServerConnect</value>
   </data>
-  <data name="auth0ServersPath" xml:space="preserve">
+  <data name="serversPath" xml:space="preserve">
     <value>servers/</value>
   </data>
-  <data name="auth0RequestPath" xml:space="preserve">
+  <data name="requestPath" xml:space="preserve">
     <value>request</value>
   </data>
 </root>
