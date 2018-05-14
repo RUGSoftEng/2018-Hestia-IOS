@@ -65,17 +65,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="backend\exceptions\ServerInteractionException.cs" />
+    <Compile Include="backend\HestiaWebServerInteractor.cs" />
     <Compile Include="backend\models\ActivatorState.cs" />
     <Compile Include="backend\models\Activator.cs" />
     <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />
     <Compile Include="backend\models\deserializers\DeviceDeserializer.cs" />
+    <Compile Include="backend\models\deserializers\HestiaServerDeserializer.cs" />
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
     <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
     <Compile Include="backend\utils\server_discovery\ServerDelegate.cs" />
-    <Compile Include="backend\WebServer.cs" />
-    <Compile Include="backend\ServerInteractor.cs" />
+    <Compile Include="backend\models\HestiaServer.cs" />
+    <Compile Include="backend\HestiaServerInteractor.cs" />
     <Compile Include="backend\utils\JsonValidator.cs" />
     <Compile Include="backend\utils\PingServer.cs" />
     <Compile Include="Main.cs" />
@@ -159,7 +161,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resources\strings.Designer.cs" />
+    <Compile Include="Resources\strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
     <InterfaceDefinition Include="Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="frontend\Devices2.storyboard" />
@@ -219,7 +225,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
-    <Folder Include="frontend\EntryScreen\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

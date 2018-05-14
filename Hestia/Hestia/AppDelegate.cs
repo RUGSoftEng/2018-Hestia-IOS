@@ -65,7 +65,7 @@ namespace Hestia
             Globals.IP = defaultIP;
 
             Globals.Port = int.Parse(defaultPort);
-            ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
             Globals.LocalServerinteractor = serverInteractor;
         }
 
