@@ -38,7 +38,6 @@ namespace Hestia
         string defaultAuth0AccessToken;
         string defaultAuth0IdentityToken;
 
-        // Returns false if defaultIP or port is not set yet
         public bool IsServerValid()
         {
             try

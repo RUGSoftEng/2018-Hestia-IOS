@@ -78,17 +78,13 @@ namespace Hestia.DevicesScreen.resources
             return temp_networkhandler;
         }
 
-        public static void ResetAllUserDefaults()
+        public static void ResetUserDefaults()
         {
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
             userDefaults.RemoveObject(strings.defaultsServerNameHestia);
             userDefaults.RemoveObject(strings.defaultsIpHestia);
             userDefaults.RemoveObject(strings.defaultsPortHestia);
             userDefaults.RemoveObject(strings.defaultsLocalHestia);
-            userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
-            userDefaults.RemoveObject(strings.defaultsIdentityTokenHestia);
         }
-
-       // public static Reset
     }
 }
