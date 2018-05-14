@@ -18,6 +18,9 @@ namespace Hestia.DevicesScreen.resources
         public static UIColor DefaultLightGray { get; set; }
         public static String UserName { get; set; }
 
+        public static int ScreenHeight { get; set;  }
+        public static int ScreenWidth { get; set;  }
+
         // Variables for local server
         public static ServerInteractor LocalServerinteractor { get; set; }
         public static String ServerName { get; set; }

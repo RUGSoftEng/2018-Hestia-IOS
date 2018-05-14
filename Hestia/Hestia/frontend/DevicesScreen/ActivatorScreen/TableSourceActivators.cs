@@ -6,7 +6,7 @@ using Hestia.backend.exceptions;
 using System.Collections.Generic;
 using Foundation;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.DevicesScreen.ActivatorScreen
 {
     public class TableSourceActivators : UITableViewSource
     {
@@ -25,7 +25,7 @@ namespace Hestia.DevicesScreen
             return activators.Count;
 		}
 
-        public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
+		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
             UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.activatorCell);
             backend.models.Activator act = activators[indexPath.Row];

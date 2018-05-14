@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.DevicesScreen.ActivatorScreen
 {
     [Register ("UITableViewActivators")]
     partial class UITableViewActivators

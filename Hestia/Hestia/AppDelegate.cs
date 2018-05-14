@@ -70,6 +70,8 @@ namespace Hestia
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+            Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
             // Override point for customization after application launch.
             // If not required for your application you can safely delete this method
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
@@ -136,7 +138,7 @@ namespace Hestia
             return true;
         }
 
-        public override void OnResignActivation(UIApplication application)
+		public override void OnResignActivation(UIApplication application)
         {
             // Invoked when the application is about to move from active to inactive state.
             // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) 

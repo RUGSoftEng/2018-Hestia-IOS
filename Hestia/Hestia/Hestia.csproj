@@ -152,6 +152,7 @@
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="frontend\DevicesScreen\ActivatorScreen\PopoverDelegate.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
