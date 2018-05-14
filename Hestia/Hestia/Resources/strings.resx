@@ -309,4 +309,7 @@
   <data name="serversPath" xml:space="preserve">
     <value>servers/</value>
   </data>
+  <data name="usersPath" xml:space="preserve">
+    <value>users/</value>
+  </data>
 </root>

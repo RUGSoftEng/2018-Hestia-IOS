@@ -21,6 +21,13 @@ namespace Hestia.backend
             this.networkHandler = networkHandler;
         }
 
+        // This method should be called before any other method in this class
+        public void PostUser()
+        {
+            string endpoint = strings.usersPath;
+            networkHandler.Post(null, endpoint);
+        }
+
         public HestiaServer GetServer(string serverId)
         {
             string endpoint = strings.serversPath + serverId;
