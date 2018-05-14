@@ -30,7 +30,7 @@ namespace Hestia
             Globals.ServerName = defaultServerName;
             Globals.IP = defaultIP;
             Globals.Port = int.Parse(defaultPort);
-            Globals.LocalServerinteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
             Console.WriteLine("To devices main");
             PerformSegue(strings.mainToDevicesMain, this);
         }
