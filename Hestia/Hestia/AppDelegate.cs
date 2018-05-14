@@ -81,7 +81,7 @@ namespace Hestia
            // userDefaults.RemoveObject(strings.defaultsServerNameHestia);
            // userDefaults.RemoveObject(strings.defaultsIpHestia);
            // userDefaults.RemoveObject(strings.defaultsPortHestia);
-           // userDefaults.RemoveObject(strings.defaultsLocalHestia);
+            userDefaults.RemoveObject(strings.defaultsLocalHestia);
 
             string defaultLocal = userDefaults.StringForKey(Resources.strings.defaultsLocalHestia);
             defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
