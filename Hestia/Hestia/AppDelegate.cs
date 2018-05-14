@@ -8,6 +8,11 @@ using Auth0.OidcClient;
 using System;
 using Hestia.Resources;
 
+using Hestia.backend.authentication;
+using System.Threading.Tasks;
+using IdentityModel.OidcClient;
+using System.Diagnostics;
+
 namespace Hestia
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
@@ -50,7 +55,7 @@ namespace Hestia
         public bool IsAuth0LoginValid()
         {
             //TODO possibly a backend method that checks if token is still valid
-            return true;
+            return false;
         }
 
         public void SetGlobalsToDefaultsLocalLogin()
@@ -116,8 +121,10 @@ namespace Hestia
             else
             {
                 Globals.LocalLogin = false;
-                UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
-
+                //UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
+                UIViewControllerLocalGlobal uIViewControllerLocalGlobal = 
+                    mainStoryboard.InstantiateViewController("localGlobalViewController")
+                                                            as UIViewControllerLocalGlobal;
                 //TODO check auth0 token.. set 
 
                 if(IsAuth0LoginValid())
@@ -129,7 +136,8 @@ namespace Hestia
                 }
                 else
                 {
-                    Window.RootViewController = auth0ViewController;
+                    Window.RootViewController = uIViewControllerLocalGlobal;
+					uIViewControllerLocalGlobal.CalledFromAppDelegateAsync();
                 }
                 Window.MakeKeyAndVisible();
             }

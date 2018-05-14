@@ -94,8 +94,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue id="20703" destination="19563" kind="presentation"/>
-                        <segue id="20796" destination="4845" kind="presentation" identifier="mainToDevicesMain"/>
                         <outlet property="LocalSignInButton" destination="203" id="name-outlet-203"/>
                     </connections>
                 </viewController>
@@ -104,13 +102,6 @@
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>
         <!--Devices2-->
-        <scene sceneID="4844">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Devices2" id="4845" sceneMemberID="viewController" referencedIdentifier="navigationDevicesMain"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4846" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-593" y="11"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="6425">
             <objects>
@@ -176,7 +167,7 @@
                 <viewControllerPlaceholder id="11023" sceneMemberID="viewController" storyboardName="Devices3"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11024" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="326" y="838"/>
+            <point key="canvasLocation" x="369" y="1186"/>
         </scene>
         <scene sceneID="19562">
             <objects>
@@ -187,7 +178,7 @@
         </scene>
         <scene sceneID="21199">
             <objects>
-                <viewController id="21200" sceneMemberID="viewController" customClass="UIViewControllerLocalGlobal">
+                <viewController id="21200" sceneMemberID="viewController" customClass="UIViewControllerLocalGlobal" storyboardIdentifier="localGlobalViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="21197"/>
                         <viewControllerLayoutGuide type="bottom" id="21198"/>
@@ -232,6 +223,8 @@
                         <outlet property="ToGlobalButton" destination="24862" id="name-outlet-24862"/>
                         <segue id="27976" destination="27948" kind="presentation" identifier="mainToDevicesMain"/>
                         <segue id="29117" destination="19563" kind="show" identifier="mainToServerConnect"/>
+                        <segue id="31838" destination="29491" kind="show" identifier="localGlobalToAuth0"/>
+                        <segue id="36529" destination="11023" kind="show" identifier="localGlobalToServerSelect"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21202" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -243,7 +236,7 @@
                 <viewControllerPlaceholder id="27948" sceneMemberID="viewController" referencedIdentifier="navigationDevicesMain" storyboardName="Devices2"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27949" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-174" y="719"/>
+            <point key="canvasLocation" x="35" y="648"/>
         </scene>
         <scene sceneID="29490">
             <objects>
@@ -260,12 +253,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="29493" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-225" y="771"/>
+            <point key="canvasLocation" x="-217" y="919"/>
         </scene>
     </scenes>
     <resources>
         <image name="LogoLaunchscreen" width="431" height="206"/>
-        <image name="Images/lock.png" width="300" height="295"/>
-        <image name="Images/lightbulb.png" width="300" height="300"/>
     </resources>
 </document>
