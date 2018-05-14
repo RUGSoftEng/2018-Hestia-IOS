@@ -11,6 +11,7 @@ using Hestia.backend.authentication;
 using System.Threading.Tasks;
 using IdentityModel.OidcClient;
 using System.Diagnostics;
+using Hestia.backend.models;
 
 namespace Hestia
 {   // This view controller belongs to the first window that can be shown on loading the app
@@ -155,8 +156,8 @@ namespace Hestia
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
-            Globals.Auth0Servers = new List<WebServer>();
-            List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
+            Globals.Auth0Servers = new List<HestiaServer>();
+            List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
 
             // TODO Backend method that gets Auth0Servers
             //
