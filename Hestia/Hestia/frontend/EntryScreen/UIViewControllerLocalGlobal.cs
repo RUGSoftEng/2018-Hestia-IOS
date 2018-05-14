@@ -155,6 +155,7 @@ namespace Hestia
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
+            Globals.Auth0Servers = new List<WebServer>();
             List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
             // TODO Backend method that gets Auth0Servers
             //

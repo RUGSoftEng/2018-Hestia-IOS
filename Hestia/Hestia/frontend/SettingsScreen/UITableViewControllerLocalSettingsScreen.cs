@@ -11,11 +11,6 @@ namespace Hestia
         {
         }
 
-        partial void ToRemote_TouchUpInside(UIButton sender)
-        {
-            
-        }
-
 
         public override void ViewDidLoad()
         {

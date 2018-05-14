@@ -144,7 +144,6 @@
     </Compile>
     <Compile Include="backend\authentication\Auth0Connector.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.cs" />
     <Compile Include="frontend\Local\TableSourceServerDiscovery.cs" />
     <Compile Include="frontend\EntryScreen\UIViewControllerAuth0.cs" />
     <Compile Include="frontend\EntryScreen\UIViewControllerAuth0.designer.cs">
@@ -153,6 +152,10 @@
     <Compile Include="frontend\EntryScreen\UIViewControllerLocalGlobal.cs" />
     <Compile Include="frontend\EntryScreen\UIViewControllerLocalGlobal.designer.cs">
       <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.cs" />
+    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery4.designer.cs">
+      <DependentUpon>UITableViewControllerServerDiscovery.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
