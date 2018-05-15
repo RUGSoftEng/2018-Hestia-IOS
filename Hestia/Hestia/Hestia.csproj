@@ -156,7 +156,7 @@
       <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
     </Compile>
     <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.cs" />
-    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery4.designer.cs">
+    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.designer.cs">
       <DependentUpon>UITableViewControllerServerDiscovery.cs</DependentUpon>
     </Compile>
     <Compile Include="backend\utils\server_discovery\AutoServerDiscoveryDelegate.cs" />

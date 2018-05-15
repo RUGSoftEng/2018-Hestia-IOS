@@ -19,38 +19,45 @@ namespace Hestia.backend.utils.server_discovery
             Searching = false;
         }
 
-        public void NetServiceBrowserWillSearch(NSNetServiceBrowser browser)
+        [Export("netServiceBrowserWillSearch:")]
+        public override void SearchStarted(NSNetServiceBrowser sender)
         {
+            Console.WriteLine("Started search");
             Searching = true;
             UpdateUI();
         }
 
-        public void NetServiceBrowserDidStopSearch(NSNetServiceBrowser browser)
+        [Export("netServiceBrowserDidStopSearch:")]
+        public override void SearchStopped(NSNetServiceBrowser sender)
         {
+            Console.WriteLine("Started stopped");
             Searching = false;
             UpdateUI();
         }
 
-        public void NetServiceBrowserDidNotSearch(NSNetServiceBrowser browser, NSDictionary errorDict)
+        [Export("netServiceBrowser:didNotSearch:")]
+        public override void NotSearched(NSNetServiceBrowser sender, NSDictionary errors)
         {
             Searching = false;
-            HandleError(errorDict);
+            HandleError(errors);
         }
 
-        public void NetServiceBrowserDidFindServiceMoreComing(NSNetServiceBrowser browser, 
-            NSNetService aNetService, bool moreComing)
+        [Export("netServiceBrowser:didFindService:moreComing:")]
+        public override void FoundService(NSNetServiceBrowser sender, 
+                                          NSNetService service, bool moreComing)
         {
-            Services.Add(aNetService);
+            Console.WriteLine("Found service " + service.HostName);
+            Services.Add(service);
             if(!moreComing)
             {
                 UpdateUI();
             }
         }
 
-        public void NetServiceBrowserDidRemoveServiceMoreComing(NSNetServiceBrowser browser,
-            NSNetService aNetService, bool moreComing)
+        [Export("netServiceBrowser:didRemoveService:moreComing:")]
+        public override void ServiceRemoved(NSNetServiceBrowser sender, NSNetService service, bool moreComing)
         {
-            nint idx = (nint) Services.IndexOf(aNetService);
+            nint idx = (nint)Services.IndexOf(service);
             Services.RemoveObject(idx);
         }
 
