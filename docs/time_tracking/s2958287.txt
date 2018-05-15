@@ -152,3 +152,45 @@ Creating class diagram for back end
 Creating class diagram for back end
 Creating class diagram for back end
 Creating class diagram for back end
+Meeting with team, TA and customer
+Meeting with team, TA and customer
+Added more front end exception handling and refactored front end code
+Added more front end exception handling and refactored front end code
+Added more front end exception handling and refactored front end code
+Added more front end exception handling and refactored front end code
+Added more front end exception handling and refactored front end code
+Meeting with team
+Meeting with team
+Meeting with team
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Setting up auth0 server
+Setting up auth0 server
+Setting up auth0 server
+Setting up auth0 server
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Adding backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Testing backend code for auth0 and web teams server support
+Adding code to change device name/activator state on remote servers
+Adding code to change device name/activator state on remote servers
+Adding code to change device name/activator state on remote servers
