@@ -1,6 +1,4 @@
-﻿using Hestia.Resources;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Hestia.backend.models
@@ -11,7 +9,7 @@ namespace Hestia.backend.models
         private string name;
         private string type;
         private List<Activator> activators;
-        private NetworkHandler networkHandler;
+        private HestiaServerInteractor serverInteractor;
 
         public string DeviceId
         {
@@ -24,14 +22,7 @@ namespace Hestia.backend.models
             set
             {
                 name = value;
-
-                string endpoint = strings.devicePath + deviceId;
-                JObject deviceName = new JObject
-                {
-                    ["name"] = name
-                };
-
-                networkHandler.Put(deviceName, endpoint);
+                serverInteractor.ChangeDeviceName(this, name);
             }
         }
         public string Type
@@ -44,49 +35,24 @@ namespace Hestia.backend.models
             get => activators;
             set => activators = value;
         }
-        public NetworkHandler NetworkHandler
+        public HestiaServerInteractor ServerInteractor
         {
-            get => networkHandler;
-            set => networkHandler = value;
+            get => serverInteractor;
+            set => serverInteractor = value;
         }
         
-        public Device(string deviceId, string name, string type, List<Activator> activators, NetworkHandler networkHandler)
+        public Device(string deviceId, string name, string type, List<Activator> activators, HestiaServerInteractor serverInteractor)
         {
             this.deviceId = deviceId;
             this.name = name;
             this.type = type;
             this.activators = activators;
-            this.networkHandler = networkHandler;
+            this.serverInteractor = serverInteractor;
         }
 
-        new
-        public Boolean Equals(Object obj)
+        public override string ToString()
         {
-            if (!(obj is Device)) return false;
-            Device device = (Device)obj;
-            return (this == device || (this.DeviceId.Equals(device.DeviceId) &&
-                    Name.Equals(device.Name) &&
-                    Type.Equals(device.Type) &&
-                    Activators.Equals(device.Activators) &&
-                    NetworkHandler.Equals(device.NetworkHandler)));
-        }
-
-        new
-        public int GetHashCode()
-        {
-            int multiplier = int.Parse(Resources.strings.hashCodeMultiplier);
-            int result = DeviceId.GetHashCode();
-            result = result * multiplier + Name.GetHashCode();
-            result = result * multiplier + GetType().GetHashCode();
-            result = result * multiplier + Activators.GetHashCode();
-            result = result * multiplier + NetworkHandler.GetHashCode();
-            return result;
-        }
-
-        new
-        public String ToString()
-        {
-            return name + " " + deviceId + " " + activators + "\n";
+            return name + " " + deviceId;
         }
     }
 }

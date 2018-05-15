@@ -1,7 +1,4 @@
-﻿using Hestia.Resources;
-using Newtonsoft.Json.Linq;
-using System;
-
+﻿
 namespace Hestia.backend.models
 {
     public class Activator
@@ -33,14 +30,7 @@ namespace Hestia.backend.models
             set
             {
                 state = value;
-
-                string endpoint = strings.devicePath + device.DeviceId + "/" + strings.activatorsPath + activatorId;
-                JObject activatorState = new JObject
-                {
-                    ["state"] = new JValue(state.RawState)
-                };
-
-                Device.NetworkHandler.Post(activatorState, endpoint);
+                device.ServerInteractor.SetActivatorState(this, state);
             }
         }
         public Device Device
@@ -57,30 +47,9 @@ namespace Hestia.backend.models
             this.state = state;
         }
 
-        new
-        public Boolean Equals(Object obj)
+        public override string ToString()
         {
-            if (!(obj is Activator))
-            {
-                return false;
-            }
-            Activator activator = (Activator)obj;
-            return (this == activator || (this.ActivatorId.Equals(activator.ActivatorId) &&
-                rank.Equals(activator.Rank) &&
-                state.Equals(activator.State) &&
-                name.Equals(activator.Name)));
-        }
-
-        new
-        public Exception GetHashCode()
-        {
-            return new NotImplementedException();
-        }
-
-        new
-        public String ToString()
-        {
-            return this.name + " " + this.state;
+            return name + " " + state;
         }
     }
 }
