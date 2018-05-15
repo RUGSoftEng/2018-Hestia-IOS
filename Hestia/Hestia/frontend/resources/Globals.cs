@@ -81,6 +81,20 @@ namespace Hestia.DevicesScreen.resources
             return temp_networkhandler;
         }
 
+		public static HestiaServerInteractor GetTemporaryServerInteractor()
+		{
+			HestiaServerInteractor temp_serverinteractor;
+            if (LocalLogin)
+            {
+				temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(IP, Port));
+            }
+            else
+            {
+				temp_serverinteractor = Auth0Servers[0].Interactor;
+            }
+			return temp_serverinteractor;
+		}
+
         public static void ResetAllUserDefaults()
         {
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
