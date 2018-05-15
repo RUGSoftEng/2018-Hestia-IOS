@@ -14,5 +14,8 @@ namespace Hestia
     [Register ("UITableViewControllerServerDiscovery")]
     partial class UITableViewControllerServerDiscovery
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }

@@ -159,7 +159,7 @@
     <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.designer.cs">
       <DependentUpon>UITableViewControllerServerDiscovery.cs</DependentUpon>
     </Compile>
-    <Compile Include="backend\utils\server_discovery\AutoServerDiscoveryDelegate.cs" />
+    <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
