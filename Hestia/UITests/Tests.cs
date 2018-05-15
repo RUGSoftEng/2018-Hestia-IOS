@@ -31,7 +31,7 @@ namespace UITests
             app.EnterText("94.212.164.28");
             app.Tap(e => e.Text("Enter port"));
             app.EnterText("8000");
-            app.Repl();
+            //app.Repl();
         }
 
         [Test]
