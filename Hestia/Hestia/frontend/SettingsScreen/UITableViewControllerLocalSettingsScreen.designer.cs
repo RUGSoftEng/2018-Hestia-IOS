@@ -18,6 +18,10 @@ namespace Hestia
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UILabel serverName { get; set; }
 
+        [Action ("UIButton66628_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void UIButton66628_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
             if (serverName != null) {

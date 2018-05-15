@@ -35,5 +35,7 @@
     </scenes>
     <resources>
         <image name="LogoLaunchscreen" width="431" height="206"/>
+        <image name="Images/lock.png" width="300" height="295"/>
+        <image name="Images/lightbulb.png" width="300" height="300"/>
     </resources>
 </document>
