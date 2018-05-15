@@ -1,5 +1,5 @@
-﻿using System;
-using System.Net.Sockets;
+﻿using Hestia.backend.exceptions;
+using System;
 
 namespace Hestia.backend.utils
 {
@@ -7,17 +7,16 @@ namespace Hestia.backend.utils
     {
         public static bool Check(string address, int port)
         {
-            using (TcpClient client = new TcpClient())
+            HestiaServerInteractor interactor = new HestiaServerInteractor(new NetworkHandler(address, port));
+            try
             {
-                try
-                {
-                    client.Connect(address, port);
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
+                interactor.GetDevices();
+                return true;
+            }
+            catch (ServerInteractionException)
+            {
+                Console.Out.Write("No such server exists");
+                return false;
             }
         }
     }

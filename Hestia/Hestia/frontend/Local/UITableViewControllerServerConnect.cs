@@ -13,14 +13,36 @@ namespace Hestia.DevicesScreen
     public partial class UITableViewControllerServerConnect : UITableViewController
     {
         NSUserDefaults userDefaults;
+        string defaultServerName;
+        string defaultIP;
+        string defaultPort;
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
         {
+            userDefaults = NSUserDefaults.StandardUserDefaults;
+            defaultServerName = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
+            defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
+            defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
         }
+
+
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            if (defaultServerName != null)
+            {
+                newServerName.Text = defaultServerName;
+            }
+            if (defaultIP != null)
+            {
+                newIP.Text = defaultIP;
+            }
+            if (defaultPort != null)
+            {
+                newPort.Text = defaultPort;
+            }
 
             newServerName.ShouldReturn += TextFieldShouldReturn;
             newIP.ShouldReturn += TextFieldShouldReturn;
@@ -31,73 +53,61 @@ namespace Hestia.DevicesScreen
             newPort.Tag = 3;
 
             newServerName.BecomeFirstResponder();
-
-            userDefaults = NSUserDefaults.StandardUserDefaults;
-            var defaultServerName = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
-            if (defaultServerName != null)
-            {
-                newServerName.Text = defaultServerName;
-                newServerName.Placeholder = defaultServerName;
-            }
-
-            var defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
-            if (defaultIP != null)
-            {
-                newIP.Text = defaultIP;
-                newIP.Placeholder = defaultIP;
-            }
-            var defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
-            if (defaultPort != null)
-            {
-                newPort.Text = defaultPort;
-                newPort.Placeholder = defaultPort;
-            }
         }
 
-        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+
+		public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
-            bool validIp = false;
 
-            try
+            if (segueIdentifier == "serverDiscoverySegue")
             {
-                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
-            }
-            catch (Exception exception)
-            {
-                Console.Write(exception.StackTrace);
-                displayWarningMessage();
-                return false;
-            }
-            if (validIp)
-            {
-                userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
-                userDefaults.SetString(newIP.Text, Resources.strings.defaultsIpHestia);
-                userDefaults.SetString(newPort.Text, Resources.strings.defaultsPortHestia);
-
-                Globals.ServerName = newServerName.Text;
-                Globals.IP = newIP.Text;
-                Globals.Port = int.Parse(newPort.Text);
-                ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
-                Globals.LocalServerinteractor = serverInteractor;
-
                 return true;
             }
             else
             {
-                displayWarningMessage();
-                return false;
+                bool validIp = false;
+
+                try
+                {
+                    validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+                }
+                catch (Exception exception)
+                {
+                    Console.Write(exception.StackTrace);
+                    DisplayWarningMessage();
+                    return false;
+                }
+                if (validIp)
+                {
+                    userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
+                    userDefaults.SetString(newIP.Text, Resources.strings.defaultsIpHestia);
+                    userDefaults.SetString(newPort.Text, Resources.strings.defaultsPortHestia);
+
+                    Globals.ServerName = newServerName.Text;
+                    Globals.IP = newIP.Text;
+                    Globals.Port = int.Parse(newPort.Text);
+                    HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                    Globals.LocalServerinteractor = serverInteractor;
+
+                    return true;
+                }
+                else
+                {
+                    DisplayWarningMessage();
+                    return false;
+                }
             }
         }
 
-        void displayWarningMessage()
+
+        private void DisplayWarningMessage()
         {
-            UIAlertView alert = new UIAlertView()
-            {
-                Title = "Could not connect to server",
-                Message = "Invalid server information"
-            };
-            alert.AddButton("OK");
-            alert.Show();
+            string title = "Could not connect to server";
+            string message = "Invalid server information";
+            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            PresentViewController(okAlertController, true, null);
+
             connectButton.Selected = false;
         }
 

@@ -19,10 +19,14 @@ namespace Hestia.DevicesScreen
         PluginInfo completeInfo;
         string[] propertyNames;
 
+        UITableViewControllerAddDeviceProperties owner;
+        string info;
+
         // Constructor. Fill propertyNames with a copy of current keys
         public TableSourceAddDeviceProperties(
                     UITableViewControllerAddDeviceProperties owner)
         {
+            this.owner = owner;
             inputs = owner.inputFields;
             this.completeInfo = owner.pluginInfo;
             propertyNames = new string[completeInfo.RequiredInfo.Keys.Count];
@@ -55,6 +59,7 @@ namespace Hestia.DevicesScreen
 
             // Put the property names in the placeholder filed
             cell.UpdateCell(propertyNames[indexPath.Row]);
+            cell.Accessory = UITableViewCellAccessory.DetailButton;
             // Keep reference in hashtable
             inputs[propertyNames[indexPath.Row]] = cell;
 
@@ -62,5 +67,15 @@ namespace Hestia.DevicesScreen
 
         }
 
-    }
+		public override void AccessoryButtonTapped(UITableView tableView, NSIndexPath indexPath)
+		{
+            info = completeInfo.RequiredInfo[propertyNames[indexPath.Row]];
+            
+            UIAlertController alertController = UIAlertController.Create(propertyNames[indexPath.Row], info , UIAlertControllerStyle.Alert);
+            alertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            
+            owner.PresentViewController(alertController, true, null);
+            tableView.DeselectRow(indexPath, true);
+		}
+	}
 }

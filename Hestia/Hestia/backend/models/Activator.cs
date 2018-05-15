@@ -1,8 +1,6 @@
 ﻿using Hestia.Resources;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Runtime.Remoting;
-using Hestia.backend.exceptions;
 
 namespace Hestia.backend.models
 {
@@ -16,43 +14,22 @@ namespace Hestia.backend.models
 
         public string ActivatorId
         {
-            get
-            {
-                return activatorId;
-            }
-            set
-            {
-                activatorId = value;
-            }
+            get => activatorId;
+            set => activatorId = value;
         }
         public string Name
         {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-            }
+            get => name;
+            set => name = value;
         }
         public int Rank
         {
-            get
-            {
-                return rank;
-            }
-            set
-            {
-                rank = value;
-            }
+            get => rank;
+            set => rank = value;
         }
         public ActivatorState State
         {
-            get
-            {
-                return state;
-            }
+            get => state;
             set
             {
                 state = value;
@@ -63,27 +40,13 @@ namespace Hestia.backend.models
                     ["state"] = new JValue(state.RawState)
                 };
 
-                try
-                {
-                    Device.NetworkHandler.Post(activatorState, endpoint);
-                }
-                catch(ServerInteractionException ex)
-                {
-                    throw;
-                }
-
+                Device.NetworkHandler.Post(activatorState, endpoint);
             }
         }
         public Device Device
         {
-            get
-            {
-                return device;
-            }
-            set
-            {
-                device = value;
-            }
+            get => device;
+            set => device = value;
         }
 
         public Activator(string activatorId, string name, int rank, ActivatorState state)

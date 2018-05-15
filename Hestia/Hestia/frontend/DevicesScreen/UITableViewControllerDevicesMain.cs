@@ -23,21 +23,21 @@ namespace Hestia.DevicesScreen
         {
         }
 
-        public void cancelEditingState()
+        public void CancelEditingState()
         {
             DevicesTable.SetEditing(false, true);
-            NavigationItem.RightBarButtonItem = edit;
+            NavigationItem.LeftBarButtonItem = edit;
             ((TableSource)DevicesTable.Source).DidFinishTableEditing(DevicesTable);
         }
 
-        public void setEditingState()
+        public void SetEditingState()
         {
             ((TableSource)DevicesTable.Source).WillBeginTableEditing(DevicesTable);
             DevicesTable.SetEditing(true, true);
-            NavigationItem.RightBarButtonItem = done;
+            NavigationItem.LeftBarButtonItem = done;
         }
 
-        public void refreshDeviceList()
+        public void RefreshDeviceList()
         {
             // Get the list with devices
             if (Globals.LocalLogin)
@@ -59,22 +59,61 @@ namespace Hestia.DevicesScreen
 		public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
-            refreshDeviceList();
+            RefreshDeviceList();
 
             // To tap row in editing mode for changing name
             DevicesTable.AllowsSelectionDuringEditing = true;  
 
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
-                this.cancelEditingState();
+                CancelEditingState();
             });
 
             edit = new UIBarButtonItem(UIBarButtonSystemItem.Edit, (s, e) => {
-                this.setEditingState();
+                SetEditingState();
             });
 
+            //Pull to refresh
+            RefreshControl = new UIRefreshControl();
+            RefreshControl.ValueChanged += RefreshTable;
+            TableView.Add(RefreshControl);
+
             // Set right button initially to edit 
-            NavigationItem.RightBarButtonItem = edit;
-         
+            NavigationItem.LeftBarButtonItem = edit;
+            NavigationItem.RightBarButtonItem = SettingsButton;
+        }
+
+        partial void SettingsButton_Activated(UIBarButtonItem sender)
+        {
+            if(Globals.LocalLogin)
+            {
+                UITableViewControllerLocalSettingsScreen uITableViewControllerLocalSettingsScreen =
+                     this.Storyboard.InstantiateViewController("LocalSettingsScreen")
+                          as UITableViewControllerLocalSettingsScreen;
+                if (uITableViewControllerLocalSettingsScreen != null)
+                {
+                    NavigationController.PushViewController(uITableViewControllerLocalSettingsScreen, true);
+                }
+            }
+            else
+            {
+                UITableViewControllerGlobalSettingsScreen uITableViewControllerGlobalSettingsScreen =
+                    this.Storyboard.InstantiateViewController("GlobalSettingsScreen")
+                         as UITableViewControllerGlobalSettingsScreen;
+                if (uITableViewControllerGlobalSettingsScreen != null)
+                {
+                    NavigationController.PushViewController(uITableViewControllerGlobalSettingsScreen, true);
+                }
+            }
+        }
+
+        //Method Pull to refresh
+        private void RefreshTable(object sender, EventArgs e)
+        {
+            RefreshControl.BeginRefreshing();
+            RefreshDeviceList();
+            TableView.ReloadData();
+            RefreshControl.EndRefreshing();
+
         }
     }
 }

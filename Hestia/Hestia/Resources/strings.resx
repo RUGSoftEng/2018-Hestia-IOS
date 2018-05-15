@@ -264,4 +264,55 @@
   <data name="versionTooLow" xml:space="preserve">
     <value>Android version too low</value>
   </data>
+  <data name="defaultsLocalHestia" xml:space="preserve">
+    <value>localHestia</value>
+  </data>
+  <data name="mainToAuth0" xml:space="preserve">
+    <value>mainToAuth0</value>
+  </data>
+  <data name="mainToDevicesMain" xml:space="preserve">
+    <value>mainToDevicesMain</value>
+  </data>
+  <data name="mainToServerConnect" xml:space="preserve">
+    <value>mainToServerConnect</value>
+  </data>
+  <data name="auth0ViewController" xml:space="preserve">
+    <value>auth0ViewController</value>
+  </data>
+  <data name="defaultsAccessTokenHestia" xml:space="preserve">
+    <value>accessTokenHestia</value>
+  </data>
+  <data name="defaultsIdentityTokenHestia" xml:space="preserve">
+    <value>identityTokenHestia</value>
+  </data>
+  <data name="devices2StoryBoard" xml:space="preserve">
+    <value>Devices2</value>
+  </data>
+  <data name="mainStoryBoard" xml:space="preserve">
+    <value>Main</value>
+  </data>
+  <data name="navigationControllerDevicesMain" xml:space="preserve">
+    <value>navigationDevicesMain</value>
+  </data>
+  <data name="apiURL" xml:space="preserve">
+    <value>https://hest.io</value>
+  </data>
+  <data name="clientId" xml:space="preserve">
+    <value>_1wsVGXJbkEm8kwcueB5seyxm37E1rWl</value>
+  </data>
+  <data name="domainAuth0" xml:space="preserve">
+    <value>hestio.eu.auth0.com</value>
+  </data>
+  <data name="requestPath" xml:space="preserve">
+    <value>request</value>
+  </data>
+  <data name="serversPath" xml:space="preserve">
+    <value>servers/</value>
+  </data>
+  <data name="usersPath" xml:space="preserve">
+    <value>users/</value>
+  </data>
+  <data name="webserverIP" xml:space="preserve">
+    <value>fathomless-reef-69954.herokuapp.com</value>
+  </data>
 </root>

@@ -6,11 +6,11 @@ using Foundation;
 using Hestia.DevicesScreen.resources;
 using System.Drawing;
 using System.Collections;
+using Hestia.DevicesScreen.ActivatorScreen;
 using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
-
 
 namespace Hestia.DevicesScreen
 {
@@ -53,9 +53,16 @@ namespace Hestia.DevicesScreen
             {
                 serverDevices = new List<List<Device>>();
                 numberOfServers = Globals.GetNumberOfSelectedServers();
-                foreach (ServerInteractor interactor in Globals.GetSelectedServers())
+                foreach (HestiaServerInteractor interactor in Globals.GetSelectedServers())
                 {
-                    serverDevices.Add(interactor.GetDevices());
+                    try
+                    {
+                        serverDevices.Add(interactor.GetDevices());
+                    } catch(ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while getting devices from server " + interactor.ToString());
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
             }
         }
@@ -85,7 +92,6 @@ namespace Hestia.DevicesScreen
 
             if (serverDevices[indexPath.Section][indexPath.Row].Name != "New Device")
             {
-
                 cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
                 cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
                 //    if (TableItems[(indexPath.Row)].Type == "Light")
@@ -96,16 +102,13 @@ namespace Hestia.DevicesScreen
                 //    {
                 //        cell.ImageView.Image = UIImage.FromBundle("Images/lock.png");
                 //    }
-
             }
 
             // The text to display on the cell is the device name
-
             cell.TextLabel.Text = serverDevices[indexPath.Section][indexPath.Row].Name;
 
             return cell;
         }
-
 
         // Devices what happens if touch on row.
         // Should display the slider(s) ultimately
@@ -113,20 +116,27 @@ namespace Hestia.DevicesScreen
         {
             if (!tableView.Editing)
             {
-                UITableViewActivators activator =
-                        this.owner.Storyboard.InstantiateViewController("DeviceActivators")
-                             as UITableViewActivators;
-                if (activator != null)
+                var d = GetSectionRow(indexPath);
+                if (d.Activators.Count != 0)
                 {
-                    activator.device = GetSectionRow(indexPath);
-                    owner.NavigationController.PushViewController(activator, true);
+                    var popupNavVC = new UITableViewActivators();
+                    popupNavVC.device = d;
+                    nfloat heightPop = tableView.RowHeight * 2;
+                    popupNavVC.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
+                    popupNavVC.ModalPresentationStyle = UIModalPresentationStyle.Popover;
+                    var popPresenter = popupNavVC.PopoverPresentationController;
+                    popPresenter.SourceView = this.owner.View;
+                    popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight/2-heightPop, 0, 0);
+                    popPresenter.Delegate = new PopoverDelegate();
+                    popPresenter.PermittedArrowDirections = 0;
+                    popPresenter.BackgroundColor = UIColor.White;
+                    this.owner.PresentViewController(popupNavVC, true, null);
                 }
                 tableView.DeselectRow(indexPath, true);
             }
             // Go to edit name window for non-insert cells
             else if (tableView.Editing && tableView.CellAt(indexPath).EditingStyle != UITableViewCellEditingStyle.Insert)
             {
-
                 UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this.owner);
                 editViewController.device = GetSectionRow(indexPath);
                 this.owner.NavigationController.PushViewController(editViewController, true);
@@ -149,7 +159,7 @@ namespace Hestia.DevicesScreen
                         try
                         {
                             // remove device from server 
-                            Globals.LocalServerinteractor.RemoveDevice(serverDevices[(int)indexPath.Section][(int)indexPath.Row]);
+                            Globals.LocalServerinteractor.RemoveDevice(serverDevices[indexPath.Section][indexPath.Row]);
                         }
                         catch (ServerInteractionException ex)
                         {
@@ -159,9 +169,9 @@ namespace Hestia.DevicesScreen
                     }
                     else
                     {
-                        var deviceInRow = serverDevices[(int)indexPath.Section][(int)indexPath.Row];
+                        var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
                         var deviceNetworkHanlder = deviceInRow.NetworkHandler;
-                        var deviceServerInteractor = new ServerInteractor(deviceNetworkHanlder);
+                        var deviceServerInteractor = new HestiaServerInteractor(deviceNetworkHanlder);
                         try
                         {
                             deviceServerInteractor.RemoveDevice(deviceInRow);
@@ -202,11 +212,6 @@ namespace Hestia.DevicesScreen
                     this.owner.Storyboard.InstantiateViewController("AddDeviceChooseServer") as UITableViewControllerAddDeviceChooseServer;
                 owner.NavigationController.PushViewController(addDeviceChooseServer, true);
             }
-        }
-
-        public override string TitleForDeleteConfirmation(UITableView tableView, NSIndexPath indexPath)
-        {   // Default text is 'Delete'
-            return "Remove " + serverDevices[(int)indexPath.Section][(int)indexPath.Row].Name;
         }
 
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
@@ -258,6 +263,7 @@ namespace Hestia.DevicesScreen
 
             tableView.EndUpdates(); // applies the changes
         }
+
         public void DidFinishTableEditing(UITableView tableView)
         {
             tableView.BeginUpdates();

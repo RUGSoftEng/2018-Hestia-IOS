@@ -8,6 +8,7 @@ using System.Collections;
 using CoreGraphics;
 using Hestia.backend;
 using Hestia.backend.models;
+using Hestia.Resources;
 
 namespace Hestia.DevicesScreen.resources
 {
@@ -17,24 +18,27 @@ namespace Hestia.DevicesScreen.resources
         public static UIColor DefaultLightGray { get; set; }
         public static String UserName { get; set; }
 
+        public static int ScreenHeight { get; set;  }
+        public static int ScreenWidth { get; set;  }
+
         // Variables for local server
-        public static ServerInteractor LocalServerinteractor { get; set; }
+        public static HestiaServerInteractor LocalServerinteractor { get; set; }
         public static String ServerName { get; set; }
         public static int Port { get; set; }
         public static String IP { get; set; }
 
         // Variables for global server
-        public static ServerInteractor ServerToAddDeviceTo { get; set; }
-        public static List<WebServer> FirebaseServers { get; set; }
+        public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
+        public static List<HestiaServer> Auth0Servers { get; set; }
 
-        public static List<ServerInteractor> GetSelectedServers()
+        public static List<HestiaServerInteractor> GetSelectedServers()
         {
-            List<ServerInteractor> serverInteractors = new List<ServerInteractor>();
-            foreach(WebServer firebaseserver in FirebaseServers)
+            List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
+            foreach(HestiaServer auth0server in Auth0Servers)
             {
-                if(firebaseserver.Selected)
+                if(auth0server.Selected)
                 {
-                    serverInteractors.Add(firebaseserver.Interactor);
+                    serverInteractors.Add(auth0server.Interactor);
                 }
             }
             return serverInteractors;
@@ -55,7 +59,7 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                foreach (ServerInteractor server in GetSelectedServers())
+                foreach (HestiaServerInteractor server in GetSelectedServers())
                 {
                     devices.AddRange(server.GetDevices());
                 }
@@ -72,9 +76,22 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                temp_networkhandler = new NetworkHandler(FirebaseServers[0].Interactor.NetworkHandler.Ip, FirebaseServers[0].Interactor.NetworkHandler.Port);
+                temp_networkhandler = new NetworkHandler(Auth0Servers[0].Interactor.NetworkHandler.Ip, Auth0Servers[0].Interactor.NetworkHandler.Port);
             }
             return temp_networkhandler;
         }
+
+        public static void ResetAllUserDefaults()
+        {
+            NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
+            userDefaults.RemoveObject(strings.defaultsServerNameHestia);
+            userDefaults.RemoveObject(strings.defaultsIpHestia);
+            userDefaults.RemoveObject(strings.defaultsPortHestia);
+            userDefaults.RemoveObject(strings.defaultsLocalHestia);
+            userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
+            userDefaults.RemoveObject(strings.defaultsIdentityTokenHestia);
+        }
+
+       // public static Reset
     }
 }
