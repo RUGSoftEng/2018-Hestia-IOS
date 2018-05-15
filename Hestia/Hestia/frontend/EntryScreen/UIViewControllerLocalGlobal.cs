@@ -28,9 +28,6 @@ namespace Hestia
         string defaultAccessToken;
         string defaultIdentityToken;
 
-        // TODO move to resources
-        private const string webserverIP = "";
-
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
         {
         }
@@ -119,7 +116,7 @@ namespace Hestia
         {
             if (defaultAccessToken != null)
             {
-                NetworkHandler networkHandler = new NetworkHandler(webserverIP, defaultAccessToken);
+                NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, defaultAccessToken);
                 try
                 {
                     HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
@@ -177,7 +174,7 @@ namespace Hestia
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(webserverIP, defaultAccessToken);
+            NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, defaultAccessToken);
             CreateServerInteractorAndSegue(networkHandler);
         }
 
@@ -188,7 +185,7 @@ namespace Hestia
             userDefaults.SetString(identityToken, Resources.strings.defaultsIdentityTokenHestia);
 
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(webserverIP, accessToken);
+            NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, accessToken);
             CreateServerInteractorAndSegue(networkHandler);
 
         }

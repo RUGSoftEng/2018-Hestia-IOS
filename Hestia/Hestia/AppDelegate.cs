@@ -7,6 +7,7 @@ using Hestia.backend;
 using Auth0.OidcClient;
 using System;
 using Hestia.Resources;
+using Hestia.backend.exceptions;
 
 namespace Hestia
 {
@@ -33,9 +34,6 @@ namespace Hestia
         string defaultAuth0AccessToken;
         string defaultAuth0IdentityToken;
 
-        // TODO move to resources
-        private const string webserverIP = "";
-
         public bool IsServerValid()
         {
             try
@@ -54,7 +52,7 @@ namespace Hestia
         {
             if (defaultAuth0AccessToken != null)
             {
-                NetworkHandler networkHandler = new NetworkHandler(webserverIP, defaultAuth0AccessToken);
+                NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken);
                 try
                 {
                     HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
@@ -86,9 +84,16 @@ namespace Hestia
 
         public void SetGlobalsToDefaultsGlobalLogin()
         {
-            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(webserverIP, defaultAuth0AccessToken));
+            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
             hestiaWebServerInteractor.PostUser();
-            Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+            try
+            {
+                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+            }
+            catch(ServerInteractionException ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
         }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
@@ -105,6 +110,7 @@ namespace Hestia
            // userDefaults.RemoveObject(strings.defaultsIpHestia);
            // userDefaults.RemoveObject(strings.defaultsPortHestia);
             userDefaults.RemoveObject(strings.defaultsLocalHestia);
+            userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
 
             string defaultLocal = userDefaults.StringForKey(Resources.strings.defaultsLocalHestia);
             defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
