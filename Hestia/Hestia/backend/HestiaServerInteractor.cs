@@ -48,7 +48,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "GET" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 responsePayload = networkHandler.Post(requestPayload, hestiaWebEndpoint);
             } else
@@ -94,7 +94,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "DELETE" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 networkHandler.Post(requestPayload, hestiaWebEndpoint);
             }
@@ -106,9 +106,8 @@ namespace Hestia.backend
 
         public List<string> GetCollections()
         {
-            string endpoint = strings.pluginsPath;
-
             JToken responsePayload = null;
+            string endpoint = strings.pluginsPath;
 
             if (isRemoteServer)
             {
@@ -116,7 +115,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "GET" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 responsePayload = networkHandler.Post(requestPayload, hestiaWebEndpoint);
             }
@@ -140,7 +139,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "GET" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 responsePayload = networkHandler.Post(requestPayload, hestiaWebEndpoint);
             }
@@ -164,7 +163,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "GET" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 responsePayload = networkHandler.Post(requestPayload, hestiaWebEndpoint);
             }

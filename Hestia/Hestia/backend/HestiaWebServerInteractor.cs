@@ -49,5 +49,17 @@ namespace Hestia.backend
 
             return servers;
         }
+
+        public void AddServer(string name, string address, int port) 
+        {
+            JObject payload = new JObject
+            {
+                { "server_name", name },
+                { "server_address", address },
+                { "server_port", port }
+            };            
+            string endpoint = strings.serversPath;
+            networkHandler.Post(payload, endpoint);
+        }
     }
 }
