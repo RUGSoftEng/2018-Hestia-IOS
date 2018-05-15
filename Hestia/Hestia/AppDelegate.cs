@@ -33,6 +33,9 @@ namespace Hestia
         string defaultAuth0AccessToken;
         string defaultAuth0IdentityToken;
 
+        // TODO move to resources
+        private const string webserverIP = "";
+
         public bool IsServerValid()
         {
             try
@@ -49,8 +52,26 @@ namespace Hestia
 
         public bool IsAuth0LoginValid()
         {
-            //TODO possibly a backend method that checks if token is still valid
-            return true;
+            if (defaultAuth0AccessToken != null)
+            {
+                NetworkHandler networkHandler = new NetworkHandler(webserverIP, defaultAuth0AccessToken);
+                try
+                {
+                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+                }
+                catch(Exception ex)
+                {
+                    Console.Write(ex.StackTrace);
+                    return false;
+                }
+                   
+                return true;
+            }
+            else
+            { 
+                return false; 
+             }
+
         }
 
         public void SetGlobalsToDefaultsLocalLogin()
@@ -65,7 +86,9 @@ namespace Hestia
 
         public void SetGlobalsToDefaultsGlobalLogin()
         {
-            //Globals.Auth0Servers = GetServers from auth0 backend method
+            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(webserverIP, defaultAuth0AccessToken));
+            hestiaWebServerInteractor.PostUser();
+            Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
         }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
@@ -118,11 +141,11 @@ namespace Hestia
             else
             {
                 Globals.LocalLogin = false;
-                UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
-
-                //TODO check auth0 token.. set 
-
-                if(IsAuth0LoginValid())
+                //UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
+                UIViewControllerLocalGlobal uIViewControllerLocalGlobal =
+                    mainStoryboard.InstantiateViewController("localGlobalViewController")
+                                                            as UIViewControllerLocalGlobal;
+                if (IsAuth0LoginValid())
                 {
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
                             as UINavigationController;
@@ -131,10 +154,12 @@ namespace Hestia
                 }
                 else
                 {
-                    Window.RootViewController = auth0ViewController;
+                    Window.RootViewController = uIViewControllerLocalGlobal;
+                    uIViewControllerLocalGlobal.CalledFromAppDelegateAsync();
                 }
                 Window.MakeKeyAndVisible();
             }
+
             return true;
         }
 

@@ -28,6 +28,9 @@ namespace Hestia
         string defaultAccessToken;
         string defaultIdentityToken;
 
+        // TODO move to resources
+        private const string webserverIP = "";
+
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
         {
         }
@@ -88,7 +91,7 @@ namespace Hestia
                 userDefaults.SetString(loginResult.IdentityToken, strings.defaultsIdentityTokenHestia);
                 userDefaults.SetString(loginResult.AccessToken, strings.defaultsAccessTokenHestia);
                 // TODO edit values in to serverselect
-                SetValuesAndSegueToServerSelectGlobal();
+                SetValuesAndSegueToServerSelectGlobal(loginResult.IdentityToken, loginResult.AccessToken);
             }
             else if(!(loginResult.Error == "UserCancel"))
             {
@@ -112,10 +115,27 @@ namespace Hestia
             return validIp;
         }
 
-        public bool HasValidGlobalLogin()
+        bool HasValidGlobalLogin()
         {
-            //TODO back end method that checks validity of token
-            return false;
+            if (defaultAccessToken != null)
+            {
+                NetworkHandler networkHandler = new NetworkHandler(webserverIP, defaultAccessToken);
+                try
+                {
+                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.StackTrace);
+                    return false;
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task CalledFromAppDelegateAsync()
@@ -153,19 +173,32 @@ namespace Hestia
             PerformSegue(strings.mainToDevicesMain, this);
         }
 
+        // Sets values in case of defaults presesent
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
-            Globals.Auth0Servers = new List<HestiaServer>();
-            List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
+            NetworkHandler networkHandler = new NetworkHandler(webserverIP, defaultAccessToken);
+            CreateServerInteractorAndSegue(networkHandler);
+        }
 
-            // TODO Backend method that gets Auth0Servers
-            //
+        //Sets values in case of new login
+        void SetValuesAndSegueToServerSelectGlobal(string identityToken, string accessToken)
+        {
+            userDefaults.SetString(accessToken, Resources.strings.defaultsAccessTokenHestia);
+            userDefaults.SetString(identityToken, Resources.strings.defaultsIdentityTokenHestia);
 
-            //foreach (WebServer auth0server in Auth0Servers)
-            //{
-            //     serverInteractors.Add(auth0server.Interactor);
-            //}
+            Globals.LocalLogin = false;
+            NetworkHandler networkHandler = new NetworkHandler(webserverIP, accessToken);
+            CreateServerInteractorAndSegue(networkHandler);
+
+        }
+
+        void CreateServerInteractorAndSegue(NetworkHandler networkHandler)
+        {
+            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+            hestiaWebServerInteractor.PostUser();
+
+            Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
 
             Console.WriteLine("To server select global");
             PerformSegue("localGlobalToServerSelect", this);
