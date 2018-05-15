@@ -106,9 +106,8 @@ namespace Hestia.backend
 
         public List<string> GetCollections()
         {
-            string endpoint = strings.pluginsPath;
-
             JToken responsePayload = null;
+            string endpoint = strings.pluginsPath;
 
             if (isRemoteServer)
             {
