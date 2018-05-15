@@ -15,7 +15,7 @@ namespace Hestia
 {
     public partial class UITableViewControllerServerDiscovery : UITableViewController
     {
-        AutoServerDicovery autoServerDiscovery = new AutoServerDicovery();
+        AutoServerDicovery autoServerDiscovery;
 
         NSMutableArray services;
 
@@ -26,8 +26,9 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
+            autoServerDiscovery = new AutoServerDicovery(this);
             services = autoServerDiscovery.GetServices();
+           
             int count = (int)services.Count;
             // Contains methods that describe behavior of table
             TableView.Source = new TableSourceServerDiscovery(services, this);
@@ -37,7 +38,7 @@ namespace Hestia
 		{
             base.ViewDidAppear(animated);
             autoServerDiscovery.Search();
-		}
+        }
 
 		public override void ViewDidDisappear(bool animated)
 		{
@@ -45,7 +46,7 @@ namespace Hestia
             autoServerDiscovery.Stop();
 		}
 
-		public void updateServerDiscoveryTable(NSMutableArray newServices)
+		public void UpdateServerDiscoveryTable(NSMutableArray newServices)
         {
             ((TableSourceServerDiscovery)TableView.Source).UpdateServices(newServices);
             TableView.ReloadData();
