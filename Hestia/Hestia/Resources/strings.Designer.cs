@@ -628,6 +628,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to users/.
+        /// </summary>
+        public static string usersPath {
+            get {
+                return ResourceManager.GetString("usersPath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Android version too low.
         /// </summary>
         public static string versionTooLow {
