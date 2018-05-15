@@ -133,4 +133,42 @@ Creating readme.
 Bug fixing the readme. And some styling fixes.
 Writing test for "WebServer" class, also refactoring some files and class names.
 Making sure everyone is handing in their work on time and helping out with some minor problems for peers.
-Time tracking (collection of all the seperate minutes of adding time here)
+Time tracking. (collection of all the seperate minutes of adding time here)
+Researching server discovery with bonjour.
+Researching server discovery with bonjour.
+Creating AutoServerDiscovery.
+Creating a ServerDelegate for the discovery.
+Creating a ServerDelegate for the discovery.
+Meeting and working on auth0 with marc and troy.
+Meeting and working on auth0 with marc and troy.
+Meeting and working on auth0 with marc and troy.
+Meeting and working on auth0 with marc and troy.
+Meeting and working on auth0 with marc and troy.
+Meeting and working on auth0 with marc and troy.
+Lot of refactoring.
+Meeting with group (Daan, Tom, Marc, Juan)
+Meeting with group (Daan, Tom, Marc, Juan)
+Explaining and working on auth0 with Daan.
+Working and helping frontend with problems regarding github.
+Meeting and talking with team.
+Bug fixing.
+Bug fixing.
+Bug fixing.
+Bug fixing (turns out it wasn't on our side of the code, ughum webteam).
+Talking with troy about the problem and fixing it.
+Finding a router and philips hue lamp.
+Finding a router and philips hue lamp.
+Setting up server with app.
+Implementing server discovery
+Implementing server discovery
+Implementing server discovery
+Implementing server discovery
+Helping others debug.
+Trying to connect to the lamp through the router.
+Getting the connection working with the app was a pain.
+Server discovering and finding out how the services work.
+Finishing up with the team and helping around.
+More trying with the lamp to get it working in different envoirements.
+Finishing up most of the server discovery.
+Finishing up most of the server discovery.
+Making sprint pr.
