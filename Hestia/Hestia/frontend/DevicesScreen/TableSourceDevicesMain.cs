@@ -170,8 +170,7 @@ namespace Hestia.DevicesScreen
                     else
                     {
                         var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
-                        var deviceNetworkHanlder = deviceInRow.NetworkHandler;
-                        var deviceServerInteractor = new HestiaServerInteractor(deviceNetworkHanlder);
+						var deviceServerInteractor = deviceInRow.ServerInteractor;
                         try
                         {
                             deviceServerInteractor.RemoveDevice(deviceInRow);
@@ -259,7 +258,7 @@ namespace Hestia.DevicesScreen
             // This should not be permanently stored, but trigger the add new
             // device screen on touch
             List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
-            AddDevice(insertIndexpath[0], new Device(" ", "New Device", " ", temp_activator, Globals.GetTemporyNetworkHandler()));
+			AddDevice(insertIndexpath[0], new Device(" ", "New Device", " ", temp_activator, Globals.GetTemporaryServerInteractor()));
 
             tableView.EndUpdates(); // applies the changes
         }

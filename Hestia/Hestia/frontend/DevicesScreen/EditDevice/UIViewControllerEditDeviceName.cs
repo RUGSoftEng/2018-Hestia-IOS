@@ -62,7 +62,7 @@ namespace Hestia.DevicesScreen.EditDevice
             // Inputfield
             UITextField changeIPField = new UITextField();
             changeIPField.Frame = new CGRect(110, 10, View.Bounds.Width - 125, 31);
-            changeIPField.Placeholder = device.NetworkHandler.Ip;
+			changeIPField.Placeholder = device.ServerInteractor.NetworkHandler.Ip;
             rectangle2.AddSubview(changeIPField);
 
 
@@ -80,7 +80,7 @@ namespace Hestia.DevicesScreen.EditDevice
             // Inputfield
             UITextField changePortField = new UITextField();
             changePortField.Frame = new CGRect(110, 10, View.Bounds.Width - 125, 31);
-            changePortField.Placeholder = device.NetworkHandler.Port.ToString();
+			changePortField.Placeholder = device.ServerInteractor.NetworkHandler.Port.ToString();
             rectangle3.AddSubview(changePortField);
 
             View.BackgroundColor = Globals.DefaultLightGray;
@@ -105,8 +105,8 @@ namespace Hestia.DevicesScreen.EditDevice
                         Console.WriteLine("Exception while changing device name");
                         Console.WriteLine(ex.ToString());
                     }
-                    device.NetworkHandler.Ip = changeIPField.Text;
-                    device.NetworkHandler.Port = int.Parse(changePortField.Text); 
+					device.ServerInteractor.NetworkHandler.Ip = changeIPField.Text;
+					device.ServerInteractor.NetworkHandler.Port = int.Parse(changePortField.Text); 
                 }
                 // Reset editing mode to be able to correctly update cell contents
                 owner.CancelEditingState();
