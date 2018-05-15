@@ -714,7 +714,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <state key="normal" title="Server discovery"/>
                                                     <connections>
-                                                        <segue id="76091" destination="75805" kind="show"/>
+                                                        <segue id="76091" destination="75805" kind="show" identifier="serverDiscoverySegue"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

@@ -11,7 +11,7 @@ using Hestia.backend.authentication;
 using System.Threading.Tasks;
 using IdentityModel.OidcClient;
 using System.Diagnostics;
-using Hestia.backend.models;
+using Hestia.backend.exceptions;
 
 namespace Hestia
 {   // This view controller belongs to the first window that can be shown on loading the app
@@ -88,7 +88,7 @@ namespace Hestia
                 userDefaults.SetString(loginResult.IdentityToken, strings.defaultsIdentityTokenHestia);
                 userDefaults.SetString(loginResult.AccessToken, strings.defaultsAccessTokenHestia);
                 // TODO edit values in to serverselect
-                SetValuesAndSegueToServerSelectGlobal();
+                SetValuesAndSegueToServerSelectGlobal(loginResult.IdentityToken, loginResult.AccessToken);
             }
             else if(!(loginResult.Error == "UserCancel"))
             {
@@ -112,10 +112,27 @@ namespace Hestia
             return validIp;
         }
 
-        public bool HasValidGlobalLogin()
+        bool HasValidGlobalLogin()
         {
-            //TODO back end method that checks validity of token
-            return false;
+            if (defaultAccessToken != null)
+            {
+                NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, defaultAccessToken);
+                try
+                {
+                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex.StackTrace);
+                    return false;
+                }
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public async Task CalledFromAppDelegateAsync()
@@ -153,20 +170,46 @@ namespace Hestia
             PerformSegue(strings.mainToDevicesMain, this);
         }
 
+        // Sets values in case of defaults presesent
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
-            Globals.Auth0Servers = new List<HestiaServer>();
-            List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
+            NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, defaultAccessToken);
+            CreateServerInteractorAndSegue(networkHandler);
+        }
 
-            // TODO Backend method that gets Auth0Servers
-            //
+        //Sets values in case of new login
+        void SetValuesAndSegueToServerSelectGlobal(string identityToken, string accessToken)
+        {
+            userDefaults.SetString(accessToken, Resources.strings.defaultsAccessTokenHestia);
+            userDefaults.SetString(identityToken, Resources.strings.defaultsIdentityTokenHestia);
 
-            //foreach (WebServer auth0server in Auth0Servers)
-            //{
-            //     serverInteractors.Add(auth0server.Interactor);
-            //}
+            Globals.LocalLogin = false;
+            NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, accessToken);
+            CreateServerInteractorAndSegue(networkHandler);
 
+        }
+
+        void CreateServerInteractorAndSegue(NetworkHandler networkHandler)
+        {
+            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+            try
+            {
+                hestiaWebServerInteractor.PostUser();                
+            }
+            catch (ServerInteractionException ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
+
+            try
+            {
+                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+            }
+            catch(ServerInteractionException ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
             Console.WriteLine("To server select global");
             PerformSegue("localGlobalToServerSelect", this);
         }

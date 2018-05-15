@@ -7,6 +7,7 @@ using Hestia.backend;
 using Auth0.OidcClient;
 using System;
 using Hestia.Resources;
+using Hestia.backend.exceptions;
 
 namespace Hestia
 {
@@ -47,10 +48,29 @@ namespace Hestia
             return true;
         }
 
+        // Checks if an auth0 access token is valid
         public bool IsAuth0LoginValid()
         {
-            //TODO possibly a backend method that checks if token is still valid
-            return true;
+            if (defaultAuth0AccessToken != null)
+            {
+                NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken);
+                try
+                {
+                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+                }
+                catch(Exception ex)
+                {
+                    Console.Write(ex.StackTrace);
+                    return false;
+                }
+                   
+                return true;
+            }
+            else
+            { 
+                return false; 
+             }
+
         }
 
         public void SetGlobalsToDefaultsLocalLogin()
@@ -65,7 +85,24 @@ namespace Hestia
 
         public void SetGlobalsToDefaultsGlobalLogin()
         {
-            //Globals.Auth0Servers = GetServers from auth0 backend method
+            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
+
+            try
+            {
+                hestiaWebServerInteractor.PostUser(); 
+            }
+            catch (ServerInteractionException ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
+            try
+            {
+                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+            }
+            catch(ServerInteractionException ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
         }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
@@ -82,6 +119,7 @@ namespace Hestia
            // userDefaults.RemoveObject(strings.defaultsIpHestia);
            // userDefaults.RemoveObject(strings.defaultsPortHestia);
             userDefaults.RemoveObject(strings.defaultsLocalHestia);
+            userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
 
             string defaultLocal = userDefaults.StringForKey(Resources.strings.defaultsLocalHestia);
             defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
@@ -118,11 +156,11 @@ namespace Hestia
             else
             {
                 Globals.LocalLogin = false;
-                UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
-
-                //TODO check auth0 token.. set 
-
-                if(IsAuth0LoginValid())
+                //UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
+                UIViewControllerLocalGlobal uIViewControllerLocalGlobal =
+                    mainStoryboard.InstantiateViewController("localGlobalViewController")
+                                                            as UIViewControllerLocalGlobal;
+                if (IsAuth0LoginValid())
                 {
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
                             as UINavigationController;
@@ -131,10 +169,12 @@ namespace Hestia
                 }
                 else
                 {
-                    Window.RootViewController = auth0ViewController;
+                    Window.RootViewController = uIViewControllerLocalGlobal;
+                    uIViewControllerLocalGlobal.CalledFromAppDelegateAsync();
                 }
                 Window.MakeKeyAndVisible();
             }
+
             return true;
         }
 
