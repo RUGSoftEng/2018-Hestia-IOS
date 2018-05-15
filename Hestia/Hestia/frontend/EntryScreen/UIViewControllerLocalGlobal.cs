@@ -139,7 +139,6 @@ namespace Hestia
                 Debug.WriteLine($"id_token: {loginResult.IdentityToken}");
                 Debug.WriteLine($"access_token: {loginResult.AccessToken}");
             }
-
             return loginResult;
         }
 
