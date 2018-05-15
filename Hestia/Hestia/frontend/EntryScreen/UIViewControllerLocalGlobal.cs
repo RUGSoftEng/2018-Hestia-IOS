@@ -11,7 +11,7 @@ using Hestia.backend.authentication;
 using System.Threading.Tasks;
 using IdentityModel.OidcClient;
 using System.Diagnostics;
-using Hestia.backend.models;
+using Hestia.backend.exceptions;
 
 namespace Hestia
 {   // This view controller belongs to the first window that can be shown on loading the app
@@ -193,10 +193,23 @@ namespace Hestia
         void CreateServerInteractorAndSegue(NetworkHandler networkHandler)
         {
             HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
-            hestiaWebServerInteractor.PostUser();
+            try
+            {
+                hestiaWebServerInteractor.PostUser();                
+            }
+            catch (ServerInteractionException ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
 
-            Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
-
+            try
+            {
+                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+            }
+            catch(ServerInteractionException ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
             Console.WriteLine("To server select global");
             PerformSegue("localGlobalToServerSelect", this);
         }

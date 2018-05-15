@@ -48,6 +48,7 @@ namespace Hestia
             return true;
         }
 
+        // Checks if an auth0 access token is valid
         public bool IsAuth0LoginValid()
         {
             if (defaultAuth0AccessToken != null)
@@ -85,7 +86,15 @@ namespace Hestia
         public void SetGlobalsToDefaultsGlobalLogin()
         {
             HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
-            hestiaWebServerInteractor.PostUser();
+
+            try
+            {
+                hestiaWebServerInteractor.PostUser(); 
+            }
+            catch (ServerInteractionException ex)
+            {
+                Console.Write(ex.StackTrace);
+            }
             try
             {
                 Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
