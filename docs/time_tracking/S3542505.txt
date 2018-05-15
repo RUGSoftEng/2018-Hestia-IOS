@@ -166,4 +166,19 @@ Setting up trello and slack
           22/30.  Added Log out button 
           23/00.  Added time-tracking new info for period 03.04 - 1.05 
                
+
+15/05.    10/30.  Talk with the team
+          11/00.  Started Working on settings screen
+          11/30.  Modified the contact page
+          12/00.  Sill working
+          12/30.  Modifying table view
+          13/00   YouTube tutorials
+          15/00.  Tutorials on how to send a contact form through e-mail
+          15/30.  Still looking
+          16/00.  Deciding which method to choose
+          16/30.  Working on the implementation
+          17/00.  Still working
+          17/30.  Still trying
+          18/00.  Solving errors 
+          18/30.  It doesn't work  
           
