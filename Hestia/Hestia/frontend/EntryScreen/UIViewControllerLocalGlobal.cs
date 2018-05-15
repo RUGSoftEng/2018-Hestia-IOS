@@ -139,6 +139,51 @@ namespace Hestia
                 Debug.WriteLine($"id_token: {loginResult.IdentityToken}");
                 Debug.WriteLine($"access_token: {loginResult.AccessToken}");
             }
+
+            NetworkHandler networkHandler = new NetworkHandler("fathomless-reef-69954.herokuapp.com", loginResult.AccessToken);
+            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+            try
+            {
+                hestiaWebServerInteractor.PostUser();
+            }
+            catch (backend.exceptions.ServerInteractionException)
+            {
+                Console.WriteLine("User already exists.");
+            }
+
+            List<HestiaServer> servers = null;
+            try 
+            {
+                servers = hestiaWebServerInteractor.GetServers();
+            } catch(backend.exceptions.ServerInteractionException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.WriteLine(servers[0].Name);
+
+            HestiaServerInteractor hestiaServerInteractor = new HestiaServerInteractor(networkHandler, servers[0].Id);
+            /*List<Device> devices = null;
+            try
+            {
+                devices = hestiaServerInteractor.GetDevices();
+            } catch(backend.exceptions.ServerInteractionException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.WriteLine(devices[0].DeviceId);*/
+
+            Dictionary<string, string> dict = new Dictionary<string, string>();
+            dict.Add("ip", "0.0.0.0");
+            dict.Add("name", "bob");
+            dict.Add("port", "1000");
+            PluginInfo pluginInfo = new PluginInfo("mock", "lock", dict);
+            try
+            {
+                hestiaServerInteractor.AddDevice(pluginInfo);
+            } catch(backend.exceptions.ServerInteractionException ex) {
+                Console.WriteLine(ex.Message);
+            }
+
             return loginResult;
         }
 
@@ -168,7 +213,7 @@ namespace Hestia
             //}
 
             Console.WriteLine("To server select global");
-            PerformSegue("localGlobalToServerSelect", this);
+            PerformSegue ("localGlobalToServerSelect", this);
         }
 	}
 }

@@ -48,7 +48,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "GET" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 responsePayload = networkHandler.Post(requestPayload, hestiaWebEndpoint);
             } else
@@ -94,7 +94,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "DELETE" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 networkHandler.Post(requestPayload, hestiaWebEndpoint);
             }
@@ -116,7 +116,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "GET" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 responsePayload = networkHandler.Post(requestPayload, hestiaWebEndpoint);
             }
@@ -140,7 +140,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "GET" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 responsePayload = networkHandler.Post(requestPayload, hestiaWebEndpoint);
             }
@@ -164,7 +164,7 @@ namespace Hestia.backend
                 {
                     { "requestType", "GET" },
                     { "endpoint", '/' + endpoint },
-                    { "optionalPayload", null }
+                    { "optionalPayload", "{}" }
                 };
                 responsePayload = networkHandler.Post(requestPayload, hestiaWebEndpoint);
             }
