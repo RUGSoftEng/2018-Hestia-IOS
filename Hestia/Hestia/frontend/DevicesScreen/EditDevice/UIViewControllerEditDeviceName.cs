@@ -90,7 +90,7 @@ namespace Hestia.DevicesScreen.EditDevice
             saveName = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
                 if(changeNameField.Text.Length <= 0 || changeIPField.Text.Length <= 0 || changePortField.Text.Length <= 0)
                 {
-                    var alert = UIAlertController.Create("Error!", "You have to fill all the specifications.", UIAlertControllerStyle.ActionSheet);
+                    var alert = UIAlertController.Create("Error!", "You have to fill all the specifications.", UIAlertControllerStyle.Alert);
                     alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                     PresentViewController(alert, true, null);
                 }
