@@ -213,7 +213,7 @@ namespace Hestia
             //}
 
             Console.WriteLine("To server select global");
-            PerformSegue ("localGlobalToServerSelect", this);
+            PerformSegue("localGlobalToServerSelect", this);
         }
 	}
 }
