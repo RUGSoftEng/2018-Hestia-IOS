@@ -18,7 +18,7 @@ namespace Hestia.DevicesScreen.AddDeviceScreen
         // Sets the placeholder from the required info
         public void UpdateCell(string placeholder)
         {
-            inputField.Placeholder = placeholder;
+            inputField.Placeholder = "";
         }
 
         public override void LayoutSubviews()

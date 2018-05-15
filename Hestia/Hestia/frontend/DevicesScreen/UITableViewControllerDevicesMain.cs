@@ -60,7 +60,7 @@ namespace Hestia.DevicesScreen
         { 
             base.ViewDidLoad();
             RefreshDeviceList();
-
+            Globals.DefaultLightGray = TableView.BackgroundColor;
             // To tap row in editing mode for changing name
             DevicesTable.AllowsSelectionDuringEditing = true;  
 

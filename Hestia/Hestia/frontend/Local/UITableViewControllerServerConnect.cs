@@ -58,28 +58,44 @@ namespace Hestia.DevicesScreen
 
 		public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
-            bool validIp = false;
 
-            validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
-          
-            if (validIp)
+            if (segueIdentifier == "serverDiscoverySegue")
             {
-                userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
-                userDefaults.SetString(newIP.Text, Resources.strings.defaultsIpHestia);
-                userDefaults.SetString(newPort.Text, Resources.strings.defaultsPortHestia);
-
-                Globals.ServerName = newServerName.Text;
-                Globals.IP = newIP.Text;
-                Globals.Port = int.Parse(newPort.Text);
-                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
-                Globals.LocalServerinteractor = serverInteractor;
-
                 return true;
             }
             else
             {
-                DisplayWarningMessage();
-                return false;
+                bool validIp = false;
+
+                try
+                {
+                    validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+                }
+                catch (Exception exception)
+                {
+                    Console.Write(exception.StackTrace);
+                    DisplayWarningMessage();
+                    return false;
+                }
+                if (validIp)
+                {
+                    userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
+                    userDefaults.SetString(newIP.Text, Resources.strings.defaultsIpHestia);
+                    userDefaults.SetString(newPort.Text, Resources.strings.defaultsPortHestia);
+
+                    Globals.ServerName = newServerName.Text;
+                    Globals.IP = newIP.Text;
+                    Globals.Port = int.Parse(newPort.Text);
+                    HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                    Globals.LocalServerinteractor = serverInteractor;
+
+                    return true;
+                }
+                else
+                {
+                    DisplayWarningMessage();
+                    return false;
+                }
             }
         }
 
