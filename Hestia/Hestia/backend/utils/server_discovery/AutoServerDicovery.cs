@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using System;
+using UIKit;
 
 namespace Hestia.backend.utils.server_discovery
 {
@@ -14,18 +15,17 @@ namespace Hestia.backend.utils.server_discovery
         private const string PROTOCOL = "_hestia._tcp";
         private const string DOMAIN = @"local";
 
-        public AutoServerDicovery()
+        public AutoServerDicovery(UITableViewControllerServerDiscovery parent)
         {
             // Setup of the service browser.
             Browser = new NSNetServiceBrowser();
-            Delegate = new ServerDelegate();
+            Delegate = new ServerDelegate(parent);
             Browser.Init();
             Browser.Delegate = Delegate;            
         }
 
         public void Search()
         {
-            Console.WriteLine("Hello");
             Browser.SearchForServices(PROTOCOL, DOMAIN);
         }
 

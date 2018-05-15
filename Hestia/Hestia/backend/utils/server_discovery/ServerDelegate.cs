@@ -12,11 +12,13 @@ namespace Hestia.backend.utils.server_discovery
     {
         public bool Searching { get; set; }
         public NSMutableArray Services { get; set; }
+        private UITableViewControllerServerDiscovery parent;
 
-        public ServerDelegate()
+        public ServerDelegate(UITableViewControllerServerDiscovery parent)
         {
             Services = new NSMutableArray(0);
             Searching = false;
+            this.parent = parent;
         }
 
         [Export("netServiceBrowserWillSearch:")]
@@ -63,12 +65,12 @@ namespace Hestia.backend.utils.server_discovery
 
         public void HandleError(NSDictionary errorDict)
         {
-
+            Console.WriteLine(errorDict.Description);
         }
 
         public void UpdateUI()
         {
-
+            parent.UpdateServerDiscoveryTable(Services);
         }
     }
 }
