@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hestia", "Hestia\Hestia.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hestia.UnitTests", "Hestia.UnitTests\Hestia.UnitTests.csproj", "{0E4CCE0B-1A1B-4382-A5C2-D6A6F2AD2FE8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UITests", "UITests\UITests.csproj", "{3590CA7B-C62C-4195-BAF3-8AE26F666C19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{0E4CCE0B-1A1B-4382-A5C2-D6A6F2AD2FE8}.Release|iPhone.Build.0 = Release|Any CPU
 		{0E4CCE0B-1A1B-4382-A5C2-D6A6F2AD2FE8}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{0E4CCE0B-1A1B-4382-A5C2-D6A6F2AD2FE8}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Release|iPhone.Build.0 = Release|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{3590CA7B-C62C-4195-BAF3-8AE26F666C19}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

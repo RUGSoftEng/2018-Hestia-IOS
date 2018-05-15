@@ -57,7 +57,6 @@ namespace Hestia
         {
             Globals.ServerName = defaultServername;
             Globals.IP = defaultIP;
-
             Globals.Port = int.Parse(defaultPort);
             HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
             Globals.LocalServerinteractor = serverInteractor;
@@ -70,6 +69,8 @@ namespace Hestia
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            Xamarin.Calabash.Start();
+
             Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
             // Override point for customization after application launch.
