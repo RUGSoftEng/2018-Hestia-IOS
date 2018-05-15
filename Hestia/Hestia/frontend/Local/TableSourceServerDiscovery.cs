@@ -59,12 +59,13 @@ namespace Hestia.DevicesScreen
 
             // The text to display on the cell is the plugin name
             cell.TextLabel.Text = services.GetItem<NSNetService>((nuint)indexPath.Row).HostName;
+	
             
             return cell;
         }
 
 
-        // Pushes the properties window
+        // Should fill in the fields in the previous screen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
            // Get serverInteractor for that row, performsegue
