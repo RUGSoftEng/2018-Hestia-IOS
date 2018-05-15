@@ -14,7 +14,7 @@ namespace Hestia.backend
         private int port;
         private bool hasPort;
         private RestClient client;
-        private bool usesAuth0;
+        private bool usesAuth;
         private string accessToken; // auth0 access token
 
         public string Ip
@@ -35,9 +35,9 @@ namespace Hestia.backend
                 SetRestClient();
             }
         }
-        public bool UsesAuth0
+        public bool UsesAuth
         {
-            get => usesAuth0;
+            get => usesAuth;
         }
         public bool HasPort
         {
@@ -48,7 +48,7 @@ namespace Hestia.backend
         {
             this.ip = ip;
             this.hasPort = false;
-            this.usesAuth0 = false;
+            this.usesAuth = false;
 
             SetRestClient();
             TrustAllCerts();
@@ -59,7 +59,7 @@ namespace Hestia.backend
             this.ip = ip;
             this.port = port;
             this.hasPort = true;
-            this.usesAuth0 = false;
+            this.usesAuth = false;
 
             SetRestClient();
             TrustAllCerts();
@@ -69,7 +69,7 @@ namespace Hestia.backend
         {
             this.ip = ip;
             this.hasPort = false;
-            this.usesAuth0 = true;
+            this.usesAuth = true;
             this.accessToken = accessToken;
 
             SetRestClient();
@@ -81,7 +81,7 @@ namespace Hestia.backend
             this.ip = ip;
             this.port = port;
             this.hasPort = true;
-            this.usesAuth0 = true;
+            this.usesAuth = true;
             this.accessToken = accessToken;
 
             SetRestClient();
@@ -131,7 +131,7 @@ namespace Hestia.backend
         {
             request.Timeout = Int32.Parse(strings.requestTimeout);
 
-            if (usesAuth0)
+            if (usesAuth)
             {
                 request.AddParameter("Authorization", string.Format("Bearer " + accessToken), ParameterType.HttpHeader);
             }

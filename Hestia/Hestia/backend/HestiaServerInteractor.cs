@@ -57,7 +57,7 @@ namespace Hestia.backend
             }
 
             DeviceDeserializer deserializer = new DeviceDeserializer();
-            var devices = deserializer.DeserializeDevices(responsePayload, networkHandler);
+            var devices = deserializer.DeserializeDevices(responsePayload, this);
 
             return devices;
         }
@@ -84,6 +84,30 @@ namespace Hestia.backend
             }
         }
 
+        public void ChangeDeviceName(Device device, string name)
+        {
+            string endpoint = strings.devicePath + device.DeviceId;
+            JObject nameJson = new JObject
+            {
+                ["name"] = name
+            };
+
+            if (isRemoteServer)
+            {
+                JObject requestPayload = new JObject
+                {
+                    { "requestType", "PUT" },
+                    { "endpoint", '/' + endpoint },
+                    { "optionalPayload", nameJson }
+                };
+                networkHandler.Post(requestPayload, hestiaWebEndpoint);
+            }
+            else
+            {
+                networkHandler.Put(nameJson, endpoint);
+            }
+        }
+
         public void RemoveDevice(Device device)
         {
             string endpoint = strings.devicePath + device.DeviceId;
@@ -101,6 +125,30 @@ namespace Hestia.backend
             else
             {
                 networkHandler.Delete(endpoint);
+            }
+        }
+
+        public void SetActivatorState(Activator activator, ActivatorState activatorState)
+        {
+            string endpoint = strings.devicePath + activator.Device.DeviceId + "/" + strings.activatorsPath + activator.ActivatorId;
+            JObject activatorStateJson = new JObject
+            {
+                ["state"] = new JValue(activatorState.RawState)
+            };
+
+            if (isRemoteServer)
+            {
+                JObject requestPayload = new JObject
+                {
+                    { "requestType", "POST" },
+                    { "endpoint", '/' + endpoint },
+                    { "optionalPayload", activatorStateJson }
+                };
+                networkHandler.Post(requestPayload, hestiaWebEndpoint);
+            }
+            else
+            {
+                networkHandler.Post(activatorStateJson, endpoint);
             }
         }
 
