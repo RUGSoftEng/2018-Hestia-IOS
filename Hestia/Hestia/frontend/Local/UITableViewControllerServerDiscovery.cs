@@ -26,7 +26,7 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
+            Console.WriteLine("Hellodarkness");
             services = autoServerDiscovery.GetServices();
             int count = (int)services.Count;
             // Contains methods that describe behavior of table
@@ -35,6 +35,7 @@ namespace Hestia
 
 		public override void ViewDidAppear(bool animated)
 		{
+            Console.WriteLine("Hello1");
             base.ViewDidAppear(animated);
             autoServerDiscovery.Search();
 		}

@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using System;
 
 namespace Hestia.backend.utils.server_discovery
 {
@@ -24,6 +25,7 @@ namespace Hestia.backend.utils.server_discovery
 
         public void Search()
         {
+            Console.WriteLine("Hello");
             Browser.SearchForServices(PROTOCOL, DOMAIN);
         }
 
