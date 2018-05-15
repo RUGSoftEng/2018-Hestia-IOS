@@ -226,3 +226,76 @@ Smooth through login + fix Feiko’s comments
 Smooth through login + fix Feiko’s comments
 Replacing constants by resources
 Replacing constants by resources
+Fixed Hard coded color Edit devices screen
+Fixing the app for Deployment with Zino
+Fixing the app for Deployment with Zino
+Fixing the app for Deployment with Zino + Deployment to customer
+Meeting with Feiko and Lars 
+Meeting with Feiko and Lars 
+Team meeting
+Team meeting
+Review PR Juan + responding to Feiko’s comments on sprint
+Responding to Feiko’s comments + try to fix some. Try to fix add new device cell ugly code.
+Responding to Feiko’s comments + try to fix some. Try to fix add new device cell ugly code.
+Review PR Zino + working on straight to devices/ remembering defaults
+working on straight to devices/ remembering defaults
+working on straight to devices/ remembering defaults
+Working on remembering defaults/skip server connect screen
+Working with Zino and Troy on the auth0 to get access tokens. 
+Working with Zino and Troy on the auth0 to get access tokens. 
+Working with Zino and Troy on the auth0 to get access tokens. 
+Working with Zino and Troy on the auth0 to get access tokens. Helping Juan with questions about custom cell
+Working out team meeting notes + create local/global selection screen. 
+create local/global selection screen. Read about auth0
+Review PR Daan. Fixing new entrance screen. Writing code for straight to devices.
+Fixing new entrance screen. Writing code for straight to devices.
+Fixing new entrance screen. Writing code for straight to devices.
+Meeting with team
+Meeting with team
+Meeting with Team + looking with Tom at bigger cell /dropdown
+looking with Tom at bigger cell /dropdown
+looking with Tom at bigger cell /dropdown + meeting Lars
+Fix no segue bug. Remove Userdefaults + merging PRs
+Working out meeting notes + creating Trello cards
+Working out meeting notes + creating Trello cards
+Working on entry screens
+Working on entry screens
+Working on entry screens
+Working on entry screens + fixing virtual machine
+Working on entry screens + fixing virtual machine
+Working on entry screen + auth0ViewController
+Working on entry screen + auth0ViewController
+Show default delete confirmation in TableView + Change position edit and settings button. 
+Change position edit and settings button. Work on auth0 segues
+Work on auth0 segues
+Update requirements document
+Update requirements document
+Update requirements document
+Update requirements document
+Work on multiple servers via Local/global screen
+Thinking about what is needed for auth0 front end /back end/ Asking Daan about it. 
+Bug fixing in Local/Global screen 
+Bug fixing in Local/Global screen 
+Bug fixing in Local/Global screen + fixing async button
+Review PR + tableview for Server Discovery
+Fixed launchscreen + Remote button setting screen + code cleanup
+Update architecture document
+Update architecture document
+Update architecture document
+Working with Zino on auth0 and server Discovery. Discussing with Daan via Slack. Bug fixing.
+Working with Zino on auth0 and server Discovery. Discussing with Daan via Slack. Bug fixing.
+Working with Zino on auth0 and server Discovery. Discussing with Daan via Slack. Bug fixing.
+Working with Zino on auth0 and server Discovery. Discussing with Daan via Slack. Bug fixing.
+Working with Zino on auth0 and server Discovery. Discussing with Daan via Slack. Bug fixing.
+Working with Zino on auth0 and server Discovery. Discussing with Daan via Slack. Bug fixing.
+Trying to fix the value out of range bug in auth0.
+Trying to fix the value out of range bug in auth0. Made issue on GitHub.
+Work meeting with the team. Still trying to fix the value our of range bug with Zino. Turned out to be webserver’s problem
+Work meeting with the team. Still trying to fix the value our of range bug with Zino. Turned out to be webserver’s problem
+Work meeting with the team. Working on integration of back end webserver code in front end. 
+Work meeting with the team. Working on integration of back end webserver code in front end. 
+Work meeting with the team. Working on integration of back end webserver code in front end. Discussing with Daan about front/end back end integration
+Work meeting with the team. Working on integration of back end webserver code in front end. Discussing with Daan about front/end back end integration
+Reviewing PRs. Adding text in local/global screen.
+Tested ServerDiscovery TableView and fixed the project file of that branch
+Fixed the Device backend changes in frontend.
