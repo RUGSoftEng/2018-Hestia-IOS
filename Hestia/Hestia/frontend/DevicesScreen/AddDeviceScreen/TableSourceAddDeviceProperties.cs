@@ -20,7 +20,7 @@ namespace Hestia.DevicesScreen
         string[] propertyNames;
 
         UITableViewControllerAddDeviceProperties owner;
-        string info;
+
 
         // Constructor. Fill propertyNames with a copy of current keys
         public TableSourceAddDeviceProperties(
@@ -36,13 +36,13 @@ namespace Hestia.DevicesScreen
         // We have only one section 
         public override nint NumberOfSections(UITableView tableView)
         {
-            return int.Parse(Resources.strings.defaultNumberOfSections);
+            return completeInfo.RequiredInfo.Keys.Count;
         }
 
         // The number of properties in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return completeInfo.RequiredInfo.Keys.Count;
+            return 1;
         }
 
         // Important method. Called to generate a cell to display
@@ -58,24 +58,23 @@ namespace Hestia.DevicesScreen
             }
 
             // Put the property names in the placeholder filed
-            cell.UpdateCell(propertyNames[indexPath.Row]);
-            cell.Accessory = UITableViewCellAccessory.DetailButton;
+            cell.UpdateCell(propertyNames[indexPath.Section]);
+
             // Keep reference in hashtable
-            inputs[propertyNames[indexPath.Row]] = cell;
+            inputs[propertyNames[indexPath.Section]] = cell;
 
             return cell;
 
         }
 
-		public override void AccessoryButtonTapped(UITableView tableView, NSIndexPath indexPath)
-		{
-            info = completeInfo.RequiredInfo[propertyNames[indexPath.Row]];
-            
-            UIAlertController alertController = UIAlertController.Create(propertyNames[indexPath.Row], info , UIAlertControllerStyle.Alert);
-            alertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            
-            owner.PresentViewController(alertController, true, null);
-            tableView.DeselectRow(indexPath, true);
-		}
+        public override string TitleForFooter(UITableView tableView, nint section)
+        {
+            return completeInfo.RequiredInfo[propertyNames[section]];
+        }
+
+        public override string TitleForHeader(UITableView tableView, nint section)
+        {
+            return propertyNames[section];
+        }
 	}
 }
