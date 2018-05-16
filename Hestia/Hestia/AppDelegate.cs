@@ -120,7 +120,7 @@ namespace Hestia
            // userDefaults.RemoveObject(strings.defaultsIpHestia);
            // userDefaults.RemoveObject(strings.defaultsPortHestia);
             //userDefaults.RemoveObject(strings.defaultsLocalHestia);
-            userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
+            //userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
 
             string defaultLocal = userDefaults.StringForKey(Resources.strings.defaultsLocalHestia);
             defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
@@ -128,16 +128,10 @@ namespace Hestia
             defaultServername = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
-
-            // No previous login information available. Go to local/global choose screen.
-            if (defaultLocal == null)
+			Console.Write(" Default = " + defaultLocal);
+            if(defaultLocal == bool.TrueString)
             {
-                UIViewControllerLocalGlobal localGlobalViewController = mainStoryboard.InstantiateInitialViewController() as UIViewControllerLocalGlobal;
-                Window.RootViewController = localGlobalViewController;
-                Window.MakeKeyAndVisible();
-            }
-            else if(defaultLocal == bool.TrueString)
-            {
+				Console.Write(" Default local ");
                 Globals.LocalLogin = true;
                 UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
 
@@ -154,8 +148,9 @@ namespace Hestia
                 }
                 Window.MakeKeyAndVisible();
             }
-            else
+			else if(defaultLocal == bool.FalseString)
             {
+				Console.Write(" Default globla ");
                 Globals.LocalLogin = false;
                 //UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
                 UIViewControllerLocalGlobal uIViewControllerLocalGlobal =
@@ -175,6 +170,12 @@ namespace Hestia
                 }
                 Window.MakeKeyAndVisible();
             }
+			else             // No previous login information available. Go to local/global choose screen.
+			{
+				UIViewControllerLocalGlobal localGlobalViewController = mainStoryboard.InstantiateInitialViewController() as UIViewControllerLocalGlobal;
+                Window.RootViewController = localGlobalViewController;
+                Window.MakeKeyAndVisible();
+			}
 
             return true;
         }

@@ -30,7 +30,7 @@ namespace Hestia.DevicesScreen
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
+			this.Title = "Server Connect";
             if (defaultServerName != null)
             {
                 newServerName.Text = defaultServerName;

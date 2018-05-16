@@ -64,6 +64,8 @@ namespace Hestia
 
             ToGlobalButton.TouchUpInside += async delegate (object sender, EventArgs e)
             {
+				userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
+
                 if (HasValidGlobalLogin())
                 {
 					SetValuesAndSegueToServerSelectGlobal();
@@ -80,7 +82,6 @@ namespace Hestia
         void HandleGlobalButtonTouchResult(LoginResult loginResult)
         {
             Globals.LocalLogin = false;
-            userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
 
             if (!loginResult.IsError)
             {
@@ -208,6 +209,7 @@ namespace Hestia
             }
             catch(ServerInteractionException ex)
             {
+				Console.WriteLine("Exception while getting servers");
                 Console.Write(ex.StackTrace);
             }
             Console.WriteLine("To server select global");

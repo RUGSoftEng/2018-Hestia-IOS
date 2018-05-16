@@ -618,7 +618,7 @@
         <!--Table View Controller Server Connect-->
         <scene sceneID="18545">
             <objects>
-                <tableViewController id="18546" customClass="UITableViewControllerServerConnect" sceneMemberID="viewController" storyboardIdentifier="serverConnectViewController" title="Local">
+                <tableViewController id="18546" customClass="UITableViewControllerServerConnect" sceneMemberID="viewController" storyboardIdentifier="serverConnectViewController" title="Server Connect">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="18547">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1130,9 +1130,4 @@
             <point key="canvasLocation" x="-1247" y="1573"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LogoLaunchscreen" width="431" height="206"/>
-        <image name="Images/lock.png" width="300" height="295"/>
-        <image name="Images/lightbulb.png" width="300" height="300"/>
-    </resources>
 </document>

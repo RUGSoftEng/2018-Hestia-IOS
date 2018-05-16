@@ -15,12 +15,11 @@ namespace Hestia
     {
         UITableViewServerList owner;
 
-        public TableSourceServerList(List<HestiaServer> serverlist, UITableViewServerList owner)
+        public TableSourceServerList(UITableViewServerList owner)
         {
-            Globals.Auth0Servers = serverlist;
             this.owner = owner;
         }
-
+        
 		public override nint NumberOfSections(UITableView tableView)
 		{
             return int.Parse(Resources.strings.defaultNumberOfSections);
