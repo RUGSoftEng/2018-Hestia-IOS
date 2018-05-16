@@ -76,8 +76,8 @@ namespace Hestia.UnitTests.backend
             Assert.AreEqual(devices[0].Name, "dummyName");
             Assert.AreEqual(devices[0].Type, "dummyType");
             Assert.IsNotNull(devices[0].Activators);
-            Assert.AreEqual(devices[0].NetworkHandler.Ip, dummyNetworkHandler.Ip);
-            Assert.AreEqual(devices[0].NetworkHandler.Port, dummyNetworkHandler.Port);
+            Assert.AreEqual(devices[0].ServerInteractor.NetworkHandler.Ip, dummyNetworkHandler.Ip);
+            Assert.AreEqual(devices[0].ServerInteractor.NetworkHandler.Port, dummyNetworkHandler.Port);
         }
 
         [TestMethod]
@@ -145,7 +145,7 @@ namespace Hestia.UnitTests.backend
             string name = "dummyName";
             string type = "dummyType";
             List<Activator> activators = new List<Activator>();
-            Device device = new Device(deviceId, name, type, activators, mockNetworkHandler.Object);
+            Device device = new Device(deviceId, name, type, activators, dummyServerInteractor);
 
             try
             {
@@ -168,7 +168,7 @@ namespace Hestia.UnitTests.backend
             string name = "dummyName";
             string type = "dummyType";
             List<Activator> activators = new List<Activator>();
-            Device device = new Device(deviceId, name, type, activators, mockNetworkHandler.Object);
+            Device device = new Device(deviceId, name, type, activators, dummyServerInteractor);
 
             dummyServerInteractor.RemoveDevice(device);
          }
