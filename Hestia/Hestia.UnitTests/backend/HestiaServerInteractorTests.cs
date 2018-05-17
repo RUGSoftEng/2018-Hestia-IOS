@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Hestia.UnitTests.backend
 {
     [TestClass]
-    public class ServerInteractorTests
+    public class HestiaServerInteractorTests
     {
         private NetworkHandler dummyNetworkHandler;
         private HestiaServerInteractor dummyServerInteractor;
