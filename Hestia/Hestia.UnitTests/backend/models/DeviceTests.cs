@@ -121,7 +121,7 @@ namespace Hestia.UnitTests.backend.models
         }
 
         [TestMethod]
-        public void SetAndGetNetworkHandlerTest()
+        public void SetAndGetServerInteractorTest()
         {
             Assert.AreEqual(serverInteractor, device.ServerInteractor);
 

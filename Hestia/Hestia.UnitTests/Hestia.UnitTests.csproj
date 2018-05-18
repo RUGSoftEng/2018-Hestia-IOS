@@ -68,6 +68,7 @@
     <Compile Include="backend\HestiaWebServerInteractorTests.cs" />
     <Compile Include="backend\models\ActivatorStateTests.cs" />
     <Compile Include="backend\models\ActivatorTests.cs" />
+    <Compile Include="backend\models\deserializers\HestiaServerDeserializerTests.cs" />
     <Compile Include="backend\models\DeviceTests.cs" />
     <Compile Include="backend\models\PluginInfoTests.cs" />
     <Compile Include="backend\HestiaServerInteractorTests.cs" />
