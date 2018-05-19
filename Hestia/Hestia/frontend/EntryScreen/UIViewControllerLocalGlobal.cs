@@ -173,7 +173,7 @@ namespace Hestia
             }
             catch (ServerInteractionException ex)
             {
-                Console.Write(ex.StackTrace);
+                Console.WriteLine(ex.StackTrace);
             }
 
             try
@@ -182,7 +182,7 @@ namespace Hestia
             }
             catch(ServerInteractionException ex)
             {
-                Console.Write(ex.StackTrace);
+                Console.WriteLine(ex.StackTrace);
             }
             Console.WriteLine("To Server Select Global");
             PerformSegue(strings.segueToLocalGlobalToServerSelect, this);

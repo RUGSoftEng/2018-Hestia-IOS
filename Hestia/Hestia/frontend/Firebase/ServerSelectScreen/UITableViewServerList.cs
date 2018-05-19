@@ -23,7 +23,7 @@ namespace Hestia
 		public override void ViewDidLoad()
 		{
             base.ViewDidLoad(); 
-            TableView.Source = new TableSourceServerList(Globals.Auth0Servers, this);
+            TableView.Source = new TableSourceServerList();
 
             // The done button that loads the devicesMainScreen with the selected servers
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
