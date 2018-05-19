@@ -57,9 +57,6 @@ namespace Hestia.DevicesScreen
                 cell = new PropertyCell((NSString)Resources.strings.propertyCell);
             }
 
-            // Put the property names in the placeholder filed
-            cell.UpdateCell(propertyNames[indexPath.Section]);
-
             // Keep reference in hashtable
             inputs[propertyNames[indexPath.Section]] = cell;
 
