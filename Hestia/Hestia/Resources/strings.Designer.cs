@@ -448,5 +448,11 @@ namespace Hestia.Resources {
                 return ResourceManager.GetString("segueToServerDiscovery", resourceCulture);
             }
         }
+        
+        public static string localGlobalViewController {
+            get {
+                return ResourceManager.GetString("localGlobalViewController", resourceCulture);
+            }
+        }
     }
 }

@@ -318,4 +318,7 @@
   <data name="segueToServerDiscovery" xml:space="preserve">
     <value>serverDiscoverySegue</value>
   </data>
+  <data name="localGlobalViewController" xml:space="preserve">
+    <value>localGlobalViewController</value>
+  </data>
 </root>

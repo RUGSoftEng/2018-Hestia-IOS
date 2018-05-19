@@ -11,19 +11,15 @@ using Hestia.backend.exceptions;
 
 namespace Hestia
 {
-    // The UIApplicationDelegate for the application. This class is responsible for launching the 
+    /// <summary>
+    /// The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
+    /// </summary>
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
-        // class-level declarations
-
-        public override UIWindow Window
-        {
-            get;
-            set;
-        }
+        public override UIWindow Window { get; set; }
 
         public static UIStoryboard mainStoryboard = UIStoryboard.FromName(strings.mainStoryBoard, null);
         public static UIStoryboard devices2Storyboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
@@ -32,7 +28,6 @@ namespace Hestia
         string defaultIP;
         string defaultPort;
         string defaultAuth0AccessToken;
-        string defaultAuth0IdentityToken;
 
         public bool IsServerValid()
         {
@@ -42,35 +37,10 @@ namespace Hestia
             }
             catch (Exception exception)
             {
-                Console.Write(exception.StackTrace);
+                Console.WriteLine(exception.StackTrace);
                 return false;
             }
             return true;
-        }
-
-        // Checks if an auth0 access token is valid
-        public bool IsAuth0LoginValid()
-        {
-            if (defaultAuth0AccessToken != null)
-            {
-                NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken);
-                try
-                {
-                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
-                }
-                catch(Exception ex)
-                {
-                    Console.Write(ex.StackTrace);
-                    return false;
-                }
-                   
-                return true;
-            }
-            else
-            { 
-                return false; 
-             }
-
         }
 
         public void SetGlobalsToDefaultsLocalLogin()
@@ -92,7 +62,7 @@ namespace Hestia
             }
             catch (ServerInteractionException ex)
             {
-                Console.Write(ex.StackTrace);
+                Console.WriteLine(ex.StackTrace);
             }
             try
             {
@@ -100,7 +70,7 @@ namespace Hestia
             }
             catch(ServerInteractionException ex)
             {
-                Console.Write(ex.StackTrace);
+                Console.WriteLine(ex.StackTrace);
             }
         }
 
@@ -110,33 +80,19 @@ namespace Hestia
 
             Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
-            // Override point for customization after application launch.
-            // If not required for your application you can safely delete this method
+
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
-            // For Debugging
-           // Globals.ResetUserDefaults();
-           // userDefaults.RemoveObject(strings.defaultsServerNameHestia);
-           // userDefaults.RemoveObject(strings.defaultsIpHestia);
-           // userDefaults.RemoveObject(strings.defaultsPortHestia);
-            userDefaults.RemoveObject(strings.defaultsLocalHestia);
-            userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
-
-            string defaultLocal = userDefaults.StringForKey(Resources.strings.defaultsLocalHestia);
-            defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
-            defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
-            defaultServername = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
+            string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);
+            defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
+            defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
+            defaultServername = userDefaults.StringForKey(strings.defaultsServerNameHestia);
+            defaultAuth0AccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
 
-            // No previous login information available. Go to local/global choose screen.
-            if (defaultLocal == null)
-            {
-                UIViewControllerLocalGlobal localGlobalViewController = mainStoryboard.InstantiateInitialViewController() as UIViewControllerLocalGlobal;
-                Window.RootViewController = localGlobalViewController;
-                Window.MakeKeyAndVisible();
-            }
-            else if(defaultLocal == bool.TrueString)
+            // Check if defaults for local/global are present
+            if (defaultLocal == bool.TrueString)
             {
                 Globals.LocalLogin = true;
                 UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
@@ -144,7 +100,7 @@ namespace Hestia
                 if(IsServerValid())
                 {
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
-                                    as UINavigationController;
+                                                                                    as UINavigationController;
                     Window.RootViewController = navigationController;
                     SetGlobalsToDefaultsLocalLogin();
                 }
@@ -152,62 +108,24 @@ namespace Hestia
                 {
                     Window.RootViewController = serverConnectViewController;
                 }
-                Window.MakeKeyAndVisible();
             }
-            else
+            else if (defaultLocal == bool.FalseString)
             {
                 Globals.LocalLogin = false;
-                //UIViewControllerAuth0 auth0ViewController = mainStoryboard.InstantiateViewController(strings.auth0ViewController) as UIViewControllerAuth0;
-                UIViewControllerLocalGlobal uIViewControllerLocalGlobal =
-                    mainStoryboard.InstantiateViewController("localGlobalViewController")
-                                                            as UIViewControllerLocalGlobal;
-                if (IsAuth0LoginValid())
-                {
-                    UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
-                            as UINavigationController;
-                    Window.RootViewController = navigationController;
-                    SetGlobalsToDefaultsGlobalLogin();
-                }
-                else
-                {
-                    Window.RootViewController = uIViewControllerLocalGlobal;
-                    uIViewControllerLocalGlobal.CalledFromAppDelegateAsync();
-                }
-                Window.MakeKeyAndVisible();
+ 
+                UINavigationController navigationController = 
+                    devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
+                        as UINavigationController;
+                Window.RootViewController = navigationController;
+                SetGlobalsToDefaultsGlobalLogin();
             }
-
+            else
+            {   // No previous login information available. Go to local/global choose screen.
+                UIViewControllerLocalGlobal localGlobalViewController = mainStoryboard.InstantiateInitialViewController() as UIViewControllerLocalGlobal;
+                Window.RootViewController = localGlobalViewController;
+            }
+            Window.MakeKeyAndVisible();
             return true;
-        }
-
-	public override void OnResignActivation(UIApplication application)
-        {
-            // Invoked when the application is about to move from active to inactive state.
-            // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) 
-            // or when the user quits the application and it begins the transition to the background state.
-            // Games should use this method to pause the game.
-        }
-
-        public override void DidEnterBackground(UIApplication application)
-        {
-            // Use this method to release shared resources, save user data, invalidate timers and store the application state.
-            // If your application supports background exection this method is called instead of WillTerminate when the user quits.
-        }
-
-        public override void WillEnterForeground(UIApplication application)
-        {
-            // Called as part of the transiton from background to active state.
-            // Here you can undo many of the changes made on entering the background.
-        }
-
-        public override void OnActivated(UIApplication application)
-        { 
-            // Restart any tasks that were paused (or not yet started) while the application was inactive. 
-            // If the application was previously in the background, optionally refresh the user interface.
-        }
-
-        public override void WillTerminate(UIApplication application)
-        {
-            // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
         }
 
         public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
