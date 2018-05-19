@@ -28,6 +28,7 @@ namespace Hestia.DevicesScreen
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Title = ViewControllerTitle;
 
             if (defaultServerName != null)
             {
@@ -44,10 +45,23 @@ namespace Hestia.DevicesScreen
 
             AssignReturnKeyBehaviour();
             newServerName.BecomeFirstResponder();
+        }
 
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            Console.WriteLine("Presented by" + PresentingViewController);
+            if (PresentingViewController is UIViewControllerLocalGlobal)
+            {
+                SetCancelButtton();
+            }
+        }
+
+        public void SetCancelButtton()
+        {
             // Cancel button to go back to local/global screen
             UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
-                DismissViewController(true, null);  
+                DismissViewController(true, null);
             });
             NavigationItem.LeftBarButtonItem = cancel;
         }

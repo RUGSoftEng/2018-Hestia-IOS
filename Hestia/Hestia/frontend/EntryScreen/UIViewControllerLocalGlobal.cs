@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using IdentityModel.OidcClient;
 using System.Diagnostics;
 using Hestia.backend.exceptions;
+using Hestia.DevicesScreen;
 
 namespace Hestia
 {
@@ -59,7 +60,8 @@ namespace Hestia
                 else
                 {
                     Console.WriteLine("To Server Connect screen");
-                    PerformSegue(strings.mainToServerConnect, this);
+                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
+                    PresentViewController(devicesMainStoryboard.InstantiateInitialViewController(), true, null);
                 }
             };
 
@@ -187,5 +189,5 @@ namespace Hestia
             Console.WriteLine("To Server Select Global");
             PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
         }
-	}
+    }
 }
