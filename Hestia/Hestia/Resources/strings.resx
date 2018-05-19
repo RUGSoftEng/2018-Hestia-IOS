@@ -315,4 +315,7 @@
   <data name="webserverIP" xml:space="preserve">
     <value>fathomless-reef-69954.herokuapp.com</value>
   </data>
+  <data name="segueToServerDiscovery" xml:space="preserve">
+    <value>serverDiscoverySegue</value>
+  </data>
 </root>

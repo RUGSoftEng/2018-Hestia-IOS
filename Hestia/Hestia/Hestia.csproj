@@ -122,10 +122,6 @@
       <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
     </Compile>
     <Compile Include="frontend\Firebase\TableSourceAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Local\UITableViewControllerLocalLogin.cs" />
-    <Compile Include="frontend\Local\UITableViewControllerLocalLogin.designer.cs">
-      <DependentUpon>UITableViewControllerLocalLogin.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\Firebase\UIViewControllerGlobalLogin.cs" />
     <Compile Include="frontend\Firebase\UIViewControllerGlobalLogin.designer.cs">
       <DependentUpon>UIViewControllerGlobalLogin.cs</DependentUpon>

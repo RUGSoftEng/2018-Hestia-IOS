@@ -442,5 +442,11 @@ namespace Hestia.Resources {
                 return ResourceManager.GetString("webserverIP", resourceCulture);
             }
         }
+        
+        public static string segueToServerDiscovery {
+            get {
+                return ResourceManager.GetString("segueToServerDiscovery", resourceCulture);
+            }
+        }
     }
 }
