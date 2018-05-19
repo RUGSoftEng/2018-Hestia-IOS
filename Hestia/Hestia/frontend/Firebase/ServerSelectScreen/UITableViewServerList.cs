@@ -20,8 +20,8 @@ namespace Hestia
         {
         }
 
-		public override void ViewDidLoad()
-		{
+        public override void ViewDidLoad()
+        {
             base.ViewDidLoad(); 
             TableView.Source = new TableSourceServerList();
 
@@ -33,6 +33,6 @@ namespace Hestia
                 ShowViewController(devicesMain, this);
             });
             NavigationItem.RightBarButtonItem = done;
-		}
-	}
+        }
+    }
 }
