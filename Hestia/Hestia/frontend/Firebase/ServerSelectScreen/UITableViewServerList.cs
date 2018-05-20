@@ -42,7 +42,7 @@ namespace Hestia
 
         bool ShouldPerformSegue()
         {
-            foreach (HestiaServerInteractor interactor in Globals.GetSelectedServers())
+            foreach (HestiaServerInteractor interactor in Globals.GetInteractorsOfSelectedServers())
             {
                 try
                 {
