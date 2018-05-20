@@ -111,7 +111,7 @@ namespace Hestia.DevicesScreen
                 Globals.ServerName = newServerName.Text;
                 Globals.IP = newIP.Text;
                 Globals.Port = int.Parse(newPort.Text);
-                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler("https://" + Globals.IP, Globals.Port));
                 Globals.LocalServerinteractor = serverInteractor;
 
                 return true;

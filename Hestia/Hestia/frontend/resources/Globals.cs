@@ -72,7 +72,7 @@ namespace Hestia.DevicesScreen.resources
             NetworkHandler temp_networkhandler;
             if(LocalLogin)
             {
-                temp_networkhandler = new NetworkHandler(IP, Port);
+                temp_networkhandler = new NetworkHandler("https://" + IP, Port);
             }
             else
             {
@@ -86,7 +86,7 @@ namespace Hestia.DevicesScreen.resources
 			HestiaServerInteractor temp_serverinteractor;
             if (LocalLogin)
             {
-				temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(IP, Port));
+                temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler("https://" + IP, Port));
             }
             else
             {

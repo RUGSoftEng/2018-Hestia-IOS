@@ -145,7 +145,7 @@ namespace Hestia
             Globals.ServerName = defaultServerName;
             Globals.IP = defaultIP;
             Globals.Port = int.Parse(defaultPort);
-            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler("https://" + Globals.IP, Globals.Port));
             Console.WriteLine("To Devices Main Local");
             PerformSegue(strings.mainToDevicesMain, this);
         }
