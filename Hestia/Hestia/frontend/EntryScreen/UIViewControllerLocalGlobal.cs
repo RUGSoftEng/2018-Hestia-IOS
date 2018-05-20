@@ -13,6 +13,7 @@ using IdentityModel.OidcClient;
 using System.Diagnostics;
 using Hestia.backend.exceptions;
 using Hestia.DevicesScreen;
+using Hestia.backend.models;
 
 namespace Hestia
 {
@@ -176,15 +177,19 @@ namespace Hestia
             }
             catch (ServerInteractionException ex)
             {
+                Console.WriteLine("Exception while posting user. User possibly already exists.");
                 Console.WriteLine(ex.StackTrace);
             }
-
+            Globals.Auth0Servers = new List<backend.models.HestiaServer>();
             try
             {
-                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+                List<HestiaServer> servers = hestiaWebServerInteractor.GetServers();
+                Globals.Auth0Servers = servers;
+                Console.WriteLine("number of servers:" + Globals.Auth0Servers.Count);
             }
             catch(ServerInteractionException ex)
             {
+                Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex.StackTrace);
             }
             Console.WriteLine("To Server Select Global");

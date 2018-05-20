@@ -20,8 +20,8 @@ namespace Hestia.DevicesScreen
         UITableViewControllerDevicesMain owner;
 
         // Multiple Server case
-        nint numberOfServers;
-        List<List<Device>> serverDevices;
+        public nint numberOfServers;
+        public List<List<Device>> serverDevices;
 
         Device GetSectionRow(NSIndexPath indexPath)
         {
@@ -39,32 +39,10 @@ namespace Hestia.DevicesScreen
         }
 
         // Constructor. Gets the device data (local) and the ViewController
-        public TableSource(List<Device> items, UITableViewControllerDevicesMain owner)
+        public TableSource(UITableViewControllerDevicesMain owner)
         {
-            var TableItems = items;
             this.owner = owner;
-            if (Globals.LocalLogin)
-            {
-                numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
-                serverDevices = new List<List<Device>>();
-                serverDevices.Add(TableItems);
-            }
-            else
-            {
-                serverDevices = new List<List<Device>>();
-                numberOfServers = Globals.GetNumberOfSelectedServers();
-                foreach (HestiaServerInteractor interactor in Globals.GetSelectedServers())
-                {
-                    try
-                    {
-                        serverDevices.Add(interactor.GetDevices());
-                    } catch(ServerInteractionException ex)
-                    {
-                        Console.WriteLine("Exception while getting devices from server " + interactor.ToString());
-                        Console.WriteLine(ex.ToString());
-                    }
-                }
-            }
+           
         }
 
         public override nint NumberOfSections(UITableView tableView)
@@ -75,7 +53,13 @@ namespace Hestia.DevicesScreen
         // The number of devices in the list per section
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return serverDevices[(int)section].Count;
+            Console.WriteLine("section : " + section);
+            if (serverDevices.Count <= 0)
+            {
+                return 0;
+            }
+            int count = serverDevices[(int)section].Count;
+            return count;
         }
 
         // Important method. Called to generate a cell to display

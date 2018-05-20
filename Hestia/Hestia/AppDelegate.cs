@@ -62,14 +62,17 @@ namespace Hestia
             }
             catch (ServerInteractionException ex)
             {
+                Console.WriteLine("Exception while posting user. User possibly already exists.");
                 Console.WriteLine(ex.StackTrace);
             }
+            Globals.Auth0Servers = new System.Collections.Generic.List<backend.models.HestiaServer>();
             try
             {
                 Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
             }
             catch(ServerInteractionException ex)
             {
+                Console.WriteLine("Exception while getting devices from server.");
                 Console.WriteLine(ex.StackTrace);
             }
         }
@@ -77,7 +80,6 @@ namespace Hestia
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             Xamarin.Calabash.Start();
-            Globals.ResetAllUserDefaults();
             Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
 
@@ -90,11 +92,11 @@ namespace Hestia
             defaultAuth0AccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
-
+            Console.WriteLine(" defaults:" + defaultLocal);
             // Check if defaults for local/global are present
             if (defaultLocal == bool.TrueString)
             {
-				Console.Write(" Default local ");
+				Console.WriteLine(" Default local ");
                 Globals.LocalLogin = true;
                 UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
 
@@ -113,7 +115,7 @@ namespace Hestia
 
             else if (defaultLocal == bool.FalseString)
             {
-				Console.Write(" Default globla ");
+				Console.WriteLine(" Default global");
                 Globals.LocalLogin = false;
 
  
