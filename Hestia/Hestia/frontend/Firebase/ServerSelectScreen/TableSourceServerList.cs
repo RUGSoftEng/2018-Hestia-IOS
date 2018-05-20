@@ -49,6 +49,14 @@ namespace Hestia
             }
             // The text to display on the cell is the server info
             cell.TextLabel.Text = Globals.Auth0Servers[indexPath.Row].Name;
+            if (Globals.Auth0Servers[indexPath.Row].Selected == false)
+            {
+                cell.Accessory = UITableViewCellAccessory.None;
+            }
+            else
+            {
+                cell.Accessory = UITableViewCellAccessory.Checkmark;
+            }
 
             return cell;
 		}
