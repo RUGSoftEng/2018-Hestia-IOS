@@ -15,9 +15,9 @@
 	<key>MinimumOSVersion</key>
 	<string>9.0</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Usage Description</string>
+	<string>Allows you to use speech recognition.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Usage Description</string>
+	<string>Allows you to use speech recognition.</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
