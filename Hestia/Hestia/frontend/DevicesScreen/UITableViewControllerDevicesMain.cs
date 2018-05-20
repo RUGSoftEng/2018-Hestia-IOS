@@ -50,7 +50,7 @@ namespace Hestia.DevicesScreen
             else
             {
                 source.numberOfServers = Globals.GetNumberOfSelectedServers();
-                foreach (HestiaServerInteractor interactor in Globals.GetSelectedServers())
+                foreach (HestiaServerInteractor interactor in Globals.GetInteractorsOfSelectedServers())
                 {
                     try
                     {
