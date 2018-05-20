@@ -1,12 +1,11 @@
 using Foundation;
-using ObjCRuntime;
 using System;
 using UIKit;
 
 using Hestia.DevicesScreen.resources;
 using Hestia.backend;
-using Hestia.backend.models;
 using Hestia.backend.utils;
+using Hestia.Resources;
 
 namespace Hestia.DevicesScreen
 {
@@ -16,21 +15,21 @@ namespace Hestia.DevicesScreen
         string defaultServerName;
         string defaultIP;
         string defaultPort;
+        const string ViewControllerTitle = "Server";
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
         {
             userDefaults = NSUserDefaults.StandardUserDefaults;
-            defaultServerName = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
-            defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
-            defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
+            defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
+            defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
+            defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
         }
-
-
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-			this.Title = "Server Connect";
+            Title = ViewControllerTitle;
+
             if (defaultServerName != null)
             {
                 newServerName.Text = defaultServerName;
@@ -44,6 +43,36 @@ namespace Hestia.DevicesScreen
                 newPort.Text = defaultPort;
             }
 
+            AssignReturnKeyBehaviour();
+            newServerName.BecomeFirstResponder();
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            Console.WriteLine("Presented by" + PresentingViewController);
+            if (PresentingViewController is UIViewControllerLocalGlobal)
+            {
+                SetCancelButtton();
+            }
+        }
+
+        public void SetCancelButtton()
+        {
+            // Cancel button to go back to local/global screen
+            UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
+                DismissViewController(true, null);
+            });
+            NavigationItem.LeftBarButtonItem = cancel;
+        }
+
+        /// <summary>
+        /// Assigns the return key behaviour.
+        /// That is, go to the next field or connect in case of last field.
+        /// </summary>
+        /// See <see cref="TextFieldShouldReturn(UITextField)"/> for the behaviour
+        void AssignReturnKeyBehaviour()
+        {
             newServerName.ShouldReturn += TextFieldShouldReturn;
             newIP.ShouldReturn += TextFieldShouldReturn;
             newPort.ShouldReturn += TextFieldShouldReturn;
@@ -51,56 +80,48 @@ namespace Hestia.DevicesScreen
             newServerName.Tag = 1;
             newIP.Tag = 2;
             newPort.Tag = 3;
-
-            newServerName.BecomeFirstResponder();
         }
 
-
-		public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
+        public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
-
-            if (segueIdentifier == "serverDiscoverySegue")
+            if (segueIdentifier == strings.segueToServerDiscovery)
             {
                 return true;
             }
-            else
+
+            bool validIp = false;
+
+            try
             {
-                bool validIp = false;
-
-                try
-                {
-                    validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
-                }
-                catch (Exception exception)
-                {
-                    Console.Write(exception.StackTrace);
-                    DisplayWarningMessage();
-                    return false;
-                }
-                if (validIp)
-                {
-                    userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
-                    userDefaults.SetString(newIP.Text, Resources.strings.defaultsIpHestia);
-                    userDefaults.SetString(newPort.Text, Resources.strings.defaultsPortHestia);
-
-                    Globals.ServerName = newServerName.Text;
-                    Globals.IP = newIP.Text;
-                    Globals.Port = int.Parse(newPort.Text);
-                    HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
-                    Globals.LocalServerinteractor = serverInteractor;
-
-                    return true;
-                }
-                else
-                {
-                    DisplayWarningMessage();
-                    return false;
-                }
+                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
             }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.StackTrace);
+                DisplayWarningMessage();
+                return false;
+            }
+
+            if (validIp)
+            {
+                userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
+                userDefaults.SetString(newIP.Text, strings.defaultsIpHestia);
+                userDefaults.SetString(newPort.Text, strings.defaultsPortHestia);
+
+                Globals.ServerName = newServerName.Text;
+                Globals.IP = newIP.Text;
+                Globals.Port = int.Parse(newPort.Text);
+                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                Globals.LocalServerinteractor = serverInteractor;
+
+                return true;
+            }
+
+            DisplayWarningMessage();
+            return false;
         }
 
-
-        private void DisplayWarningMessage()
+        void DisplayWarningMessage()
         {
             string title = "Could not connect to server";
             string message = "Invalid server information";
@@ -111,10 +132,15 @@ namespace Hestia.DevicesScreen
             connectButton.Selected = false;
         }
 
-        private bool TextFieldShouldReturn(UITextField textfield)
+        /// <summary>
+        /// Implements the behaviour of the return button
+        /// </summary>
+        /// <returns>Always <c>false</c>, because we do not want a line break</returns>
+        /// <param name="textfield">Textfield.</param>
+        bool TextFieldShouldReturn(UITextField textfield)
         {
             int nextTag = (int)textfield.Tag + 1;
-            UIResponder nextResponder = this.View.ViewWithTag(nextTag);
+            UIResponder nextResponder = View.ViewWithTag(nextTag);
             if (nextResponder != null)
             {
                 nextResponder.BecomeFirstResponder();
@@ -123,12 +149,12 @@ namespace Hestia.DevicesScreen
             {
                 // Remove keyboard, then connect
                 textfield.ResignFirstResponder();
-                if (ShouldPerformSegue(Resources.strings.serverConnectToDevicesSegue, this))
+                if (ShouldPerformSegue(strings.serverConnectToDevicesSegue, this))
                 {
-                    PerformSegue(Resources.strings.serverConnectToDevicesSegue, this);
+                    PerformSegue(strings.serverConnectToDevicesSegue, this);
                 }
             }
-            return false; //No line-breaks.
+            return false;
         }
     }
 }

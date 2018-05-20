@@ -442,5 +442,23 @@ namespace Hestia.Resources {
                 return ResourceManager.GetString("webserverIP", resourceCulture);
             }
         }
+        
+        public static string segueToServerDiscovery {
+            get {
+                return ResourceManager.GetString("segueToServerDiscovery", resourceCulture);
+            }
+        }
+        
+        public static string localGlobalViewController {
+            get {
+                return ResourceManager.GetString("localGlobalViewController", resourceCulture);
+            }
+        }
+        
+        public static string segueToLocalGlobalToServerSelect {
+            get {
+                return ResourceManager.GetString("segueToLocalGlobalToServerSelect", resourceCulture);
+            }
+        }
     }
 }

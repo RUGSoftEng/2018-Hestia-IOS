@@ -315,4 +315,13 @@
   <data name="webserverIP" xml:space="preserve">
     <value>fathomless-reef-69954.herokuapp.com</value>
   </data>
+  <data name="segueToServerDiscovery" xml:space="preserve">
+    <value>serverDiscoverySegue</value>
+  </data>
+  <data name="localGlobalViewController" xml:space="preserve">
+    <value>localGlobalViewController</value>
+  </data>
+  <data name="segueToLocalGlobalToServerSelect" xml:space="preserve">
+    <value>localGlobalToServerSelect</value>
+  </data>
 </root>
