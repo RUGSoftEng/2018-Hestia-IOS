@@ -472,5 +472,11 @@ namespace Hestia.Resources {
                 return ResourceManager.GetString("defaultPrefix", resourceCulture);
             }
         }
+        
+        public static string selectServerTitle {
+            get {
+                return ResourceManager.GetString("selectServerTitle", resourceCulture);
+            }
+        }
     }
 }

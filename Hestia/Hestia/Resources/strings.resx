@@ -330,4 +330,7 @@
   <data name="defaultPrefix" xml:space="preserve">
     <value>https://</value>
   </data>
+  <data name="selectServerTitle" xml:space="preserve">
+    <value>Select servers</value>
+  </data>
 </root>
