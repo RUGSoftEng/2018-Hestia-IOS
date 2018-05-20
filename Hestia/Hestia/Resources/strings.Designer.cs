@@ -389,6 +389,12 @@ namespace Hestia.Resources {
             }
         }
         
+        public static string devices3StoryBoard {
+            get {
+                return ResourceManager.GetString("devices3StoryBoard", resourceCulture);
+            }
+        }
+        
         public static string mainStoryBoard {
             get {
                 return ResourceManager.GetString("mainStoryBoard", resourceCulture);

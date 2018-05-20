@@ -22,6 +22,7 @@ namespace Hestia
         public override UIWindow Window { get; set; }
         public static UIStoryboard mainStoryboard = UIStoryboard.FromName(strings.mainStoryBoard, null);
         public static UIStoryboard devices2Storyboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
+        public static UIStoryboard devices3Storyboard = UIStoryboard.FromName(strings.devices3StoryBoard, null);
 
         string defaultServername;
         string defaultIP;
@@ -122,11 +123,8 @@ namespace Hestia
 				Console.WriteLine(" Default global");
                 Globals.LocalLogin = false;
 
- 
-                UINavigationController navigationController = 
-                    devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
-                        as UINavigationController;
-                Window.RootViewController = navigationController;
+                var viewServerList = devices3Storyboard.InstantiateInitialViewController();
+                Window.RootViewController = viewServerList;
                 SetGlobalsToDefaultsGlobalLogin();
             }
             else
