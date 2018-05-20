@@ -10,7 +10,7 @@ namespace Hestia.backend
 {
     public class NetworkHandler
     {
-        private string ip;
+        private string ip; // ip including connection method
         private int port;
         private bool hasPort;
         private RestClient client;
@@ -178,10 +178,10 @@ namespace Hestia.backend
 
             if (hasPort)
             {
-                baseUrl = new Uri("https://" + ip + ":" + port + "/");
+                baseUrl = new Uri(ip + ":" + port + "/");
             } else
             {
-                baseUrl = new Uri("https://" + ip + "/");
+                baseUrl = new Uri(ip + "/");
             }
 
             client = new RestClient(baseUrl);
