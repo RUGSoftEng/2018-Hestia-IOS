@@ -112,7 +112,7 @@ namespace Hestia
         {
             if (defaultServerName != null && defaultIP != null && defaultPort != null)
             {
-                return PingServer.Check(defaultIP, int.Parse(defaultPort));
+                return PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(defaultPort));
             }
             return false;
         }

@@ -93,7 +93,7 @@ namespace Hestia.DevicesScreen
 
             try
             {
-                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+                validIp = PingServer.Check(strings.defaultPrefix + newIP.Text, int.Parse(newPort.Text));
             }
             catch (Exception exception)
             {

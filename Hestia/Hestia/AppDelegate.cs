@@ -20,7 +20,6 @@ namespace Hestia
     public class AppDelegate : UIApplicationDelegate
     {
         public override UIWindow Window { get; set; }
-
         public static UIStoryboard mainStoryboard = UIStoryboard.FromName(strings.mainStoryBoard, null);
         public static UIStoryboard devices2Storyboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
 
@@ -31,9 +30,13 @@ namespace Hestia
 
         public bool IsServerValid()
         {
+            if (defaultIP == null)
+            {
+                return false;
+            }
             try
             {
-                bool validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
+                bool validIp = PingServer.Check("https://" + defaultIP, int.Parse(defaultPort));
             }
             catch (Exception exception)
             {
@@ -82,7 +85,7 @@ namespace Hestia
             Xamarin.Calabash.Start();
             Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
-
+            Globals.Prefix = strings.defaultPrefix;
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
             string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);
@@ -90,6 +93,7 @@ namespace Hestia
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultServername = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultAuth0AccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
+            Console.WriteLine(" Defaultip:" + strings.defaultPrefix + defaultIP);
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
             Console.WriteLine(" defaults:" + defaultLocal);
@@ -98,7 +102,7 @@ namespace Hestia
             {
 				Console.WriteLine(" Default local ");
                 Globals.LocalLogin = true;
-                UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
+                var serverConnectViewController = devices2Storyboard.InstantiateInitialViewController();
 
                 if(IsServerValid())
                 {
