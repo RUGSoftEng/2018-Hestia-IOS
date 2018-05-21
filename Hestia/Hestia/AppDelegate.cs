@@ -37,7 +37,7 @@ namespace Hestia
             }
             try
             {
-                bool validIp = PingServer.Check("https://" + defaultIP, int.Parse(defaultPort));
+                bool validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
             }
             catch (Exception exception)
             {
@@ -52,7 +52,7 @@ namespace Hestia
             Globals.ServerName = defaultServername;
             Globals.IP = defaultIP;
             Globals.Port = int.Parse(defaultPort);
-            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler("https://" + Globals.IP, Globals.Port));
+            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
             Globals.LocalServerinteractor = serverInteractor;
         }
 
@@ -86,7 +86,7 @@ namespace Hestia
             Xamarin.Calabash.Start();
             Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
-            Globals.Prefix = strings.defaultPrefix;
+
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
             string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);
@@ -94,7 +94,7 @@ namespace Hestia
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultServername = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultAuth0AccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
-            Console.WriteLine(" Defaultip:" + strings.defaultPrefix + defaultIP);
+            Console.WriteLine(" Defaultip:" + defaultIP);
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
             Console.WriteLine(" defaults:" + defaultLocal);
@@ -108,7 +108,7 @@ namespace Hestia
                 if(IsServerValid())
                 {
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
-                                                                                    as UINavigationController;
+                        as UINavigationController;
                     Window.RootViewController = navigationController;
                     SetGlobalsToDefaultsLocalLogin();
                 }

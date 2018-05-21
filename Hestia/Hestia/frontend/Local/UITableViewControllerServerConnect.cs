@@ -109,9 +109,9 @@ namespace Hestia.DevicesScreen
                 userDefaults.SetString(newPort.Text, strings.defaultsPortHestia);
 
                 Globals.ServerName = newServerName.Text;
-                Globals.IP = newIP.Text;
+                Globals.IP = strings.defaultPrefix + newIP.Text;
                 Globals.Port = int.Parse(newPort.Text);
-                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler("https://" + Globals.IP, Globals.Port));
+                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
                 Globals.LocalServerinteractor = serverInteractor;
 
                 return true;
