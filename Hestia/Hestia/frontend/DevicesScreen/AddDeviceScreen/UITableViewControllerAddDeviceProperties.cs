@@ -48,8 +48,6 @@ namespace Hestia
                 try
                 {
                     Console.WriteLine("Serverto add device to" + Globals.ServerToAddDeviceTo);
-                    Console.WriteLine("Plugininfo name" + pluginInfo.RequiredInfo["name"]);
-                    Console.WriteLine("Plugininfo user" + pluginInfo.RequiredInfo["user"]);
                     Globals.ServerToAddDeviceTo.AddDevice(pluginInfo);
                 }
                 catch (ServerInteractionException ex)

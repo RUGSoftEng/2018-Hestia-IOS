@@ -24,20 +24,49 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Title = Hestia.Resources.strings.selectServerTitle;
+            Title = Resources.strings.selectServerTitle;
             TableView.Source = new TableSourceServerList();
 
             // The done button that loads the devicesMainScreen with the selected servers
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 if (ShouldPerformSegue())
                 {
-                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
+                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(Resources.strings.devices2StoryBoard, null);
 
-                    var devicesMain = devicesMainStoryboard.InstantiateViewController("navigationDevicesMain") as UINavigationController;
+                    var devicesMain = devicesMainStoryboard.InstantiateViewController(Resources.strings.navigationControllerDevicesMain) as UINavigationController;
                     ShowViewController(devicesMain, this);
                 }
             });
             NavigationItem.RightBarButtonItem = done;
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            Console.WriteLine("Presented by" + PresentingViewController);
+            if (!(PresentingViewController is UINavigationController))
+            {
+                SetCancelButtton(PresentingViewController);
+            }
+        }
+
+        /// <summary>
+        /// Sets the cancel buttton, depending on the ViewController that calls it.
+        /// </summary>
+        /// <param name="uIViewController">The ViewController from which the ServeSelect list is called.</param>
+        public void SetCancelButtton(UIViewController uIViewController)
+        {
+            // Cancel button to go back to local/global screen
+            UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
+                if (uIViewController is UIViewControllerLocalGlobal)
+                {
+                    DismissViewController(true, null);
+                }
+                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(Resources.strings.mainStoryBoard, null);
+                var localGlobal = devicesMainStoryboard.InstantiateInitialViewController();
+                PresentViewController(localGlobal, true, null);
+            });
+            NavigationItem.LeftBarButtonItem = cancel;
         }
 
         bool ShouldPerformSegue()
