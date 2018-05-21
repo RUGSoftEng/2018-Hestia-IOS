@@ -74,6 +74,7 @@
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
+    <Compile Include="backend\speech-recognition\SpeechRecognition.cs" />
     <Compile Include="backend\utils\server_discovery\ServerDelegate.cs" />
     <Compile Include="backend\models\HestiaServer.cs" />
     <Compile Include="backend\HestiaServerInteractor.cs" />
