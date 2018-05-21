@@ -36,12 +36,6 @@ namespace Hestia.DevicesScreen
             }
             if (defaultIP != null)
             {
-                // Cut off the https:// or http://
-                int index = defaultIP.LastIndexOf('/');
-                if (index >= 0)
-                {
-                    defaultIP = defaultIP.Substring(index + 1);
-                }
                 newIP.Text = defaultIP;
             }
             if (defaultPort != null)
@@ -99,7 +93,7 @@ namespace Hestia.DevicesScreen
 
             try
             {
-                validIp = PingServer.Check(strings.defaultPrefix + newIP.Text, int.Parse(newPort.Text));
+                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
             }
             catch (Exception exception)
             {
@@ -111,7 +105,7 @@ namespace Hestia.DevicesScreen
             if (validIp)
             {
                 Globals.ServerName = newServerName.Text;
-                Globals.IP = strings.defaultPrefix + newIP.Text;
+                Globals.IP = newIP.Text;
                 Globals.Port = int.Parse(newPort.Text);
                 HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
                 Globals.LocalServerinteractor = serverInteractor;
