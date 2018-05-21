@@ -148,6 +148,7 @@
       <DependentUpon>UITableViewControllerServerDiscovery.cs</DependentUpon>
     </Compile>
     <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
+    <Compile Include="frontend\WarningMessage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">

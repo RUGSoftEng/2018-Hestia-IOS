@@ -36,6 +36,12 @@ namespace Hestia.DevicesScreen
             }
             if (defaultIP != null)
             {
+                // Cut off the https:// or http://
+                int index = defaultIP.LastIndexOf('/');
+                if (index >= 0)
+                {
+                    defaultIP = defaultIP.Substring(index + 1);
+                }
                 newIP.Text = defaultIP;
             }
             if (defaultPort != null)
@@ -104,15 +110,15 @@ namespace Hestia.DevicesScreen
 
             if (validIp)
             {
-                userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
-                userDefaults.SetString(newIP.Text, strings.defaultsIpHestia);
-                userDefaults.SetString(newPort.Text, strings.defaultsPortHestia);
-
                 Globals.ServerName = newServerName.Text;
                 Globals.IP = strings.defaultPrefix + newIP.Text;
                 Globals.Port = int.Parse(newPort.Text);
                 HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
                 Globals.LocalServerinteractor = serverInteractor;
+
+                userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
+                userDefaults.SetString(Globals.IP, strings.defaultsIpHestia);
+                userDefaults.SetString(newPort.Text, strings.defaultsPortHestia);
 
                 return true;
             }

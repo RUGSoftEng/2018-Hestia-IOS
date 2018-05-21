@@ -49,5 +49,16 @@ namespace Hestia
             // Contains methods that describe behavior of table
             TableView.Source = new TableSourceAddDeviceManufacturer(collections, collection_plugins, this);
         }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            // Cancel button to go back to Devices main screen
+            UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) =>
+            {
+                NavigationController.PopToRootViewController(true);
+            });
+            NavigationItem.RightBarButtonItem = cancel;
+        }
     }
 }

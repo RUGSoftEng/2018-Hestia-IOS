@@ -43,16 +43,18 @@ namespace Hestia
             // Save button
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
                 SaveFields();
-
+                Console.WriteLine("Clicked save button");
                 // Try to add device to server
                 try
                 {
+                    Console.WriteLine("Serverto add device to" + Globals.ServerToAddDeviceTo);
                     Globals.ServerToAddDeviceTo.AddDevice(pluginInfo);
                 }
                 catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while adding device to server");
-                    Console.WriteLine(ex.ToString());
+                    Console.WriteLine(ex);
+                    frontend.WarningMessage message = new frontend.WarningMessage("Exception", "Could not add device", this);
                 }
 
                 // Get the root view contoller and cancel the editing state
