@@ -910,7 +910,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Information" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="89751" key="tableHeaderView" fixedFrame="YES">
-                                                    <rect key="frame" x="9" y="0.0" width="243" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="243" height="44"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -922,12 +922,32 @@
                                             <segue id="89822" destination="5541" kind="show"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="90225" accessoryType="disclosureIndicator">
+                                        <rect key="frame" x="0.0" y="79" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="90225" id="90226">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Servers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="90412" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                                    <rect key="frame" x="16" y="0.0" width="160" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue id="90914" destination="90828" kind="show"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="89390">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="89395">
-                                        <rect key="frame" x="0.0" y="99" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="143" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="89395" id="89396">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -952,7 +972,7 @@
                             <tableViewSection id="89397">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="89402">
-                                        <rect key="frame" x="0.0" y="163" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="207" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="89402" id="89403">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -981,7 +1001,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63375" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="338" y="69"/>
+            <point key="canvasLocation" x="285" y="-165"/>
         </scene>
         <scene sceneID="73501">
             <objects>
@@ -1031,6 +1051,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="80116" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1247" y="1573"/>
+        </scene>
+        <scene sceneID="90827">
+            <objects>
+                <viewControllerPlaceholder id="90828" sceneMemberID="viewController" storyboardName="Devices3" referencedIdentifier="serverSelectView"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="90829" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="822" y="41"/>
         </scene>
     </scenes>
 </document>
