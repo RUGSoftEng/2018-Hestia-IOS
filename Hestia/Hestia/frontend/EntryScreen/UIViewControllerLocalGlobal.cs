@@ -12,10 +12,15 @@ using System.Threading.Tasks;
 using IdentityModel.OidcClient;
 using System.Diagnostics;
 using Hestia.backend.exceptions;
+using Hestia.DevicesScreen;
+using Hestia.backend.models;
 
 namespace Hestia
-{   // This view controller belongs to the first window that can be shown on loading the app
-    // if no user default for local/global is present. The user can then choose local/global.
+{
+    /// <summary>
+    /// This view controller belongs to the first window that can be seen when loading the app
+    /// if no user default for local/global is present. The user can then choose local/global.
+    /// </summary>
     public partial class UIViewControllerLocalGlobal : UIViewController
     {
         Auth0Client client;
@@ -26,7 +31,6 @@ namespace Hestia
         string defaultIP;
         string defaultPort;
         string defaultAccessToken;
-        string defaultIdentityToken;
 
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
         {
@@ -40,13 +44,12 @@ namespace Hestia
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultAccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
-            defaultIdentityToken = userDefaults.StringForKey(strings.defaultsIdentityTokenHestia);
 
             // Already anticipate local login
             // Check if local serverinformation is present and correct
             bool validIp = CheckLocalLoginDefaults();
 
-            ToLocalButton.TouchUpInside += delegate (object sender, EventArgs e)
+            ToLocalButton.TouchUpInside += delegate
             {
                 userDefaults.SetString(bool.TrueString, strings.defaultsLocalHestia);
                 Globals.LocalLogin = true;
@@ -57,16 +60,19 @@ namespace Hestia
                 }
                 else
                 {
-                    Console.WriteLine("To serverconnect");
-                    PerformSegue(strings.mainToServerConnect, this);
+                    Console.WriteLine("To Server Connect screen");
+                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
+                    PresentViewController(devicesMainStoryboard.InstantiateInitialViewController(), true, null);
                 }
             };
 
-            ToGlobalButton.TouchUpInside += async delegate (object sender, EventArgs e)
+            ToGlobalButton.TouchUpInside += async delegate
             {
+				userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
+
                 if (HasValidGlobalLogin())
                 {
-					SetValuesAndSegueToServerSelectGlobal();
+                    SetValuesAndSegueToServerSelectGlobal();
                 }
                 else
                 {
@@ -80,69 +86,42 @@ namespace Hestia
         void HandleGlobalButtonTouchResult(LoginResult loginResult)
         {
             Globals.LocalLogin = false;
-            userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
 
             if (!loginResult.IsError)
             {
-                Console.WriteLine("No error");
-                userDefaults.SetString(loginResult.IdentityToken, strings.defaultsIdentityTokenHestia);
+                Console.WriteLine("No error during login");
                 userDefaults.SetString(loginResult.AccessToken, strings.defaultsAccessTokenHestia);
-                // TODO edit values in to serverselect
-                SetValuesAndSegueToServerSelectGlobal(loginResult.IdentityToken, loginResult.AccessToken);
+                SetValuesAndSegueToServerSelectGlobal(loginResult.AccessToken);
             }
             else if(!(loginResult.Error == "UserCancel"))
             {
-                string title = "Login failed";
-                string message = loginResult.Error;
-                var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-                okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                PresentViewController(okAlertController, true, null);
+                DisplayWarningMessage(loginResult.Error);
             }
          }
 
+        void DisplayWarningMessage(string error)
+        {
+            string title = "Login failed";
+            string message = error;
+            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            PresentViewController(okAlertController, true, null);
+        }
+
         bool CheckLocalLoginDefaults()
         {
-            bool validIp = false;
-
             if (defaultServerName != null && defaultIP != null && defaultPort != null)
             {
-                validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
+                return PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(defaultPort));
             }
-
-            return validIp;
+            return false;
         }
 
         bool HasValidGlobalLogin()
         {
-            if (defaultAccessToken != null)
-            {
-                NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, defaultAccessToken);
-                try
-                {
-                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
-                }
-                catch (Exception ex)
-                {
-                    Console.Write(ex.StackTrace);
-                    return false;
-                }
-
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return defaultAccessToken != null;
         }
-
-        public async Task CalledFromAppDelegateAsync()
-        {
-            Console.Write("Called from appdelegate");
-            Task<LoginResult> loginResult = GetLoginResult();
-            LoginResult logResult = await loginResult;
-            HandleGlobalButtonTouchResult(logResult);
-        }  
- 
+         
         public async Task<LoginResult> GetLoginResult()
         {
             client = Auth0Connector.CreateAuthClient(this);
@@ -159,6 +138,7 @@ namespace Hestia
             return loginResult;
         }
 
+        // Sets values in case of defaults presesent
         void SetValuesAndSegueToDevicesMainLocal()
         {
             Globals.LocalLogin = true;
@@ -166,7 +146,7 @@ namespace Hestia
             Globals.IP = defaultIP;
             Globals.Port = int.Parse(defaultPort);
             Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
-            Console.WriteLine("To devices main local");
+            Console.WriteLine("To Devices Main Local");
             PerformSegue(strings.mainToDevicesMain, this);
         }
 
@@ -174,20 +154,18 @@ namespace Hestia
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, defaultAccessToken);
+            NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, defaultAccessToken);
             CreateServerInteractorAndSegue(networkHandler);
         }
 
         //Sets values in case of new login
-        void SetValuesAndSegueToServerSelectGlobal(string identityToken, string accessToken)
+        void SetValuesAndSegueToServerSelectGlobal(string accessToken)
         {
-            userDefaults.SetString(accessToken, Resources.strings.defaultsAccessTokenHestia);
-            userDefaults.SetString(identityToken, Resources.strings.defaultsIdentityTokenHestia);
+            userDefaults.SetString(accessToken, strings.defaultsAccessTokenHestia);
 
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(Resources.strings.webserverIP, accessToken);
+            NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, accessToken);
             CreateServerInteractorAndSegue(networkHandler);
-
         }
 
         void CreateServerInteractorAndSegue(NetworkHandler networkHandler)
@@ -199,19 +177,23 @@ namespace Hestia
             }
             catch (ServerInteractionException ex)
             {
-                Console.Write(ex.StackTrace);
+                Console.WriteLine("Exception while posting user. User possibly already exists.");
+                Console.WriteLine(ex.StackTrace);
             }
-
+            Globals.Auth0Servers = new List<backend.models.HestiaServer>();
             try
             {
-                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+                List<HestiaServer> servers = hestiaWebServerInteractor.GetServers();
+                Globals.Auth0Servers = servers;
+                Console.WriteLine("number of servers:" + Globals.Auth0Servers.Count);
             }
             catch(ServerInteractionException ex)
             {
-                Console.Write(ex.StackTrace);
+                Console.WriteLine("Exception while getting servers");
+                Console.WriteLine(ex.StackTrace);
             }
-            Console.WriteLine("To server select global");
-            PerformSegue("localGlobalToServerSelect", this);
+            Console.WriteLine("To Server Select Global");
+            PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
         }
-	}
+    }
 }

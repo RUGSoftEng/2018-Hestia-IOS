@@ -17,6 +17,7 @@ namespace Hestia.DevicesScreen.resources
         public static bool LocalLogin { get; set; }
         public static UIColor DefaultLightGray { get; set; }
         public static String UserName { get; set; }
+        public static string Prefix { get; set; }
 
         public static int ScreenHeight { get; set;  }
         public static int ScreenWidth { get; set;  }
@@ -86,7 +87,7 @@ namespace Hestia.DevicesScreen.resources
 			HestiaServerInteractor temp_serverinteractor;
             if (LocalLogin)
             {
-				temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(IP, Port));
+                temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(IP, Port));
             }
             else
             {

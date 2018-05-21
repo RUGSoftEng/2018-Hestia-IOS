@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
+using Hestia.backend;
 
 namespace Hestia.DevicesScreen
 {
@@ -39,21 +40,30 @@ namespace Hestia.DevicesScreen
 
         public void RefreshDeviceList()
         {
-            // Get the list with devices
+            TableSource source = new TableSource(this);
+            source.serverDevices = new List<List<Device>>();
             if (Globals.LocalLogin)
             {
-                try
+                source.numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
+                source.serverDevices.Add(Globals.GetDevices());
+            }
+            else
+            {
+                source.numberOfServers = Globals.GetNumberOfSelectedServers();
+                foreach (HestiaServerInteractor interactor in Globals.GetSelectedServers())
                 {
-                    devices = Globals.GetDevices();
-                }
-                catch (ServerInteractionException ex)
-                {
-                    Console.Out.WriteLine("Exception while getting devices from server");
-                    Console.Out.WriteLine(ex.ToString());
+                    try
+                    {
+                        source.serverDevices.Add(interactor.GetDevices());
+                    }
+                    catch (ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while getting devices from local server " + interactor.NetworkHandler.Ip + interactor.IsRemoteServer);
+                        Console.WriteLine(ex.ToString());
+                    }
                 }
             }
-            // In case of Global login, devices are fetch in construtor of TableSource
-            DevicesTable.Source = new TableSource(devices, this); 
+            DevicesTable.Source = source;
         }
 
 		public override void ViewDidLoad()

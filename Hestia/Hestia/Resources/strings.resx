@@ -288,6 +288,9 @@
   <data name="devices2StoryBoard" xml:space="preserve">
     <value>Devices2</value>
   </data>
+  <data name="devices3StoryBoard" xml:space="preserve">
+    <value>Devices3</value>
+  </data>
   <data name="mainStoryBoard" xml:space="preserve">
     <value>Main</value>
   </data>
@@ -314,5 +317,20 @@
   </data>
   <data name="webserverIP" xml:space="preserve">
     <value>https://fathomless-reef-69954.herokuapp.com</value>
+  </data>
+  <data name="segueToServerDiscovery" xml:space="preserve">
+    <value>serverDiscoverySegue</value>
+  </data>
+  <data name="localGlobalViewController" xml:space="preserve">
+    <value>localGlobalViewController</value>
+  </data>
+  <data name="segueToLocalGlobalToServerSelect" xml:space="preserve">
+    <value>localGlobalToServerSelect</value>
+  </data>
+  <data name="defaultPrefix" xml:space="preserve">
+    <value>https://</value>
+  </data>
+  <data name="selectServerTitle" xml:space="preserve">
+    <value>Select servers</value>
   </data>
 </root>
