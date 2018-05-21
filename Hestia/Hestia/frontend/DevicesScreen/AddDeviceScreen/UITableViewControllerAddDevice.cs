@@ -53,12 +53,10 @@ namespace Hestia
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Console.WriteLine("Presented by" + PresentingViewController);
-            // Cancel button to go back to local/global screen
+            // Cancel button to go back to Devices main screen
             UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) =>
             {
                 NavigationController.PopToRootViewController(true);
-                //DismissViewController(true, null);
             });
             NavigationItem.RightBarButtonItem = cancel;
         }
