@@ -40,6 +40,7 @@ namespace Hestia
             // Contains methods that describe behavior of table
             TableView.Source = new TableSourceAddDeviceProperties(this);
             View.BackgroundColor = Globals.DefaultLightGray;
+            TableView.AllowsSelection = false;
             // Save button
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
                 SaveFields();
