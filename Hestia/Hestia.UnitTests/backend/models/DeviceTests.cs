@@ -20,6 +20,7 @@ namespace Hestia.UnitTests.backend.models
         private string dummyIp = "1.1.1.1";
         private int dummyPort = 1000;
         private NetworkHandler networkHandler;
+        private HestiaServerInteractor serverInteractor;
 
         [TestInitialize]
         public void SetUpDevice()
@@ -36,8 +37,9 @@ namespace Hestia.UnitTests.backend.models
             };
 
             networkHandler = new NetworkHandler(dummyIp, dummyPort);
+            serverInteractor = new HestiaServerInteractor(networkHandler);
 
-            device = new Device(deviceId, deviceName, type, activators, networkHandler);
+            device = new Device(deviceId, deviceName, type, activators, serverInteractor);
 
             activator.Device = device;
 
@@ -60,7 +62,7 @@ namespace Hestia.UnitTests.backend.models
 
             Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyIp, dummyPort);
             mockNetworkHandler.Setup(x => x.Put(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
-            device.NetworkHandler = mockNetworkHandler.Object;
+            device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
             string newName = "newName";
             try
@@ -80,7 +82,7 @@ namespace Hestia.UnitTests.backend.models
         {
             Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyIp, dummyPort);
             mockNetworkHandler.Setup(x => x.Put(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
-            device.NetworkHandler = mockNetworkHandler.Object;
+            device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
             string newName = "amazingName";
             device.Name = newName;
@@ -121,15 +123,16 @@ namespace Hestia.UnitTests.backend.models
         [TestMethod]
         public void SetAndGetNetworkHandlerTest()
         {
-            Assert.AreEqual(networkHandler, device.NetworkHandler);
+            Assert.AreEqual(serverInteractor, device.ServerInteractor);
 
             string newIp = "2.2.2.2";
             int newPort = 2000;
             NetworkHandler newNetworkHandler = new NetworkHandler(newIp, newPort);
+            HestiaServerInteractor newServerInteractor = new HestiaServerInteractor(newNetworkHandler);
 
-            device.NetworkHandler = newNetworkHandler;
+            device.ServerInteractor = newServerInteractor;
 
-            Assert.AreEqual(newNetworkHandler, device.NetworkHandler);
+            Assert.AreEqual(newServerInteractor, device.ServerInteractor);
         }
     }
 }
