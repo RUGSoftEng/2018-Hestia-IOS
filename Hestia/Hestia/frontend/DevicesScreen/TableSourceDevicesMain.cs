@@ -154,7 +154,9 @@ namespace Hestia.DevicesScreen
                         catch (ServerInteractionException ex)
                         {
                             Console.WriteLine("Exception while removing device");
-                            Console.Out.WriteLine(ex.ToString());
+                            Console.Out.WriteLine(ex);
+                            frontend.WarningMessage message = new frontend.WarningMessage("Exception", "An exception occured on the server trying to remove the device", owner);
+
                         }
                     }
                     RemoveDeviceAt(indexPath);
