@@ -258,12 +258,11 @@ namespace Hestia.DevicesScreen
 		{
             if(Globals.LocalLogin)
             {
-                return Globals.LocalServerinteractor.ToString();
+                return Globals.ServerName + " " + Globals.IP + ":" + Globals.Port;
             }
-            else
-            {
-                return Globals.GetSelectedServers()[(int)section].ToString();
-            }
+
+            HestiaServer server = Globals.GetSelectedServers()[(int)section];
+            return server.Name;
         }
    	}
 }
