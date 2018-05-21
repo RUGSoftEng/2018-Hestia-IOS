@@ -2,25 +2,13 @@
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
-using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
-using System.Drawing;
-using System.Collections;
-using Hestia.backend;
 using Hestia.backend.models;
 
 namespace Hestia
 {
     public class TableSourceServerList : UITableViewSource
     {
-        UITableViewServerList owner;
-
-        public TableSourceServerList(List<WebServer> serverlist, UITableViewServerList owner)
-        {
-            Globals.FirebaseServers = serverlist;
-            this.owner = owner;
-        }
-
 		public override nint NumberOfSections(UITableView tableView)
 		{
             return int.Parse(Resources.strings.defaultNumberOfSections);
@@ -28,7 +16,7 @@ namespace Hestia
 
 		public override nint RowsInSection(UITableView tableview, nint section)
 		{
-            return Globals.FirebaseServers.Count;
+            return Globals.Auth0Servers.Count;
 		}
 
         // Sets the checkmarks
@@ -36,15 +24,15 @@ namespace Hestia
 		{
             UITableViewCell cell = tableView.CellAt(indexPath);
 
-            if (Globals.FirebaseServers[indexPath.Row].Selected == false)
+            if (Globals.Auth0Servers[indexPath.Row].Selected == false)
             {
                 cell.Accessory = UITableViewCellAccessory.Checkmark;
-                Globals.FirebaseServers[indexPath.Row].Selected = true;
+                Globals.Auth0Servers[indexPath.Row].Selected = true;
             }
             else
             {
                 cell.Accessory = UITableViewCellAccessory.None;
-                Globals.FirebaseServers[indexPath.Row].Selected = false;
+                Globals.Auth0Servers[indexPath.Row].Selected = false;
             }
             tableView.DeselectRow(indexPath, true);
 		}
@@ -60,7 +48,7 @@ namespace Hestia
                 cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.serverCell);
             }
             // The text to display on the cell is the server info
-            cell.TextLabel.Text = Globals.FirebaseServers[indexPath.Row].Interactor.ToString();
+            cell.TextLabel.Text = Globals.Auth0Servers[indexPath.Row].Name;
 
             return cell;
 		}

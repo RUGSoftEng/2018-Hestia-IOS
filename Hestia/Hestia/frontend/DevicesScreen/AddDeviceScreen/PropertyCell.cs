@@ -15,16 +15,10 @@ namespace Hestia.DevicesScreen.AddDeviceScreen
             ContentView.AddSubviews(new UIView[] {inputField});
         }
 
-        // Sets the placeholder from the required info
-        public void UpdateCell(string placeholder)
-        {
-            inputField.Placeholder = placeholder;
-        }
-
         public override void LayoutSubviews()
         {
-           base.LayoutSubviews();
-           inputField.Frame = new CGRect(15, 4, ContentView.Bounds.Width - 30, ContentView.Bounds.Height - 8);
+            base.LayoutSubviews();
+            inputField.Frame = new CGRect(15, 4, ContentView.Bounds.Width - 30, ContentView.Bounds.Height - 8);
         }
     }
 }

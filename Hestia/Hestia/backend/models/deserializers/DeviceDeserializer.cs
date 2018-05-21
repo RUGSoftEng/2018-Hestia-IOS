@@ -9,7 +9,7 @@ namespace Hestia.backend.models.deserializers
     public class DeviceDeserializer
     {
         // deserialize a single device from a JToken
-        public Device DeserializeDevice(JToken jT, NetworkHandler networkHandler)
+        public Device DeserializeDevice(JToken jT, HestiaServerInteractor serverInteractor)
         {
             // get id, name and type
             string id = jT.Value<string>("deviceId");
@@ -26,7 +26,7 @@ namespace Hestia.backend.models.deserializers
                 activatorList.Add(activatorDeserializer.DeserializeActivator(activator));
             }
 
-            Device device = new Device(id, name, type, activatorList, networkHandler);
+            Device device = new Device(id, name, type, activatorList, serverInteractor);
 
             foreach(Activator activator in activatorList)
             {
@@ -38,13 +38,13 @@ namespace Hestia.backend.models.deserializers
 
         // Use this function if you want to deserialize multiple devices.
         // Useful when you get all the devices from the server and want to deserialize them into a list of devices.
-        public List<Device> DeserializeDevices(JToken devices, NetworkHandler networkHandler)
+        public List<Device> DeserializeDevices(JToken devices, HestiaServerInteractor serverInteractor)
         {
             List<Device> deviceList = new List<Device>();
             
             foreach(JToken device in devices)
             {
-                deviceList.Add(DeserializeDevice(device, networkHandler));
+                deviceList.Add(DeserializeDevice(device, serverInteractor));
             }
 
             return deviceList;

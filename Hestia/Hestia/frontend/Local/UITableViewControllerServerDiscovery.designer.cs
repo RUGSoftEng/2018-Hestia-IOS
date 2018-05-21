@@ -11,8 +11,8 @@ using UIKit;
 
 namespace Hestia
 {
-    [Register ("UIViewControllerGlobalLogin")]
-    partial class UIViewControllerGlobalLogin
+    [Register ("UITableViewControllerServerDiscovery")]
+    partial class UITableViewControllerServerDiscovery
     {
         void ReleaseDesignerOutlets ()
         {

@@ -1,59 +1,137 @@
 ﻿using Foundation;
 using UIKit;
+using Hestia.DevicesScreen;
+using Hestia.DevicesScreen.resources;
+using Hestia.backend.utils;
+using Hestia.backend;
+using Auth0.OidcClient;
+using System;
+using Hestia.Resources;
+using Hestia.backend.exceptions;
 
 namespace Hestia
 {
-    // The UIApplicationDelegate for the application. This class is responsible for launching the 
+    /// <summary>
+    /// The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
+    /// </summary>
     [Register("AppDelegate")]
     public class AppDelegate : UIApplicationDelegate
     {
-        // class-level declarations
+        public override UIWindow Window { get; set; }
 
-        public override UIWindow Window
+        public static UIStoryboard mainStoryboard = UIStoryboard.FromName(strings.mainStoryBoard, null);
+        public static UIStoryboard devices2Storyboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
+
+        string defaultServername;
+        string defaultIP;
+        string defaultPort;
+        string defaultAuth0AccessToken;
+
+        public bool IsServerValid()
         {
-            get;
-            set;
+            try
+            {
+                bool validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.StackTrace);
+                return false;
+            }
+            return true;
+        }
+
+        public void SetGlobalsToDefaultsLocalLogin()
+        {
+            Globals.ServerName = defaultServername;
+            Globals.IP = defaultIP;
+            Globals.Port = int.Parse(defaultPort);
+            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.LocalServerinteractor = serverInteractor;
+        }
+
+        public void SetGlobalsToDefaultsGlobalLogin()
+        {
+            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
+
+            try
+            {
+                hestiaWebServerInteractor.PostUser(); 
+            }
+            catch (ServerInteractionException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
+            try
+            {
+                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+            }
+            catch(ServerInteractionException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
         }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
-            // Override point for customization after application launch.
-            // If not required for your application you can safely delete this method
+            Xamarin.Calabash.Start();
+            Globals.ResetAllUserDefaults();
+            Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
+            Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
 
+            NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
+
+            string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);
+            defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
+            defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
+            defaultServername = userDefaults.StringForKey(strings.defaultsServerNameHestia);
+            defaultAuth0AccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
+
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+
+            // Check if defaults for local/global are present
+            if (defaultLocal == bool.TrueString)
+            {
+                Globals.LocalLogin = true;
+                UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
+
+                if(IsServerValid())
+                {
+                    UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
+                                                                                    as UINavigationController;
+                    Window.RootViewController = navigationController;
+                    SetGlobalsToDefaultsLocalLogin();
+                }
+                else
+                {
+                    Window.RootViewController = serverConnectViewController;
+                }
+            }
+            else if (defaultLocal == bool.FalseString)
+            {
+                Globals.LocalLogin = false;
+ 
+                UINavigationController navigationController = 
+                    devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
+                        as UINavigationController;
+                Window.RootViewController = navigationController;
+                SetGlobalsToDefaultsGlobalLogin();
+            }
+            else
+            {   // No previous login information available. Go to local/global choose screen.
+                UIViewControllerLocalGlobal localGlobalViewController = mainStoryboard.InstantiateInitialViewController() as UIViewControllerLocalGlobal;
+                Window.RootViewController = localGlobalViewController;
+            }
+            Window.MakeKeyAndVisible();
             return true;
         }
 
-        public override void OnResignActivation(UIApplication application)
+        public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
         {
-            // Invoked when the application is about to move from active to inactive state.
-            // This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) 
-            // or when the user quits the application and it begins the transition to the background state.
-            // Games should use this method to pause the game.
-        }
-
-        public override void DidEnterBackground(UIApplication application)
-        {
-            // Use this method to release shared resources, save user data, invalidate timers and store the application state.
-            // If your application supports background exection this method is called instead of WillTerminate when the user quits.
-        }
-
-        public override void WillEnterForeground(UIApplication application)
-        {
-            // Called as part of the transiton from background to active state.
-            // Here you can undo many of the changes made on entering the background.
-        }
-
-        public override void OnActivated(UIApplication application)
-        { 
-            // Restart any tasks that were paused (or not yet started) while the application was inactive. 
-            // If the application was previously in the background, optionally refresh the user interface.
-        }
-
-        public override void WillTerminate(UIApplication application)
-        {
-            // Called when the application is about to terminate. Save data, if needed. See also DidEnterBackground.
+            ActivityMediator.Instance.Send(url.AbsoluteString);
+            return true;
         }
     }
 }

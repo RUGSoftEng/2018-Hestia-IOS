@@ -1,27 +1,78 @@
 using Foundation;
-using ObjCRuntime;
 using System;
 using UIKit;
 
 using Hestia.DevicesScreen.resources;
 using Hestia.backend;
-using Hestia.backend.models;
 using Hestia.backend.utils;
+using Hestia.Resources;
 
 namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerServerConnect : UITableViewController
     {
         NSUserDefaults userDefaults;
+        string defaultServerName;
+        string defaultIP;
+        string defaultPort;
+        const string ViewControllerTitle = "Server";
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
         {
+            userDefaults = NSUserDefaults.StandardUserDefaults;
+            defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
+            defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
+            defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            Title = ViewControllerTitle;
 
+            if (defaultServerName != null)
+            {
+                newServerName.Text = defaultServerName;
+            }
+            if (defaultIP != null)
+            {
+                newIP.Text = defaultIP;
+            }
+            if (defaultPort != null)
+            {
+                newPort.Text = defaultPort;
+            }
+
+            AssignReturnKeyBehaviour();
+            newServerName.BecomeFirstResponder();
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            Console.WriteLine("Presented by" + PresentingViewController);
+            if (PresentingViewController is UIViewControllerLocalGlobal)
+            {
+                SetCancelButtton();
+            }
+        }
+
+        public void SetCancelButtton()
+        {
+            // Cancel button to go back to local/global screen
+            UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
+                DismissViewController(true, null);
+            });
+            NavigationItem.LeftBarButtonItem = cancel;
+        }
+
+        /// <summary>
+        /// Assigns the return key behaviour.
+        /// That is, go to the next field or connect in case of last field.
+        /// </summary>
+        /// See <see cref="TextFieldShouldReturn(UITextField)"/> for the behaviour
+        void AssignReturnKeyBehaviour()
+        {
             newServerName.ShouldReturn += TextFieldShouldReturn;
             newIP.ShouldReturn += TextFieldShouldReturn;
             newPort.ShouldReturn += TextFieldShouldReturn;
@@ -29,33 +80,15 @@ namespace Hestia.DevicesScreen
             newServerName.Tag = 1;
             newIP.Tag = 2;
             newPort.Tag = 3;
-
-            newServerName.BecomeFirstResponder();
-
-            userDefaults = NSUserDefaults.StandardUserDefaults;
-            var defaultServerName = userDefaults.StringForKey(Resources.strings.defaultsServerNameHestia);
-            if (defaultServerName != null)
-            {
-                newServerName.Text = defaultServerName;
-                newServerName.Placeholder = defaultServerName;
-            }
-
-            var defaultIP = userDefaults.StringForKey(Resources.strings.defaultsIpHestia);
-            if (defaultIP != null)
-            {
-                newIP.Text = defaultIP;
-                newIP.Placeholder = defaultIP;
-            }
-            var defaultPort = userDefaults.StringForKey(Resources.strings.defaultsPortHestia);
-            if (defaultPort != null)
-            {
-                newPort.Text = defaultPort;
-                newPort.Placeholder = defaultPort;
-            }
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
         {
+            if (segueIdentifier == strings.segueToServerDiscovery)
+            {
+                return true;
+            }
+
             bool validIp = false;
 
             try
@@ -64,47 +97,50 @@ namespace Hestia.DevicesScreen
             }
             catch (Exception exception)
             {
-                Console.Write(exception.StackTrace);
-                displayWarningMessage();
+                Console.WriteLine(exception.StackTrace);
+                DisplayWarningMessage();
                 return false;
             }
+
             if (validIp)
             {
-                userDefaults.SetString(newServerName.Text, Resources.strings.defaultsServerNameHestia);
-                userDefaults.SetString(newIP.Text, Resources.strings.defaultsIpHestia);
-                userDefaults.SetString(newPort.Text, Resources.strings.defaultsPortHestia);
+                userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
+                userDefaults.SetString(newIP.Text, strings.defaultsIpHestia);
+                userDefaults.SetString(newPort.Text, strings.defaultsPortHestia);
 
                 Globals.ServerName = newServerName.Text;
                 Globals.IP = newIP.Text;
                 Globals.Port = int.Parse(newPort.Text);
-                ServerInteractor serverInteractor = new ServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
                 Globals.LocalServerinteractor = serverInteractor;
 
                 return true;
             }
-            else
-            {
-                displayWarningMessage();
-                return false;
-            }
+
+            DisplayWarningMessage();
+            return false;
         }
 
-        void displayWarningMessage()
+        void DisplayWarningMessage()
         {
-            UIAlertView alert = new UIAlertView()
-            {
-                Title = "Could not connect to server",
-                Message = "Invalid server information"
-            };
-            alert.AddButton("OK");
-            alert.Show();
+            string title = "Could not connect to server";
+            string message = "Invalid server information";
+            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            PresentViewController(okAlertController, true, null);
+
             connectButton.Selected = false;
         }
 
-        private bool TextFieldShouldReturn(UITextField textfield)
+        /// <summary>
+        /// Implements the behaviour of the return button
+        /// </summary>
+        /// <returns>Always <c>false</c>, because we do not want a line break</returns>
+        /// <param name="textfield">Textfield.</param>
+        bool TextFieldShouldReturn(UITextField textfield)
         {
             int nextTag = (int)textfield.Tag + 1;
-            UIResponder nextResponder = this.View.ViewWithTag(nextTag);
+            UIResponder nextResponder = View.ViewWithTag(nextTag);
             if (nextResponder != null)
             {
                 nextResponder.BecomeFirstResponder();
@@ -113,12 +149,12 @@ namespace Hestia.DevicesScreen
             {
                 // Remove keyboard, then connect
                 textfield.ResignFirstResponder();
-                if (ShouldPerformSegue(Resources.strings.serverConnectToDevicesSegue, this))
+                if (ShouldPerformSegue(strings.serverConnectToDevicesSegue, this))
                 {
-                    PerformSegue(Resources.strings.serverConnectToDevicesSegue, this);
+                    PerformSegue(strings.serverConnectToDevicesSegue, this);
                 }
             }
-            return false; //No line-breaks.
+            return false;
         }
     }
 }

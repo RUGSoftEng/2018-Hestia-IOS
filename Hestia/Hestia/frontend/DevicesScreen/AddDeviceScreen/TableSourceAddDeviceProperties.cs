@@ -19,10 +19,14 @@ namespace Hestia.DevicesScreen
         PluginInfo completeInfo;
         string[] propertyNames;
 
+        UITableViewControllerAddDeviceProperties owner;
+
+
         // Constructor. Fill propertyNames with a copy of current keys
         public TableSourceAddDeviceProperties(
                     UITableViewControllerAddDeviceProperties owner)
         {
+            this.owner = owner;
             inputs = owner.inputFields;
             this.completeInfo = owner.pluginInfo;
             propertyNames = new string[completeInfo.RequiredInfo.Keys.Count];
@@ -32,13 +36,13 @@ namespace Hestia.DevicesScreen
         // We have only one section 
         public override nint NumberOfSections(UITableView tableView)
         {
-            return int.Parse(Resources.strings.defaultNumberOfSections);
+            return completeInfo.RequiredInfo.Keys.Count;
         }
 
         // The number of properties in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return completeInfo.RequiredInfo.Keys.Count;
+            return 1;
         }
 
         // Important method. Called to generate a cell to display
@@ -53,14 +57,21 @@ namespace Hestia.DevicesScreen
                 cell = new PropertyCell((NSString)Resources.strings.propertyCell);
             }
 
-            // Put the property names in the placeholder filed
-            cell.UpdateCell(propertyNames[indexPath.Row]);
             // Keep reference in hashtable
-            inputs[propertyNames[indexPath.Row]] = cell;
+            inputs[propertyNames[indexPath.Section]] = cell;
 
             return cell;
 
         }
 
-    }
+        public override string TitleForFooter(UITableView tableView, nint section)
+        {
+            return completeInfo.RequiredInfo[propertyNames[section]];
+        }
+
+        public override string TitleForHeader(UITableView tableView, nint section)
+        {
+            return propertyNames[section];
+        }
+	}
 }
