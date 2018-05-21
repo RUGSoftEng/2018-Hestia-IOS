@@ -44,6 +44,11 @@ namespace Hestia
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultAccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
+        }
+
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
 
             // Already anticipate local login
             // Check if local serverinformation is present and correct
@@ -68,7 +73,7 @@ namespace Hestia
 
             ToGlobalButton.TouchUpInside += async delegate
             {
-				userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
+                userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
 
                 if (HasValidGlobalLogin())
                 {
@@ -110,9 +115,9 @@ namespace Hestia
 
         bool CheckLocalLoginDefaults()
         {
-            if (defaultServerName != null && defaultIP != null && defaultPort != null)
+            if (defaultIP != null && defaultPort != null)
             {
-                return PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(defaultPort));
+                return PingServer.Check(defaultIP, int.Parse(defaultPort));
             }
             return false;
         }
