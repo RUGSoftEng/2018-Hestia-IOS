@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using Hestia.backend.models;
+﻿using Hestia.backend.models;
 using Hestia.backend.models.deserializers;
 using Hestia.Resources;
 using Newtonsoft.Json.Linq;
-using UIKit;
+using System.Collections.Generic;
 
 namespace Hestia.backend
 {
@@ -19,6 +13,12 @@ namespace Hestia.backend
         public HestiaWebServerInteractor(NetworkHandler networkHandler)
         {
             this.networkHandler = networkHandler;
+        }
+
+        public NetworkHandler NetworkHandler
+        {
+            get => networkHandler;
+            set => networkHandler = value;
         }
 
         // This method should be called before any other method in this class
