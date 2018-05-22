@@ -6,6 +6,8 @@
         public bool Selected { set; get; }
         public string Name { get; set; }
         public string Id { get; set; }
+        public string Ip { get; set; }
+        public int Port { get; set; }
 
         public HestiaServer(bool selected, HestiaServerInteractor interactor)
         {
