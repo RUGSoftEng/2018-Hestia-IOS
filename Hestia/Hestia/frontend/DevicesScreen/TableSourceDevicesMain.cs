@@ -77,7 +77,6 @@ namespace Hestia.DevicesScreen
             if (serverDevices[indexPath.Section][indexPath.Row].Name != "New Device")
             {
                 cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
-                cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
             }
 
             // The text to display on the cell is the device name
@@ -96,17 +95,22 @@ namespace Hestia.DevicesScreen
                 if (d.Activators.Count != 0)
                 {
                     var popupNavVC = new UITableViewActivators();
+                    popupNavVC.Title = d.Name;
                     popupNavVC.device = d;
-                    nfloat heightPop = tableView.RowHeight * 2;
-                    popupNavVC.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
-                    popupNavVC.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-                    var popPresenter = popupNavVC.PopoverPresentationController;
+
+
+                    var navigationController = new UINavigationController(popupNavVC);
+                    navigationController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
+                    navigationController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
+
+                    nfloat heightPop = 20 + navigationController.NavigationBar.Frame.Size.Height;
+                    var popPresenter = navigationController.PopoverPresentationController;
                     popPresenter.SourceView = this.owner.View;
                     popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight/2-heightPop, 0, 0);
                     popPresenter.Delegate = new PopoverDelegate();
                     popPresenter.PermittedArrowDirections = 0;
                     popPresenter.BackgroundColor = UIColor.White;
-                    this.owner.PresentViewController(popupNavVC, true, null);
+                    this.owner.PresentViewController(navigationController, true, null);
                 }
                 tableView.DeselectRow(indexPath, true);
             }

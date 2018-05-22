@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Hestia</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ruggedHestia.Hestia</string>
+	<string>com.ruggedHestiaTom.Hestia</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
@@ -42,7 +42,7 @@
 			<string>Auth0</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.ruggedHestia.Hestia</string>
+				<string>com.ruggedHestiaTom.Hestia</string>
 			</array>
 		</dict>
 	</array>
