@@ -264,7 +264,7 @@ namespace Hestia.DevicesScreen
             }
 
             HestiaServer server = Globals.GetSelectedServers()[(int)section];
-            return server.Name;
+            return server.Name + " " + server.Ip + ":" + server.Port;
         }
    	}
 }
