@@ -13,7 +13,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MinimumOSVersion</key>
-	<string>9.0</string>
+	<string>10.0</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Allows you to use speech recognition.</string>
 	<key>NSMicrophoneUsageDescription</key>

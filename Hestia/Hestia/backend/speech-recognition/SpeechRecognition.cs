@@ -3,21 +3,54 @@ using UIKit;
 using Speech;
 using Foundation;
 using AVFoundation;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace Hestia.backend.speech_recognition
 {
-    
-
-
     class SpeechRecognition
     {
-
-        #region Private Variables
         private AVAudioEngine AudioEngine = new AVAudioEngine();
         private SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
-        #endregion
+
+        public void RequestAuthorization() {
+            // Request user authorization
+            SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) => {
+                // Take action based on status
+                switch (status)
+                {
+                    case SFSpeechRecognizerAuthorizationStatus.Authorized:
+                    // User has approved speech recognition
+                    
+                    break;
+                    case SFSpeechRecognizerAuthorizationStatus.Denied:
+                    // User has declined speech recognition
+                    
+                    break;
+                    case SFSpeechRecognizerAuthorizationStatus.NotDetermined:
+                    // Waiting on approval
+                    
+                    break;
+                    case SFSpeechRecognizerAuthorizationStatus.Restricted:
+                    // The device is not permitted
+                    
+                    break;
+                }
+            });
+        }
+
+        private bool IsAuthorized() {
+            if (SFSpeechRecognizer.AuthorizationStatus == SFSpeechRecognizerAuthorizationStatus.Authorized)
+            {
+                return true;
+            }
+            else 
+            {
+                return false;
+            };
+        }
 
         public void StartRecording()
         {
@@ -29,6 +62,11 @@ namespace Hestia.backend.speech_recognition
                 LiveSpeechRequest.Append(buffer);
             });
 
+            if (!IsAuthorized())
+            {
+                RequestAuthorization();
+            }
+
             // Start recording
             AudioEngine.Prepare();
             NSError error;
@@ -37,25 +75,24 @@ namespace Hestia.backend.speech_recognition
             // Did recording start?
             if (error != null)
             {
-		// Handle error and return
-		...
-		return;
+                Console.WriteLine("Couldn't start recording.");
+		        return;
             }
 
             // Start recognition
-            RecognitionTask = SpeechRecognizer.GetRecognitionTask(LiveSpeechRequest, (SFSpeechRecognitionResult result, NSError err) => {
+            RecognitionTask = SpeechRecognizer.GetRecognitionTask(LiveSpeechRequest, (SFSpeechRecognitionResult result, NSError err) =>
+            {
                 // Was there an error?
                 if (err != null)
                 {
-			// Handle error
-			...
-		}
+                    Console.WriteLine("Error while recording.");
+                }
                 else
                 {
                     // Is this the final translation?
                     if (result.Final)
                     {
-                        Console.WriteLine("You said \"{0}\".", result.BestTranscription.FormattedString);
+                        ProcessResult(result.BestTranscription.FormattedString);
                     }
                 }
             });
@@ -71,6 +108,48 @@ namespace Hestia.backend.speech_recognition
         {
             AudioEngine.Stop();
             RecognitionTask.Cancel();
+        }
+
+        private void ProcessAddDevice(String result) 
+        {
+            result.
+
+            if(true) 
+            {
+                
+            }
+        }
+
+        private void ProcessRemoveDevice(String result)
+        {
+            string deviceName = null;
+            string[] words = result.Split(' ');
+
+            for (int i = 0; i < words.Length; i++) 
+            {
+                if(words[i] == "remove" || words[i] == "delete") 
+                {
+                    deviceName = words[i + 1];
+                }
+            }
+
+            //Remove device here
+        }
+
+        private void ProcessResult(string result) 
+        {
+            result = result.ToLower();
+
+            //String result = resultString.ToLower();
+
+            if (result.Contains("add device") || result.Contains("new device"))
+            {
+                ProcessAddDevice(result);
+            }
+            else if (result.Contains("remove") || result.Contains("delete"))
+            {
+                ProcessRemoveDevice(result);
+            }
         }
     }
 }
