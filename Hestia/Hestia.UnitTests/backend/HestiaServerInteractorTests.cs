@@ -360,7 +360,7 @@ namespace Hestia.UnitTests.backend
             JObject pluginInfoJson = new JObject
             {
                 ["collection"] = collection,
-                ["plugin_name"] = plugin,
+                ["plugin_name"] = plugin
             };
             JObject requiredInfoJson = new JObject
             {
