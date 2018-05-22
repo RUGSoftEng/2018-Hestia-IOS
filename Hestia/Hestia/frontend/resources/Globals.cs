@@ -17,6 +17,7 @@ namespace Hestia.DevicesScreen.resources
         public static bool LocalLogin { get; set; }
         public static UIColor DefaultLightGray { get; set; }
         public static String UserName { get; set; }
+        public static string Prefix { get; set; }
 
         public static int ScreenHeight { get; set;  }
         public static int ScreenWidth { get; set;  }
@@ -31,7 +32,7 @@ namespace Hestia.DevicesScreen.resources
         public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
         public static List<HestiaServer> Auth0Servers { get; set; }
 
-        public static List<HestiaServerInteractor> GetSelectedServers()
+        public static List<HestiaServerInteractor> GetInteractorsOfSelectedServers()
         {
             List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
             foreach(HestiaServer auth0server in Auth0Servers)
@@ -44,9 +45,22 @@ namespace Hestia.DevicesScreen.resources
             return serverInteractors;
         }
 
+        public static List<HestiaServer> GetSelectedServers()
+        {
+            List<HestiaServer> servers = new List<HestiaServer>();
+            foreach (HestiaServer auth0server in Auth0Servers)
+            {
+                if (auth0server.Selected)
+                {
+                    servers.Add(auth0server);
+                }
+            }
+            return servers;
+        }
+
         public static nint GetNumberOfSelectedServers()
         {
-            return GetSelectedServers().Count;
+            return GetInteractorsOfSelectedServers().Count;
         }
 
         // Get devices for only local servers or selected Firebase Servers
@@ -59,7 +73,7 @@ namespace Hestia.DevicesScreen.resources
             }
             else
             {
-                foreach (HestiaServerInteractor server in GetSelectedServers())
+                foreach (HestiaServerInteractor server in GetInteractorsOfSelectedServers())
                 {
                     devices.AddRange(server.GetDevices());
                 }
@@ -86,7 +100,7 @@ namespace Hestia.DevicesScreen.resources
 			HestiaServerInteractor temp_serverinteractor;
             if (LocalLogin)
             {
-				temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(IP, Port));
+                temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(IP, Port));
             }
             else
             {

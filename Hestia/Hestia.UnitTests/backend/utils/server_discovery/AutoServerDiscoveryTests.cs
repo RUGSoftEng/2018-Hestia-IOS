@@ -11,7 +11,7 @@ namespace Hestia.UnitTests.backend.utils.server_discovery
         [TestInitialize]
         public void Setup()
         {
-            discoverer = new AutoServerDicovery();
+            discoverer = new AutoServerDicovery(new UITableViewControllerServerDiscovery(new System.IntPtr()));
             Assert.IsNotNull(discoverer);
         }
 

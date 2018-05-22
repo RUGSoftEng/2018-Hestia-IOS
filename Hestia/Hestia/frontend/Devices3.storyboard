@@ -10,7 +10,7 @@
     <scenes>
         <scene sceneID="260">
             <objects>
-                <tableViewController id="261" sceneMemberID="viewController" customClass="UITableViewServerList">
+                <tableViewController id="261" sceneMemberID="viewController" customClass="UITableViewServerList" storyboardIdentifier="serverSelectView">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="263">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -53,9 +53,4 @@
             <point key="canvasLocation" x="-250" y="45"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LogoLaunchscreen" width="431" height="206"/>
-        <image name="Images/lock.png" width="300" height="295"/>
-        <image name="Images/lightbulb.png" width="300" height="300"/>
-    </resources>
 </document>

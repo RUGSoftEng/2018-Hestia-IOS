@@ -38,7 +38,7 @@ namespace Hestia
                 cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.addDeviceChooseServerCell);
             }
 
-            cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].ToString();
+            cell.TextLabel.Text = Globals.GetInteractorsOfSelectedServers()[indexPath.Row].ToString();
 
             return cell;
         }
@@ -46,7 +46,7 @@ namespace Hestia
         // Pushes the properties window
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         { 
-            Globals.ServerToAddDeviceTo = Globals.GetSelectedServers()[indexPath.Row];
+            Globals.ServerToAddDeviceTo = Globals.GetInteractorsOfSelectedServers()[indexPath.Row];
             UITableViewControllerAddDevice addDevice =
                 this.owner.Storyboard.InstantiateViewController("AddManufacturer")
                     as UITableViewControllerAddDevice;
