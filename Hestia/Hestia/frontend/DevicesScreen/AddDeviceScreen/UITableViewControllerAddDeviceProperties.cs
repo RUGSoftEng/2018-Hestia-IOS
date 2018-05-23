@@ -6,6 +6,7 @@ using Hestia.backend.models;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.AddDeviceScreen;
 using Hestia.DevicesScreen.resources;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -55,11 +56,11 @@ namespace Hestia
                 {
                     Console.WriteLine("Exception while adding device to server");
                     Console.WriteLine(ex);
-                    frontend.WarningMessage message = new frontend.WarningMessage("Exception", "Could not add device", this);
+                    WarningMessage message = new WarningMessage("Exception", "Could not add device", this);
                 }
 
                 // Get the root view contoller and cancel the editing state
-                var rootViewController = this.NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
+                var rootViewController = NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
                 rootViewController.CancelEditingState();
                 rootViewController.RefreshDeviceList();
                 // Go back to the devices main screen

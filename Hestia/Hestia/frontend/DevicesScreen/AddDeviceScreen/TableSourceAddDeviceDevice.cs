@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
-
-
-using System.Drawing;
-using System.Collections;
-using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.resources;
+using Hestia.frontend;
 
 namespace Hestia.DevicesScreen
 {
@@ -82,7 +78,8 @@ namespace Hestia.DevicesScreen
                 catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while getting required info");
-                    Console.WriteLine(ex.ToString());
+                    Console.WriteLine(ex);
+                    WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to get information for available plugins", owner);
                 }
             }
         }
