@@ -50,7 +50,6 @@ namespace Hestia.DevicesScreen
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Console.WriteLine("Presented by" + PresentingViewController);
             if (ParentViewController is UIViewControllerLocalGlobal)
             {
                 SetCancelButtton();

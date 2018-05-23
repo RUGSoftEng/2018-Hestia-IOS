@@ -35,7 +35,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
             TableView.AllowsSelection = false;
             TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
             // Contains methods that describe behavior of table
-            TableView.Source = new TableSourceActivators(device);
+            TableView.Source = new TableSourceActivators(device, this);
 		}
 	}
 }
