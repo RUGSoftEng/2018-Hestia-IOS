@@ -117,11 +117,6 @@
     </Compile>
     <Compile Include="frontend\DevicesScreen\ActivatorScreen\TableSourceActivators.cs" />
     <Compile Include="frontend\resources\Globals.cs" />
-    <Compile Include="frontend\Auth0\UITableViewControllerAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Auth0\UITableViewControllerAddDeviceChooseServer.designer.cs">
-      <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\Auth0\TableSourceAddDeviceChooseServer.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerLocalSettingsScreen.cs</DependentUpon>
@@ -149,6 +144,11 @@
     </Compile>
     <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
     <Compile Include="frontend\WarningMessage.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\TableSourceAddDeviceChooseServer.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerAddDeviceChooseServer.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerAddDeviceChooseServer.designer.cs">
+      <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -218,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
+    <Folder Include="frontend\Auth0\ChooseServerScreen\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
