@@ -186,7 +186,7 @@ namespace Hestia.DevicesScreen
             else
             {
                 var addDeviceChooseServer =
-                    this.owner.Storyboard.InstantiateViewController("AddDeviceChooseServer") as UITableViewControllerAddDeviceChooseServer;
+                    this.owner.Storyboard.InstantiateViewController("AddDeviceChooseServer");
                 owner.NavigationController.PushViewController(addDeviceChooseServer, true);
             }
         }

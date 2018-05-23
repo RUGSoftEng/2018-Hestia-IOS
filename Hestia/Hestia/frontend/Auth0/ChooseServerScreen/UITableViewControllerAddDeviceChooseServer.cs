@@ -10,7 +10,7 @@ using Hestia.backend;
 using Hestia.backend.models;
 
 
-namespace Hestia
+namespace Hestia.Auth0
 {
     public partial class UITableViewControllerAddDeviceChooseServer : UITableViewController
     {
