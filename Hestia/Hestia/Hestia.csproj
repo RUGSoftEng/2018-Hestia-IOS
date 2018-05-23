@@ -118,18 +118,18 @@
     </Compile>
     <Compile Include="frontend\DevicesScreen\ActivatorScreen\TableSourceActivators.cs" />
     <Compile Include="frontend\resources\Globals.cs" />
-    <Compile Include="frontend\Firebase\UITableViewControllerAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Firebase\UITableViewControllerAddDeviceChooseServer.designer.cs">
+    <Compile Include="frontend\Auth0\UITableViewControllerAddDeviceChooseServer.cs" />
+    <Compile Include="frontend\Auth0\UITableViewControllerAddDeviceChooseServer.designer.cs">
       <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Firebase\TableSourceAddDeviceChooseServer.cs" />
+    <Compile Include="frontend\Auth0\TableSourceAddDeviceChooseServer.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerLocalSettingsScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Firebase\ServerSelectScreen\TableSourceServerList.cs" />
-    <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.cs" />
-    <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
+    <Compile Include="frontend\Auth0\ServerSelectScreen\TableSourceServerList.cs" />
+    <Compile Include="frontend\Auth0\ServerSelectScreen\UITableViewServerList.cs" />
+    <Compile Include="frontend\Auth0\ServerSelectScreen\UITableViewServerList.designer.cs">
       <DependentUpon>UITableViewServerList.cs</DependentUpon>
     </Compile>
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.cs" />
