@@ -14,6 +14,7 @@ using System.Diagnostics;
 using Hestia.backend.exceptions;
 using Hestia.DevicesScreen;
 using Hestia.backend.models;
+using Hestia.backend.speech_recognition;
 
 namespace Hestia
 {
@@ -31,6 +32,7 @@ namespace Hestia
         string defaultIP;
         string defaultPort;
         string defaultAccessToken;
+        private SpeechRecognition speechRecognizer;
 
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
         {
@@ -85,6 +87,23 @@ namespace Hestia
                     LoginResult logResult = await loginResult;
                     HandleGlobalButtonTouchResult(logResult);
                 }
+            };
+
+            SpeechButton.TouchDown += (object sender, EventArgs e) => 
+            {
+                speechRecognizer = new SpeechRecognition();
+                speechRecognizer.StartRecording();
+            };
+
+            SpeechButton.TouchUpInside += (object sender, EventArgs e) =>
+            {
+                string result = speechRecognizer.StopRecording();
+                Console.WriteLine(result);
+            };
+
+            SpeechButton.TouchDragOutside += (object sender, EventArgs e) =>
+            {
+                speechRecognizer.CancelRecording();
             };
         }
 

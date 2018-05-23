@@ -14,6 +14,7 @@ namespace Hestia.backend.speech_recognition
         private SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
+        private string result;
 
         private void RequestAuthorization() {
             // Request user authorization
@@ -92,16 +93,18 @@ namespace Hestia.backend.speech_recognition
                     // Is this the final translation?
                     if (result.Final)
                     {
-                        ProcessResult(result.BestTranscription.FormattedString);
+                        this.result = result.BestTranscription.FormattedString;
                     }
                 }
             });
         }
 
-        public void StopRecording()
+        public string StopRecording()
         {
             AudioEngine.Stop();
             LiveSpeechRequest.EndAudio();
+
+            return result;
         }
 
         public void CancelRecording()
