@@ -5,6 +5,7 @@ using Foundation;
 using AVFoundation;
 using System.Threading;
 using System.Collections.Generic;
+using Plugin.SimpleAudioPlayer;
 
 namespace Hestia.backend.speech_recognition
 {
@@ -79,6 +80,11 @@ namespace Hestia.backend.speech_recognition
                 Console.WriteLine("Couldn't start recording.");
 		        return;
             }
+
+            // Play start sound
+            var player = CrossSimpleAudioPlayer.Current;
+            player.Load("siri_start.mp3");
+            player.Play();
 
             // Start recognition
             RecognitionTask = SpeechRecognizer.GetRecognitionTask(LiveSpeechRequest, (SFSpeechRecognitionResult result, NSError err) =>
