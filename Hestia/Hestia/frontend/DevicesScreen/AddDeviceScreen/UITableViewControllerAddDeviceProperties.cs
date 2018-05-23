@@ -17,12 +17,9 @@ namespace Hestia
         // Keeps track at the input fields for device properties
         public Hashtable inputFields = new Hashtable();
 
-        Regex rxIP = new Regex( @"^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-            "([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\." +
-                               "([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
+        Regex rxIP = new Regex( @"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}");
         Regex rxName = new Regex(@"^(.)+$");
-        MatchCollection matchesName;
+        MatchCollection matchesName, matchesIP;
 
 
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
@@ -39,8 +36,12 @@ namespace Hestia
 
             foreach (string property in propertyNames)
             {
-                
-                matchesName = rxName.Matches(((PropertyCell)inputFields[property]).inputField.Text);
+                if(property.Equals("name")){
+                    matchesName = rxName.Matches(((PropertyCell)inputFields[property]).inputField.Text);
+                }
+                if(property.Equals("ip")){
+                    matchesIP = rxIP.Matches(((PropertyCell)inputFields[property]).inputField.Text);
+                }
 
                 pluginInfo.RequiredInfo[property] = ((PropertyCell)inputFields[property]).inputField.Text;
             }
@@ -57,8 +58,26 @@ namespace Hestia
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
                 SaveFields();
                 Console.WriteLine("Clicked save button");
-                if(matchesName.Count>0)
+
+                if(matchesName.Count<=0 && matchesIP.Count<=0)
                 {
+                    var alert = UIAlertController.Create("Error!", "You have to fill all the specifictions.", UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    PresentViewController(alert, true, null);
+                }
+                else if (matchesName.Count <= 0 && matchesIP.Count>0)
+                {
+                    var alert = UIAlertController.Create("Error!", "You have to give a name for the device.", UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    PresentViewController(alert, true, null);
+                }
+                else if (matchesIP.Count <= 0 && matchesName.Count>0)
+                {
+                    var alert = UIAlertController.Create("Error!", "IP= 'X.X.X.X'. X should be between 0 or 255", UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    PresentViewController(alert, true, null);
+                }
+                else{
                     // Try to add device to server
                     try
                     {
@@ -78,11 +97,6 @@ namespace Hestia
                     rootViewController.RefreshDeviceList();
                     // Go back to the devices main screen
                     NavigationController.PopToViewController(rootViewController, true);
-                }
-                else{
-                    var alert = UIAlertController.Create("Error!", "You have to fill all the specifications.", UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                    PresentViewController(alert, true, null);
                 }
 
 
