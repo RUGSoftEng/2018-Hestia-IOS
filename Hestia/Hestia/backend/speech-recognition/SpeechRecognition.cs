@@ -15,7 +15,7 @@ namespace Hestia.backend.speech_recognition
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
 
-        public void RequestAuthorization() {
+        private void RequestAuthorization() {
             // Request user authorization
             SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) => {
                 // Take action based on status
@@ -23,19 +23,15 @@ namespace Hestia.backend.speech_recognition
                 {
                     case SFSpeechRecognizerAuthorizationStatus.Authorized:
                     // User has approved speech recognition
-                    
                     break;
                     case SFSpeechRecognizerAuthorizationStatus.Denied:
                     // User has declined speech recognition
-                    
                     break;
                     case SFSpeechRecognizerAuthorizationStatus.NotDetermined:
                     // Waiting on approval
-                    
                     break;
                     case SFSpeechRecognizerAuthorizationStatus.Restricted:
                     // The device is not permitted
-                    
                     break;
                 }
             });
@@ -49,7 +45,7 @@ namespace Hestia.backend.speech_recognition
             else 
             {
                 return false;
-            };
+            }
         }
 
         public void StartRecording()
@@ -65,6 +61,10 @@ namespace Hestia.backend.speech_recognition
             if (!IsAuthorized())
             {
                 RequestAuthorization();
+                if (!IsAuthorized())
+                {
+                    return;
+                }
             }
 
             // Start recording
@@ -112,12 +112,7 @@ namespace Hestia.backend.speech_recognition
 
         private void ProcessAddDevice(String result) 
         {
-            result.
 
-            if(true) 
-            {
-                
-            }
         }
 
         private void ProcessRemoveDevice(String result)
