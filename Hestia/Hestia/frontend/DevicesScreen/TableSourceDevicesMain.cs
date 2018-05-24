@@ -11,6 +11,7 @@ using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
+using Hestia.frontend;
 
 namespace Hestia.DevicesScreen
 {
@@ -140,7 +141,9 @@ namespace Hestia.DevicesScreen
                         catch (ServerInteractionException ex)
                         {
                             Console.WriteLine("Exception while removing device");
-                            Console.Out.WriteLine(ex.ToString());
+                            Console.Out.WriteLine(ex);
+                            WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to remove the device", owner);
+
                         }
                     }
                     else
@@ -155,8 +158,7 @@ namespace Hestia.DevicesScreen
                         {
                             Console.WriteLine("Exception while removing device");
                             Console.Out.WriteLine(ex);
-                            frontend.WarningMessage message = new frontend.WarningMessage("Exception", "An exception occured on the server trying to remove the device", owner);
-
+                            WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to remove the device", owner);
                         }
                     }
                     RemoveDeviceAt(indexPath);
@@ -179,14 +181,14 @@ namespace Hestia.DevicesScreen
             {
                 Globals.ServerToAddDeviceTo = Globals.LocalServerinteractor;
                 UITableViewControllerAddDevice addDeviceVc =
-                    this.owner.Storyboard.InstantiateViewController("AddManufacturer")
+                    owner.Storyboard.InstantiateViewController("AddManufacturer")
                          as UITableViewControllerAddDevice;
                 owner.NavigationController.PushViewController(addDeviceVc, true);
             }
             else
             {
                 var addDeviceChooseServer =
-                    this.owner.Storyboard.InstantiateViewController("AddDeviceChooseServer");
+                    owner.Storyboard.InstantiateViewController("AddDeviceChooseServer");
                 owner.NavigationController.PushViewController(addDeviceChooseServer, true);
             }
         }
@@ -197,10 +199,7 @@ namespace Hestia.DevicesScreen
             {
                 return true; // return false if you wish to disable editing for a specific indexPath or for all rows
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
 
         // Defines the red delete/add buttons before cell
