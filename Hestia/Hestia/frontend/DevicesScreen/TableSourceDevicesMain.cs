@@ -25,17 +25,17 @@ namespace Hestia.DevicesScreen
 
         Device GetSectionRow(NSIndexPath indexPath)
         {
-            return serverDevices[(int)indexPath.Section][(int)indexPath.Row];
+            return serverDevices[indexPath.Section][indexPath.Row];
         }
 
         void RemoveDeviceAt(NSIndexPath indexPath)
         {
-            serverDevices[(int)indexPath.Section].RemoveAt((int)indexPath.Row);
+            serverDevices[indexPath.Section].RemoveAt(indexPath.Row);
         }
 
         void AddDevice(NSIndexPath indexPath, Device device)
         {
-            serverDevices[(int)indexPath.Section].Add(device);
+            serverDevices[indexPath.Section].Add(device);
         }
 
         // Constructor. Gets the device data (local) and the ViewController
@@ -223,6 +223,8 @@ namespace Hestia.DevicesScreen
         // Is called after a press on edit button
         public void WillBeginTableEditing(UITableView tableView)
         {
+            tableView.TableHeaderView = owner.HeaderV(true);
+
             tableView.BeginUpdates();
             // insert the 'ADD NEW' row at the end of table display
             var insertIndexpath = new NSIndexPath[] {
@@ -243,6 +245,7 @@ namespace Hestia.DevicesScreen
 
         public void DidFinishTableEditing(UITableView tableView)
         {
+            tableView.TableHeaderView = owner.HeaderV(false);
             tableView.BeginUpdates();
          
             var insertIndexpath = new NSIndexPath[] {

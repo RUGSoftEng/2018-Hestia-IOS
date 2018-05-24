@@ -219,6 +219,8 @@
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
     <Folder Include="frontend\Auth0\ChooseServerScreen\" />
+    <Folder Include="Assets.xcassets\AddDeviceIcon.imageset\" />
+    <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -258,6 +260,14 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon1024.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon50.png" />
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon150.png" />
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon100_2.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon50.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon100.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon150.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
