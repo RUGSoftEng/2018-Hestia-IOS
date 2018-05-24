@@ -50,8 +50,8 @@ namespace Hestia.DevicesScreen
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Console.WriteLine("Presented by" + PresentingViewController);
-            if (ParentViewController is UIViewControllerLocalGlobal)
+            Console.WriteLine("presented by" + PresentingViewController);
+            if (PresentingViewController is UIViewControllerLocalGlobal || PresentingViewController is null)
             {
                 SetCancelButtton();
             }
@@ -61,7 +61,15 @@ namespace Hestia.DevicesScreen
         {
             // Cancel button to go back to local/global screen
             UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
-                DismissViewController(true, null);
+                if (PresentingViewController is null)
+                {
+                    var initialViewController = AppDelegate.mainStoryboard.InstantiateInitialViewController();
+                    PresentViewController(initialViewController, true, null);
+                }
+                else
+                {
+                    DismissViewController(true, null);
+                }
             });
             NavigationItem.LeftBarButtonItem = cancel;
         }
