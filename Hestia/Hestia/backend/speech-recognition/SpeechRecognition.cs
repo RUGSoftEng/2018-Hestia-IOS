@@ -1,10 +1,7 @@
 ﻿using System;
-using UIKit;
 using Speech;
 using Foundation;
 using AVFoundation;
-using System.Threading;
-using System.Collections.Generic;
 using Plugin.SimpleAudioPlayer;
 
 namespace Hestia.backend.speech_recognition
@@ -16,6 +13,12 @@ namespace Hestia.backend.speech_recognition
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
         private string result;
+        private ISimpleAudioPlayer player;
+
+        public SpeechRecognition()
+        {
+            player = CrossSimpleAudioPlayer.Current;
+        }
 
         private void RequestAuthorization() {
             // Request user authorization
@@ -52,14 +55,6 @@ namespace Hestia.backend.speech_recognition
 
         public void StartRecording()
         {
-            // Setup audio session
-            var node = AudioEngine.InputNode;
-            var recordingFormat = node.GetBusOutputFormat(0);
-            node.InstallTapOnBus(0, 1024, recordingFormat, (AVAudioPcmBuffer buffer, AVAudioTime when) => {
-                // Append buffer to recognition request
-                LiveSpeechRequest.Append(buffer);
-            });
-
             if (!IsAuthorized())
             {
                 RequestAuthorization();
@@ -68,6 +63,14 @@ namespace Hestia.backend.speech_recognition
                     return;
                 }
             }
+
+            // Setup audio session
+            var node = AudioEngine.InputNode;
+            var recordingFormat = node.GetBusOutputFormat(0);
+            node.InstallTapOnBus(0, 1024, recordingFormat, (AVAudioPcmBuffer buffer, AVAudioTime when) => {
+                // Append buffer to recognition request
+                LiveSpeechRequest.Append(buffer);
+            });
 
             // Start recording
             AudioEngine.Prepare();
@@ -82,8 +85,8 @@ namespace Hestia.backend.speech_recognition
             }
 
             // Play start sound
-            var player = CrossSimpleAudioPlayer.Current;
-            player.Load("siri_start.mp3");
+            if (player.IsPlaying) player.Stop();
+            player.Load("Sounds/siri_start.mp3");
             player.Play();
 
             // Start recognition
@@ -110,6 +113,11 @@ namespace Hestia.backend.speech_recognition
             AudioEngine.Stop();
             LiveSpeechRequest.EndAudio();
 
+            // Play stop sound
+            if (player.IsPlaying) player.Stop();
+            player.Load("Sounds/siri_stop.mp3");
+            player.Play();
+
             return result;
         }
 
@@ -117,43 +125,11 @@ namespace Hestia.backend.speech_recognition
         {
             AudioEngine.Stop();
             RecognitionTask.Cancel();
-        }
 
-        private void ProcessAddDevice(String result) 
-        {
-
-        }
-
-        private void ProcessRemoveDevice(String result)
-        {
-            string deviceName = null;
-            string[] words = result.Split(' ');
-
-            for (int i = 0; i < words.Length; i++) 
-            {
-                if(words[i] == "remove" || words[i] == "delete") 
-                {
-                    deviceName = words[i + 1];
-                }
-            }
-
-            //Remove device here
-        }
-
-        private void ProcessResult(string result) 
-        {
-            result = result.ToLower();
-
-            //String result = resultString.ToLower();
-
-            if (result.Contains("add device") || result.Contains("new device"))
-            {
-                ProcessAddDevice(result);
-            }
-            else if (result.Contains("remove") || result.Contains("delete"))
-            {
-                ProcessRemoveDevice(result);
-            }
+            // Play cancel sound
+            if (player.IsPlaying) player.Stop();
+            player.Load("Sounds/siri_cancel.mp3");
+            player.Play();
         }
     }
 }

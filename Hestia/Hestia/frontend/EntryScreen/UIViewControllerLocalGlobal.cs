@@ -64,20 +64,19 @@ namespace Hestia
 
             SpeechButton.TouchDown += (object sender, EventArgs e) => 
             {
-                //speechRecognizer = new SpeechRecognition();
-                //speechRecognizer.StartRecording();
+                speechRecognizer = new SpeechRecognition();
+                speechRecognizer.StartRecording();
             };
 
             SpeechButton.TouchUpInside += (object sender, EventArgs e) =>
             {
-                //string result = speechRecognizer.StopRecording();
-                string result = "local";
+                string result = speechRecognizer.StopRecording();
                 ProcessSpeechResult(result);
             };
 
             SpeechButton.TouchDragOutside += (object sender, EventArgs e) =>
             {
-                //speechRecognizer.CancelRecording();
+                speechRecognizer.CancelRecording();
             };
         }
 
@@ -225,7 +224,7 @@ namespace Hestia
                 Console.WriteLine("Exception while posting user. User possibly already exists.");
                 Console.WriteLine(ex.StackTrace);
             }
-            Globals.Auth0Servers = new List<backend.models.HestiaServer>();
+            Globals.Auth0Servers = new List<HestiaServer>();
             try
             {
                 List<HestiaServer> servers = hestiaWebServerInteractor.GetServers();
