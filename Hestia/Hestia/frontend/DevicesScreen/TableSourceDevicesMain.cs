@@ -11,6 +11,7 @@ using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
+using Hestia.Resources;
 
 namespace Hestia.DevicesScreen
 {
@@ -260,7 +261,7 @@ namespace Hestia.DevicesScreen
 		{
             if(Globals.LocalLogin)
             {
-                return Globals.ServerName + " " + Globals.IP + ":" + Globals.Port;
+                return Globals.ServerName + " " + Globals.Address + ":" + int.Parse(strings.defaultPort);
             }
 
             HestiaServer server = Globals.GetSelectedServers()[(int)section];

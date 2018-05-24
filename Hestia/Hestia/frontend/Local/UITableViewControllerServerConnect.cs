@@ -14,7 +14,6 @@ namespace Hestia.DevicesScreen
         NSUserDefaults userDefaults;
         string defaultServerName;
         string defaultIP;
-        string defaultPort;
         const string ViewControllerTitle = "Server";
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
@@ -22,7 +21,6 @@ namespace Hestia.DevicesScreen
             userDefaults = NSUserDefaults.StandardUserDefaults;
             defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
-            defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
         }
 
         public override void ViewDidLoad()
@@ -37,10 +35,6 @@ namespace Hestia.DevicesScreen
             if (defaultIP != null)
             {
                 newIP.Text = defaultIP;
-            }
-            if (defaultPort != null)
-            {
-                newPort.Text = defaultPort;
             }
 
             AssignReturnKeyBehaviour();
@@ -75,11 +69,9 @@ namespace Hestia.DevicesScreen
         {
             newServerName.ShouldReturn += TextFieldShouldReturn;
             newIP.ShouldReturn += TextFieldShouldReturn;
-            newPort.ShouldReturn += TextFieldShouldReturn;
 
             newServerName.Tag = 1;
             newIP.Tag = 2;
-            newPort.Tag = 3;
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
@@ -93,7 +85,7 @@ namespace Hestia.DevicesScreen
 
             try
             {
-                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+                validIp = PingServer.Check("https://" + newIP.Text, int.Parse(strings.defaultPort));
             }
             catch (Exception exception)
             {
@@ -105,14 +97,12 @@ namespace Hestia.DevicesScreen
             if (validIp)
             {
                 Globals.ServerName = newServerName.Text;
-                Globals.IP = newIP.Text;
-                Globals.Port = int.Parse(newPort.Text);
-                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                Globals.Address = "https://" + newIP.Text;
+                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
                 Globals.LocalServerinteractor = serverInteractor;
 
                 userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
-                userDefaults.SetString(Globals.IP, strings.defaultsIpHestia);
-                userDefaults.SetString(newPort.Text, strings.defaultsPortHestia);
+                userDefaults.SetString(Globals.Address, strings.defaultsIpHestia);
 
                 return true;
             }

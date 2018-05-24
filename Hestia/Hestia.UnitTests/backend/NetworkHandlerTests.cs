@@ -34,21 +34,21 @@ namespace Hestia.UnitTests.backend
         [TestMethod]
         public void SetAndGetIpTest()
         {
-            Assert.AreEqual(IP, networkHandlerIp.Ip);
-            Assert.AreEqual(IP, networkHandlerIpPort.Ip);
-            Assert.AreEqual(IP, networkHandlerIpToken.Ip);
-            Assert.AreEqual(IP, networkHandlerIpPortToken.Ip);
+            Assert.AreEqual(IP, networkHandlerIp.Address);
+            Assert.AreEqual(IP, networkHandlerIpPort.Address);
+            Assert.AreEqual(IP, networkHandlerIpToken.Address);
+            Assert.AreEqual(IP, networkHandlerIpPortToken.Address);
 
             string newIp = "1.0.0.0";
-            networkHandlerIp.Ip = newIp;
-            networkHandlerIpPort.Ip = newIp;
-            networkHandlerIpToken.Ip = newIp;
-            networkHandlerIpPortToken.Ip = newIp;
+            networkHandlerIp.Address = newIp;
+            networkHandlerIpPort.Address = newIp;
+            networkHandlerIpToken.Address = newIp;
+            networkHandlerIpPortToken.Address = newIp;
 
-            Assert.AreEqual(newIp, networkHandlerIp.Ip);
-            Assert.AreEqual(newIp, networkHandlerIpPort.Ip);
-            Assert.AreEqual(newIp, networkHandlerIpToken.Ip);
-            Assert.AreEqual(newIp, networkHandlerIpPortToken.Ip);
+            Assert.AreEqual(newIp, networkHandlerIp.Address);
+            Assert.AreEqual(newIp, networkHandlerIpPort.Address);
+            Assert.AreEqual(newIp, networkHandlerIpToken.Address);
+            Assert.AreEqual(newIp, networkHandlerIpPortToken.Address);
         }
 
         [TestMethod]

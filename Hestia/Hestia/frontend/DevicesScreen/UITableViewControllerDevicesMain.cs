@@ -58,7 +58,7 @@ namespace Hestia.DevicesScreen
                     }
                     catch (ServerInteractionException ex)
                     {
-                        Console.WriteLine("Exception while getting devices from local server " + interactor.NetworkHandler.Ip + interactor.IsRemoteServer);
+                        Console.WriteLine("Exception while getting devices from local server " + interactor.NetworkHandler.Address + interactor.IsRemoteServer);
                         Console.WriteLine(ex.ToString());
                     }
                 }

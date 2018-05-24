@@ -109,7 +109,7 @@ namespace Hestia.UnitTests.backend
             Assert.AreEqual("dummyId", server.Id);
             Assert.AreEqual("dummyName", server.Name);
             Assert.IsNotNull(server.Interactor);
-            Assert.AreEqual(IP, server.Interactor.NetworkHandler.Ip);
+            Assert.AreEqual(IP, server.Interactor.NetworkHandler.Address);
             Assert.AreEqual(PORT, server.Interactor.NetworkHandler.Port);
 
             // GetServers()
@@ -135,7 +135,7 @@ namespace Hestia.UnitTests.backend
             Assert.AreEqual("dummyId", servers[0].Id);
             Assert.AreEqual("dummyName", servers[0].Name);
             Assert.IsNotNull(servers[0].Interactor);
-            Assert.AreEqual(IP, servers[0].Interactor.NetworkHandler.Ip);
+            Assert.AreEqual(IP, servers[0].Interactor.NetworkHandler.Address);
             Assert.AreEqual(PORT, servers[0].Interactor.NetworkHandler.Port);
         }
 

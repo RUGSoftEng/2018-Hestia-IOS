@@ -96,7 +96,7 @@ namespace Hestia.UnitTests.backend
             Assert.AreEqual(devicesLocal[0].Name, "dummyName");
             Assert.AreEqual(devicesLocal[0].Type, "dummyType");
             Assert.IsNotNull(devicesLocal[0].Activators);
-            Assert.AreEqual(devicesLocal[0].ServerInteractor.NetworkHandler.Ip, dummyNetworkHandler.Ip);
+            Assert.AreEqual(devicesLocal[0].ServerInteractor.NetworkHandler.Address, dummyNetworkHandler.Address);
             Assert.AreEqual(devicesLocal[0].ServerInteractor.NetworkHandler.Port, dummyNetworkHandler.Port);
 
             Assert.IsNotNull(devicesRemote);
@@ -104,7 +104,7 @@ namespace Hestia.UnitTests.backend
             Assert.AreEqual(devicesRemote[0].Name, "dummyName");
             Assert.AreEqual(devicesRemote[0].Type, "dummyType");
             Assert.IsNotNull(devicesRemote[0].Activators);
-            Assert.AreEqual(devicesRemote[0].ServerInteractor.NetworkHandler.Ip, dummyNetworkHandler.Ip);
+            Assert.AreEqual(devicesRemote[0].ServerInteractor.NetworkHandler.Address, dummyNetworkHandler.Address);
             Assert.AreEqual(devicesRemote[0].ServerInteractor.NetworkHandler.Port, dummyNetworkHandler.Port);
         }
 

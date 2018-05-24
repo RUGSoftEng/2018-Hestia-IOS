@@ -50,7 +50,7 @@ namespace Hestia.UnitTests.backend
             HestiaServerInteractor dummyServerInteractor = new HestiaServerInteractor(dummyNetworkHandler);
             dummyServer.Interactor = dummyServerInteractor;
             HestiaServerInteractor testInteractor = dummyServer.Interactor;
-            Assert.IsTrue(testInteractor.NetworkHandler.Ip == dummyServer.Interactor.NetworkHandler.Ip);
+            Assert.IsTrue(testInteractor.NetworkHandler.Address == dummyServer.Interactor.NetworkHandler.Address);
             Assert.IsTrue(testInteractor.NetworkHandler.Port == dummyServer.Interactor.NetworkHandler.Port);
         }
     }
