@@ -15,12 +15,16 @@ namespace Hestia.backend.models.deserializers
         {
             string id = jsonServer.Value<string>("server_id");
             string name = jsonServer.Value<string>("server_name");
+            string ip = jsonServer.Value<string>("server_address");
+            int port = jsonServer.Value<int>("server_port");
             HestiaServerInteractor interactor = new HestiaServerInteractor(networkHandler, id);
 
             HestiaServer server = new HestiaServer(false, interactor)
             {
                 Id = id,
-                Name = name
+                Name = name,
+                Ip = ip,
+                Port = port
             };
 
             return server;

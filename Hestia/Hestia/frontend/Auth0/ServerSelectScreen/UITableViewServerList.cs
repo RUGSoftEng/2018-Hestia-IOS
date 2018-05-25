@@ -1,19 +1,12 @@
 using System;
-using System.Collections.Generic;
 using UIKit;
-using Foundation;
-using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
-using System.Drawing;
-using System.Collections;
 using Hestia.backend;
-using Hestia.backend.models;
-using Hestia.backend.utils;
 using Hestia.backend.exceptions;
 
-namespace Hestia
+namespace Hestia.Auth0.ServerSelectScreen
 {
-    public partial class UITableViewServerList : UITableViewController
+    public class UITableViewServerList : UITableViewController
     {
         UIBarButtonItem done;
 
@@ -43,7 +36,6 @@ namespace Hestia
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Console.WriteLine("Presented by" + PresentingViewController);
             if (!(PresentingViewController is UINavigationController))
             {
                 SetCancelButtton(PresentingViewController);

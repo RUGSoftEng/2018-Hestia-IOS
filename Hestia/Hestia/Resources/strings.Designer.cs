@@ -467,15 +467,45 @@ namespace Hestia.Resources {
             }
         }
         
-        public static string defaultPrefix {
-            get {
-                return ResourceManager.GetString("defaultPrefix", resourceCulture);
-            }
-        }
-        
         public static string selectServerTitle {
             get {
                 return ResourceManager.GetString("selectServerTitle", resourceCulture);
+            }
+        }
+        
+        public static string addDeviceIcon {
+            get {
+                return ResourceManager.GetString("addDeviceIcon", resourceCulture);
+            }
+        }
+        
+        public static string voiceControlIcon {
+            get {
+                return ResourceManager.GetString("voiceControlIcon", resourceCulture);
+            }
+        }
+        
+        public static string LocalSettingsScreen {
+            get {
+                return ResourceManager.GetString("LocalSettingsScreen", resourceCulture);
+            }
+        }
+        
+        public static string GlobalSettingsScreen {
+            get {
+                return ResourceManager.GetString("GlobalSettingsScreen", resourceCulture);
+            }
+        }
+        
+        public static string AddDeviceChooseServerViewController {
+            get {
+                return ResourceManager.GetString("AddDeviceChooseServerViewController", resourceCulture);
+            }
+        }
+        
+        public static string AddManufacturerViewController {
+            get {
+                return ResourceManager.GetString("AddManufacturerViewController", resourceCulture);
             }
         }
     }

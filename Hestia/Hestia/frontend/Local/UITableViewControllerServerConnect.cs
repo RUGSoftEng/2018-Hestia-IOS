@@ -36,12 +36,6 @@ namespace Hestia.DevicesScreen
             }
             if (defaultIP != null)
             {
-                // Cut off the https:// or http://
-                int index = defaultIP.LastIndexOf('/');
-                if (index >= 0)
-                {
-                    defaultIP = defaultIP.Substring(index + 1);
-                }
                 newIP.Text = defaultIP;
             }
             if (defaultPort != null)
@@ -56,8 +50,8 @@ namespace Hestia.DevicesScreen
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Console.WriteLine("Presented by" + PresentingViewController);
-            if (PresentingViewController is UIViewControllerLocalGlobal)
+            Console.WriteLine("presented by" + PresentingViewController);
+            if (PresentingViewController is UIViewControllerLocalGlobal || PresentingViewController is null)
             {
                 SetCancelButtton();
             }
@@ -67,7 +61,15 @@ namespace Hestia.DevicesScreen
         {
             // Cancel button to go back to local/global screen
             UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
-                DismissViewController(true, null);
+                if (PresentingViewController is null)
+                {
+                    var initialViewController = AppDelegate.mainStoryboard.InstantiateInitialViewController();
+                    PresentViewController(initialViewController, true, null);
+                }
+                else
+                {
+                    DismissViewController(true, null);
+                }
             });
             NavigationItem.LeftBarButtonItem = cancel;
         }
@@ -99,7 +101,7 @@ namespace Hestia.DevicesScreen
 
             try
             {
-                validIp = PingServer.Check(strings.defaultPrefix + newIP.Text, int.Parse(newPort.Text));
+                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
             }
             catch (Exception exception)
             {
@@ -111,7 +113,7 @@ namespace Hestia.DevicesScreen
             if (validIp)
             {
                 Globals.ServerName = newServerName.Text;
-                Globals.IP = strings.defaultPrefix + newIP.Text;
+                Globals.IP = newIP.Text;
                 Globals.Port = int.Parse(newPort.Text);
                 HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
                 Globals.LocalServerinteractor = serverInteractor;
