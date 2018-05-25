@@ -74,7 +74,7 @@ namespace Hestia
                 ProcessSpeechResult(result);
             };
 
-            SpeechButton.TouchDragOutside += (object sender, EventArgs e) =>
+            SpeechButton.TouchDragExit += (object sender, EventArgs e) =>
             {
                 speechRecognizer.CancelRecording();
             };
@@ -130,6 +130,8 @@ namespace Hestia
             else if (resultLower.Equals("global"))
             {
                 await ToGlobalScreen();
+            } else {
+                Console.WriteLine("Couldn't recognize input.");
             }
         }
 

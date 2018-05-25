@@ -12,7 +12,7 @@ namespace Hestia.backend.speech_recognition
         private SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
-        private string result;
+        private volatile string result;
         private ISimpleAudioPlayer player;
 
         public SpeechRecognition()
@@ -110,6 +110,11 @@ namespace Hestia.backend.speech_recognition
 
         public string StopRecording()
         {
+            if (!IsAuthorized())
+            {
+                return null;
+            }
+
             AudioEngine.Stop();
             LiveSpeechRequest.EndAudio();
 
@@ -118,11 +123,20 @@ namespace Hestia.backend.speech_recognition
             player.Load("Sounds/siri_stop.mp3");
             player.Play();
 
+            while(result == null) {
+                Console.WriteLine("null");
+            }
+
             return result;
         }
 
         public void CancelRecording()
         {
+            if (!IsAuthorized())
+            {
+                return;
+            }
+
             AudioEngine.Stop();
             RecognitionTask.Cancel();
 
