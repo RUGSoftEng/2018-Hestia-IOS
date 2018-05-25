@@ -113,13 +113,13 @@ namespace Hestia.DevicesScreen
             {
                 try
                 {   // remove device from server   
+                    Console.WriteLine(" device to remove :  " + serverDevices[indexPath.Section][indexPath.Row].Name); 
                     Globals.LocalServerinteractor.RemoveDevice(serverDevices[indexPath.Section][indexPath.Row]);
                 }
                 catch (ServerInteractionException ex)
                 {
-                    Console.WriteLine("Exception while removing device");
+                    Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
                     Console.Out.WriteLine(ex);
-                    WarningMessage message = new WarningMessage("Exception while removing device", "An exception occurred while removing the device from the local server", owner);
                 }
             }
             else
@@ -132,9 +132,8 @@ namespace Hestia.DevicesScreen
                 }
                 catch (ServerInteractionException ex)
                 {
-                    Console.WriteLine("Exception while removing device");
+                    Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
                     Console.Out.WriteLine(ex);
-                    WarningMessage message = new WarningMessage("Exception while removing device", "An exception occurred while removing the device from the local server through the Auth0 server", owner);
                 }
             }
             // Remove device from local list
