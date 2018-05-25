@@ -123,10 +123,6 @@ namespace Hestia
                 Globals.LocalLogin = false;
 
                 var viewServerList = devices2Storyboard.InstantiateViewController("navigationServerList");
-                if (viewServerList == null)
-                {
-                    Console.WriteLine(" Null viewcontoller");
-                }
                 Window.RootViewController = viewServerList;
                 SetGlobalsToDefaultsGlobalLogin();
             }

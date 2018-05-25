@@ -146,6 +146,7 @@ namespace Hestia.DevicesScreen
 
         public void InsertAction()
         {
+            Console.WriteLine("Insert action called");
             if (Globals.LocalLogin)
             {
                 Globals.ServerToAddDeviceTo = Globals.LocalServerinteractor;
