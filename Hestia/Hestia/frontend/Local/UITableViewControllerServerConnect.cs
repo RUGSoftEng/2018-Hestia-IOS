@@ -52,7 +52,7 @@ namespace Hestia.DevicesScreen
             base.ViewWillAppear(animated);
             Console.WriteLine("presented by" + PresentingViewController);
             Console.WriteLine("paretn " + ParentViewController);
-            if ((PresentingViewController is UIViewControllerLocalGlobal || PresentingViewController is null) && !(ParentViewController is UINavigationController))
+            if (!(PresentingViewController is UINavigationController && ParentViewController is UINavigationController))
             {
                 SetCancelButtton();
             }
