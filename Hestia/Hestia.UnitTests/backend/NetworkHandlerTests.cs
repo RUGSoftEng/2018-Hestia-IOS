@@ -13,17 +13,17 @@ namespace Hestia.UnitTests.backend
         private NetworkHandler networkHandlerIpPort;
         private NetworkHandler networkHandlerIpToken;
         private NetworkHandler networkHandlerIpPortToken;
-        private const string IP = "dummyIp";
+        private const string ADDRESS = "https://dummyAddress";
         private const int PORT = 1000;
         private const string TOKEN = "dummyToken";
 
         [TestInitialize]
         public void SetUpNetworkHandler()
         {
-            networkHandlerIp = new NetworkHandler(IP);
-            networkHandlerIpPort = new NetworkHandler(IP, PORT);
-            networkHandlerIpToken = new NetworkHandler(IP, TOKEN);
-            networkHandlerIpPortToken = new NetworkHandler(IP, PORT, TOKEN);
+            networkHandlerIp = new NetworkHandler(ADDRESS);
+            networkHandlerIpPort = new NetworkHandler(ADDRESS, PORT);
+            networkHandlerIpToken = new NetworkHandler(ADDRESS, TOKEN);
+            networkHandlerIpPortToken = new NetworkHandler(ADDRESS, PORT, TOKEN);
 
             Assert.IsNotNull(networkHandlerIp);
             Assert.IsNotNull(networkHandlerIpPort);
@@ -34,21 +34,21 @@ namespace Hestia.UnitTests.backend
         [TestMethod]
         public void SetAndGetIpTest()
         {
-            Assert.AreEqual(IP, networkHandlerIp.Address);
-            Assert.AreEqual(IP, networkHandlerIpPort.Address);
-            Assert.AreEqual(IP, networkHandlerIpToken.Address);
-            Assert.AreEqual(IP, networkHandlerIpPortToken.Address);
+            Assert.AreEqual(ADDRESS, networkHandlerIp.Address);
+            Assert.AreEqual(ADDRESS, networkHandlerIpPort.Address);
+            Assert.AreEqual(ADDRESS, networkHandlerIpToken.Address);
+            Assert.AreEqual(ADDRESS, networkHandlerIpPortToken.Address);
 
-            string newIp = "1.0.0.0";
-            networkHandlerIp.Address = newIp;
-            networkHandlerIpPort.Address = newIp;
-            networkHandlerIpToken.Address = newIp;
-            networkHandlerIpPortToken.Address = newIp;
+            string newAddress = "https://1.0.0.0";
+            networkHandlerIp.Address = newAddress;
+            networkHandlerIpPort.Address = newAddress;
+            networkHandlerIpToken.Address = newAddress;
+            networkHandlerIpPortToken.Address = newAddress;
 
-            Assert.AreEqual(newIp, networkHandlerIp.Address);
-            Assert.AreEqual(newIp, networkHandlerIpPort.Address);
-            Assert.AreEqual(newIp, networkHandlerIpToken.Address);
-            Assert.AreEqual(newIp, networkHandlerIpPortToken.Address);
+            Assert.AreEqual(newAddress, networkHandlerIp.Address);
+            Assert.AreEqual(newAddress, networkHandlerIpPort.Address);
+            Assert.AreEqual(newAddress, networkHandlerIpToken.Address);
+            Assert.AreEqual(newAddress, networkHandlerIpPortToken.Address);
         }
 
         [TestMethod]

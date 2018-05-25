@@ -9,7 +9,7 @@ namespace Hestia.UnitTests.backend
     public class HestiaServerTests
     {
         private HestiaServer dummyServer;
-        private string ip = "0.0.0.0";
+        private string address = "https://0.0.0.0";
         private int port = 1000;
 
         [TestInitialize]
@@ -37,7 +37,7 @@ namespace Hestia.UnitTests.backend
         [TestMethod]
         public void SetServerInteractor()
         {
-            NetworkHandler dummyNetworkHandler = new NetworkHandler(ip, port);
+            NetworkHandler dummyNetworkHandler = new NetworkHandler(address, port);
             HestiaServerInteractor dummyServerInteractor = new HestiaServerInteractor(dummyNetworkHandler);
             dummyServer.Interactor = dummyServerInteractor;
             Assert.IsTrue(dummyServer.Interactor.Equals(dummyServerInteractor));
@@ -46,7 +46,7 @@ namespace Hestia.UnitTests.backend
         [TestMethod]
         public void GetServerInteractor()
         {
-            NetworkHandler dummyNetworkHandler = new NetworkHandler(ip, port);
+            NetworkHandler dummyNetworkHandler = new NetworkHandler(address, port);
             HestiaServerInteractor dummyServerInteractor = new HestiaServerInteractor(dummyNetworkHandler);
             dummyServer.Interactor = dummyServerInteractor;
             HestiaServerInteractor testInteractor = dummyServer.Interactor;
