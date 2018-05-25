@@ -117,11 +117,6 @@
     </Compile>
     <Compile Include="frontend\DevicesScreen\ActivatorScreen\TableSourceActivators.cs" />
     <Compile Include="frontend\resources\Globals.cs" />
-    <Compile Include="frontend\Auth0\UITableViewControllerAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Auth0\UITableViewControllerAddDeviceChooseServer.designer.cs">
-      <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\Auth0\TableSourceAddDeviceChooseServer.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerLocalSettingsScreen.cs</DependentUpon>
@@ -149,6 +144,11 @@
     </Compile>
     <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
     <Compile Include="frontend\WarningMessage.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\TableSourceAddDeviceChooseServer.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerAddDeviceChooseServer.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerAddDeviceChooseServer.designer.cs">
+      <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -218,6 +218,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
+    <Folder Include="frontend\Auth0\ChooseServerScreen\" />
+    <Folder Include="Assets.xcassets\AddDeviceIcon.imageset\" />
+    <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -257,6 +260,14 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon1024.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon50.png" />
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon150.png" />
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon100_2.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon50.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon100.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon150.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

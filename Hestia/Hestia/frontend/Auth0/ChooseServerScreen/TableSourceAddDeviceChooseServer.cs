@@ -4,7 +4,7 @@ using Foundation;
 
 using Hestia.DevicesScreen.resources;
 
-namespace Hestia
+namespace Hestia.Auth0
 {
     public class TableSourceAddDeviceChooseServer : UITableViewSource
     {
