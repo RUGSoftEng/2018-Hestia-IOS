@@ -9,172 +9,21 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="203">
-                                <rect key="frame" x="20" y="249" width="280" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.29803921568627451" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Sign in">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections/>
-                                <constraints>
-                                    <constraint id="13352" firstItem="203" firstAttribute="height" constant="40"/>
-                                </constraints>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1150">
-                                <rect key="frame" x="20" y="327" width="280" height="40"/>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Firebase">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="6426" kind="show" id="6548"/>
-                                </connections>
-                                <constraints>
-                                    <constraint id="16725" firstItem="1150" firstAttribute="height" constant="40"/>
-                                </constraints>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="10460">
-                                <rect key="frame" x="20" y="375" width="280" height="40"/>
-                                <color key="backgroundColor" red="0.17254901960784313" green="0.17254901960784313" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Github">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <constraints>
-                                    <constraint id="17065" firstItem="10460" firstAttribute="height" constant="40"/>
-                                </constraints>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LogoLaunchscreen" translatesAutoresizingMaskIntoConstraints="NO" id="10465">
-                                <rect key="frame" x="23" y="75" width="274" height="124"/>
-                                <constraints>
-                                    <constraint id="15847" firstItem="10465" firstAttribute="height" constant="124"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10466">
-                                <rect key="frame" x="139" y="298" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                                <constraints>
-                                    <constraint id="16387" firstItem="10466" firstAttribute="height" constant="21"/>
-                                </constraints>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint id="13216" firstItem="8bC-Xf-vdC" firstAttribute="trailingMargin" secondItem="203" secondAttribute="trailing" constant="4"/>
-                            <constraint id="13284" firstItem="203" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4"/>
-                            <constraint id="13420" firstItem="8bC-Xf-vdC" firstAttribute="centerY" secondItem="203" secondAttribute="centerY" constant="15"/>
-                            <constraint id="13622" firstItem="203" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX"/>
-                            <constraint id="15643" firstItem="10465" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="55"/>
-                            <constraint id="15711" firstItem="10465" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="7"/>
-                            <constraint id="15779" firstItem="8bC-Xf-vdC" firstAttribute="trailingMargin" secondItem="10465" secondAttribute="trailing" constant="7"/>
-                            <constraint id="16183" firstItem="10466" firstAttribute="top" secondItem="203" secondAttribute="bottom" constant="9"/>
-                            <constraint id="16251" firstItem="8bC-Xf-vdC" firstAttribute="trailingMargin" secondItem="10466" secondAttribute="trailing" constant="123"/>
-                            <constraint id="16319" firstItem="10466" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="123"/>
-                            <constraint id="16589" firstItem="1150" firstAttribute="top" secondItem="10466" secondAttribute="bottom" constant="8"/>
-                            <constraint id="16657" firstItem="8bC-Xf-vdC" firstAttribute="trailingMargin" secondItem="1150" secondAttribute="trailing" constant="4"/>
-                            <constraint id="16793" firstItem="1150" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4"/>
-                            <constraint id="16861" firstItem="10460" firstAttribute="top" secondItem="1150" secondAttribute="bottom" constant="8"/>
-                            <constraint id="16929" firstItem="10460" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="4"/>
-                            <constraint id="16997" firstItem="8bC-Xf-vdC" firstAttribute="trailingMargin" secondItem="10460" secondAttribute="trailing" constant="4"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="LocalSignInButton" destination="203" id="name-outlet-203"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="0.0" y="0.0"/>
-        </scene>
         <!--Devices2-->
         <!--View Controller-->
-        <scene sceneID="6425">
-            <objects>
-                <viewController id="6426" sceneMemberID="viewController" customClass="UIViewControllerGlobalLogin">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6423"/>
-                        <viewControllerLayoutGuide type="bottom" id="6424"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="6427">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Here should come the firebase login if that is ready" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="6600">
-                                <rect key="frame" x="40" y="105" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <constraints>
-                                    <constraint id="17605" firstItem="6600" firstAttribute="height" constant="128"/>
-                                </constraints>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9251">
-                                <rect key="frame" x="0.0" y="241" width="320" height="211"/>
-                                <state key="normal" title="Go back"/>
-                                <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="10000"/>
-                                </connections>
-                                <constraints>
-                                    <constraint id="18011" firstItem="9251" firstAttribute="height" constant="211"/>
-                                </constraints>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="11075" translatesAutoresizingMaskIntoConstraints="NO">
-                                <rect key="frame" x="64" y="523" width="193" height="36"/>
-                                <connections>
-                                    <segue id="11907" destination="11023" kind="presentation"/>
-                                </connections>
-                                <state key="normal" title="DevicesMain"/>
-                                <constraints>
-                                    <constraint id="18351" firstItem="11075" firstAttribute="height" constant="36"/>
-                                </constraints>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint id="17401" firstItem="6600" firstAttribute="leading" secondItem="6427" secondAttribute="leadingMargin" constant="24"/>
-                            <constraint id="17469" firstItem="6427" firstAttribute="trailingMargin" secondItem="6600" secondAttribute="trailing" constant="24"/>
-                            <constraint id="17537" firstItem="6600" firstAttribute="top" secondItem="6423" secondAttribute="bottom" constant="85"/>
-                            <constraint id="17807" firstItem="9251" firstAttribute="top" secondItem="6600" secondAttribute="centerY" constant="72"/>
-                            <constraint id="17875" firstItem="6427" firstAttribute="leadingMargin" secondItem="9251" secondAttribute="leading" constant="16"/>
-                            <constraint id="17943" firstItem="9251" firstAttribute="trailing" secondItem="6427" secondAttribute="trailingMargin" constant="16"/>
-                            <constraint id="18147" firstItem="11075" firstAttribute="leading" secondItem="6427" secondAttribute="leadingMargin" constant="48"/>
-                            <constraint id="18215" firstItem="6427" firstAttribute="trailingMargin" secondItem="11075" secondAttribute="trailing" constant="47"/>
-                            <constraint id="18283" firstItem="11075" firstAttribute="top" secondItem="9251" secondAttribute="bottom" constant="71"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6428" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="518" y="32"/>
-        </scene>
         <scene sceneID="11022">
             <objects>
-                <viewControllerPlaceholder id="11023" sceneMemberID="viewController" storyboardName="Devices3"/>
+                <viewControllerPlaceholder id="11023" sceneMemberID="viewController" storyboardName="Devices2" referencedIdentifier="navigationServerList"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="11024" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="369" y="1186"/>
+            <point key="canvasLocation" x="-103" y="851"/>
         </scene>
         <scene sceneID="19562">
             <objects>
                 <viewControllerPlaceholder id="19563" sceneMemberID="viewController" storyboardName="Devices2"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="19564" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-487" y="91"/>
+            <point key="canvasLocation" x="-99" y="518"/>
         </scene>
         <scene sceneID="21199">
             <objects>
@@ -230,7 +79,6 @@
                         <outlet property="ToGlobalButton" destination="24862" id="name-outlet-24862"/>
                         <segue id="27976" destination="27948" kind="presentation" identifier="mainToDevicesMain"/>
                         <segue id="29117" destination="19563" kind="show" identifier="mainToServerConnect"/>
-                        <segue id="31838" destination="29491" kind="show" identifier="localGlobalToAuth0"/>
                         <segue id="36529" destination="11023" kind="show" identifier="localGlobalToServerSelect"/>
                     </connections>
                 </viewController>
@@ -243,27 +91,14 @@
                 <viewControllerPlaceholder id="27948" sceneMemberID="viewController" referencedIdentifier="navigationDevicesMain" storyboardName="Devices2"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="27949" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="648"/>
-        </scene>
-        <scene sceneID="29490">
-            <objects>
-                <viewController id="29491" sceneMemberID="viewController" customClass="UIViewControllerAuth0" storyboardIdentifier="auth0ViewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="29488"/>
-                        <viewControllerLayoutGuide type="bottom" id="29489"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="29492">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="29493" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-217" y="919"/>
+            <point key="canvasLocation" x="-34" y="592"/>
         </scene>
     </scenes>
     <resources>
         <image name="LogoLaunchscreen" width="431" height="206"/>
+        <image name="AddDeviceIcon" width="50" height="50"/>
+        <image name="VoiceControlIcon" width="50" height="50"/>
+        <image name="Images/lock.png" width="300" height="295"/>
+        <image name="Images/lightbulb.png" width="300" height="300"/>
     </resources>
 </document>

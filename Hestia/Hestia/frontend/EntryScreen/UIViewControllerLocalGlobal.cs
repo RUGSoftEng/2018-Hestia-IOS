@@ -66,8 +66,7 @@ namespace Hestia
                 else
                 {
                     Console.WriteLine("To Server Connect screen");
-                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
-                    PresentViewController(devicesMainStoryboard.InstantiateInitialViewController(), true, null);
+                    PerformSegue(strings.mainToServerConnect, this);
                 }
             };
 
