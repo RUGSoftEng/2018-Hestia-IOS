@@ -113,7 +113,6 @@ namespace Hestia.DevicesScreen
             {
                 try
                 {   // remove device from server   
-                    Console.WriteLine(" device to remove :  " + serverDevices[indexPath.Section][indexPath.Row].Name); 
                     Globals.LocalServerinteractor.RemoveDevice(serverDevices[indexPath.Section][indexPath.Row]);
                 }
                 catch (ServerInteractionException ex)
@@ -145,7 +144,6 @@ namespace Hestia.DevicesScreen
 
         public void InsertAction()
         {
-            Console.WriteLine("Insert action called");
             if (Globals.LocalLogin)
             {
                 Globals.ServerToAddDeviceTo = Globals.LocalServerinteractor;
