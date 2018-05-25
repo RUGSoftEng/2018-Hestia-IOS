@@ -67,7 +67,6 @@ namespace Hestia.DevicesScreen
                         Console.WriteLine("Exception while getting devices from local server");
                         Console.WriteLine(ex);
                         WarningMessage message = new WarningMessage("Could not refresh devices", "Exception while getting devices from local server, through Auth0 server", this);
-
                     }
                 }
             }
