@@ -8,10 +8,7 @@ using Hestia.DevicesScreen.ActivatorScreen;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
-<<<<<<< HEAD
-=======
 using Hestia.frontend;
->>>>>>> development
 using Hestia.Resources;
 
 namespace Hestia.DevicesScreen
