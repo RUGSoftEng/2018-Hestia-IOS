@@ -90,7 +90,7 @@ namespace Hestia.DevicesScreen.EditDevice
             saveName = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
                 if(changeNameField.Text.Length <= 0 )
                 {
-                    var alert = UIAlertController.Create("Error!", "You have to fill all the specifications.", UIAlertControllerStyle.Alert);
+                    var alert = UIAlertController.Create("Error!", "You have to give a name for the device.", UIAlertControllerStyle.Alert);
                     alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                     PresentViewController(alert, true, null);
                 }
