@@ -50,9 +50,11 @@ namespace Hestia.DevicesScreen
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Console.WriteLine("presented by" + PresentingViewController);
-            Console.WriteLine("paretn " + ParentViewController);
-            if (!(PresentingViewController is UINavigationController && ParentViewController is UINavigationController))
+            if (NavigationController.ViewControllers.Length < 2)
+            {
+                SetCancelButtton();
+            }
+            else if (!(NavigationController.ViewControllers[NavigationController.ViewControllers.Length - 2] is UITableViewControllerLocalSettingsScreen))
             {
                 SetCancelButtton();
             }
