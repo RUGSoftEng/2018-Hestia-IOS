@@ -49,9 +49,8 @@ namespace Hestia
         public void SetGlobalsToDefaultsLocalLogin()
         {
             Globals.ServerName = defaultServername;
-            Globals.IP = defaultIP;
-            Globals.Port = int.Parse(defaultPort);
-            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.Address = defaultIP;
+            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
             Globals.LocalServerinteractor = serverInteractor;
         }
 

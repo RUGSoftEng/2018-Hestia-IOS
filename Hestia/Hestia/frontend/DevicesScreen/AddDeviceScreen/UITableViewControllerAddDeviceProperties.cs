@@ -6,7 +6,11 @@ using Hestia.backend.models;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.AddDeviceScreen;
 using Hestia.DevicesScreen.resources;
+<<<<<<< HEAD
 using Hestia.frontend;
+=======
+using System.Text.RegularExpressions;
+>>>>>>> development
 
 namespace Hestia
 {
@@ -16,7 +20,12 @@ namespace Hestia
         public PluginInfo pluginInfo;
         // Keeps track at the input fields for device properties
         public Hashtable inputFields = new Hashtable();
-       
+
+        Regex rxIP = new Regex( @"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}");
+        Regex rxName = new Regex(@"^(.)+$");
+        MatchCollection matchesName, matchesIP;
+
+
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
         {
         }
@@ -28,8 +37,16 @@ namespace Hestia
             // Used for loop through original property names
             string[] propertyNames = new string[pluginInfo.RequiredInfo.Keys.Count];
             pluginInfo.RequiredInfo.Keys.CopyTo(propertyNames, 0);
+
             foreach (string property in propertyNames)
             {
+                if(property.Equals("name")){
+                    matchesName = rxName.Matches(((PropertyCell)inputFields[property]).inputField.Text);
+                }
+                if(property.Equals("ip")){
+                    matchesIP = rxIP.Matches(((PropertyCell)inputFields[property]).inputField.Text);
+                }
+
                 pluginInfo.RequiredInfo[property] = ((PropertyCell)inputFields[property]).inputField.Text;
             }
         }
@@ -37,7 +54,6 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-
             // Contains methods that describe behavior of table
             TableView.Source = new TableSourceAddDeviceProperties(this);
             View.BackgroundColor = Globals.DefaultLightGray;
@@ -46,25 +62,63 @@ namespace Hestia
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
                 SaveFields();
                 Console.WriteLine("Clicked save button");
-                // Try to add device to server
-                try
+
+                if(matchesName.Count<=0 && matchesIP.Count<=0)
                 {
-                    Console.WriteLine("Serverto add device to" + Globals.ServerToAddDeviceTo);
-                    Globals.ServerToAddDeviceTo.AddDevice(pluginInfo);
+                    var alert = UIAlertController.Create("Error!", "You have to fill all the specifictions.", UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    PresentViewController(alert, true, null);
                 }
-                catch (ServerInteractionException ex)
+                else if (matchesName.Count <= 0 && matchesIP.Count>0)
                 {
+                    var alert = UIAlertController.Create("Error!", "You have to give a name for the device.", UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    PresentViewController(alert, true, null);
+                }
+                else if (matchesIP.Count <= 0 && matchesName.Count>0)
+                {
+<<<<<<< HEAD
                     Console.WriteLine("Exception while adding device to server");
                     Console.WriteLine(ex);
                     WarningMessage message = new WarningMessage("Exception", "Could not add device", this);
+=======
+                    var alert = UIAlertController.Create("Error!", "IP= 'X.X.X.X'. X should be between 0 or 255", UIAlertControllerStyle.Alert);
+                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+                    PresentViewController(alert, true, null);
+>>>>>>> development
+                }
+                else{
+                    // Try to add device to server
+                    try
+                    {
+                        Console.WriteLine("Server to add device to" + Globals.ServerToAddDeviceTo);
+                        Globals.ServerToAddDeviceTo.AddDevice(pluginInfo);
+
+                    }
+                    catch (ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while adding device to server");
+                        Console.WriteLine(ex);
+                        frontend.WarningMessage message = new frontend.WarningMessage("Exception", "Could not add device", this);
+                    }
+                    // Get the root view contoller and cancel the editing state
+                    var rootViewController = this.NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
+                    rootViewController.CancelEditingState();
+                    rootViewController.RefreshDeviceList();
+                    // Go back to the devices main screen
+                    NavigationController.PopToViewController(rootViewController, true);
                 }
 
+
+<<<<<<< HEAD
                 // Get the root view contoller and cancel the editing state
                 var rootViewController = NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
                 rootViewController.CancelEditingState();
                 rootViewController.RefreshDeviceList();
                 // Go back to the devices main screen
                 NavigationController.PopToViewController(rootViewController, true);
+=======
+>>>>>>> development
             });
 
             // Set right button to save 
