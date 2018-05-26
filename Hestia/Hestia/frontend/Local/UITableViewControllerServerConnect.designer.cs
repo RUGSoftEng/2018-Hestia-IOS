@@ -24,10 +24,6 @@ namespace Hestia.DevicesScreen
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UITextField newPort { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField newServerName { get; set; }
 
         void ReleaseDesignerOutlets ()
@@ -40,11 +36,6 @@ namespace Hestia.DevicesScreen
             if (newIP != null) {
                 newIP.Dispose ();
                 newIP = null;
-            }
-
-            if (newPort != null) {
-                newPort.Dispose ();
-                newPort = null;
             }
 
             if (newServerName != null) {

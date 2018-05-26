@@ -14,7 +14,6 @@ namespace Hestia.DevicesScreen
         NSUserDefaults userDefaults;
         string defaultServerName;
         string defaultIP;
-        string defaultPort;
         const string ViewControllerTitle = "Server";
 
         public UITableViewControllerServerConnect(IntPtr handle) : base(handle)
@@ -22,7 +21,6 @@ namespace Hestia.DevicesScreen
             userDefaults = NSUserDefaults.StandardUserDefaults;
             defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
-            defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
         }
 
         public override void ViewDidLoad()
@@ -38,10 +36,6 @@ namespace Hestia.DevicesScreen
             {
                 newIP.Text = defaultIP;
             }
-            if (defaultPort != null)
-            {
-                newPort.Text = defaultPort;
-            }
 
             AssignReturnKeyBehaviour();
             newServerName.BecomeFirstResponder();
@@ -50,8 +44,8 @@ namespace Hestia.DevicesScreen
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Console.WriteLine("Presented by" + PresentingViewController);
-            if (PresentingViewController is UIViewControllerLocalGlobal)
+            Console.WriteLine("presented by" + PresentingViewController);
+            if (PresentingViewController is UIViewControllerLocalGlobal || PresentingViewController is null)
             {
                 SetCancelButtton();
             }
@@ -61,7 +55,15 @@ namespace Hestia.DevicesScreen
         {
             // Cancel button to go back to local/global screen
             UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
-                DismissViewController(true, null);
+                if (PresentingViewController is null)
+                {
+                    var initialViewController = AppDelegate.mainStoryboard.InstantiateInitialViewController();
+                    PresentViewController(initialViewController, true, null);
+                }
+                else
+                {
+                    DismissViewController(true, null);
+                }
             });
             NavigationItem.LeftBarButtonItem = cancel;
         }
@@ -75,11 +77,9 @@ namespace Hestia.DevicesScreen
         {
             newServerName.ShouldReturn += TextFieldShouldReturn;
             newIP.ShouldReturn += TextFieldShouldReturn;
-            newPort.ShouldReturn += TextFieldShouldReturn;
 
             newServerName.Tag = 1;
             newIP.Tag = 2;
-            newPort.Tag = 3;
         }
 
         public override bool ShouldPerformSegue(string segueIdentifier, NSObject sender)
@@ -93,7 +93,7 @@ namespace Hestia.DevicesScreen
 
             try
             {
-                validIp = PingServer.Check(newIP.Text, int.Parse(newPort.Text));
+                validIp = PingServer.Check("https://" + newIP.Text, int.Parse(strings.defaultPort));
             }
             catch (Exception exception)
             {
@@ -105,14 +105,12 @@ namespace Hestia.DevicesScreen
             if (validIp)
             {
                 Globals.ServerName = newServerName.Text;
-                Globals.IP = newIP.Text;
-                Globals.Port = int.Parse(newPort.Text);
-                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+                Globals.Address = "https://" + newIP.Text;
+                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
                 Globals.LocalServerinteractor = serverInteractor;
 
                 userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
-                userDefaults.SetString(Globals.IP, strings.defaultsIpHestia);
-                userDefaults.SetString(newPort.Text, strings.defaultsPortHestia);
+                userDefaults.SetString(Globals.Address, strings.defaultsIpHestia);
 
                 return true;
             }

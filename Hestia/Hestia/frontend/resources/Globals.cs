@@ -25,8 +25,7 @@ namespace Hestia.DevicesScreen.resources
         // Variables for local server
         public static HestiaServerInteractor LocalServerinteractor { get; set; }
         public static String ServerName { get; set; }
-        public static int Port { get; set; }
-        public static String IP { get; set; }
+        public static String Address { get; set; }
 
         // Variables for global server
         public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
@@ -86,11 +85,11 @@ namespace Hestia.DevicesScreen.resources
             NetworkHandler temp_networkhandler;
             if(LocalLogin)
             {
-                temp_networkhandler = new NetworkHandler(IP, Port);
+                temp_networkhandler = new NetworkHandler(Address, int.Parse(strings.defaultPort));
             }
             else
             {
-                temp_networkhandler = new NetworkHandler(Auth0Servers[0].Interactor.NetworkHandler.Ip, Auth0Servers[0].Interactor.NetworkHandler.Port);
+                temp_networkhandler = new NetworkHandler(Auth0Servers[0].Interactor.NetworkHandler.Address, Auth0Servers[0].Interactor.NetworkHandler.Port);
             }
             return temp_networkhandler;
         }
@@ -100,7 +99,7 @@ namespace Hestia.DevicesScreen.resources
 			HestiaServerInteractor temp_serverinteractor;
             if (LocalLogin)
             {
-                temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(IP, Port));
+                temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(Address, int.Parse(strings.defaultPort)));
             }
             else
             {

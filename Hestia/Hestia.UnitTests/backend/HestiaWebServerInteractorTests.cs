@@ -17,14 +17,14 @@ namespace Hestia.UnitTests.backend
     {
         private NetworkHandler networkHandler;
         private HestiaWebServerInteractor serverInteractor;
-        private const string IP = "dummyIp";
+        private const string ADDRESS = "https://dummyAddress";
         private const int PORT = 1000;
         private const string TOKEN = "dummyToken";
 
         [TestInitialize]
         public void SetUpHestiaWebServerInteractor()
         {
-            networkHandler = new NetworkHandler(IP, PORT, TOKEN);
+            networkHandler = new NetworkHandler(ADDRESS, PORT, TOKEN);
             serverInteractor = new HestiaWebServerInteractor(networkHandler);
 
             Assert.IsNotNull(serverInteractor);
@@ -35,9 +35,9 @@ namespace Hestia.UnitTests.backend
         {
             Assert.AreEqual(networkHandler, serverInteractor.NetworkHandler);
 
-            string newIp = "1.0.0.0";
+            string newAddress = "https://1.0.0.0";
             int newPort = 2000;
-            NetworkHandler newNetworkHandler = new NetworkHandler(newIp, newPort);
+            NetworkHandler newNetworkHandler = new NetworkHandler(newAddress, newPort);
 
             Assert.AreNotEqual(newNetworkHandler, networkHandler);
 
@@ -49,7 +49,7 @@ namespace Hestia.UnitTests.backend
         [TestMethod]
         public void PostUserTestSuccess()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(IP, PORT, TOKEN);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, PORT, TOKEN);
             mockNetworkHandler.CallBase = true;
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
             serverInteractor.NetworkHandler = mockNetworkHandler.Object;
@@ -68,7 +68,7 @@ namespace Hestia.UnitTests.backend
         [ExpectedException(typeof(ServerInteractionException))]
         public void PostUserTestFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(IP, PORT, TOKEN);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, PORT, TOKEN);
             mockNetworkHandler.CallBase = true;
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
             serverInteractor.NetworkHandler = mockNetworkHandler.Object;
@@ -85,12 +85,13 @@ namespace Hestia.UnitTests.backend
                 ["created_at"] = "dummyTime",
                 ["server_id"] = "dummyId",
                 ["server_name"] = "dummyName",
-                ["server_port"] = "dummyPort",
+                ["server_address"] = "dummyAddress",
+                ["server_port"] = "1000",
                 ["updated_at"] = "dummyType",
                 ["user_id"] = "dummyId"
             };
 
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(IP, PORT, TOKEN);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, PORT, TOKEN);
             mockNetworkHandler.CallBase = true;
             mockNetworkHandler.Setup(x => x.Get(It.IsAny<string>())).Returns(serverJson);
             serverInteractor.NetworkHandler = mockNetworkHandler.Object;
@@ -108,8 +109,10 @@ namespace Hestia.UnitTests.backend
             Assert.IsNotNull(server);
             Assert.AreEqual("dummyId", server.Id);
             Assert.AreEqual("dummyName", server.Name);
+            Assert.AreEqual("dummyAddress", server.Address);
+            Assert.AreEqual(1000, server.Port);
             Assert.IsNotNull(server.Interactor);
-            Assert.AreEqual(IP, server.Interactor.NetworkHandler.Ip);
+            Assert.AreEqual(ADDRESS, server.Interactor.NetworkHandler.Address);
             Assert.AreEqual(PORT, server.Interactor.NetworkHandler.Port);
 
             // GetServers()
@@ -135,7 +138,7 @@ namespace Hestia.UnitTests.backend
             Assert.AreEqual("dummyId", servers[0].Id);
             Assert.AreEqual("dummyName", servers[0].Name);
             Assert.IsNotNull(servers[0].Interactor);
-            Assert.AreEqual(IP, servers[0].Interactor.NetworkHandler.Ip);
+            Assert.AreEqual(ADDRESS, servers[0].Interactor.NetworkHandler.Address);
             Assert.AreEqual(PORT, servers[0].Interactor.NetworkHandler.Port);
         }
 
@@ -143,7 +146,7 @@ namespace Hestia.UnitTests.backend
         [ExpectedException(typeof(ServerInteractionException))]
         public void GetServerTestFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(IP, PORT, TOKEN);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, PORT, TOKEN);
             mockNetworkHandler.CallBase = true;
             mockNetworkHandler.Setup(x => x.Get(It.IsAny<string>())).Throws(new ServerInteractionException());
             serverInteractor.NetworkHandler = mockNetworkHandler.Object;
@@ -155,7 +158,7 @@ namespace Hestia.UnitTests.backend
         [ExpectedException(typeof(ServerInteractionException))]
         public void GetServersTestFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(IP, PORT, TOKEN);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, PORT, TOKEN);
             mockNetworkHandler.CallBase = true;
             mockNetworkHandler.Setup(x => x.Get(It.IsAny<string>())).Throws(new ServerInteractionException());
             serverInteractor.NetworkHandler = mockNetworkHandler.Object;
@@ -166,7 +169,7 @@ namespace Hestia.UnitTests.backend
         [TestMethod]
         public void AddServerTestSuccess()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(IP, PORT, TOKEN);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, PORT, TOKEN);
             mockNetworkHandler.CallBase = true;
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
             serverInteractor.NetworkHandler = mockNetworkHandler.Object;
@@ -184,7 +187,7 @@ namespace Hestia.UnitTests.backend
         [ExpectedException(typeof(ServerInteractionException))]
         public void AddServerTestFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(IP, PORT, TOKEN);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, PORT, TOKEN);
             mockNetworkHandler.CallBase = true;
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
             serverInteractor.NetworkHandler = mockNetworkHandler.Object;

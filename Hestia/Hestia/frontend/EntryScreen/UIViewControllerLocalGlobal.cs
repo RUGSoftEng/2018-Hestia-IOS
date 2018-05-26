@@ -187,9 +187,8 @@ namespace Hestia
         {
             Globals.LocalLogin = true;
             Globals.ServerName = defaultServerName;
-            Globals.IP = defaultIP;
-            Globals.Port = int.Parse(defaultPort);
-            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.Address = defaultIP;
+            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
             Console.WriteLine("To Devices Main Local");
             PerformSegue(strings.mainToDevicesMain, this);
         }
