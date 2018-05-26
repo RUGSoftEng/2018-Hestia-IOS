@@ -15,6 +15,7 @@ using Hestia.backend.exceptions;
 using Hestia.DevicesScreen;
 using Hestia.backend.models;
 using Hestia.backend.speech_recognition;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -130,8 +131,14 @@ namespace Hestia
             else if (resultLower.Equals("global"))
             {
                 await ToGlobalScreen();
-            } else {
-                Console.WriteLine("Couldn't recognize input.");
+            }
+            else if (resultLower == null)
+            {
+                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
+            }
+            else
+            {
+                new WarningMessage("Speech could not be recognized", "Please try again.", this);
             }
         }
 

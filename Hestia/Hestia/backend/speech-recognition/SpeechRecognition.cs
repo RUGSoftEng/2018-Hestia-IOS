@@ -3,6 +3,7 @@ using Speech;
 using Foundation;
 using AVFoundation;
 using Plugin.SimpleAudioPlayer;
+using System.Threading;
 
 namespace Hestia.backend.speech_recognition
 {
@@ -12,7 +13,8 @@ namespace Hestia.backend.speech_recognition
         private SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
-        private volatile string result;
+        private string result = null;
+        private bool finished = false;
         private ISimpleAudioPlayer player;
 
         public SpeechRecognition()
@@ -103,6 +105,7 @@ namespace Hestia.backend.speech_recognition
                     if (result.Final)
                     {
                         this.result = result.BestTranscription.FormattedString;
+                        this.finished = true;
                     }
                 }
             });
@@ -123,9 +126,8 @@ namespace Hestia.backend.speech_recognition
             player.Load("Sounds/siri_stop.mp3");
             player.Play();
 
-            while(result == null) {
-                Console.WriteLine("null");
-            }
+            // Wait until speech recognition has finished
+            SpinWait.SpinUntil(() => finished);
 
             return result;
         }
