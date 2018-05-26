@@ -81,15 +81,6 @@ namespace Hestia
             };
         }
 
-        void DisplayWarningMessage(string error)
-        {
-            string title = "Login failed";
-            string message = error;
-            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            PresentViewController(okAlertController, true, null);
-        }
-
         bool CheckLocalLoginDefaults()
         {
             if (defaultIP != null && defaultPort != null)
@@ -186,7 +177,7 @@ namespace Hestia
                 }
                 else if (!(logResult.Error == "UserCancel"))
                 {
-                    DisplayWarningMessage(logResult.Error);
+                    new WarningMessage("Login failed", logResult.Error, this);
                 }
             }
         }
