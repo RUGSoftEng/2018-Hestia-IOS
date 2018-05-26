@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
@@ -10,6 +10,7 @@ using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
 using Hestia.frontend;
 using Hestia.Resources;
+
 
 namespace Hestia.DevicesScreen
 {
@@ -153,6 +154,7 @@ namespace Hestia.DevicesScreen
                 {
                     owner.NavigationController.PushViewController(addDeviceViewController, true);
                 }
+
             }
             else
             {
@@ -162,6 +164,7 @@ namespace Hestia.DevicesScreen
                 {
                     owner.NavigationController.PushViewController(addDeviceChooseServer, true);
                 }
+
             }
         }
 
