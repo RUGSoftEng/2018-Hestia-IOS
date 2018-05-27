@@ -110,7 +110,7 @@ namespace Hestia.DevicesScreen
                 Globals.LocalServerinteractor = serverInteractor;
 
                 userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
-                userDefaults.SetString(Globals.Address, strings.defaultsIpHestia);
+                userDefaults.SetString(newIP.Text, strings.defaultsIpHestia);
 
                 return true;
             }
