@@ -16,6 +16,10 @@ namespace Hestia
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton SpeechButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton ToGlobalButton { get; set; }
 
         [Outlet]
@@ -24,6 +28,11 @@ namespace Hestia
 
         void ReleaseDesignerOutlets ()
         {
+            if (SpeechButton != null) {
+                SpeechButton.Dispose ();
+                SpeechButton = null;
+            }
+
             if (ToGlobalButton != null) {
                 ToGlobalButton.Dispose ();
                 ToGlobalButton = null;
