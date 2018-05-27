@@ -21,7 +21,11 @@ namespace Hestia
             base.ViewDidLoad();
             Title = Resources.strings.selectServerTitle;
             TableView.Source = new TableSourceServerList();
+        }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
             // The done button that loads the devicesMainScreen with the selected servers
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 if (ShouldPerformSegue())
