@@ -8,6 +8,7 @@ using Auth0.OidcClient;
 using System;
 using Hestia.Resources;
 using Hestia.backend.exceptions;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -74,8 +75,9 @@ namespace Hestia
             }
             catch(ServerInteractionException ex)
             {
-                Console.WriteLine("Exception while getting devices from server.");
+                Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex.StackTrace);
+                new WarningMessage("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
             }
         }
 

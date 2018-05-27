@@ -5,6 +5,7 @@ using Hestia.backend.models;
 using Hestia.backend.exceptions;
 using System.Collections.Generic;
 using Foundation;
+using Hestia.frontend;
 
 namespace Hestia.DevicesScreen.ActivatorScreen
 {
@@ -51,7 +52,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     {
                         Console.WriteLine("Exception while changing activator state");
                         Console.WriteLine(ex);
-                        DisplayWarningMessage();
+                        new WarningMessage("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
 
                         // Reset back the switch
                         DeviceSwitch.On = (bool)act.State.RawState;
@@ -80,7 +81,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     {
                         Console.WriteLine("Exception while changing activator state");
                         Console.WriteLine(ex);
-                        DisplayWarningMessage();
+                        new WarningMessage("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
 
                         // Reset back the slider
                         slider.Value = (float)act.State.RawState;
@@ -98,14 +99,5 @@ namespace Hestia.DevicesScreen.ActivatorScreen
 
             return cell;
 		}
-
-        void DisplayWarningMessage()
-        {
-            string title = "Could not set activator";
-            string message = "An exception occurred when changing the state of the activator on the server";
-            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            owner.PresentViewController(okAlertController, true, null);
-        }
 	}
 }

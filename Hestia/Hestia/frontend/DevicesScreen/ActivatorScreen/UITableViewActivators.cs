@@ -1,12 +1,5 @@
-using Foundation;
 using System;
 using UIKit;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Collections;
-
-using Hestia.DevicesScreen.resources;
-using Hestia.backend;
 using Hestia.backend.models;
 
 namespace Hestia.DevicesScreen.ActivatorScreen
