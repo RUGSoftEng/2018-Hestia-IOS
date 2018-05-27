@@ -8,6 +8,7 @@ using Hestia.Resources;
 using UIKit;
 using System;
 using System.Collections.Generic;
+using Hestia.backend.speech_recognition;
 
 namespace Hestia.DevicesScreen
 {
@@ -16,6 +17,8 @@ namespace Hestia.DevicesScreen
         const int TableViewHeaderHeight = 35;
         const int TableViewHeaderTopPadding = 5;
         const int IconDimension = 50;
+
+        private SpeechRecognition speechRecognizer;
 
        // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
@@ -88,14 +91,33 @@ namespace Hestia.DevicesScreen
                 button.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIcon), UIControlState.Normal);
             }
 
-            button.TouchUpInside += delegate {
+            button.TouchDown += (object sender, EventArgs e) =>
+            {
+                if(!isEditing)
+                {
+                    speechRecognizer = new SpeechRecognition();
+                    speechRecognizer.StartRecording();
+                }
+            };
+
+            button.TouchUpInside += (object sender, EventArgs e) =>
+            {
                 if (isEditing)
                 { // segue to add device
                     ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
                 }
                 else
                 {
-                    // activate voice control
+                    string result = speechRecognizer.StopRecording();
+                    ProcessSpeechResult(result);
+                }
+            };
+
+            button.TouchDragExit += (object sender, EventArgs e) =>
+            {
+                if(!isEditing)
+                {
+                    speechRecognizer.CancelRecording();
                 }
             };
 
@@ -103,7 +125,29 @@ namespace Hestia.DevicesScreen
             return view;
         }
 
-		public override void ViewDidLoad()
+        private void ProcessSpeechResult(string result)
+        {
+            string resultLower = result.ToLower();
+
+            if (resultLower.Equals("local"))
+            {
+
+            }
+            else if (resultLower.Equals("global"))
+            {
+
+            }
+            else if (resultLower == null)
+            {
+                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
+            }
+            else
+            {
+                new WarningMessage("Speech could not be recognized", "Please try again.", this);
+            }
+        }
+
+        public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
 
