@@ -19,14 +19,12 @@ namespace Hestia.DevicesScreen
         string collection;
 
         // Constructor. Gets the device data and the ViewController
-        public TableSourceAddDeviceDevice(List<string> plugins,
-                                          string collection,
+        public TableSourceAddDeviceDevice(List<string> plugins, string collection,
                     UITableViewControllerAddDeviceDevice owner)
         {
             this.plugins = plugins;
             this.owner = owner;
             this.collection = collection;
-
         }
 
         // We have only one section with devices (thus far)
@@ -58,7 +56,6 @@ namespace Hestia.DevicesScreen
 
             return cell;
         }
-
 
         // Pushes the properties window
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
