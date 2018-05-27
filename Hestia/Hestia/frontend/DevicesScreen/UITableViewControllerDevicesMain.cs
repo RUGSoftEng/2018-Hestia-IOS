@@ -1,14 +1,13 @@
-using System;
-using UIKit;
-using System.Collections.Generic;
-
+using CoreGraphics;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.backend;
-using Hestia.Resources;
-using CoreGraphics;
 using Hestia.frontend;
+using Hestia.Resources;
+using UIKit;
+using System;
+using System.Collections.Generic;
 
 namespace Hestia.DevicesScreen
 {
