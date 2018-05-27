@@ -508,5 +508,11 @@ namespace Hestia.Resources {
                 return ResourceManager.GetString("AddManufacturerViewController", resourceCulture);
             }
         }
+        
+        public static string defaultPrefix {
+            get {
+                return ResourceManager.GetString("defaultPrefix", resourceCulture);
+            }
+        }
     }
 }

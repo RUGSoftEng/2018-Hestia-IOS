@@ -36,7 +36,7 @@ namespace Hestia
             }
             try
             {
-                bool validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
+                bool validIp = PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
             }
             catch (Exception exception)
             {
@@ -49,7 +49,7 @@ namespace Hestia
         public void SetGlobalsToDefaultsLocalLogin()
         {
             Globals.ServerName = defaultServername;
-            Globals.Address = defaultIP;
+            Globals.Address = strings.defaultPrefix + defaultIP;
             HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
             Globals.LocalServerinteractor = serverInteractor;
         }

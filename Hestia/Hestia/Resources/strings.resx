@@ -348,4 +348,7 @@
   <data name="AddManufacturerViewController" xml:space="preserve">
     <value>AddManufacturer</value>
   </data>
+  <data name="defaultPrefix" xml:space="preserve">
+    <value>https://</value>
+  </data>
 </root>

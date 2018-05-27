@@ -83,9 +83,9 @@ namespace Hestia
 
         bool CheckLocalLoginDefaults()
         {
-            if (defaultIP != null && defaultPort != null)
+            if (defaultIP != null)
             {
-                return PingServer.Check(defaultIP, int.Parse(defaultPort));
+                return PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
             }
             return false;
         }
@@ -187,7 +187,7 @@ namespace Hestia
         {
             Globals.LocalLogin = true;
             Globals.ServerName = defaultServerName;
-            Globals.Address = defaultIP;
+            Globals.Address = strings.defaultPrefix + defaultIP;
             Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
             Console.WriteLine("To Devices Main Local");
             PerformSegue(strings.mainToDevicesMain, this);
