@@ -4,6 +4,9 @@ using Foundation;
 using AVFoundation;
 using Plugin.SimpleAudioPlayer;
 using System.Threading;
+using System.Collections.Generic;
+using Hestia.backend.models;
+using Hestia.backend.exceptions;
 
 namespace Hestia.backend.speech_recognition
 {
@@ -109,6 +112,58 @@ namespace Hestia.backend.speech_recognition
                     }
                 }
             });
+        }
+
+        public void DecideAction()
+        {
+            List<Device> devices = new List<Device>();
+            Device device;
+            
+            if (result.Contains(value: "activate") || 
+                (result.Contains(value: "turn") && result.Contains(value: "on")))
+            {
+                device = GetDevice(devices);
+                if (device != null)
+                {
+                    SetDevice(device, false);
+                }
+            } else if (result.Contains(value: "deactivate") ||
+                (result.Contains(value: "turn") && result.Contains(value: "off")))
+            {
+                device = GetDevice(devices);
+                if(device != null)
+                {
+                    SetDevice(device, false);
+                }
+            }
+        }
+
+        public void SetDevice(Device device, bool on_off)
+        {
+            models.Activator act = device.Activators[0];
+            if (act.State.Type == "bool")
+            {
+                try
+                {
+                    act.State = new ActivatorState(rawState: on_off, type: "bool");
+                }
+                catch (ServerInteractionException ex)
+                {
+                    Console.WriteLine("Exception while changing activator state");
+                    Console.WriteLine(ex.ToString());
+                }
+            }
+        }
+
+        public Device GetDevice(List<Device> list)
+        {
+            foreach (Device device in list)
+            {
+                if (result.Contains(value: device.Name)) {
+                    return device;
+                }
+            }
+            return null;
         }
 
         public string StopRecording()
