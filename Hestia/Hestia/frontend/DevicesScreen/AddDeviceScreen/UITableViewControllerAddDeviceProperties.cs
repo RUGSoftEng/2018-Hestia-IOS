@@ -6,6 +6,7 @@ using Hestia.backend.models;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.AddDeviceScreen;
 using Hestia.DevicesScreen.resources;
+using Hestia.frontend;
 using System.Text.RegularExpressions;
 
 namespace Hestia
@@ -59,25 +60,26 @@ namespace Hestia
                 SaveFields();
                 Console.WriteLine("Clicked save button");
 
-                if(matchesName.Count<=0 && matchesIP.Count<=0)
+                if (matchesName.Count <= 0 && matchesIP.Count <= 0)
                 {
                     var alert = UIAlertController.Create("Error!", "You have to fill all the specifictions.", UIAlertControllerStyle.Alert);
                     alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                     PresentViewController(alert, true, null);
                 }
-                else if (matchesName.Count <= 0 && matchesIP.Count>0)
+                else if (matchesName.Count <= 0 && matchesIP.Count > 0)
                 {
                     var alert = UIAlertController.Create("Error!", "You have to give a name for the device.", UIAlertControllerStyle.Alert);
                     alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                     PresentViewController(alert, true, null);
                 }
-                else if (matchesIP.Count <= 0 && matchesName.Count>0)
+                else if (matchesIP.Count <= 0 && matchesName.Count > 0)
                 {
                     var alert = UIAlertController.Create("Error!", "IP= 'X.X.X.X'. X should be between 0 or 255", UIAlertControllerStyle.Alert);
                     alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                     PresentViewController(alert, true, null);
                 }
-                else{
+                else
+                {
                     // Try to add device to server
                     try
                     {
@@ -91,15 +93,14 @@ namespace Hestia
                         Console.WriteLine(ex);
                         frontend.WarningMessage message = new frontend.WarningMessage("Exception", "Could not add device", this);
                     }
-                    // Get the root view contoller and cancel the editing state
-                    var rootViewController = this.NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
-                    rootViewController.CancelEditingState();
-                    rootViewController.RefreshDeviceList();
-                    // Go back to the devices main screen
-                    NavigationController.PopToViewController(rootViewController, true);
                 }
 
-
+                // Get the root view contoller and cancel the editing state
+                var rootViewController = NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
+                rootViewController.CancelEditingState();
+                rootViewController.RefreshDeviceList();
+                // Go back to the devices main screen
+                NavigationController.PopToViewController(rootViewController, true);
             });
 
             // Set right button to save 

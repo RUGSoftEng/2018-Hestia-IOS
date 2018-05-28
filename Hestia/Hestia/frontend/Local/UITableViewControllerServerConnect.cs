@@ -27,6 +27,11 @@ namespace Hestia.DevicesScreen
         {
             base.ViewDidLoad();
             Title = ViewControllerTitle;
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
 
             if (defaultServerName != null)
             {
@@ -39,13 +44,12 @@ namespace Hestia.DevicesScreen
 
             AssignReturnKeyBehaviour();
             newServerName.BecomeFirstResponder();
-        }
 
-        public override void ViewWillAppear(bool animated)
-        {
-            base.ViewWillAppear(animated);
-            Console.WriteLine("presented by" + PresentingViewController);
-            if (PresentingViewController is UIViewControllerLocalGlobal || PresentingViewController is null)
+            if (NavigationController.ViewControllers.Length < 2)
+            {
+                SetCancelButtton();
+            }
+            else if (!(NavigationController.ViewControllers[NavigationController.ViewControllers.Length - 2] is UITableViewControllerLocalSettingsScreen))
             {
                 SetCancelButtton();
             }
@@ -110,7 +114,7 @@ namespace Hestia.DevicesScreen
                 Globals.LocalServerinteractor = serverInteractor;
 
                 userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
-                userDefaults.SetString(Globals.Address, strings.defaultsIpHestia);
+                userDefaults.SetString(newIP.Text, strings.defaultsIpHestia);
 
                 return true;
             }

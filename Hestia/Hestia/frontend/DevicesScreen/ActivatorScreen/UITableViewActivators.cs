@@ -1,12 +1,5 @@
-using Foundation;
 using System;
 using UIKit;
-using System.Drawing;
-using System.Collections.Generic;
-using System.Collections;
-
-using Hestia.DevicesScreen.resources;
-using Hestia.backend;
 using Hestia.backend.models;
 
 namespace Hestia.DevicesScreen.ActivatorScreen
@@ -35,7 +28,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
             TableView.AllowsSelection = false;
             TableView.SeparatorStyle = UITableViewCellSeparatorStyle.None;
             // Contains methods that describe behavior of table
-            TableView.Source = new TableSourceActivators(device);
+            TableView.Source = new TableSourceActivators(device, this);
 		}
 	}
 }

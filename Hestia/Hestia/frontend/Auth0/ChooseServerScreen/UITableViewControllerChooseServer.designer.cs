@@ -9,10 +9,10 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Hestia.DevicesScreen.ActivatorScreen
+namespace Hestia
 {
-    [Register ("UITableViewActivators")]
-    partial class UITableViewActivators
+    [Register ("UITabelViewControllerChooseServer")]
+    partial class UITableViewControllerChooseServer
     {
         void ReleaseDesignerOutlets ()
         {

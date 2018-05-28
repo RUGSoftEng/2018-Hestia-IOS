@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
@@ -10,6 +10,7 @@ using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
 using Hestia.frontend;
 using Hestia.Resources;
+
 
 namespace Hestia.DevicesScreen
 {
@@ -117,9 +118,8 @@ namespace Hestia.DevicesScreen
                 }
                 catch (ServerInteractionException ex)
                 {
-                    Console.WriteLine("Exception while removing device");
+                    Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
                     Console.Out.WriteLine(ex);
-                    WarningMessage message = new WarningMessage("Exception while removing device", "An exception occurred while removing the device from the local server", owner);
                 }
             }
             else
@@ -132,9 +132,8 @@ namespace Hestia.DevicesScreen
                 }
                 catch (ServerInteractionException ex)
                 {
-                    Console.WriteLine("Exception while removing device");
+                    Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
                     Console.Out.WriteLine(ex);
-                    WarningMessage message = new WarningMessage("Exception while removing device", "An exception occurred while removing the device from the local server through the Auth0 server", owner);
                 }
             }
             // Remove device from local list
@@ -155,6 +154,7 @@ namespace Hestia.DevicesScreen
                 {
                     owner.NavigationController.PushViewController(addDeviceViewController, true);
                 }
+
             }
             else
             {
@@ -164,6 +164,7 @@ namespace Hestia.DevicesScreen
                 {
                     owner.NavigationController.PushViewController(addDeviceChooseServer, true);
                 }
+
             }
         }
 

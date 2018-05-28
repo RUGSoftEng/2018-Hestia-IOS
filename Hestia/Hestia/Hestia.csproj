@@ -20,7 +20,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer: marcfleurke@gmail.com (V58LLQJ8HJ)</CodesignKey>
     <CodesignProvision>iOS Team Provisioning Profile: com.ruggedHestia.Hestia</CodesignProvision>
@@ -123,10 +123,6 @@
       <DependentUpon>UITableViewControllerLocalSettingsScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="frontend\Auth0\ServerSelectScreen\TableSourceServerList.cs" />
-    <Compile Include="frontend\Auth0\ServerSelectScreen\UITableViewServerList.cs" />
-    <Compile Include="frontend\Auth0\ServerSelectScreen\UITableViewServerList.designer.cs">
-      <DependentUpon>UITableViewServerList.cs</DependentUpon>
-    </Compile>
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
@@ -146,9 +142,13 @@
     <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
     <Compile Include="frontend\WarningMessage.cs" />
     <Compile Include="frontend\Auth0\ChooseServerScreen\TableSourceAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerAddDeviceChooseServer.designer.cs">
-      <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
+    <Compile Include="frontend\Auth0\ServerSelectScreen\UITableViewControllerServerList.cs" />
+    <Compile Include="frontend\Auth0\ServerSelectScreen\UITableViewControllerServerList.designer.cs">
+      <DependentUpon>UITableViewControllerServerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerChooseServer.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerChooseServer.designer.cs">
+      <DependentUpon>UITableViewControllerChooseServer.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -161,7 +161,6 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="frontend\Devices2.storyboard" />
     <InterfaceDefinition Include="LaunchScreenHestia.storyboard" />
-    <InterfaceDefinition Include="frontend\Devices3.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Auth0.OidcClient, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
