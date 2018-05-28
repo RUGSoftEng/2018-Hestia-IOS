@@ -38,7 +38,7 @@ namespace Hestia.Auth0
                 cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.addDeviceChooseServerCell);
             }
 
-            cell.TextLabel.Text = Globals.GetInteractorsOfSelectedServers()[indexPath.Row].ToString();
+            cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].Name;
 
             return cell;
         }
