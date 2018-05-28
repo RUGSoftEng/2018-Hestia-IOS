@@ -1,4 +1,3 @@
-using Foundation;
 using Hestia.DevicesScreen.resources;
 using Hestia.frontend;
 using System;
