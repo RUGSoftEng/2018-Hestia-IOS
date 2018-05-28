@@ -124,7 +124,7 @@ namespace Hestia.backend.speech_recognition
                 device = GetDevice(devices);
                 if (device != null)
                 {
-                    SetDevice(device, false);
+                    SetDevice(device, true);
                 }
             } else if (result.Contains(value: "deactivate") ||
                 (result.Contains(value: "turn") && result.Contains(value: "off")))
@@ -139,17 +139,21 @@ namespace Hestia.backend.speech_recognition
 
         public void SetDevice(Device device, bool on_off)
         {
-            models.Activator act = device.Activators[0];
-            if (act.State.Type == "bool")
+
+            foreach (models.Activator act in device.Activators)
             {
-                try
+                if (act.State.Type == "bool")
                 {
-                    act.State = new ActivatorState(rawState: on_off, type: "bool");
-                }
-                catch (ServerInteractionException ex)
-                {
-                    Console.WriteLine("Exception while changing activator state");
-                    Console.WriteLine(ex.ToString());
+                    try
+                    {
+                        act.State = new ActivatorState(rawState: on_off, type: "bool");
+                    }
+                    catch (ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while changing activator state");
+                        Console.WriteLine(ex.ToString());
+                    }
+                    return;
                 }
             }
         }
