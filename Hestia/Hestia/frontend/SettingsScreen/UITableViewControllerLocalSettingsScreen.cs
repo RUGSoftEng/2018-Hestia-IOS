@@ -1,5 +1,6 @@
 using Foundation;
 using Hestia.DevicesScreen.resources;
+using Hestia.frontend;
 using System;
 using UIKit;
 
@@ -19,19 +20,11 @@ namespace Hestia
         }
 
         // Reset Defaults button
-		partial void UIButton87850_TouchUpInside(UIButton sender)
+		partial void ResetDefaultsButton_TouchUpInside(UIButton sender)
 		{
 			Globals.ResetAllUserDefaults();
-			DisplayConfirmationMessage();
+            new WarningMessage("User Defaults Reset", "All settings are cleared", this);
 		}
 
-		private void DisplayConfirmationMessage()
-        {
-            string title = "User Defaults Reset";
-            string message = "All settings are cleared";
-            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            PresentViewController(okAlertController, true, null);
-        }
 	}
 }

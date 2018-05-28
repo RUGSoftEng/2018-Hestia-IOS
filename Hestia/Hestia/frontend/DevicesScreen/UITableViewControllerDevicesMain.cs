@@ -50,7 +50,7 @@ namespace Hestia.DevicesScreen
             if (Globals.LocalLogin)
             {
                 source.numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
-                source.serverDevices.Add(Globals.GetDevices());
+                source.serverDevices.Add(Globals.LocalServerinteractor.GetDevices());
             }
             else
             {
@@ -65,7 +65,7 @@ namespace Hestia.DevicesScreen
                     {
                         Console.WriteLine("Exception while getting devices from local server");
                         Console.WriteLine(ex);
-                        WarningMessage message = new WarningMessage("Could not refresh devices", "Exception while getting devices from local server, through Auth0 server", this);
+                        new WarningMessage("Could not refresh devices", "Exception while getting devices from local server, through Auth0 server", this);
                     }
                 }
             }

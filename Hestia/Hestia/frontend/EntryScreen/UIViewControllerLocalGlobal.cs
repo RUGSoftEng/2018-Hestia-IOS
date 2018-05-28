@@ -101,17 +101,12 @@ namespace Hestia
             var loginResult = await client.LoginAsync(new { audience = strings.apiURL });
             if (loginResult.IsError)
             {
-                Debug.WriteLine($"An error occurred during login: {loginResult.Error}");
-            }
-            else
-            {
-                Debug.WriteLine($"id_token: {loginResult.IdentityToken}");
-                Debug.WriteLine($"access_token: {loginResult.AccessToken}");
+                Console.WriteLine($"An error occurred during login: {loginResult.Error}");
             }
             return loginResult;
         }
 
-        private async void ProcessSpeechResult(string result)
+        async void ProcessSpeechResult(string result)
         {
             string resultLower = result.ToLower();
 
@@ -133,7 +128,7 @@ namespace Hestia
             }
         }
 
-        private void ToLocalScreen()
+        void ToLocalScreen()
         {
             // Already anticipate local login
             // Check if local serverinformation is present and correct
@@ -149,12 +144,12 @@ namespace Hestia
             else
             {
                 Console.WriteLine("To Server Connect screen");
-                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
+                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
                 PresentViewController(devicesMainStoryboard.InstantiateInitialViewController(), true, null);
             }
         }
 
-        private async Task ToGlobalScreen()
+        async Task ToGlobalScreen()
         {
             userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
 

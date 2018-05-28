@@ -20,7 +20,7 @@ namespace Hestia
 
         [Action ("UIButton87850_TouchUpInside:")]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void UIButton87850_TouchUpInside (UIKit.UIButton sender);
+        partial void ResetDefaultsButton_TouchUpInside (UIKit.UIButton sender);
 
         void ReleaseDesignerOutlets ()
         {
