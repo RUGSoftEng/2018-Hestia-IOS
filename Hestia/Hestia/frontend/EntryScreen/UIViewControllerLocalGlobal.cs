@@ -16,6 +16,7 @@ using Hestia.DevicesScreen;
 using Hestia.backend.models;
 using Hestia.backend.speech_recognition;
 using Hestia.frontend;
+using CoreGraphics;
 
 namespace Hestia
 {
@@ -26,7 +27,10 @@ namespace Hestia
     public partial class UIViewControllerLocalGlobal : UIViewController
     {
         Auth0Client client;
-        private SpeechRecognition speechRecognizer;
+        SpeechRecognition speechRecognizer;
+        const int IconDimension = 50;
+        const int BottomPadding = 50;
+        UIButton SpeechButtonLocalGlobal;
 
         // User defaults
         NSUserDefaults userDefaults;
@@ -47,6 +51,12 @@ namespace Hestia
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultAccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
+        
+            SpeechButtonLocalGlobal = new UIButton(UIButtonType.System);
+            SpeechButtonLocalGlobal.Frame = new CGRect(View.Bounds.Width / 2 - IconDimension / 2, View.Bounds.Bottom - IconDimension - BottomPadding , IconDimension, IconDimension);
+            SpeechButtonLocalGlobal.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIconInverted), UIControlState.Normal);
+
+            View.AddSubview(SpeechButtonLocalGlobal);
         }
 
         public override void ViewDidAppear(bool animated)
@@ -63,22 +73,22 @@ namespace Hestia
                 await ToGlobalScreen();
             };
 
-            SpeechButton.TouchDown += (object sender, EventArgs e) => 
+            SpeechButtonLocalGlobal.TouchDown += (object sender, EventArgs e) => 
             {
                 speechRecognizer = new SpeechRecognition();
                 speechRecognizer.StartRecording();
             };
 
-            SpeechButton.TouchUpInside += (object sender, EventArgs e) =>
+            SpeechButtonLocalGlobal.TouchUpInside += (object sender, EventArgs e) =>
             {
                 string result = speechRecognizer.StopRecording();
                 ProcessSpeechResult(result);
             };
 
-            SpeechButton.TouchDragExit += (object sender, EventArgs e) =>
+            SpeechButtonLocalGlobal.TouchDragExit += (object sender, EventArgs e) =>
             {
                 speechRecognizer.CancelRecording();
-            };
+            };   
         }
 
         bool CheckLocalLoginDefaults()

@@ -351,4 +351,7 @@
   <data name="defaultPrefix" xml:space="preserve">
     <value>https://</value>
   </data>
+  <data name="voiceControlIconInverted" xml:space="preserve">
+    <value>VoiceControlIconInverted</value>
+  </data>
 </root>

@@ -20,11 +20,10 @@ namespace Hestia
         }
 
         // Reset Defaults button
-		partial void ResetDefaultsButton_TouchUpInside(UIButton sender)
-		{
-			Globals.ResetAllUserDefaults();
+        partial void UIButton87850_TouchUpInside(UIButton sender)
+        {
+            Globals.ResetAllUserDefaults();
             new WarningMessage("User Defaults Reset", "All settings are cleared", this);
-		}
-
-	}
+        }
+    }
 }

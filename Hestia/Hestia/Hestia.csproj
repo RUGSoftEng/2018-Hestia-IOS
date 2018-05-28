@@ -230,6 +230,7 @@
     <Folder Include="frontend\Auth0\ChooseServerScreen\" />
     <Folder Include="Assets.xcassets\AddDeviceIcon.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
+    <Folder Include="Assets.xcassets\VoiceControlIconInverted.imageset\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -277,14 +278,14 @@
     <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon50.png" />
     <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon100.png" />
     <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon150.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_50.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_100.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_150.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images\lock.png" />
-    <BundleResource Include="Resources\Images\lightbulb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

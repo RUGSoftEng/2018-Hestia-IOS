@@ -72,13 +72,6 @@
                                 <color key="textColor" colorSpace="calibratedWhite" white="1" alpha="1"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="39724" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                <rect key="frame" x="137" y="518" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Speech">
-                                    <color key="titleColor" colorSpace="calibratedRGB" red="0" green="0.52549019607843139" blue="1" alpha="1"/>
-                                </state>
-                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -87,7 +80,6 @@
                         <segue id="27976" destination="27948" kind="presentation" identifier="mainToDevicesMain"/>
                         <segue id="29117" destination="19563" kind="show" identifier="mainToServerConnect"/>
                         <segue id="36529" destination="11023" kind="show" identifier="localGlobalToServerSelect"/>
-                        <outlet property="SpeechButton" destination="39724" id="name-outlet-39724"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21202" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -102,11 +94,4 @@
             <point key="canvasLocation" x="-34" y="592"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="LogoLaunchscreen" width="431" height="206"/>
-        <image name="AddDeviceIcon" width="50" height="50"/>
-        <image name="VoiceControlIcon" width="50" height="50"/>
-        <image name="Images/lock.png" width="300" height="295"/>
-        <image name="Images/lightbulb.png" width="300" height="300"/>
-    </resources>
 </document>

@@ -514,5 +514,11 @@ namespace Hestia.Resources {
                 return ResourceManager.GetString("defaultPrefix", resourceCulture);
             }
         }
+        
+        public static string voiceControlIconInverted {
+            get {
+                return ResourceManager.GetString("voiceControlIconInverted", resourceCulture);
+            }
+        }
     }
 }
