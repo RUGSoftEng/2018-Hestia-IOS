@@ -157,7 +157,7 @@
                                                         <color key="titleColor" colorSpace="calibratedRGB" red="1" green="0" blue="0" alpha="1"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="UIButton87850_TouchUpInside:" destination="725" id="88244" eventType="touchUpInside"/>
+                                                        <action selector="UIButton87850_TouchUpInside:" destination="725" id="102676" eventType="touchUpInside"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -623,7 +623,7 @@
                                                     </state>
                                                     <connections>
                                                         <action selector="UIButton87850_TouchUpInside:" destination="89407" id="89406" eventType="touchUpInside"/>
-                                                        <action selector="UIButton89405_TouchUpInside:" destination="63369" id="89410" eventType="touchUpInside"/>
+                                                        <action selector="UIButton89405_TouchUpInside:" destination="63369" id="102689" eventType="touchUpInside"/>
                                                     </connections>
                                                 </button>
                                             </subviews>

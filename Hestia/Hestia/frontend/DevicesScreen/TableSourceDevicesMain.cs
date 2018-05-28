@@ -8,7 +8,6 @@ using Hestia.DevicesScreen.ActivatorScreen;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
-using Hestia.frontend;
 using Hestia.Resources;
 
 
@@ -154,7 +153,6 @@ namespace Hestia.DevicesScreen
                 {
                     owner.NavigationController.PushViewController(addDeviceViewController, true);
                 }
-
             }
             else
             {
@@ -164,7 +162,6 @@ namespace Hestia.DevicesScreen
                 {
                     owner.NavigationController.PushViewController(addDeviceChooseServer, true);
                 }
-
             }
         }
 

@@ -6,6 +6,7 @@ using Hestia.DevicesScreen.resources;
 using Hestia.backend;
 using Hestia.backend.utils;
 using Hestia.Resources;
+using Hestia.frontend;
 
 namespace Hestia.DevicesScreen
 {
@@ -97,19 +98,20 @@ namespace Hestia.DevicesScreen
 
             try
             {
-                validIp = PingServer.Check("https://" + newIP.Text, int.Parse(strings.defaultPort));
+                validIp = PingServer.Check(strings.defaultPrefix + newIP.Text, int.Parse(strings.defaultPort));
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.StackTrace);
-                DisplayWarningMessage();
+                new WarningMessage("Could not connect to server", "Invalid server information", this);
+                connectButton.Selected = false;
                 return false;
             }
 
             if (validIp)
             {
                 Globals.ServerName = newServerName.Text;
-                Globals.Address = "https://" + newIP.Text;
+                Globals.Address = strings.defaultPrefix + newIP.Text;
                 HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
                 Globals.LocalServerinteractor = serverInteractor;
 
@@ -119,19 +121,9 @@ namespace Hestia.DevicesScreen
                 return true;
             }
 
-            DisplayWarningMessage();
-            return false;
-        }
-
-        void DisplayWarningMessage()
-        {
-            string title = "Could not connect to server";
-            string message = "Invalid server information";
-            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            PresentViewController(okAlertController, true, null);
-
+            new WarningMessage("Could not connect to server", "Invalid server information", this);
             connectButton.Selected = false;
+            return false;
         }
 
         /// <summary>
