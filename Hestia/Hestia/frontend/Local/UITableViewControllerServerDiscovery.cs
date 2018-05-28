@@ -4,9 +4,9 @@ using Foundation;
 using Hestia.DevicesScreen;
 using Hestia.backend.utils.server_discovery;
 
-namespace Hestia.frontend.Local
+namespace Hestia
 {
-    public class UITableViewControllerServerDiscovery : UITableViewController
+    public partial class UITableViewControllerServerDiscovery : UITableViewController
     {
         AutoServerDicovery autoServerDiscovery;
 
