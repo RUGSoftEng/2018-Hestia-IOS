@@ -10,7 +10,7 @@ namespace Hestia.UnitTests.backend.models.deserializers
     [TestClass]
     public class DeviceDeserializerTests
     {
-        NetworkHandler networkHandler;
+        HestiaServerInteractor serverInteractor;
         string jsonDeviceString =
               "{\"activators\": ["
             + "{\"rank\": 0,"
@@ -56,9 +56,10 @@ namespace Hestia.UnitTests.backend.models.deserializers
         [TestInitialize]
         public void SetUp()
         {
-            string dummyIp = "0.0.0.0";
+            string dummyAddress = "https://0.0.0.0";
             int dummyPort = 1000;
-            networkHandler = new NetworkHandler(dummyIp, dummyPort);
+            NetworkHandler networkHandler = new NetworkHandler(dummyAddress, dummyPort);
+            serverInteractor = new HestiaServerInteractor(networkHandler);
 
             jsonDevice = JToken.Parse(jsonDeviceString);
             jsonDevices = JToken.Parse(jsonDevicesString);
@@ -68,7 +69,7 @@ namespace Hestia.UnitTests.backend.models.deserializers
         public void DeserializeDeviceTest()
         {
             DeviceDeserializer deserializer = new DeviceDeserializer();
-            Device device = deserializer.DeserializeDevice(jsonDevice, networkHandler);
+            Device device = deserializer.DeserializeDevice(jsonDevice, serverInteractor);
 
             Assert.IsNotNull(device);
             Assert.AreEqual(jsonDevice.Value<string>("deviceId"), device.DeviceId);
@@ -77,14 +78,14 @@ namespace Hestia.UnitTests.backend.models.deserializers
             Assert.IsNotNull(device.Activators);
             JToken activators = jsonDevice.SelectToken("activators");
             Assert.AreEqual(activators[0].Value<string>("name"), device.Activators[0].Name);
-            Assert.AreEqual(networkHandler, device.NetworkHandler);
+            Assert.AreEqual(serverInteractor, device.ServerInteractor);
         }
 
         [TestMethod]
         public void DeserializeDevicesTest()
         {
             DeviceDeserializer deserializer = new DeviceDeserializer();
-            List<Device> devices = deserializer.DeserializeDevices(jsonDevices, networkHandler);
+            List<Device> devices = deserializer.DeserializeDevices(jsonDevices, serverInteractor);
 
             Assert.IsNotNull(devices);
 
@@ -99,7 +100,7 @@ namespace Hestia.UnitTests.backend.models.deserializers
             Assert.IsNotNull(device1.Activators);
             JToken activators1 = jsonDevice1.SelectToken("activators");
             Assert.AreEqual(activators1[0].Value<string>("name"), device1.Activators[0].Name);
-            Assert.AreEqual(networkHandler, device1.NetworkHandler);
+            Assert.AreEqual(serverInteractor, device1.ServerInteractor);
 
             Assert.IsNotNull(device2);
             JToken jsonDevice2 = jsonDevices[1];
@@ -109,7 +110,7 @@ namespace Hestia.UnitTests.backend.models.deserializers
             Assert.IsNotNull(device2.Activators);
             JToken activators2 = jsonDevice2.SelectToken("activators");
             Assert.AreEqual(activators2[0].Value<string>("name"), device2.Activators[0].Name);
-            Assert.AreEqual(networkHandler, device2.NetworkHandler);
+            Assert.AreEqual(serverInteractor, device2.ServerInteractor);
         }
     }
 }

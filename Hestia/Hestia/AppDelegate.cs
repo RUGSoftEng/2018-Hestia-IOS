@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
@@ -8,6 +8,8 @@ using Auth0.OidcClient;
 using System;
 using Hestia.Resources;
 using Hestia.backend.exceptions;
+using Hestia.backend.speech_recognition;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -20,7 +22,6 @@ namespace Hestia
     public class AppDelegate : UIApplicationDelegate
     {
         public override UIWindow Window { get; set; }
-
         public static UIStoryboard mainStoryboard = UIStoryboard.FromName(strings.mainStoryBoard, null);
         public static UIStoryboard devices2Storyboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
 
@@ -31,9 +32,13 @@ namespace Hestia
 
         public bool IsServerValid()
         {
+            if (defaultIP == null)
+            {
+                return false;
+            }
             try
             {
-                bool validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
+                bool validIp = PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
             }
             catch (Exception exception)
             {
@@ -46,9 +51,8 @@ namespace Hestia
         public void SetGlobalsToDefaultsLocalLogin()
         {
             Globals.ServerName = defaultServername;
-            Globals.IP = defaultIP;
-            Globals.Port = int.Parse(defaultPort);
-            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.Address = strings.defaultPrefix + defaultIP;
+            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
             Globals.LocalServerinteractor = serverInteractor;
         }
 
@@ -62,24 +66,29 @@ namespace Hestia
             }
             catch (ServerInteractionException ex)
             {
+                Console.WriteLine("Exception while posting user. User possibly already exists.");
                 Console.WriteLine(ex.StackTrace);
             }
+            Globals.Auth0Servers = new System.Collections.Generic.List<backend.models.HestiaServer>();
             try
             {
                 Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
             }
             catch(ServerInteractionException ex)
             {
+                Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex.StackTrace);
+                new WarningMessage("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
             }
         }
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             Xamarin.Calabash.Start();
-            Globals.ResetAllUserDefaults();
             Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+
+            SpeechRecognition.RequestAuthorization();
 
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
@@ -88,19 +97,21 @@ namespace Hestia
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultServername = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultAuth0AccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
+            Console.WriteLine(" Defaultip:" + defaultIP);
 
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
-
+            Console.WriteLine(" defaults:" + defaultLocal);
             // Check if defaults for local/global are present
             if (defaultLocal == bool.TrueString)
             {
+				Console.WriteLine(" Default local ");
                 Globals.LocalLogin = true;
-                UITableViewControllerServerConnect serverConnectViewController = devices2Storyboard.InstantiateInitialViewController() as UITableViewControllerServerConnect;
+                var serverConnectViewController = devices2Storyboard.InstantiateInitialViewController();
 
                 if(IsServerValid())
                 {
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
-                                                                                    as UINavigationController;
+                        as UINavigationController;
                     Window.RootViewController = navigationController;
                     SetGlobalsToDefaultsLocalLogin();
                 }
@@ -109,14 +120,14 @@ namespace Hestia
                     Window.RootViewController = serverConnectViewController;
                 }
             }
+
             else if (defaultLocal == bool.FalseString)
             {
+				Console.WriteLine(" Default global");
                 Globals.LocalLogin = false;
- 
-                UINavigationController navigationController = 
-                    devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
-                        as UINavigationController;
-                Window.RootViewController = navigationController;
+
+                var viewServerList = devices2Storyboard.InstantiateViewController("navigationServerList");
+                Window.RootViewController = viewServerList;
                 SetGlobalsToDefaultsGlobalLogin();
             }
             else

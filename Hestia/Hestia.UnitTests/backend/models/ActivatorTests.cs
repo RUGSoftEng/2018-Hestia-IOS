@@ -27,16 +27,18 @@ namespace Hestia.UnitTests.backend.models
         private ActivatorState floatActivatorState;
         private Activator floatActivator;
 
-        private string dummyIp = "0.0.0.0";
+        private string dummyAddress = "https://0.0.0.0";
         private int dummyPort = 1000;
         private NetworkHandler networkHandler;
+        private HestiaServerInteractor serverInteractor;
         private Device device;
 
         [TestInitialize]
         public void SetUpActivators()
         {
-            networkHandler = new NetworkHandler(dummyIp, dummyPort);
-            device = new Device("1234", "nice_device", "light", new List<Activator>(), networkHandler);
+            networkHandler = new NetworkHandler(dummyAddress, dummyPort);
+            serverInteractor = new HestiaServerInteractor(networkHandler);
+            device = new Device("1234", "nice_device", "light", new List<Activator>(), serverInteractor);
 
             boolId = "123";
             boolName = "dummyBoolName";
@@ -114,9 +116,9 @@ namespace Hestia.UnitTests.backend.models
         {
             Assert.AreEqual(boolActivatorState, boolActivator.State);
 
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyIp, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
-            boolActivator.Device.NetworkHandler = mockNetworkHandler.Object;
+            boolActivator.Device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
             ActivatorState newBoolState = new ActivatorState(true, "bool");
 
@@ -137,9 +139,9 @@ namespace Hestia.UnitTests.backend.models
         [ExpectedException(typeof(ServerInteractionException))]
         public void SetBoolStateFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyIp, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
-            boolActivator.Device.NetworkHandler = mockNetworkHandler.Object;
+            boolActivator.Device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
             ActivatorState newBoolState = new ActivatorState(true, "bool");
             boolActivator.State = newBoolState;
@@ -150,9 +152,9 @@ namespace Hestia.UnitTests.backend.models
         {
             Assert.AreEqual(floatActivatorState, floatActivator.State);
 
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyIp, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
-            floatActivator.Device.NetworkHandler = mockNetworkHandler.Object;
+            floatActivator.Device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
             ActivatorState newFloatState = new ActivatorState(1.5, "float");
 
@@ -174,9 +176,9 @@ namespace Hestia.UnitTests.backend.models
         [ExpectedException(typeof(ServerInteractionException))]
         public void SetFloatStateFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyIp, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
-            floatActivator.Device.NetworkHandler = mockNetworkHandler.Object;
+            floatActivator.Device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
             ActivatorState newFloatState = new ActivatorState(1.5, "float");
             floatActivator.State = newFloatState;
@@ -188,7 +190,7 @@ namespace Hestia.UnitTests.backend.models
             Assert.AreEqual(device, boolActivator.Device);
             Assert.AreEqual(device, floatActivator.Device);
 
-            Device newDevice = new Device("987", "bob", "...", new List<Activator>(), networkHandler);
+            Device newDevice = new Device("987", "bob", "...", new List<Activator>(), serverInteractor);
 
             Assert.IsNotNull(newDevice);
             Assert.AreNotEqual(newDevice, device);

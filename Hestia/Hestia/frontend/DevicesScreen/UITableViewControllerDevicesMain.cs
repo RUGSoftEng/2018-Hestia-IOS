@@ -1,22 +1,32 @@
-using System;
-using UIKit;
-
-using System.Collections.Generic;
-
+using CoreGraphics;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
+using Hestia.backend;
+using Hestia.frontend;
+using Hestia.Resources;
+using UIKit;
+using System;
+using System.Collections.Generic;
+using Hestia.backend.speech_recognition;
+using Hestia.DevicesScreen.EditDevice;
 
 namespace Hestia.DevicesScreen
 {
-    public partial class UITableViewControllerDevicesMain : UITableViewController
+    public partial class UITableViewControllerDevicesMain : UITableViewController, IViewControllerSpeech
     {
+        const int TableViewHeaderHeight = 35;
+        const int TableViewHeaderTopPadding = 5;
+        const int IconDimension = 50;
+
+        private SpeechRecognition speechRecognizer;
+
        // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
         // Edit button in top right (is shown initially)
         UIBarButtonItem edit;
 
-        List<Device> devices = new List<Device>();
+        List<Device> devices;
 
         // Constructor
         public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
@@ -27,41 +37,122 @@ namespace Hestia.DevicesScreen
         {
             DevicesTable.SetEditing(false, true);
             NavigationItem.LeftBarButtonItem = edit;
-            ((TableSource)DevicesTable.Source).DidFinishTableEditing(DevicesTable);
+            ((TableSourceDevicesMain)DevicesTable.Source).DidFinishTableEditing(DevicesTable);
         }
 
         public void SetEditingState()
         {
-            ((TableSource)DevicesTable.Source).WillBeginTableEditing(DevicesTable);
+            ((TableSourceDevicesMain)DevicesTable.Source).WillBeginTableEditing(DevicesTable);
             DevicesTable.SetEditing(true, true);
             NavigationItem.LeftBarButtonItem = done;
         }
 
         public void RefreshDeviceList()
         {
-            // Get the list with devices
+            TableSourceDevicesMain source = new TableSourceDevicesMain(this);
+            source.serverDevices = new List<List<Device>>();
             if (Globals.LocalLogin)
             {
+                source.numberOfServers = int.Parse(strings.defaultNumberOfServers);
                 try
                 {
-                    devices = Globals.GetDevices();
+                    devices = Globals.LocalServerinteractor.GetDevices();
+                    source.serverDevices.Add(devices);
                 }
                 catch (ServerInteractionException ex)
                 {
-                    Console.Out.WriteLine("Exception while getting devices from server");
-                    Console.Out.WriteLine(ex.ToString());
+                    HandleException(source, ex);
                 }
             }
-            // In case of Global login, devices are fetch in construtor of TableSource
-            DevicesTable.Source = new TableSource(devices, this); 
+            else
+            {
+                devices = new List<Device>();
+                source.numberOfServers = Globals.GetNumberOfSelectedServers();
+                foreach (HestiaServerInteractor interactor in Globals.GetInteractorsOfSelectedServers())
+                {
+                    try
+                    {
+                        List<Device> tempDevices = interactor.GetDevices();
+                        source.serverDevices.Add(tempDevices);
+                        devices.AddRange(tempDevices);
+                    }
+                    catch (ServerInteractionException ex)
+                    {
+                        HandleException(source, ex);
+                    }
+                }
+            }
+            DevicesTable.Source = source;
         }
 
-		public override void ViewDidLoad()
+        void HandleException(TableSourceDevicesMain source, ServerInteractionException ex)
+        {
+            Console.WriteLine("Exception while getting devices from local server");
+            Console.WriteLine(ex);
+            new WarningMessage("Could not refresh devices", "Exception while getting devices from local server", this);
+            source.serverDevices = new List<List<Device>>();
+            TableView.ReloadData();
+        }
+
+        public UIView GetTableViewHeader(bool isEditing)
+        {
+            UIView view = new UIView(new CGRect(0, 0, TableView.Bounds.Width, TableViewHeaderHeight));
+
+            // Voice control / add device button
+            UIButton button = new UIButton(UIButtonType.System);
+            button.Frame = new CGRect(TableView.Bounds.Width / 2 - IconDimension / 2, TableViewHeaderTopPadding, IconDimension, IconDimension);
+            if (isEditing)
+            {
+                button.SetBackgroundImage(UIImage.FromBundle(strings.addDeviceIcon), UIControlState.Normal);
+            }
+            else
+            {
+                button.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIcon), UIControlState.Normal);
+            }
+
+            button.TouchDown += (object sender, EventArgs e) =>
+            {
+                if(!isEditing)
+                {
+                    speechRecognizer = new SpeechRecognition(this, this);
+                    speechRecognizer.StartRecording();
+                }
+            };
+
+            button.TouchUpInside += (object sender, EventArgs e) =>
+            {
+                if (isEditing)
+                {   // segue to add device
+                    ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
+                }
+                else
+                {
+                    speechRecognizer.StopRecording();
+                }
+            };
+
+            button.TouchDragExit += (object sender, EventArgs e) =>
+            {
+                if(!isEditing)
+                {
+                    speechRecognizer.CancelRecording();
+                }
+            };
+
+            view.AddSubview(button);
+            return view;
+        }
+
+        public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
+
+            // Get the voice control button
+            DevicesTable.TableHeaderView = GetTableViewHeader(false);
+    
             RefreshDeviceList();
             Globals.DefaultLightGray = TableView.BackgroundColor;
-            // To tap row in editing mode for changing name
+            // To be able to tap row in editing mode for changing name
             DevicesTable.AllowsSelectionDuringEditing = true;  
 
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
@@ -82,12 +173,17 @@ namespace Hestia.DevicesScreen
             NavigationItem.RightBarButtonItem = SettingsButton;
         }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            RefreshDeviceList();
+        }
         partial void SettingsButton_Activated(UIBarButtonItem sender)
         {
             if(Globals.LocalLogin)
             {
                 UITableViewControllerLocalSettingsScreen uITableViewControllerLocalSettingsScreen =
-                     this.Storyboard.InstantiateViewController("LocalSettingsScreen")
+                    this.Storyboard.InstantiateViewController(strings.LocalSettingsScreen)
                           as UITableViewControllerLocalSettingsScreen;
                 if (uITableViewControllerLocalSettingsScreen != null)
                 {
@@ -97,7 +193,7 @@ namespace Hestia.DevicesScreen
             else
             {
                 UITableViewControllerGlobalSettingsScreen uITableViewControllerGlobalSettingsScreen =
-                    this.Storyboard.InstantiateViewController("GlobalSettingsScreen")
+                    this.Storyboard.InstantiateViewController(strings.GlobalSettingsScreen)
                          as UITableViewControllerGlobalSettingsScreen;
                 if (uITableViewControllerGlobalSettingsScreen != null)
                 {
@@ -107,13 +203,96 @@ namespace Hestia.DevicesScreen
         }
 
         //Method Pull to refresh
-        private void RefreshTable(object sender, EventArgs e)
+        void RefreshTable(object sender, EventArgs e)
         {
             RefreshControl.BeginRefreshing();
             RefreshDeviceList();
             TableView.ReloadData();
             RefreshControl.EndRefreshing();
+        }
 
+        public void ProcessSpeech(string result)
+        {
+            Device device;
+            result = result.ToLower();
+            if (result.Contains("activate") || (result.Contains("turn") && result.Contains("on")))
+            {
+                device = GetDevice(result);
+                if (device != null)
+                {
+                    SetDevice(device, true);
+                }
+            }
+            else if (result.Contains("deactivate") || (result.Contains("turn") && result.Contains("off")))
+            {
+                device = GetDevice(result);
+                if (device != null)
+                {
+                    SetDevice(device, false);
+                }
+                else
+                {
+                    new WarningMessage(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                }
+            } 
+            else if( result.Contains("add device") || (result.Contains("new device")))
+            {
+                ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
+            } 
+            else if (result.Contains("edit")) 
+            {
+                device = GetDevice(result);
+                if (device != null)
+                {
+                    UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this);
+                    editViewController.device = device;
+                    NavigationController.PushViewController(editViewController, true);
+                }
+                else 
+                {
+                    new WarningMessage(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                }
+            }
+            else
+            {
+                new WarningMessage(result + " " + strings.speechNotACommand, strings.tryAgain, this);
+            }
+        }
+
+        public void SetDevice(Device device, bool on_off)
+        {
+            foreach (backend.models.Activator act in device.Activators)
+            {
+                if (act.State.Type == "bool")
+                {
+                    try
+                    {
+                        act.State = new ActivatorState(on_off, "bool");
+                        RefreshControl.BeginRefreshing();
+                        RefreshDeviceList();
+                        TableView.ReloadData();
+                        RefreshControl.EndRefreshing();
+                    }
+                    catch (ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while changing activator state");
+                        Console.WriteLine(ex.ToString());
+                    }
+                    return;
+                }
+            }
+        }
+
+        public Device GetDevice(string result)
+        {
+            foreach (Device device in devices)
+            {
+                if (result.Contains(device.Name.ToLower()))
+                {
+                    return device;
+                }
+            }
+            return null;
         }
     }
 }

@@ -2,12 +2,14 @@
 using Foundation;
 using CoreGraphics;
 
-
 namespace Hestia.DevicesScreen.AddDeviceScreen
 {
     public class PropertyCell : UITableViewCell
     {
         public UITextField inputField;
+        const int IndentationLeft = 15;
+        const int IndentationTop = 4;
+
         public PropertyCell(NSString cellId) : base(UITableViewCellStyle.Default, cellId)
         {
             // Create inputfield and add it to the cell
@@ -18,7 +20,7 @@ namespace Hestia.DevicesScreen.AddDeviceScreen
         public override void LayoutSubviews()
         {
             base.LayoutSubviews();
-            inputField.Frame = new CGRect(15, 4, ContentView.Bounds.Width - 30, ContentView.Bounds.Height - 8);
+            inputField.Frame = new CGRect(IndentationLeft, IndentationTop, ContentView.Bounds.Width - 2 * IndentationLeft, ContentView.Bounds.Height - 2 * IndentationTop);
         }
     }
 }
