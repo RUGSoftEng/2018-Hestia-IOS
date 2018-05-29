@@ -85,16 +85,18 @@ namespace UITests
             app.Tap(t => t.Text("philips"));
             app.Tap(t => t.Text("colorLight"));
 
-            var l = app.Query(t => t.Text("NAME"));
-            app.TapCoordinates(l[1].Rect.CenterX, l[1].Rect.CenterY + 20);
+            app.Tap(b => b.Button("Save"));
+            app.Tap(t => t.Text("OK"));
+
+            var n = app.Query(t => t.Text("NAME"));
+            app.TapCoordinates(n[1].Rect.CenterX, n[1].Rect.CenterY + 20);
             app.EnterText("Test");
 
-
-            l = app.Query(t => t.Text("BRIDGE_IP"));
-            app.TapCoordinates(l[1].Rect.CenterX, l[1].Rect.CenterY + 20);
+            var br = app.Query(t => t.Text("BRIDGE_IP"));
+            app.TapCoordinates(br[1].Rect.CenterX, br[1].Rect.CenterY + 20);
             app.EnterText("1");
             app.Tap(b => b.Button("Save"));
-            app.Tap(t => t.Text("Test"));
+            app.Tap(t => t.Text("OK"));
         }
 
         [Test]
@@ -127,31 +129,29 @@ namespace UITests
             app.Tap(t => t.Text("Connect"));
             app.Tap(t => t.Text("OK"));
 
-            app.Tap(t => t.Text("Enter IP"));
-            app.EnterText("0.0.0.0");
-            app.Tap(t => t.Text("Connect"));
-            app.Tap(t => t.Text("OK"));
-            app.Tap(b => b.Button("Clear text"));
-
-            app.EnterText("94.212.164.28");
-            app.Tap(t => t.Text("Connect"));
-            app.Tap(t => t.Text("OK"));
-            app.Tap(b => b.Button("Clear text"));
-
             app.Tap(t => t.Text("Enter name"));
             app.EnterText("Hestia");
             app.Tap(t => t.Text("Connect"));
             app.Tap(t => t.Text("OK"));
 
             app.Tap(t => t.Text("Enter IP"));
+            app.EnterText("A");
+            app.Tap(t => t.Text("Connect"));
+            app.Tap(t => t.Text("OK"));
+            app.ClearText();
+
+            app.EnterText("123");
+            app.Tap(t => t.Text("Connect"));
+            app.Tap(t => t.Text("OK"));
+            app.ClearText();
+
             app.EnterText("0.0.0.0");
             app.Tap(t => t.Text("Connect"));
             app.Tap(t => t.Text("OK"));
-            app.Tap(b => b.Button("Clear text"));
+            app.ClearText();
 
             app.EnterText("94.212.164.28");
             app.Tap(t => t.Text("Connect"));
-            app.Tap(t => t.Text("OK"));
         }
     }
 }
