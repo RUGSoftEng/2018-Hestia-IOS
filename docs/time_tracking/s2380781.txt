@@ -299,3 +299,82 @@ Work meeting with the team. Working on integration of back end webserver code in
 Reviewing PRs. Adding text in local/global screen.
 Tested ServerDiscovery TableView and fixed the project file of that branch
 Fixed the Device backend changes in frontend.
+Fixing for deployment with Zino. Testing Philips Hue
+Fixing for deployment with Zino. Testing Philips Hue
+Fixing for deployment with Zino. Testing Philips Hue
+Fixing for deployment with Zino. Testing Philips Hue
+Fixing bugs for deployment
+Fixing bugs for deployment
+Team meeting
+Deployment + moving code from tablesource to controller
+Deployment + moving code from tablesource to controller
+Working out meeting notes + sending to Feiko and Lars
+Adding Trello cards + asking Tom to do pop up change
+Reading about code documentation. Trying to authorize and add a new server to webserver
+Reading about code documentation. Trying to authorize and add a new server to webserver
+Fixing server connect screen
+Fixing server connect screen
+Updated appdelegate
+Fixing local/global + fixing other comments Feiko and replying. Fixing conflicting server connect screens.
+Fixing local/global + fixing other comments Feiko and replying. Fixing conflicting server connect screens.
+Fixing local/global + fixing other comments Feiko and replying. Fixing conflicting server connect screens.
+Fixing local/global + fixing other comments Feiko and replying. Fixing conflicting server connect screens.
+Fixing local/global + fixing other comments Feiko and replying. Fixing conflicting server connect screens.
+Made the changes Daan requested on my PR. Warning message Class + warning remove device
+Trying to solve the exception + cancel button server list
+Trying to solve the exception + cancel button server list
+Cancel button add device screen. Fix bug remembering IP + cancel button add device screens. Moved buttons in local /global to viewdidappear
+Cancel button add device screen. Fix bug remembering IP + cancel button add device screens. Moved buttons in local /global to viewdidappear
+No selectable cell add device property + fix lagged behavior switch
+Merge release branch in fix/deployment. Solve merge conflict. Trying to find bug.
+Merge release branch in fix/deployment. Solve merge conflict. Trying to find bug.
+Incorporating backend changes https in frontend. Show serverlist before global defaults  + warning message
+Incorporating backend changes https in frontend. Show serverlist before global defaults  + warning message
+Incorporating backend changes https in frontend. Show serverlist before global defaults  + warning message
+Servername in header devices main. Server select in settings screen + fix bug in server select
+Team working meeting. Working with Zino on fixing server discovery
+Team working meeting. Working with Zino on fixing server discovery
+Team meeting deviding trello tasks
+Working with Zino on server discovery. Helping Daan, Tom and Juan with questions
+Working with Zino on server discovery. Helping Daan, Tom and Juan with questions
+Working with Zino on server discovery. Helping Daan, Tom and Juan with questions
+Looking at better provisioning way/ apple developer accounts
+Test regex/ review PR
+Fix bug in cancel button + Added Warning message activator state
+Add device icon on top
+Voice control button
+Voice control button
+Voice control button
+Voice control button
+Add device/voice control button
+Add device/voice control button
+Cleaning tablesource devices main + fix cancel button server
+Cleaning tablesource devices main + fix cancel button server
+Cleaning tablesource devices main + fix cancel button server
+Removing warning messages for deleted device (bug in server). Still trying to fix the cancel button issue
+Removing warning messages for deleted device (bug in server). Still trying to fix the cancel button issue
+Removing warning messages for deleted device (bug in server). Still trying to fix the cancel button issue
+Removing warning messages for deleted device (bug in server). Still trying to fix the cancel button issue
+Setting up VS on windows + mac build server to test voice recognition (didn’t work)
+Setting up VS on windows + mac build server to test voice recognition (didn’t work)
+Setting up VS on windows + mac build server to test voice recognition (didn’t work)
+Fix merge conflict + review PR Daan. Fix serverlist cancel button. Resolve conflicts + make PR
+Fix merge conflict + review PR Daan. Fix serverlist cancel button. Resolve conflicts + make PR
+Resolve merge conflict. Fix https bugs + reuse identifiers
+Resolve merge conflict. Fix https bugs + reuse identifiers
+Replace display warning messages
+Cleaning code + replacing warning messages
+Cleaning code + replacing warning messages
+Speech button local/global. Code cleaning
+Speech button local/global. Code cleaning
+Fix null reference exception bug in add device Philips regex. Testing Phlips plugins + adding exception handling
+Fix null reference exception bug in add device Philips regex. Testing Phlips plugins + adding exception handling
+Fix null reference exception bug in add device Philips regex. Testing Phlips plugins + adding exception handling
+Refactoring front end
+Update requirements document
+Update requirements document + architecture document
+Updating architecture document 
+Updating architecture document 
+Updating architecture document 
+Updating architecture document + collecting documents + PR
+Updating timetracking
