@@ -211,22 +211,23 @@ namespace Hestia.DevicesScreen
 
         public void ProcessSpeech(string result)
         {
-            List<Device> devices = new List<Device>();
             Device device;
-
+            result = result.ToLower();
             if (result.Contains(value: "activate") ||
                 (result.Contains(value: "turn") && result.Contains(value: "on")))
             {
-                device = GetDevice(result, devices);
+                Console.WriteLine("Yes");
+                device = GetDevice(result);
                 if (device != null)
                 {
+                    Console.WriteLine("Whooo");
                     SetDevice(device, true);
                 }
             }
             else if (result.Contains(value: "deactivate") ||
               (result.Contains(value: "turn") && result.Contains(value: "off")))
             {
-                device = GetDevice(result, devices);
+                device = GetDevice(result);
                 if (device != null)
                 {
                     SetDevice(device, false);
@@ -244,6 +245,10 @@ namespace Hestia.DevicesScreen
                     try
                     {
                         act.State = new ActivatorState(rawState: on_off, type: "bool");
+                        RefreshControl.BeginRefreshing();
+                        RefreshDeviceList();
+                        TableView.ReloadData();
+                        RefreshControl.EndRefreshing();
                     }
                     catch (ServerInteractionException ex)
                     {
@@ -255,11 +260,13 @@ namespace Hestia.DevicesScreen
             }
         }
 
-        public Device GetDevice(string result, List<Device> list)
+        public Device GetDevice(string result)
         {
+            List<Device> list = Globals.GetDevices();
             foreach (Device device in list)
             {
-                if (result.Contains(value: device.Name))
+                Console.WriteLine(device.Name.ToLower() + " " + result);
+                if (result.Contains(value: device.Name.ToLower()))
                 {
                     return device;
                 }

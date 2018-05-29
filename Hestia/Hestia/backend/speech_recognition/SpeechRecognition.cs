@@ -3,10 +3,6 @@ using Speech;
 using Foundation;
 using AVFoundation;
 using Plugin.SimpleAudioPlayer;
-using System.Threading;
-using System.Collections.Generic;
-using Hestia.backend.models;
-using Hestia.backend.exceptions;
 
 namespace Hestia.backend.speech_recognition
 {
@@ -23,8 +19,6 @@ namespace Hestia.backend.speech_recognition
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
         private ISpeech controller;
-        private string result = null;
-        private bool finished = false;
         private ISimpleAudioPlayer player;
 
         public SpeechRecognition(ISpeech controller)
@@ -109,7 +103,6 @@ namespace Hestia.backend.speech_recognition
                     {
                         Console.WriteLine(result.BestTranscription.FormattedString);
                         controller.ProcessSpeech(result.BestTranscription.FormattedString);
-                        finished = true;
                     }
                 }
             });
@@ -124,7 +117,6 @@ namespace Hestia.backend.speech_recognition
 
             AudioEngine.Stop();
             LiveSpeechRequest.EndAudio();
-            RecognitionTask.Cancel();
 
             // Play stop sound
             if (player.IsPlaying) player.Stop();
