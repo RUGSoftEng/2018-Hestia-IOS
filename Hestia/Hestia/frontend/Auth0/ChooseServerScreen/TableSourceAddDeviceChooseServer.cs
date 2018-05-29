@@ -4,14 +4,14 @@ using Foundation;
 
 using Hestia.DevicesScreen.resources;
 
-namespace Hestia.Auth0
+namespace Hestia
 {
     public class TableSourceAddDeviceChooseServer : UITableViewSource
     {
         // The viewController in which the TableView connected to this Source lives in
-        UITableViewControllerChooseServer owner;
+        ViewControllerChooseServer owner;
 
-        public TableSourceAddDeviceChooseServer(UITableViewControllerChooseServer owner)
+        public TableSourceAddDeviceChooseServer(ViewControllerChooseServer owner)
         {
             this.owner = owner;
         }
