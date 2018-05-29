@@ -282,9 +282,6 @@
   <data name="defaultsAccessTokenHestia" xml:space="preserve">
     <value>accessTokenHestia</value>
   </data>
-  <data name="defaultsIdentityTokenHestia" xml:space="preserve">
-    <value>identityTokenHestia</value>
-  </data>
   <data name="devices2StoryBoard" xml:space="preserve">
     <value>Devices2</value>
   </data>
@@ -313,7 +310,7 @@
     <value>users/</value>
   </data>
   <data name="webserverIP" xml:space="preserve">
-    <value>fathomless-reef-69954.herokuapp.com</value>
+    <value>https://fathomless-reef-69954.herokuapp.com</value>
   </data>
   <data name="segueToServerDiscovery" xml:space="preserve">
     <value>serverDiscoverySegue</value>
@@ -323,5 +320,62 @@
   </data>
   <data name="segueToLocalGlobalToServerSelect" xml:space="preserve">
     <value>localGlobalToServerSelect</value>
+  </data>
+  <data name="selectServerTitle" xml:space="preserve">
+    <value>Select servers</value>
+  </data>
+  <data name="addDeviceIcon" xml:space="preserve">
+    <value>AddDeviceIcon</value>
+  </data>
+  <data name="voiceControlIcon" xml:space="preserve">
+    <value>VoiceControlIcon</value>
+  </data>
+  <data name="LocalSettingsScreen" xml:space="preserve">
+    <value>LocalSettingsScreen</value>
+  </data>
+  <data name="GlobalSettingsScreen" xml:space="preserve">
+    <value>GlobalSettingsScreen</value>
+  </data>
+  <data name="AddDeviceChooseServerViewController" xml:space="preserve">
+    <value>AddDeviceChooseServer</value>
+  </data>
+  <data name="AddManufacturerViewController" xml:space="preserve">
+    <value>AddManufacturer</value>
+  </data>
+  <data name="speechAccessDenied" xml:space="preserve">
+    <value>Access to speech recognition denied</value>
+  </data>
+  <data name="speechAllowAccess" xml:space="preserve">
+    <value>Please allow access to speech recognition in settings.</value>
+  </data>
+  <data name="speechNotACommand" xml:space="preserve">
+    <value>is not a command.</value>
+  </data>
+  <data name="speechRecordError" xml:space="preserve">
+    <value>Error while recording.</value>
+  </data>
+  <data name="speechStartRecordProblem" xml:space="preserve">
+    <value>Couldn't start recording, something went wrong</value>
+  </data>
+  <data name="tryAgain" xml:space="preserve">
+    <value>Please try again.</value>
+  </data>
+  <data name="defaultPrefix" xml:space="preserve">
+    <value>https://</value>
+  </data>
+  <data name="voiceControlIconInverted" xml:space="preserve">
+    <value>VoiceControlIconInverted</value>
+  </data>
+  <data name="noDeviceFound" xml:space="preserve">
+    <value>No device found</value>
+  </data>
+  <data name="pronounceDeviceNameCorrectly" xml:space="preserve">
+    <value>Please make sure you have pronounced the device name correctly.</value>
+  </data>
+  <data name="viewControllerAddDeviceProperties" xml:space="preserve">
+    <value>AddDeviceProperties</value>
+  </data>
+  <data name="viewControllerAddDevice" xml:space="preserve">
+    <value>AddDevice</value>
   </data>
 </root>

@@ -104,12 +104,34 @@ Date Hour Activity
 	10:30 Adding pull to refresh to device list.
 	11:00 Adding pull to refresh to device list.
 
-3/4/18 9:00 Meeting with the group.
+3/5/18 9:00 Meeting with the group.
 	9:30 Meeting with the group.
 	10:00 Meeting with the group.
 	10:30 Meeting with the group.
 
-4/4/18 9:00 Adding accessory to add device.
+4/5/18 9:00 Adding accessory to add device.
 	9:30 Adding accessory to add device.
 	10:00 Adding accessory to add device.
 	10:30 Adding accessory to add device.
+
+15/5/18 9:00 Work meeting with the group.
+	9:30 Work meeting with the group.
+	10:00 Work meeting with the group.
+	10:30 Work meeting with the group.
+
+17/5/18 9:00 Meeting with the client.
+	9:30 Meeting with the client.
+
+22/5/18 10:00 trying to add regex in add device screen.
+	10:30 trying to add regex in add device screen.
+	11:00 trying to add regex in add device screen.
+	12:30 Meeting with the group to discuss the remaining work.
+	13:00 Meeting with the group to discuss the remaining work.
+	13:30 Meeting with the group to discuss the remaining work.
+	14:00 Adding regex to the add device screen.
+	14:30 Adding regex to the add device screen.
+	15:00 Adding regex to the add device screen.
+
+23/5/18 11:00 Fixing regex and namespaces for the front end.
+	11:30 Fixing regex and namespaces for the front end.
+	12:00 Fixing regex and namespaces for the front end.

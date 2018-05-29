@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UIKit;
-using Foundation;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
-using System.Drawing;
 using System.Collections;
-using Hestia.backend;
 using Hestia.backend.exceptions;
-using Hestia.backend.models;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -29,6 +26,7 @@ namespace Hestia
         {
             base.ViewDidLoad();
             // The list with manufacturers
+            collections = new List<string>();
             try
             {
                 collections = Globals.ServerToAddDeviceTo.GetCollections();
@@ -43,11 +41,23 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while using serverInteractor");
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex);
+                WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to get available plugins", this);
             }
             
             // Contains methods that describe behavior of table
             TableView.Source = new TableSourceAddDeviceManufacturer(collections, collection_plugins, this);
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            // Cancel button to go back to Devices main screen
+            UIBarButtonItem cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) =>
+            {
+                NavigationController.PopToRootViewController(true);
+            });
+            NavigationItem.RightBarButtonItem = cancel;
         }
     }
 }

@@ -2,12 +2,7 @@
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
-
-using Hestia.DevicesScreen.resources;
-using System.Drawing;
 using System.Collections;
-using Hestia.backend;
-using Hestia.backend.models;
 
 namespace Hestia.DevicesScreen
 {
@@ -66,7 +61,7 @@ namespace Hestia.DevicesScreen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewControllerAddDeviceDevice addDeviceType =
-                owner.Storyboard.InstantiateViewController("AddDevice") 
+                owner.Storyboard.InstantiateViewController(Resources.strings.viewControllerAddDevice) 
                     as UITableViewControllerAddDeviceDevice;
             if (addDeviceType != null)
             {

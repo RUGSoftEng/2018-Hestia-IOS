@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
-using System.Drawing;
-
-using System.Collections;
-using CoreGraphics;
 using Hestia.backend;
 using Hestia.backend.models;
 using Hestia.Resources;
@@ -17,6 +13,7 @@ namespace Hestia.DevicesScreen.resources
         public static bool LocalLogin { get; set; }
         public static UIColor DefaultLightGray { get; set; }
         public static String UserName { get; set; }
+        public static string Prefix { get; set; }
 
         public static int ScreenHeight { get; set;  }
         public static int ScreenWidth { get; set;  }
@@ -24,14 +21,13 @@ namespace Hestia.DevicesScreen.resources
         // Variables for local server
         public static HestiaServerInteractor LocalServerinteractor { get; set; }
         public static String ServerName { get; set; }
-        public static int Port { get; set; }
-        public static String IP { get; set; }
+        public static String Address { get; set; }
 
         // Variables for global server
         public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
         public static List<HestiaServer> Auth0Servers { get; set; }
 
-        public static List<HestiaServerInteractor> GetSelectedServers()
+        public static List<HestiaServerInteractor> GetInteractorsOfSelectedServers()
         {
             List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
             foreach(HestiaServer auth0server in Auth0Servers)
@@ -44,56 +40,23 @@ namespace Hestia.DevicesScreen.resources
             return serverInteractors;
         }
 
-        public static nint GetNumberOfSelectedServers()
+        public static List<HestiaServer> GetSelectedServers()
         {
-            return GetSelectedServers().Count;
-        }
-
-        // Get devices for only local servers or selected Firebase Servers
-        public static List<Device> GetDevices()
-        {
-            List<Device> devices = new List<Device>();
-            if (LocalLogin)
+            List<HestiaServer> servers = new List<HestiaServer>();
+            foreach (HestiaServer auth0server in Auth0Servers)
             {
-                devices = LocalServerinteractor.GetDevices();
-            }
-            else
-            {
-                foreach (HestiaServerInteractor server in GetSelectedServers())
+                if (auth0server.Selected)
                 {
-                    devices.AddRange(server.GetDevices());
+                    servers.Add(auth0server);
                 }
             }
-            return devices;
+            return servers;
         }
 
-        public static NetworkHandler GetTemporyNetworkHandler()
+        public static nint GetNumberOfSelectedServers()
         {
-            NetworkHandler temp_networkhandler;
-            if(LocalLogin)
-            {
-                temp_networkhandler = new NetworkHandler(IP, Port);
-            }
-            else
-            {
-                temp_networkhandler = new NetworkHandler(Auth0Servers[0].Interactor.NetworkHandler.Ip, Auth0Servers[0].Interactor.NetworkHandler.Port);
-            }
-            return temp_networkhandler;
+            return GetInteractorsOfSelectedServers().Count;
         }
-
-		public static HestiaServerInteractor GetTemporaryServerInteractor()
-		{
-			HestiaServerInteractor temp_serverinteractor;
-            if (LocalLogin)
-            {
-				temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(IP, Port));
-            }
-            else
-            {
-				temp_serverinteractor = Auth0Servers[0].Interactor;
-            }
-			return temp_serverinteractor;
-		}
 
         public static void ResetAllUserDefaults()
         {
@@ -103,9 +66,6 @@ namespace Hestia.DevicesScreen.resources
             userDefaults.RemoveObject(strings.defaultsPortHestia);
             userDefaults.RemoveObject(strings.defaultsLocalHestia);
             userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
-            userDefaults.RemoveObject(strings.defaultsIdentityTokenHestia);
         }
-
-       // public static Reset
     }
 }

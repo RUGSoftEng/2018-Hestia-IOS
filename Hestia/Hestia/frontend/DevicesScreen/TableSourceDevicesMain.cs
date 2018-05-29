@@ -4,67 +4,39 @@ using UIKit;
 using Foundation;
 
 using Hestia.DevicesScreen.resources;
-using System.Drawing;
-using System.Collections;
 using Hestia.DevicesScreen.ActivatorScreen;
-using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
+using Hestia.Resources;
+using System.Diagnostics.Contracts;
 
 namespace Hestia.DevicesScreen
 {
-    public class TableSource : UITableViewSource
+    public class TableSourceDevicesMain : UITableViewSource
     {
         // The viewController to which the TableView connected to this Source lives in
         UITableViewControllerDevicesMain owner;
 
         // Multiple Server case
-        nint numberOfServers;
-        List<List<Device>> serverDevices;
+        public nint numberOfServers;
+        public List<List<Device>> serverDevices;
 
         Device GetSectionRow(NSIndexPath indexPath)
         {
-            return serverDevices[(int)indexPath.Section][(int)indexPath.Row];
+            Contract.Ensures(Contract.Result<Device>() != null);
+            return serverDevices[indexPath.Section][indexPath.Row];
         }
 
         void RemoveDeviceAt(NSIndexPath indexPath)
         {
-            serverDevices[(int)indexPath.Section].RemoveAt((int)indexPath.Row);
-        }
-
-        void AddDevice(NSIndexPath indexPath, Device device)
-        {
-            serverDevices[(int)indexPath.Section].Add(device);
+            serverDevices[indexPath.Section].RemoveAt(indexPath.Row);
         }
 
         // Constructor. Gets the device data (local) and the ViewController
-        public TableSource(List<Device> items, UITableViewControllerDevicesMain owner)
+        public TableSourceDevicesMain(UITableViewControllerDevicesMain owner)
         {
-            var TableItems = items;
             this.owner = owner;
-            if (Globals.LocalLogin)
-            {
-                numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
-                serverDevices = new List<List<Device>>();
-                serverDevices.Add(TableItems);
-            }
-            else
-            {
-                serverDevices = new List<List<Device>>();
-                numberOfServers = Globals.GetNumberOfSelectedServers();
-                foreach (HestiaServerInteractor interactor in Globals.GetSelectedServers())
-                {
-                    try
-                    {
-                        serverDevices.Add(interactor.GetDevices());
-                    } catch(ServerInteractionException ex)
-                    {
-                        Console.WriteLine("Exception while getting devices from server " + interactor.ToString());
-                        Console.WriteLine(ex.ToString());
-                    }
-                }
-            }
         }
 
         public override nint NumberOfSections(UITableView tableView)
@@ -75,7 +47,12 @@ namespace Hestia.DevicesScreen
         // The number of devices in the list per section
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return serverDevices[(int)section].Count;
+            if (serverDevices.Count <= 0)
+            {
+                return 0;
+            }
+            int count = serverDevices[(int)section].Count;
+            return count;
         }
 
         // Important method. Called to generate a cell to display
@@ -90,11 +67,8 @@ namespace Hestia.DevicesScreen
                 cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.devicesMainCell);
             }
 
-            if (serverDevices[indexPath.Section][indexPath.Row].Name != "New Device")
-            {
-                cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
-                cell.Accessory = UITableViewCellAccessory.DisclosureIndicator;
-            }
+            cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
+            cell.Accessory = UITableViewCellAccessory.None;
 
             // The text to display on the cell is the device name
             cell.TextLabel.Text = serverDevices[indexPath.Section][indexPath.Row].Name;
@@ -102,8 +76,7 @@ namespace Hestia.DevicesScreen
             return cell;
         }
 
-        // Devices what happens if touch on row.
-        // Should display the slider(s) ultimately
+        // Displays activators or go to edit device screen when in editing mode
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             if (!tableView.Editing)
@@ -112,79 +85,68 @@ namespace Hestia.DevicesScreen
                 if (d.Activators.Count != 0)
                 {
                     var popupNavVC = new UITableViewActivators();
+                    popupNavVC.Title = d.Name;
                     popupNavVC.device = d;
-                    nfloat heightPop = tableView.RowHeight * 2;
-                    popupNavVC.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
-                    popupNavVC.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-                    var popPresenter = popupNavVC.PopoverPresentationController;
+
+
+                    var navigationController = new UINavigationController(popupNavVC);
+                    navigationController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
+                    navigationController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
+
+                    nfloat heightPop = 20 + navigationController.NavigationBar.Frame.Size.Height;
+                    var popPresenter = navigationController.PopoverPresentationController;
                     popPresenter.SourceView = this.owner.View;
                     popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight/2-heightPop, 0, 0);
                     popPresenter.Delegate = new PopoverDelegate();
                     popPresenter.PermittedArrowDirections = 0;
                     popPresenter.BackgroundColor = UIColor.White;
-                    this.owner.PresentViewController(popupNavVC, true, null);
+                    this.owner.PresentViewController(navigationController, true, null);
+
                 }
-                tableView.DeselectRow(indexPath, true);
             }
             // Go to edit name window for non-insert cells
-            else if (tableView.Editing && tableView.CellAt(indexPath).EditingStyle != UITableViewCellEditingStyle.Insert)
+            else
             {
                 UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this.owner);
                 editViewController.device = GetSectionRow(indexPath);
-                this.owner.NavigationController.PushViewController(editViewController, true);
-                tableView.DeselectRow(indexPath, true);
+                owner.NavigationController.PushViewController(editViewController, true);
             }
-            else if (tableView.Editing && tableView.CellAt(indexPath).EditingStyle == UITableViewCellEditingStyle.Insert)
-            {
-                InsertAction();
-                tableView.DeselectRow(indexPath, true);
-            }
+            tableView.DeselectRow(indexPath, true);
         }
 
         public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
-        {
-            switch (editingStyle)
+        {   
+            if (Globals.LocalLogin)
             {
-                case UITableViewCellEditingStyle.Delete:
-                    if (Globals.LocalLogin)
-                    {
-                        try
-                        {
-                            // remove device from server 
-                            Globals.LocalServerinteractor.RemoveDevice(serverDevices[indexPath.Section][indexPath.Row]);
-                        }
-                        catch (ServerInteractionException ex)
-                        {
-                            Console.WriteLine("Exception while removing device");
-                            Console.Out.WriteLine(ex.ToString());
-                        }
-                    }
-                    else
-                    {
-                        var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
-						var deviceServerInteractor = deviceInRow.ServerInteractor;
-                        try
-                        {
-                            deviceServerInteractor.RemoveDevice(deviceInRow);
-                        }
-                        catch (ServerInteractionException ex)
-                        {
-                            Console.WriteLine("Exception while removing device");
-                            Console.Out.WriteLine(ex.ToString());
-                        }
-                    }
-                    RemoveDeviceAt(indexPath);
-
-                    // delete the row from the table
-                    tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
-                    break;
-                case UITableViewCellEditingStyle.None:
-                    Console.WriteLine("CommitEditingStyle:None called");
-                    break;
-                case UITableViewCellEditingStyle.Insert:
-                    InsertAction();
-                    break;
+                try
+                {   // remove device from server   
+                    Globals.LocalServerinteractor.RemoveDevice(serverDevices[indexPath.Section][indexPath.Row]);
+                }
+                catch (ServerInteractionException ex)
+                {
+                    Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
+                    Console.Out.WriteLine(ex);
+                }
             }
+            else
+            {
+                var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
+				var deviceServerInteractor = deviceInRow.ServerInteractor;
+                try
+                {
+                    deviceServerInteractor.RemoveDevice(deviceInRow);
+                }
+                catch (ServerInteractionException ex)
+                {
+                    Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
+                    Console.Out.WriteLine(ex);
+                }
+            }
+            // Remove device from local list
+            RemoveDeviceAt(indexPath);
+
+            // delete the row from the table
+            tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
         }
 
         public void InsertAction()
@@ -192,16 +154,21 @@ namespace Hestia.DevicesScreen
             if (Globals.LocalLogin)
             {
                 Globals.ServerToAddDeviceTo = Globals.LocalServerinteractor;
-                UITableViewControllerAddDevice addDeviceVc =
-                    this.owner.Storyboard.InstantiateViewController("AddManufacturer")
-                         as UITableViewControllerAddDevice;
-                owner.NavigationController.PushViewController(addDeviceVc, true);
+                var addDeviceViewController =
+                    owner.Storyboard.InstantiateViewController(strings.AddManufacturerViewController);
+                if (addDeviceViewController != null)
+                {
+                    owner.NavigationController.PushViewController(addDeviceViewController, true);
+                }
             }
             else
             {
                 var addDeviceChooseServer =
-                    this.owner.Storyboard.InstantiateViewController("AddDeviceChooseServer") as UITableViewControllerAddDeviceChooseServer;
-                owner.NavigationController.PushViewController(addDeviceChooseServer, true);
+                    owner.Storyboard.InstantiateViewController(strings.AddDeviceChooseServerViewController);
+                if (addDeviceChooseServer != null)
+                {
+                    owner.NavigationController.PushViewController(addDeviceChooseServer, true);
+                }
             }
         }
 
@@ -211,75 +178,29 @@ namespace Hestia.DevicesScreen
             {
                 return true; // return false if you wish to disable editing for a specific indexPath or for all rows
             }
-            else
-            {
-                return false;
-            }
-        }
-
-        // Defines the red delete/add buttons before cell
-        public override UITableViewCellEditingStyle EditingStyleForRow(UITableView tableView, NSIndexPath indexPath)
-        {
-            if (tableView.Editing)
-            {
-                // Add new device below table
-                if (indexPath.Row == tableView.NumberOfRowsInSection(tableView.NumberOfSections() - 1) - 1
-                    && indexPath.Section == tableView.NumberOfSections() - 1)
-                    return UITableViewCellEditingStyle.Insert;
-                else
-                    return UITableViewCellEditingStyle.Delete;
-            }
-            else // not in editing mode, enable swipe-to-delete for all rows
-                return UITableViewCellEditingStyle.Delete;
-            // This above should change to pop-up for delete confirmation
+            return false;
         }
 
         // Is called after a press on edit button
         public void WillBeginTableEditing(UITableView tableView)
         {
-            tableView.BeginUpdates();
-            // insert the 'ADD NEW' row at the end of table display
-            var insertIndexpath = new NSIndexPath[] {
-                NSIndexPath.FromRowSection (tableView.NumberOfRowsInSection (tableView.NumberOfSections() - 1),
-                                            tableView.NumberOfSections() - 1)
-            };
-
-            tableView.InsertRows(insertIndexpath, UITableViewRowAnimation.Fade);
-
-            // create a new item and add it to our underlying data 
-            // This should not be permanently stored, but trigger the add new
-            // device screen on touch
-            List<backend.models.Activator> temp_activator = new List<backend.models.Activator>();
-			AddDevice(insertIndexpath[0], new Device(" ", "New Device", " ", temp_activator, Globals.GetTemporaryServerInteractor()));
-
-            tableView.EndUpdates(); // applies the changes
+            tableView.TableHeaderView = owner.GetTableViewHeader(true);
         }
 
         public void DidFinishTableEditing(UITableView tableView)
         {
-            tableView.BeginUpdates();
-         
-            var insertIndexpath = new NSIndexPath[] {
-                NSIndexPath.FromRowSection (tableView.NumberOfRowsInSection (tableView.NumberOfSections() - 1) - 1,
-                                            tableView.NumberOfSections() - 1)};
-
-            RemoveDeviceAt(insertIndexpath[0]);
-            tableView.DeleteRows(new NSIndexPath[] { NSIndexPath.FromRowSection(tableView.NumberOfRowsInSection(tableView.NumberOfSections() - 1) - 1, 
-                                            tableView.NumberOfSections() - 1) }, UITableViewRowAnimation.Fade);
-            
-            tableView.EndUpdates(); // applies the changes
+            tableView.TableHeaderView = owner.GetTableViewHeader(false);
         }
 
 		public override string TitleForHeader(UITableView tableView, nint section)
 		{
             if(Globals.LocalLogin)
             {
-                return Globals.LocalServerinteractor.ToString();
+                return Globals.ServerName + " " + Globals.Address + ":" + int.Parse(strings.defaultPort);
             }
-            else
-            {
-                return Globals.GetSelectedServers()[(int)section].ToString();
-            }
+
+            HestiaServer server = Globals.GetSelectedServers()[(int)section];
+            return server.Name + " " + server.Address + ":" + server.Port;
         }
    	}
 }

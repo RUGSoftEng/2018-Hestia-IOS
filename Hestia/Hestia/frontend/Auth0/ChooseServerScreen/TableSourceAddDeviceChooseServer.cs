@@ -8,10 +8,10 @@ namespace Hestia
 {
     public class TableSourceAddDeviceChooseServer : UITableViewSource
     {
-        // The viewController to which the TableView connected to this Source lives in
-        UITableViewControllerAddDeviceChooseServer owner;
+        // The viewController in which the TableView connected to this Source lives in
+        ViewControllerChooseServer owner;
 
-        public TableSourceAddDeviceChooseServer(UITableViewControllerAddDeviceChooseServer owner)
+        public TableSourceAddDeviceChooseServer(ViewControllerChooseServer owner)
         {
             this.owner = owner;
         }
@@ -38,21 +38,21 @@ namespace Hestia
                 cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.addDeviceChooseServerCell);
             }
 
-            cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].ToString();
+            cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].Name;
 
             return cell;
         }
 
-        // Pushes the properties window
+        // Pushes the choose manufacturer screen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         { 
-            Globals.ServerToAddDeviceTo = Globals.GetSelectedServers()[indexPath.Row];
+            Globals.ServerToAddDeviceTo = Globals.GetInteractorsOfSelectedServers()[indexPath.Row];
             UITableViewControllerAddDevice addDevice =
-                this.owner.Storyboard.InstantiateViewController("AddManufacturer")
+                owner.Storyboard.InstantiateViewController(Resources.strings.AddManufacturerViewController)
                     as UITableViewControllerAddDevice;
             if (addDevice != null)
             {
-                this.owner.NavigationController.PushViewController(addDevice, true);
+                owner.NavigationController.PushViewController(addDevice, true);
             }
         }
     }

@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
-
-
-using System.Drawing;
-using System.Collections;
-using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.resources;
+using Hestia.frontend;
 
 namespace Hestia.DevicesScreen
 {
@@ -23,14 +19,12 @@ namespace Hestia.DevicesScreen
         string collection;
 
         // Constructor. Gets the device data and the ViewController
-        public TableSourceAddDeviceDevice(List<string> plugins,
-                                          string collection,
+        public TableSourceAddDeviceDevice(List<string> plugins, string collection,
                     UITableViewControllerAddDeviceDevice owner)
         {
             this.plugins = plugins;
             this.owner = owner;
             this.collection = collection;
-
         }
 
         // We have only one section with devices (thus far)
@@ -63,12 +57,11 @@ namespace Hestia.DevicesScreen
             return cell;
         }
 
-
         // Pushes the properties window
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewControllerAddDeviceProperties addDeviceProperties = 
-                owner.Storyboard.InstantiateViewController("AddDeviceProperties") 
+                owner.Storyboard.InstantiateViewController(Resources.strings.viewControllerAddDeviceProperties) 
                     as UITableViewControllerAddDeviceProperties;
             if (addDeviceProperties != null)
             {
@@ -82,7 +75,8 @@ namespace Hestia.DevicesScreen
                 catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while getting required info");
-                    Console.WriteLine(ex.ToString());
+                    Console.WriteLine(ex);
+                    WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to get information for available plugins", owner);
                 }
             }
         }

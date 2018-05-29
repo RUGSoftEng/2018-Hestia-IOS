@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using UIKit;
 using Foundation;
-
-using Hestia.DevicesScreen.resources;
-using System.Drawing;
 using System.Collections;
-using Hestia.backend;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.AddDeviceScreen;
 
@@ -21,14 +16,13 @@ namespace Hestia.DevicesScreen
 
         UITableViewControllerAddDeviceProperties owner;
 
-
         // Constructor. Fill propertyNames with a copy of current keys
         public TableSourceAddDeviceProperties(
                     UITableViewControllerAddDeviceProperties owner)
         {
             this.owner = owner;
             inputs = owner.inputFields;
-            this.completeInfo = owner.pluginInfo;
+            completeInfo = owner.pluginInfo;
             propertyNames = new string[completeInfo.RequiredInfo.Keys.Count];
             completeInfo.RequiredInfo.Keys.CopyTo(propertyNames, 0);
         }
@@ -42,7 +36,7 @@ namespace Hestia.DevicesScreen
         // The number of properties in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return 1;
+            return int.Parse(Resources.strings.defaultNumberOfSections);
         }
 
         // Important method. Called to generate a cell to display
@@ -61,7 +55,6 @@ namespace Hestia.DevicesScreen
             inputs[propertyNames[indexPath.Section]] = cell;
 
             return cell;
-
         }
 
         public override string TitleForFooter(UITableView tableView, nint section)
