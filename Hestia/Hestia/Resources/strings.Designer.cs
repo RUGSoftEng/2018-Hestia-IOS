@@ -241,15 +241,6 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to identityTokenHestia.
-        /// </summary>
-        public static string defaultsIdentityTokenHestia {
-            get {
-                return ResourceManager.GetString("defaultsIdentityTokenHestia", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to ipHestia.
         /// </summary>
         public static string defaultsIpHestia {
@@ -318,15 +309,6 @@ namespace Hestia.Resources {
         public static string devices2StoryBoard {
             get {
                 return ResourceManager.GetString("devices2StoryBoard", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Devices3.
-        /// </summary>
-        public static string devices3StoryBoard {
-            get {
-                return ResourceManager.GetString("devices3StoryBoard", resourceCulture);
             }
         }
         
@@ -817,6 +799,24 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AddDevice.
+        /// </summary>
+        public static string viewControllerAddDevice {
+            get {
+                return ResourceManager.GetString("viewControllerAddDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AddDeviceProperties.
+        /// </summary>
+        public static string viewControllerAddDeviceProperties {
+            get {
+                return ResourceManager.GetString("viewControllerAddDeviceProperties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VoiceControlIcon.
         /// </summary>
         public static string voiceControlIcon {
@@ -840,18 +840,6 @@ namespace Hestia.Resources {
         public static string webserverIP {
             get {
                 return ResourceManager.GetString("webserverIP", resourceCulture);
-            }
-        }
-        
-        public static string viewControllerAddDeviceProperties {
-            get {
-                return ResourceManager.GetString("viewControllerAddDeviceProperties", resourceCulture);
-            }
-        }
-        
-        public static string viewControllerAddDevice {
-            get {
-                return ResourceManager.GetString("viewControllerAddDevice", resourceCulture);
             }
         }
     }
