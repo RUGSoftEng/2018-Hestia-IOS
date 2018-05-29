@@ -23,7 +23,7 @@ namespace Hestia
     /// This view controller belongs to the first window that can be seen when loading the app
     /// if no user default for local/global is present. The user can then choose local/global.
     /// </summary>
-    public partial class UIViewControllerLocalGlobal : UIViewController
+    public partial class UIViewControllerLocalGlobal : UIViewController, ISpeech
     {
         Auth0Client client;
         private SpeechRecognition speechRecognizer;
@@ -65,14 +65,13 @@ namespace Hestia
 
             SpeechButton.TouchDown += (object sender, EventArgs e) => 
             {
-                speechRecognizer = new SpeechRecognition();
+                speechRecognizer = new SpeechRecognition(this);
                 speechRecognizer.StartRecording();
             };
 
             SpeechButton.TouchUpInside += (object sender, EventArgs e) =>
             {
-                string result = speechRecognizer.StopRecording();
-                ProcessSpeechResult(result);
+                speechRecognizer.StopRecording();
             };
 
             SpeechButton.TouchDragExit += (object sender, EventArgs e) =>
@@ -109,28 +108,6 @@ namespace Hestia
                 Debug.WriteLine($"access_token: {loginResult.AccessToken}");
             }
             return loginResult;
-        }
-
-        private async void ProcessSpeechResult(string result)
-        {
-            string resultLower = result.ToLower();
-
-            if (resultLower.Equals("local"))
-            {
-                ToLocalScreen();
-            }
-            else if (resultLower.Equals("global"))
-            {
-                await ToGlobalScreen();
-            }
-            else if (resultLower == null)
-            {
-                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
-            }
-            else
-            {
-                new WarningMessage("Speech could not be recognized", "Please try again.", this);
-            }
         }
 
         private void ToLocalScreen()
@@ -237,6 +214,28 @@ namespace Hestia
             }
             Console.WriteLine("To Server Select Global");
             PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
+        }
+
+        public async void ProcessSpeech(string result)
+        {
+            string resultLower = result.ToLower();
+
+            if (resultLower.Equals("local"))
+            {
+                ToLocalScreen();
+            }
+            else if (resultLower.Equals("global"))
+            {
+                await ToGlobalScreen();
+            }
+            else if (resultLower == null)
+            {
+                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
+            }
+            else
+            {
+                new WarningMessage("Speech could not be recognized", "Please try again.", this);
+            }
         }
     }
 }

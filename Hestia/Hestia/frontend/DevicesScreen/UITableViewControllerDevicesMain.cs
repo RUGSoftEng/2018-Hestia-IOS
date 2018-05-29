@@ -12,7 +12,7 @@ using Hestia.backend.speech_recognition;
 
 namespace Hestia.DevicesScreen
 {
-    public partial class UITableViewControllerDevicesMain : UITableViewController
+    public partial class UITableViewControllerDevicesMain : UITableViewController, ISpeech
     {
         const int TableViewHeaderHeight = 35;
         const int TableViewHeaderTopPadding = 5;
@@ -95,7 +95,7 @@ namespace Hestia.DevicesScreen
             {
                 if(!isEditing)
                 {
-                    speechRecognizer = new SpeechRecognition();
+                    speechRecognizer = new SpeechRecognition(this);
                     speechRecognizer.StartRecording();
                 }
             };
@@ -108,8 +108,7 @@ namespace Hestia.DevicesScreen
                 }
                 else
                 {
-                    string result = speechRecognizer.StopRecording();
-                    ProcessSpeechResult(result);
+                    speechRecognizer.StopRecording();
                 }
             };
 
@@ -208,6 +207,64 @@ namespace Hestia.DevicesScreen
             RefreshDeviceList();
             TableView.ReloadData();
             RefreshControl.EndRefreshing();
+        }
+
+        public void ProcessSpeech(string result)
+        {
+            List<Device> devices = new List<Device>();
+            Device device;
+
+            if (result.Contains(value: "activate") ||
+                (result.Contains(value: "turn") && result.Contains(value: "on")))
+            {
+                device = GetDevice(result, devices);
+                if (device != null)
+                {
+                    SetDevice(device, true);
+                }
+            }
+            else if (result.Contains(value: "deactivate") ||
+              (result.Contains(value: "turn") && result.Contains(value: "off")))
+            {
+                device = GetDevice(result, devices);
+                if (device != null)
+                {
+                    SetDevice(device, false);
+                }
+            }
+        }
+
+        public void SetDevice(Device device, bool on_off)
+        {
+
+            foreach (Hestia.backend.models.Activator act in device.Activators)
+            {
+                if (act.State.Type == "bool")
+                {
+                    try
+                    {
+                        act.State = new ActivatorState(rawState: on_off, type: "bool");
+                    }
+                    catch (ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while changing activator state");
+                        Console.WriteLine(ex.ToString());
+                    }
+                    return;
+                }
+            }
+        }
+
+        public Device GetDevice(string result, List<Device> list)
+        {
+            foreach (Device device in list)
+            {
+                if (result.Contains(value: device.Name))
+                {
+                    return device;
+                }
+            }
+            return null;
         }
     }
 }

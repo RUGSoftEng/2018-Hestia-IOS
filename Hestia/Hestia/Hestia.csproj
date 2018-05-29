@@ -74,7 +74,7 @@
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
-    <Compile Include="backend\speech-recognition\SpeechRecognition.cs" />
+    <Compile Include="backend\speech_recognition\SpeechRecognition.cs" />
     <Compile Include="backend\utils\server_discovery\ServerDelegate.cs" />
     <Compile Include="backend\models\HestiaServer.cs" />
     <Compile Include="backend\HestiaServerInteractor.cs" />
@@ -150,6 +150,7 @@
     <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerAddDeviceChooseServer.designer.cs">
       <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="backend\speech_recognition\ISpeech.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">

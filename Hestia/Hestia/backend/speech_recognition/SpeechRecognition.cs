@@ -22,13 +22,15 @@ namespace Hestia.backend.speech_recognition
         private SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
+        private ISpeech controller;
         private string result = null;
         private bool finished = false;
         private ISimpleAudioPlayer player;
 
-        public SpeechRecognition()
+        public SpeechRecognition(ISpeech controller)
         {
             player = CrossSimpleAudioPlayer.Current;
+            this.controller = controller;
         }
 
         private void RequestAuthorization() {
@@ -105,89 +107,29 @@ namespace Hestia.backend.speech_recognition
                 {
                     if (result.Final)
                     {
-                        this.result = result.BestTranscription.FormattedString;
-                        DecideAction();
+                        Console.WriteLine(result.BestTranscription.FormattedString);
+                        controller.ProcessSpeech(result.BestTranscription.FormattedString);
                         finished = true;
                     }
                 }
             });
         }
 
-        public void DecideAction()
-        {
-            List<Device> devices = new List<Device>();
-            Device device;
-            
-            if (result.Contains(value: "activate") || 
-                (result.Contains(value: "turn") && result.Contains(value: "on")))
-            {
-                device = GetDevice(devices);
-                if (device != null)
-                {
-                    SetDevice(device, true);
-                }
-            } else if (result.Contains(value: "deactivate") ||
-                (result.Contains(value: "turn") && result.Contains(value: "off")))
-            {
-                device = GetDevice(devices);
-                if(device != null)
-                {
-                    SetDevice(device, false);
-                }
-            }
-        }
-
-        public void SetDevice(Device device, bool on_off)
-        {
-
-            foreach (models.Activator act in device.Activators)
-            {
-                if (act.State.Type == "bool")
-                {
-                    try
-                    {
-                        act.State = new ActivatorState(rawState: on_off, type: "bool");
-                    }
-                    catch (ServerInteractionException ex)
-                    {
-                        Console.WriteLine("Exception while changing activator state");
-                        Console.WriteLine(ex.ToString());
-                    }
-                    return;
-                }
-            }
-        }
-
-        public Device GetDevice(List<Device> list)
-        {
-            foreach (Device device in list)
-            {
-                if (result.Contains(value: device.Name)) {
-                    return device;
-                }
-            }
-            return null;
-        }
-
-        public string StopRecording()
+        public void StopRecording()
         {
             if (!IsAuthorized())
             {
-                return null;
+                return;
             }
 
             AudioEngine.Stop();
             LiveSpeechRequest.EndAudio();
+            RecognitionTask.Cancel();
 
             // Play stop sound
             if (player.IsPlaying) player.Stop();
             player.Load("Sounds/siri_stop.mp3");
             player.Play();
-
-            // Wait until speech recognition has finished
-            SpinWait.SpinUntil(() => finished);
-
-            return result;
         }
 
         public void CancelRecording()
