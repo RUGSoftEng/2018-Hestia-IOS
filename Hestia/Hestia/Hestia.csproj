@@ -46,7 +46,7 @@
     <ConsolePause>false</ConsolePause>
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignKey>iPhone Developer: tomdenboon@hotmail.com (53HGHJ7YY4)</CodesignKey>
+    <CodesignKey>iPhone Developer: marcfleurke@gmail.com (V58LLQJ8HJ)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">

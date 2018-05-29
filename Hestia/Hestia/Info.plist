@@ -5,7 +5,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>Hestia</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.ruggedHestiaTom.Hestia</string>
+	<string>com.ruggedHestia.Hestia</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
