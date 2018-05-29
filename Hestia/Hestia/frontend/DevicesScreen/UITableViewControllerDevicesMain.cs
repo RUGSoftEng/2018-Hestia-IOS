@@ -104,7 +104,7 @@ namespace Hestia.DevicesScreen
             button.TouchUpInside += (object sender, EventArgs e) =>
             {
                 if (isEditing)
-                { // segue to add device
+                {   // segue to add device
                     ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
                 }
                 else
@@ -123,28 +123,6 @@ namespace Hestia.DevicesScreen
 
             view.AddSubview(button);
             return view;
-        }
-
-        private void ProcessSpeechResult(string result)
-        {
-            string resultLower = result.ToLower();
-
-            if (resultLower.Equals("local"))
-            {
-
-            }
-            else if (resultLower.Equals("global"))
-            {
-
-            }
-            else if (resultLower == null)
-            {
-                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
-            }
-            else
-            {
-                new WarningMessage("Speech could not be recognized", "Please try again.", this);
-            }
         }
 
         public override void ViewDidLoad()
@@ -214,8 +192,7 @@ namespace Hestia.DevicesScreen
         {
             Device device;
             result = result.ToLower();
-            if (result.Contains(value: "activate") ||
-                (result.Contains(value: "turn") && result.Contains(value: "on")))
+            if (result.Contains("activate") || (result.Contains("turn") && result.Contains("on")))
             {
                 device = GetDevice(result);
                 if (device != null)
@@ -223,8 +200,7 @@ namespace Hestia.DevicesScreen
                     SetDevice(device, true);
                 }
             }
-            else if (result.Contains(value: "deactivate") ||
-              (result.Contains(value: "turn") && result.Contains(value: "off")))
+            else if (result.Contains("deactivate") || (result.Contains("turn") && result.Contains("off")))
             {
                 device = GetDevice(result);
                 if (device != null)
@@ -233,48 +209,42 @@ namespace Hestia.DevicesScreen
                 }
                 else
                 {
-                    new WarningMessage("No device found", "Please make sure you have pronounce the device name correctly", this);
+                    new WarningMessage(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
                 }
             } 
-            else if( result.Contains(value: "add device") ||
-                      (result.Contains(value: "new device")))
+            else if( result.Contains("add device") || (result.Contains("new device")))
             {
                 ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
             } 
-            else if (result.Contains(value: "edit")) 
+            else if (result.Contains("edit")) 
             {
                 device = GetDevice(result);
                 if (device != null)
                 {
                     UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this);
                     editViewController.device = device;
-                    this.NavigationController.PushViewController(editViewController, true);
+                    NavigationController.PushViewController(editViewController, true);
                 }
                 else 
-                {    
-                    new WarningMessage("No device found", "Please make sure you have pronounce the device name correctly", this);
+                {
+                    new WarningMessage(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
                 }
-            } 
-            else if (result == null) 
-            {
-                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
             }
             else
             {
-                new WarningMessage(result + " is not a command.", "Please try again.", this);
+                new WarningMessage(result + " " + strings.speechNotACommand, strings.tryAgain, this);
             }
         }
 
         public void SetDevice(Device device, bool on_off)
         {
-
             foreach (Hestia.backend.models.Activator act in device.Activators)
             {
                 if (act.State.Type == "bool")
                 {
                     try
                     {
-                        act.State = new ActivatorState(rawState: on_off, type: "bool");
+                        act.State = new ActivatorState(on_off, "bool");
                         RefreshControl.BeginRefreshing();
                         RefreshDeviceList();
                         TableView.ReloadData();
@@ -295,7 +265,7 @@ namespace Hestia.DevicesScreen
             List<Device> list = Globals.GetDevices();
             foreach (Device device in list)
             {
-                if (result.Contains(value: device.Name.ToLower()))
+                if (result.Contains(device.Name.ToLower()))
                 {
                     return device;
                 }

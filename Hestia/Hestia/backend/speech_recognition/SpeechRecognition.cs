@@ -5,13 +5,13 @@ using AVFoundation;
 using Plugin.SimpleAudioPlayer;
 using Hestia.frontend;
 using UIKit;
-using System.Threading;
+using Hestia.Resources;
 
 namespace Hestia.backend.speech_recognition
 {
     /// <summary>
     /// This class can be used to form a speech dialog with the user.
-    /// It has several functions for retrieving the voice and excuting
+    /// It has several functions for recording voice and excuting
     /// commands based on what was said.
     /// </summary>
     class SpeechRecognition
@@ -39,17 +39,17 @@ namespace Hestia.backend.speech_recognition
                 switch (status)
                 {
                     case SFSpeechRecognizerAuthorizationStatus.Authorized:
-                    // User has approved speech recognition
-                    break;
+                        // User has approved speech recognition
+                        break;
                     case SFSpeechRecognizerAuthorizationStatus.Denied:
-                    // User has denied speech recognition
-                    break;
+                        // User has denied speech recognition
+                        break;
                     case SFSpeechRecognizerAuthorizationStatus.NotDetermined:
-                    // Waiting on approval
-                    break;
+                        // Waiting on approval
+                        break;
                     case SFSpeechRecognizerAuthorizationStatus.Restricted:
-                    // The device is not permitted
-                    break;
+                        // The device is not permitted
+                        break;
                 }
             });
         }
@@ -70,7 +70,7 @@ namespace Hestia.backend.speech_recognition
         {
             if (!IsAuthorized())
             {
-                new WarningMessage("Access to speech recognition denied", "Please allow acess to speech recognition in settings.", viewController);
+                new WarningMessage(strings.speechAccessDenied, strings.speechAllowAccess, viewController);
                 return;
             }
             
@@ -86,8 +86,9 @@ namespace Hestia.backend.speech_recognition
             
             if (error != null)
             {
-                Console.WriteLine("Couldn't start recording.");
-		        return;
+                Console.WriteLine(strings.speechStartRecordProblem);
+                new WarningMessage(strings.speechStartRecordProblem, strings.tryAgain, viewController);
+                return;
             }
             
             if (player.IsPlaying) player.Stop();
@@ -98,13 +99,12 @@ namespace Hestia.backend.speech_recognition
             {
                 if (err != null)
                 {
-                    Console.WriteLine("Error while recording.");
+                    Console.WriteLine(strings.speechRecordError);
                 }
                 else
                 {
                     if (result.Final)
                     {
-                        Console.WriteLine(result.BestTranscription.FormattedString);
                         viewControllerSpeech.ProcessSpeech(result.BestTranscription.FormattedString);
                     }
                 }

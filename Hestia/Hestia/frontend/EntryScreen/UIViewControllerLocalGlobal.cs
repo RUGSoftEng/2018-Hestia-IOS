@@ -218,23 +218,18 @@ namespace Hestia
 
         public async void ProcessSpeech(string result)
         {
-            string resultLower = result.ToLower();
-
-            if (resultLower.Equals("local"))
+            result = result.ToLower();
+            if (result.Equals("local"))
             {
                 ToLocalScreen();
             }
-            else if (resultLower.Equals("global"))
+            else if (result.Equals("global"))
             {
                 await ToGlobalScreen();
             }
-            else if (resultLower == null)
-            {
-                new WarningMessage(Globals.WRONG , Globals.NO_AUTHORIZATION, this);
-            }
             else
             {
-                new WarningMessage("Speech could not be recognized", "Please try again.", this);
+                new WarningMessage(result + " " + strings.speechNotACommand, strings.tryAgain, this);
             }
         }
     }
