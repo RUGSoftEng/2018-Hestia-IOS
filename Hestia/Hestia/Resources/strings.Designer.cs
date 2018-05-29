@@ -377,21 +377,9 @@ namespace Hestia.Resources {
             }
         }
         
-        public static string defaultsIdentityTokenHestia {
-            get {
-                return ResourceManager.GetString("defaultsIdentityTokenHestia", resourceCulture);
-            }
-        }
-        
         public static string devices2StoryBoard {
             get {
                 return ResourceManager.GetString("devices2StoryBoard", resourceCulture);
-            }
-        }
-        
-        public static string devices3StoryBoard {
-            get {
-                return ResourceManager.GetString("devices3StoryBoard", resourceCulture);
             }
         }
         
@@ -518,6 +506,18 @@ namespace Hestia.Resources {
         public static string voiceControlIconInverted {
             get {
                 return ResourceManager.GetString("voiceControlIconInverted", resourceCulture);
+            }
+        }
+        
+        public static string viewControllerAddDeviceProperties {
+            get {
+                return ResourceManager.GetString("viewControllerAddDeviceProperties", resourceCulture);
+            }
+        }
+        
+        public static string viewControllerAddDevice {
+            get {
+                return ResourceManager.GetString("viewControllerAddDevice", resourceCulture);
             }
         }
     }

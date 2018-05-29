@@ -10,9 +10,7 @@ using Auth0.OidcClient;
 using Hestia.backend.authentication;
 using System.Threading.Tasks;
 using IdentityModel.OidcClient;
-using System.Diagnostics;
 using Hestia.backend.exceptions;
-using Hestia.DevicesScreen;
 using Hestia.backend.models;
 using Hestia.backend.speech_recognition;
 using Hestia.frontend;
@@ -153,7 +151,6 @@ namespace Hestia
             }
             else
             {
-                Console.WriteLine("To Server Connect screen");
                 UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
                 PresentViewController(devicesMainStoryboard.InstantiateInitialViewController(), true, null);
             }
@@ -176,7 +173,6 @@ namespace Hestia
 
                 if (!logResult.IsError)
                 {
-                    Console.WriteLine("No error during login");
                     userDefaults.SetString(logResult.AccessToken, strings.defaultsAccessTokenHestia);
                     SetValuesAndSegueToServerSelectGlobal(logResult.AccessToken);
                 }
@@ -194,7 +190,6 @@ namespace Hestia
             Globals.ServerName = defaultServerName;
             Globals.Address = strings.defaultPrefix + defaultIP;
             Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
-            Console.WriteLine("To Devices Main Local");
             PerformSegue(strings.mainToDevicesMain, this);
         }
 
@@ -233,15 +228,14 @@ namespace Hestia
             {
                 List<HestiaServer> servers = hestiaWebServerInteractor.GetServers();
                 Globals.Auth0Servers = servers;
-                Console.WriteLine("number of servers:" + Globals.Auth0Servers.Count);
+                PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
             }
             catch(ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex.StackTrace);
+                new WarningMessage("Exception whle getting server", "Could not get the server information about local server from Auth0 server.", this);
             }
-            Console.WriteLine("To Server Select Global");
-            PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
         }
     }
 }

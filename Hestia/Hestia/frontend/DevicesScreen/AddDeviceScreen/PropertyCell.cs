@@ -2,7 +2,6 @@
 using Foundation;
 using CoreGraphics;
 
-
 namespace Hestia.DevicesScreen.AddDeviceScreen
 {
     public class PropertyCell : UITableViewCell

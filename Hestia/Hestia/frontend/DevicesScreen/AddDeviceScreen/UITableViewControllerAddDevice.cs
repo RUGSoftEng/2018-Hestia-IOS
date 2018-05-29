@@ -26,6 +26,7 @@ namespace Hestia
         {
             base.ViewDidLoad();
             // The list with manufacturers
+            collections = new List<string>();
             try
             {
                 collections = Globals.ServerToAddDeviceTo.GetCollections();

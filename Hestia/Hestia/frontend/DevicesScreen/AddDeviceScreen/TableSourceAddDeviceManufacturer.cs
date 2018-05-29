@@ -61,7 +61,7 @@ namespace Hestia.DevicesScreen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewControllerAddDeviceDevice addDeviceType =
-                owner.Storyboard.InstantiateViewController("AddDevice") 
+                owner.Storyboard.InstantiateViewController(Resources.strings.viewControllerAddDevice) 
                     as UITableViewControllerAddDeviceDevice;
             if (addDeviceType != null)
             {

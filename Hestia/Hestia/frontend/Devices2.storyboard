@@ -690,7 +690,7 @@
         </scene>
         <scene sceneID="97331">
             <objects>
-                <tableViewController id="97332" sceneMemberID="viewController" customClass="UITableViewControllerServerList">
+                <tableViewController id="97332" sceneMemberID="viewController" customClass="ViewControllerServerList">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="97334">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -733,7 +733,7 @@
         </scene>
         <scene sceneID="101927">
             <objects>
-                <tableViewController id="101928" sceneMemberID="viewController" customClass="UITabelViewControllerChooseServer" storyboardIdentifier="AddDeviceChooseServer">
+                <tableViewController id="101928" sceneMemberID="viewController" customClass="ViewControllerChooseServer" storyboardIdentifier="AddDeviceChooseServer">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="101929">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

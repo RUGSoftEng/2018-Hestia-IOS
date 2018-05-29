@@ -1,4 +1,3 @@
-using Foundation;
 using Hestia.DevicesScreen.resources;
 using Hestia.frontend;
 using System;
@@ -11,7 +10,6 @@ namespace Hestia
         public UITableViewControllerLocalSettingsScreen (IntPtr handle) : base (handle)
         {
         }
-
 
         public override void ViewDidLoad()
         {
