@@ -42,7 +42,7 @@
 			<string>Auth0</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.ruggedHestia.Hestia</string>
+				<string>com.ruggedHestiaTom.Hestia</string>
 			</array>
 		</dict>
 	</array>

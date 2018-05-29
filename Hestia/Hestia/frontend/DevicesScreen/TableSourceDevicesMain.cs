@@ -83,18 +83,24 @@ namespace Hestia.DevicesScreen
                 var deviceRow = GetSectionRow(indexPath);
                 if (deviceRow.Activators.Count != 0)
                 {
-                    var popupViewController = new UITableViewActivators();
-                    popupViewController.device = deviceRow;
-                    nfloat heightPop = tableView.RowHeight * 2;
-                    popupViewController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * deviceRow.Activators.Count);
-                    popupViewController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-                    var popPresenter = popupViewController.PopoverPresentationController;
-                    popPresenter.SourceView = owner.View;
-                    popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight / 2 - heightPop, 0, 0);
+                    var popupNavVC = new UITableViewActivators();
+                    popupNavVC.Title = d.Name;
+                    popupNavVC.device = d;
+
+
+                    var navigationController = new UINavigationController(popupNavVC);
+                    navigationController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
+                    navigationController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
+
+                    nfloat heightPop = 20 + navigationController.NavigationBar.Frame.Size.Height;
+                    var popPresenter = navigationController.PopoverPresentationController;
+                    popPresenter.SourceView = this.owner.View;
+                    popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight/2-heightPop, 0, 0);
                     popPresenter.Delegate = new PopoverDelegate();
                     popPresenter.PermittedArrowDirections = 0;
                     popPresenter.BackgroundColor = UIColor.White;
-                    owner.PresentViewController(popupViewController, true, null);
+                    this.owner.PresentViewController(navigationController, true, null);
+
                 }
             }
             // Go to edit name window for non-insert cells
