@@ -22,7 +22,6 @@ namespace Hestia
         Regex rxName = new Regex(@"^(.)+$");
         MatchCollection matchesName, matchesIP;
 
-
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
         {
         }

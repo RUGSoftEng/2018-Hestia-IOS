@@ -348,4 +348,10 @@
   <data name="voiceControlIconInverted" xml:space="preserve">
     <value>VoiceControlIconInverted</value>
   </data>
+  <data name="viewControllerAddDeviceProperties" xml:space="preserve">
+    <value>AddDeviceProperties</value>
+  </data>
+  <data name="viewControllerAddDevice" xml:space="preserve">
+    <value>AddDevice</value>
+  </data>
 </root>

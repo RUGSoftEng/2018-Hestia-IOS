@@ -508,5 +508,17 @@ namespace Hestia.Resources {
                 return ResourceManager.GetString("voiceControlIconInverted", resourceCulture);
             }
         }
+        
+        public static string viewControllerAddDeviceProperties {
+            get {
+                return ResourceManager.GetString("viewControllerAddDeviceProperties", resourceCulture);
+            }
+        }
+        
+        public static string viewControllerAddDevice {
+            get {
+                return ResourceManager.GetString("viewControllerAddDevice", resourceCulture);
+            }
+        }
     }
 }

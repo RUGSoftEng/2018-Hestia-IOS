@@ -49,18 +49,14 @@ namespace Hestia.DevicesScreen
             source.serverDevices = new List<List<Device>>();
             if (Globals.LocalLogin)
             {
-                source.numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
+                source.numberOfServers = int.Parse(strings.defaultNumberOfServers);
                 try
                 {
                     source.serverDevices.Add(Globals.LocalServerinteractor.GetDevices());
                 }
                 catch (ServerInteractionException ex)
                 {
-                    Console.WriteLine("Exception while getting devices from local server");
-                    Console.WriteLine(ex);
-                    new WarningMessage("Could not refresh devices", "Exception while getting devices from local server", this);
-                    source.serverDevices = new List<List<Device>>();
-                    TableView.ReloadData();
+                    HandleException(source, ex);
                 }
             }
             else
@@ -74,15 +70,20 @@ namespace Hestia.DevicesScreen
                     }
                     catch (ServerInteractionException ex)
                     {
-                        Console.WriteLine("Exception while getting devices from local server");
-                        Console.WriteLine(ex);
-                        new WarningMessage("Could not refresh devices", "Exception while getting devices from local server, through Auth0 server", this);
-                        source.serverDevices = new List<List<Device>>();
-                        TableView.ReloadData();
+                        HandleException(source, ex);
                     }
                 }
             }
             DevicesTable.Source = source;
+        }
+
+        void HandleException(TableSourceDevicesMain source, ServerInteractionException ex)
+        {
+            Console.WriteLine("Exception while getting devices from local server");
+            Console.WriteLine(ex);
+            new WarningMessage("Could not refresh devices", "Exception while getting devices from local server", this);
+            source.serverDevices = new List<List<Device>>();
+            TableView.ReloadData();
         }
 
         public UIView GetTableViewHeader(bool isEditing)
