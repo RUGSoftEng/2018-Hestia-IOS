@@ -8,21 +8,25 @@ using Hestia.Resources;
 using UIKit;
 using System;
 using System.Collections.Generic;
+using Hestia.backend.speech_recognition;
+using Hestia.DevicesScreen.EditDevice;
 
 namespace Hestia.DevicesScreen
 {
-    public partial class UITableViewControllerDevicesMain : UITableViewController
+    public partial class UITableViewControllerDevicesMain : UITableViewController, IViewControllerSpeech
     {
         const int TableViewHeaderHeight = 35;
         const int TableViewHeaderTopPadding = 5;
         const int IconDimension = 50;
+
+        private SpeechRecognition speechRecognizer;
 
        // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
         // Edit button in top right (is shown initially)
         UIBarButtonItem edit;
 
-        List<Device> devices = new List<Device>();
+        List<Device> devices;
 
         // Constructor
         public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
@@ -52,7 +56,8 @@ namespace Hestia.DevicesScreen
                 source.numberOfServers = int.Parse(strings.defaultNumberOfServers);
                 try
                 {
-                    source.serverDevices.Add(Globals.LocalServerinteractor.GetDevices());
+                    devices = Globals.LocalServerinteractor.GetDevices();
+                    source.serverDevices.Add(devices);
                 }
                 catch (ServerInteractionException ex)
                 {
@@ -61,12 +66,15 @@ namespace Hestia.DevicesScreen
             }
             else
             {
+                devices = new List<Device>();
                 source.numberOfServers = Globals.GetNumberOfSelectedServers();
                 foreach (HestiaServerInteractor interactor in Globals.GetInteractorsOfSelectedServers())
                 {
                     try
                     {
-                        source.serverDevices.Add(interactor.GetDevices());
+                        List<Device> tempDevices = interactor.GetDevices();
+                        source.serverDevices.Add(tempDevices);
+                        devices.AddRange(tempDevices);
                     }
                     catch (ServerInteractionException ex)
                     {
@@ -102,14 +110,32 @@ namespace Hestia.DevicesScreen
                 button.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIcon), UIControlState.Normal);
             }
 
-            button.TouchUpInside += delegate {
+            button.TouchDown += (object sender, EventArgs e) =>
+            {
+                if(!isEditing)
+                {
+                    speechRecognizer = new SpeechRecognition(this, this);
+                    speechRecognizer.StartRecording();
+                }
+            };
+
+            button.TouchUpInside += (object sender, EventArgs e) =>
+            {
                 if (isEditing)
-                { // segue to add device
+                {   // segue to add device
                     ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
                 }
                 else
                 {
-                    // activate voice control
+                    speechRecognizer.StopRecording();
+                }
+            };
+
+            button.TouchDragExit += (object sender, EventArgs e) =>
+            {
+                if(!isEditing)
+                {
+                    speechRecognizer.CancelRecording();
                 }
             };
 
@@ -117,7 +143,7 @@ namespace Hestia.DevicesScreen
             return view;
         }
 
-		public override void ViewDidLoad()
+        public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
 
@@ -183,6 +209,90 @@ namespace Hestia.DevicesScreen
             RefreshDeviceList();
             TableView.ReloadData();
             RefreshControl.EndRefreshing();
+        }
+
+        public void ProcessSpeech(string result)
+        {
+            Device device;
+            result = result.ToLower();
+            if (result.Contains("activate") || (result.Contains("turn") && result.Contains("on")))
+            {
+                device = GetDevice(result);
+                if (device != null)
+                {
+                    SetDevice(device, true);
+                }
+            }
+            else if (result.Contains("deactivate") || (result.Contains("turn") && result.Contains("off")))
+            {
+                device = GetDevice(result);
+                if (device != null)
+                {
+                    SetDevice(device, false);
+                }
+                else
+                {
+                    new WarningMessage(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                }
+            } 
+            else if( result.Contains("add device") || (result.Contains("new device")))
+            {
+                ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
+            } 
+            else if (result.Contains("edit")) 
+            {
+                device = GetDevice(result);
+                if (device != null)
+                {
+                    UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this);
+                    editViewController.device = device;
+                    NavigationController.PushViewController(editViewController, true);
+                }
+                else 
+                {
+                    new WarningMessage(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                }
+            }
+            else
+            {
+                new WarningMessage(result + " " + strings.speechNotACommand, strings.tryAgain, this);
+            }
+        }
+
+        public void SetDevice(Device device, bool on_off)
+        {
+            foreach (backend.models.Activator act in device.Activators)
+            {
+                if (act.State.Type == "bool")
+                {
+                    try
+                    {
+                        act.State = new ActivatorState(on_off, "bool");
+                        RefreshControl.BeginRefreshing();
+                        RefreshDeviceList();
+                        TableView.ReloadData();
+                        RefreshControl.EndRefreshing();
+                    }
+                    catch (ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while changing activator state");
+                        Console.WriteLine(ex.ToString());
+                    }
+                    return;
+                }
+            }
+        }
+
+        public Device GetDevice(string result)
+        {
+            foreach (Device device in devices)
+            {
+                if (result.Contains(device.Name.ToLower()))
+                {
+                    return device;
+                }
+            }
+            return null;
         }
     }
 }

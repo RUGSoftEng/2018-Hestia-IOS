@@ -8,6 +8,7 @@ using Auth0.OidcClient;
 using System;
 using Hestia.Resources;
 using Hestia.backend.exceptions;
+using Hestia.backend.speech_recognition;
 using Hestia.frontend;
 
 namespace Hestia
@@ -86,6 +87,8 @@ namespace Hestia
             Xamarin.Calabash.Start();
             Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
+
+            SpeechRecognition.RequestAuthorization();
 
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 

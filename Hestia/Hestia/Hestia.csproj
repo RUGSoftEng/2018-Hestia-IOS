@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -74,7 +74,7 @@
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
-    <Compile Include="backend\speech-recognition\SpeechRecognition.cs" />
+    <Compile Include="backend\speech_recognition\SpeechRecognition.cs" />
     <Compile Include="backend\utils\server_discovery\ServerDelegate.cs" />
     <Compile Include="backend\models\HestiaServer.cs" />
     <Compile Include="backend\HestiaServerInteractor.cs" />
@@ -150,6 +150,7 @@
     <Compile Include="frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.designer.cs">
       <DependentUpon>ViewControllerChooseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="backend\speech_recognition\IViewControllerSpeech.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -223,12 +224,12 @@
     <EmbeddedResource Include="Resources\strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
-    <Folder Include="frontend\Auth0\ChooseServerScreen\" />
     <Folder Include="Assets.xcassets\AddDeviceIcon.imageset\" />
+    <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIconInverted.imageset\" />
   </ItemGroup>
@@ -270,18 +271,39 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon1024.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon50.png" />
-    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon150.png" />
-    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon100_2.png" />
-    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon50.png" />
-    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon100.png" />
-    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon150.png" />
-    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_50.png" />
-    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_100.png" />
-    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_150.png" />
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon100_2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
