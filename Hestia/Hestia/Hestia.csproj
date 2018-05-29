@@ -295,6 +295,15 @@
     <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon150.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
