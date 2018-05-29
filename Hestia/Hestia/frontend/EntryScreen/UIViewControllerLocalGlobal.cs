@@ -23,7 +23,7 @@ namespace Hestia
     /// This view controller belongs to the first window that can be seen when loading the app
     /// if no user default for local/global is present. The user can then choose local/global.
     /// </summary>
-    public partial class UIViewControllerLocalGlobal : UIViewController, ISpeech
+    public partial class UIViewControllerLocalGlobal : UIViewController, IViewControllerSpeech
     {
         Auth0Client client;
         private SpeechRecognition speechRecognizer;
@@ -65,7 +65,7 @@ namespace Hestia
 
             SpeechButton.TouchDown += (object sender, EventArgs e) => 
             {
-                speechRecognizer = new SpeechRecognition(this);
+                speechRecognizer = new SpeechRecognition(this, this);
                 speechRecognizer.StartRecording();
             };
 

@@ -3,31 +3,36 @@ using Speech;
 using Foundation;
 using AVFoundation;
 using Plugin.SimpleAudioPlayer;
+using Hestia.frontend;
+using UIKit;
+using System.Threading;
 
 namespace Hestia.backend.speech_recognition
 {
+    /// <summary>
+    /// This class can be used to form a speech dialog with the user.
+    /// It has several functions for retrieving the voice and excuting
+    /// commands based on what was said.
+    /// </summary>
     class SpeechRecognition
     {
-        /// <summary>
-        /// This class can be used to form a speech dialog with the user.
-        /// It has several functions for retrieving the voice and excuting
-        /// commands based on what was said.
-        /// </summary>
-
         private AVAudioEngine AudioEngine = new AVAudioEngine();
         private SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
         private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         private SFSpeechRecognitionTask RecognitionTask;
-        private ISpeech controller;
+        private UIViewController viewController;
+        private IViewControllerSpeech viewControllerSpeech;
         private ISimpleAudioPlayer player;
 
-        public SpeechRecognition(ISpeech controller)
+        public SpeechRecognition(UIViewController viewController, IViewControllerSpeech viewControllerSpeech)
         {
             player = CrossSimpleAudioPlayer.Current;
-            this.controller = controller;
+            this.viewController = viewController;
+            this.viewControllerSpeech = viewControllerSpeech;
         }
 
-        private void RequestAuthorization() {
+        public static void RequestAuthorization() 
+        {
             // Request user authorization
             SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) => {
                 // Take action based on status
@@ -37,7 +42,7 @@ namespace Hestia.backend.speech_recognition
                     // User has approved speech recognition
                     break;
                     case SFSpeechRecognizerAuthorizationStatus.Denied:
-                    // User has declined speech recognition
+                    // User has denied speech recognition
                     break;
                     case SFSpeechRecognizerAuthorizationStatus.NotDetermined:
                     // Waiting on approval
@@ -49,7 +54,8 @@ namespace Hestia.backend.speech_recognition
             });
         }
 
-        private bool IsAuthorized() {
+        private bool IsAuthorized() 
+        {
             if (SFSpeechRecognizer.AuthorizationStatus == SFSpeechRecognizerAuthorizationStatus.Authorized)
             {
                 return true;
@@ -64,11 +70,8 @@ namespace Hestia.backend.speech_recognition
         {
             if (!IsAuthorized())
             {
-                RequestAuthorization();
-                if (!IsAuthorized())
-                {
-                    return;
-                }
+                new WarningMessage("Access to speech recognition denied", "Please allow acess to speech recognition in settings.", viewController);
+                return;
             }
             
             var node = AudioEngine.InputNode;
@@ -102,7 +105,7 @@ namespace Hestia.backend.speech_recognition
                     if (result.Final)
                     {
                         Console.WriteLine(result.BestTranscription.FormattedString);
-                        controller.ProcessSpeech(result.BestTranscription.FormattedString);
+                        viewControllerSpeech.ProcessSpeech(result.BestTranscription.FormattedString);
                     }
                 }
             });

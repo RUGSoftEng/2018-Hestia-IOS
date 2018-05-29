@@ -13,7 +13,7 @@ using Hestia.DevicesScreen.EditDevice;
 
 namespace Hestia.DevicesScreen
 {
-    public partial class UITableViewControllerDevicesMain : UITableViewController, ISpeech
+    public partial class UITableViewControllerDevicesMain : UITableViewController, IViewControllerSpeech
     {
         const int TableViewHeaderHeight = 35;
         const int TableViewHeaderTopPadding = 5;
@@ -96,7 +96,7 @@ namespace Hestia.DevicesScreen
             {
                 if(!isEditing)
                 {
-                    speechRecognizer = new SpeechRecognition(this);
+                    speechRecognizer = new SpeechRecognition(this, this);
                     speechRecognizer.StartRecording();
                 }
             };

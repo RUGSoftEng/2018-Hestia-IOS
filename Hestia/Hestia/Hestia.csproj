@@ -150,7 +150,7 @@
     <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerAddDeviceChooseServer.designer.cs">
       <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="backend\speech_recognition\ISpeech.cs" />
+    <Compile Include="backend\speech_recognition\IViewControllerSpeech.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
