@@ -194,3 +194,59 @@ Testing backend code for auth0 and web teams server support
 Adding code to change device name/activator state on remote servers
 Adding code to change device name/activator state on remote servers
 Adding code to change device name/activator state on remote servers
+Fix broken backend unit tests
+Updating and adding backend unit tests
+Updating and adding backend unit tests
+Updating and adding backend unit tests
+Updating and adding backend unit tests
+Updating and adding backend unit tests
+Updating and adding backend unit tests
+Figuring out Marcs problem and changing the way a rest client is formed (no longer include https:// by default)
+Reviewing PRs + remove adding https:// to local ip by default
+Reviewing PRs + remove adding https:// to local ip by default
+Meeting with Feiko, Marc and Zino
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+Meeting with team/working on speech recognition backend
+working on speech recognition frontend
+working on speech recognition frontend
+working on speech recognition frontend
+working on speech recognition frontend
+working on speech recognition frontend
+working on speech recognition frontend
+working on speech recognition frontend
+working on speech recognition frontend
+working on speech recognition frontend
+working on speech recognition frontend
+Working on local screen
+Working on local screen 
+Finalizing updated local server screen
+Finalizing updated local server screen
+Working on speech recognition
+Working on speech recognition
+Updating backend architecture document section
+Updating backend architecture document section
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Working with back end team on voice recognition
+Refactoring voice recognition code
+Refactoring voice recognition code
+Resolving merge conflicts
+Resolving merge conflicts
+Resolving merge conflicts
+Updating backend architecture document
+Updating backend architecture document
