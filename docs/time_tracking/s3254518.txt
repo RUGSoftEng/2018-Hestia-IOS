@@ -60,4 +60,7 @@ working on back end voice recognition
 working on back end voice recognition
 working on back end voice recognition
 working on back end voice recognition
+making diagram of server and app interaction
+making diagram of server and app interaction
+updating documentation about server and app interaction
 
