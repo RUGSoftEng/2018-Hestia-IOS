@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
@@ -80,8 +80,8 @@ namespace Hestia.DevicesScreen
         {
             if (!tableView.Editing)
             {
-                var deviceRow = GetSectionRow(indexPath);
-                if (deviceRow.Activators.Count != 0)
+                var d = GetSectionRow(indexPath);
+                if (d.Activators.Count != 0)
                 {
                     var popupNavVC = new UITableViewActivators();
                     popupNavVC.Title = d.Name;
