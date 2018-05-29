@@ -54,7 +54,7 @@ namespace Hestia.DevicesScreen
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, "cellIdentifier");
+                cell = new UITableViewCell(UITableViewCellStyle.Default, "serverdiscoverycell");
             }
 
             // The text to display on the cell is the plugin name

@@ -5,6 +5,7 @@ using Hestia.backend.models;
 using Hestia.backend.exceptions;
 using System.Collections.Generic;
 using Foundation;
+using Hestia.frontend;
 
 namespace Hestia.DevicesScreen.ActivatorScreen
 {
@@ -13,10 +14,12 @@ namespace Hestia.DevicesScreen.ActivatorScreen
         Device device;
         List<backend.models.Activator> activators;
         Hashtable actAccessories = new Hashtable();
+        UITableViewActivators owner;
 
-        public TableSourceActivators(Device device)
+        public TableSourceActivators(Device device, UITableViewActivators owner)
         {
             this.device = device;
+            this.owner = owner;
             activators = device.Activators;
         }
 
@@ -44,9 +47,15 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     try 
                     {
                         act.State = new ActivatorState(DeviceSwitch.On, "bool");
-                    } catch(ServerInteractionException ex) {
+                    } 
+                    catch(ServerInteractionException ex) 
+                    {
                         Console.WriteLine("Exception while changing activator state");
-                        Console.WriteLine(ex.ToString());
+                        Console.WriteLine(ex);
+                        new WarningMessage("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
+
+                        // Reset back the switch
+                        DeviceSwitch.On = (bool)act.State.RawState;
                     }
                 };
                 // Replace the cell's AccessoryView with the new UISwitch
@@ -67,10 +76,15 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     try
                     {
                         act.State = new ActivatorState(slider.Value, "float");
-                    } catch(ServerInteractionException ex)
+                    } 
+                    catch(ServerInteractionException ex)
                     {
                         Console.WriteLine("Exception while changing activator state");
-                        Console.WriteLine(ex.ToString());
+                        Console.WriteLine(ex);
+                        new WarningMessage("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
+
+                        // Reset back the slider
+                        slider.Value = (float)act.State.RawState;
                     }   
                 };
 

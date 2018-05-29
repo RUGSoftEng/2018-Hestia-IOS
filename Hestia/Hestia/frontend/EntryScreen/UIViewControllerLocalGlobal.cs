@@ -14,6 +14,9 @@ using System.Diagnostics;
 using Hestia.backend.exceptions;
 using Hestia.DevicesScreen;
 using Hestia.backend.models;
+using Hestia.backend.speech_recognition;
+using Hestia.frontend;
+using CoreGraphics;
 
 namespace Hestia
 {
@@ -24,6 +27,10 @@ namespace Hestia
     public partial class UIViewControllerLocalGlobal : UIViewController
     {
         Auth0Client client;
+        SpeechRecognition speechRecognizer;
+        const int IconDimension = 50;
+        const int BottomPadding = 50;
+        UIButton SpeechButtonLocalGlobal;
 
         // User defaults
         NSUserDefaults userDefaults;
@@ -31,7 +38,7 @@ namespace Hestia
         string defaultIP;
         string defaultPort;
         string defaultAccessToken;
-
+        
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
         {
         }
@@ -44,80 +51,51 @@ namespace Hestia
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultAccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
+        
+            SpeechButtonLocalGlobal = new UIButton(UIButtonType.System);
+            SpeechButtonLocalGlobal.Frame = new CGRect(View.Bounds.Width / 2 - IconDimension / 2, View.Bounds.Bottom - IconDimension - BottomPadding , IconDimension, IconDimension);
+            SpeechButtonLocalGlobal.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIconInverted), UIControlState.Normal);
+
+            View.AddSubview(SpeechButtonLocalGlobal);
         }
 
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
 
-            // Already anticipate local login
-            // Check if local serverinformation is present and correct
-            bool validIp = CheckLocalLoginDefaults();
-
-            ToLocalButton.TouchUpInside += delegate
+            ToLocalButton.TouchUpInside += (object sender, EventArgs e) =>
             {
-                userDefaults.SetString(bool.TrueString, strings.defaultsLocalHestia);
-                Globals.LocalLogin = true;
-
-                if (validIp)
-                {
-                    SetValuesAndSegueToDevicesMainLocal();
-                }
-                else
-                {
-                    Console.WriteLine("To Server Connect screen");
-                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
-                    PresentViewController(devicesMainStoryboard.InstantiateInitialViewController(), true, null);
-                }
+                ToLocalScreen();
             };
 
-            ToGlobalButton.TouchUpInside += async delegate
+            ToGlobalButton.TouchUpInside += async (object sender, EventArgs e) =>
             {
-                userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
-
-                if (HasValidGlobalLogin())
-                {
-                    SetValuesAndSegueToServerSelectGlobal();
-                }
-                else
-                {
-                    Task<LoginResult> loginResult = GetLoginResult();
-                    LoginResult logResult = await loginResult;
-                    HandleGlobalButtonTouchResult(logResult);
-                }
+                await ToGlobalScreen();
             };
-        }
 
-        void HandleGlobalButtonTouchResult(LoginResult loginResult)
-        {
-            Globals.LocalLogin = false;
-
-            if (!loginResult.IsError)
+            SpeechButtonLocalGlobal.TouchDown += (object sender, EventArgs e) => 
             {
-                Console.WriteLine("No error during login");
-                userDefaults.SetString(loginResult.AccessToken, strings.defaultsAccessTokenHestia);
-                SetValuesAndSegueToServerSelectGlobal(loginResult.AccessToken);
-            }
-            else if(!(loginResult.Error == "UserCancel"))
-            {
-                DisplayWarningMessage(loginResult.Error);
-            }
-         }
+                speechRecognizer = new SpeechRecognition();
+                speechRecognizer.StartRecording();
+            };
 
-        void DisplayWarningMessage(string error)
-        {
-            string title = "Login failed";
-            string message = error;
-            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            PresentViewController(okAlertController, true, null);
+            SpeechButtonLocalGlobal.TouchUpInside += (object sender, EventArgs e) =>
+            {
+                string result = speechRecognizer.StopRecording();
+                ProcessSpeechResult(result);
+            };
+
+            SpeechButtonLocalGlobal.TouchDragExit += (object sender, EventArgs e) =>
+            {
+                speechRecognizer.CancelRecording();
+            };   
         }
 
         bool CheckLocalLoginDefaults()
         {
-            if (defaultIP != null && defaultPort != null)
+            if (defaultIP != null)
             {
-                return PingServer.Check(defaultIP, int.Parse(defaultPort));
+                return PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
             }
             return false;
         }
@@ -126,21 +104,87 @@ namespace Hestia
         {
             return defaultAccessToken != null;
         }
-         
+
         public async Task<LoginResult> GetLoginResult()
         {
             client = Auth0Connector.CreateAuthClient(this);
             var loginResult = await client.LoginAsync(new { audience = strings.apiURL });
             if (loginResult.IsError)
             {
-                Debug.WriteLine($"An error occurred during login: {loginResult.Error}");
+                Console.WriteLine($"An error occurred during login: {loginResult.Error}");
+            }
+            return loginResult;
+        }
+
+        async void ProcessSpeechResult(string result)
+        {
+            string resultLower = result.ToLower();
+
+            if (resultLower.Equals("local"))
+            {
+                ToLocalScreen();
+            }
+            else if (resultLower.Equals("global"))
+            {
+                await ToGlobalScreen();
+            }
+            else if (resultLower == null)
+            {
+                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
             }
             else
             {
-                Debug.WriteLine($"id_token: {loginResult.IdentityToken}");
-                Debug.WriteLine($"access_token: {loginResult.AccessToken}");
+                new WarningMessage("Speech could not be recognized", "Please try again.", this);
             }
-            return loginResult;
+        }
+
+        void ToLocalScreen()
+        {
+            // Already anticipate local login
+            // Check if local serverinformation is present and correct
+            bool validIp = CheckLocalLoginDefaults();
+
+            userDefaults.SetString(bool.TrueString, strings.defaultsLocalHestia);
+            Globals.LocalLogin = true;
+
+            if (validIp)
+            {
+                SetValuesAndSegueToDevicesMainLocal();
+            }
+            else
+            {
+                Console.WriteLine("To Server Connect screen");
+                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
+                PresentViewController(devicesMainStoryboard.InstantiateInitialViewController(), true, null);
+            }
+        }
+
+        async Task ToGlobalScreen()
+        {
+            userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
+
+            if (HasValidGlobalLogin())
+            {
+                SetValuesAndSegueToServerSelectGlobal();
+            }
+            else
+            {
+                Task<LoginResult> loginResult = GetLoginResult();
+                LoginResult logResult = await loginResult;
+
+                Globals.LocalLogin = false;
+
+                if (!logResult.IsError)
+                {
+                    Console.WriteLine("No error during login");
+                    userDefaults.SetString(logResult.AccessToken, strings.defaultsAccessTokenHestia);
+                    SetValuesAndSegueToServerSelectGlobal(logResult.AccessToken);
+                }
+                else if (!(logResult.Error == "UserCancel"))
+                {
+                    new WarningMessage("Login failed", logResult.Error, this);
+                }
+            }
         }
 
         // Sets values in case of defaults presesent
@@ -148,9 +192,8 @@ namespace Hestia
         {
             Globals.LocalLogin = true;
             Globals.ServerName = defaultServerName;
-            Globals.IP = defaultIP;
-            Globals.Port = int.Parse(defaultPort);
-            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.IP, Globals.Port));
+            Globals.Address = strings.defaultPrefix + defaultIP;
+            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
             Console.WriteLine("To Devices Main Local");
             PerformSegue(strings.mainToDevicesMain, this);
         }
@@ -185,7 +228,7 @@ namespace Hestia
                 Console.WriteLine("Exception while posting user. User possibly already exists.");
                 Console.WriteLine(ex.StackTrace);
             }
-            Globals.Auth0Servers = new List<backend.models.HestiaServer>();
+            Globals.Auth0Servers = new List<HestiaServer>();
             try
             {
                 List<HestiaServer> servers = hestiaWebServerInteractor.GetServers();

@@ -1,23 +1,18 @@
-using System;
-using System.Collections.Generic;
-using UIKit;
 using Foundation;
-using Hestia.DevicesScreen;
-using Hestia.DevicesScreen.resources;
-using System.Drawing;
-using System.Collections;
+using Hestia.Auth0.ServerSelectScreen;
 using Hestia.backend;
-using Hestia.backend.models;
-using Hestia.backend.utils;
 using Hestia.backend.exceptions;
+using Hestia.DevicesScreen.resources;
+using System;
+using UIKit;
 
 namespace Hestia
 {
-    public partial class UITableViewServerList : UITableViewController
+    public partial class UITableViewControllerServerList : UITableViewController
     {
         UIBarButtonItem done;
 
-        public UITableViewServerList (IntPtr handle) : base (handle)
+        public UITableViewControllerServerList (IntPtr handle) : base (handle)
         {
         }
 
@@ -26,7 +21,11 @@ namespace Hestia
             base.ViewDidLoad();
             Title = Resources.strings.selectServerTitle;
             TableView.Source = new TableSourceServerList();
+        }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
             // The done button that loads the devicesMainScreen with the selected servers
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 if (ShouldPerformSegue())
@@ -43,7 +42,6 @@ namespace Hestia
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            Console.WriteLine("Presented by" + PresentingViewController);
             if (!(PresentingViewController is UINavigationController))
             {
                 SetCancelButtton(PresentingViewController);
@@ -96,5 +94,5 @@ namespace Hestia
             okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
             PresentViewController(okAlertController, true, null);
         }
-    }
+	}
 }

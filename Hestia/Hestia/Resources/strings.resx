@@ -330,4 +330,28 @@
   <data name="selectServerTitle" xml:space="preserve">
     <value>Select servers</value>
   </data>
+  <data name="addDeviceIcon" xml:space="preserve">
+    <value>AddDeviceIcon</value>
+  </data>
+  <data name="voiceControlIcon" xml:space="preserve">
+    <value>VoiceControlIcon</value>
+  </data>
+  <data name="LocalSettingsScreen" xml:space="preserve">
+    <value>LocalSettingsScreen</value>
+  </data>
+  <data name="GlobalSettingsScreen" xml:space="preserve">
+    <value>GlobalSettingsScreen</value>
+  </data>
+  <data name="AddDeviceChooseServerViewController" xml:space="preserve">
+    <value>AddDeviceChooseServer</value>
+  </data>
+  <data name="AddManufacturerViewController" xml:space="preserve">
+    <value>AddManufacturer</value>
+  </data>
+  <data name="defaultPrefix" xml:space="preserve">
+    <value>https://</value>
+  </data>
+  <data name="voiceControlIconInverted" xml:space="preserve">
+    <value>VoiceControlIconInverted</value>
+  </data>
 </root>

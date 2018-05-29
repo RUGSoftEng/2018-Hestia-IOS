@@ -1,17 +1,22 @@
-using System;
-using UIKit;
-
-using System.Collections.Generic;
-
+using CoreGraphics;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.backend;
+using Hestia.frontend;
+using Hestia.Resources;
+using UIKit;
+using System;
+using System.Collections.Generic;
 
 namespace Hestia.DevicesScreen
 {
     public partial class UITableViewControllerDevicesMain : UITableViewController
     {
+        const int TableViewHeaderHeight = 35;
+        const int TableViewHeaderTopPadding = 5;
+        const int IconDimension = 50;
+
        // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
         // Edit button in top right (is shown initially)
@@ -28,24 +33,24 @@ namespace Hestia.DevicesScreen
         {
             DevicesTable.SetEditing(false, true);
             NavigationItem.LeftBarButtonItem = edit;
-            ((TableSource)DevicesTable.Source).DidFinishTableEditing(DevicesTable);
+            ((TableSourceDevicesMain)DevicesTable.Source).DidFinishTableEditing(DevicesTable);
         }
 
         public void SetEditingState()
         {
-            ((TableSource)DevicesTable.Source).WillBeginTableEditing(DevicesTable);
+            ((TableSourceDevicesMain)DevicesTable.Source).WillBeginTableEditing(DevicesTable);
             DevicesTable.SetEditing(true, true);
             NavigationItem.LeftBarButtonItem = done;
         }
 
         public void RefreshDeviceList()
         {
-            TableSource source = new TableSource(this);
+            TableSourceDevicesMain source = new TableSourceDevicesMain(this);
             source.serverDevices = new List<List<Device>>();
             if (Globals.LocalLogin)
             {
                 source.numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
-                source.serverDevices.Add(Globals.GetDevices());
+                source.serverDevices.Add(Globals.LocalServerinteractor.GetDevices());
             }
             else
             {
@@ -58,20 +63,56 @@ namespace Hestia.DevicesScreen
                     }
                     catch (ServerInteractionException ex)
                     {
-                        Console.WriteLine("Exception while getting devices from local server " + interactor.NetworkHandler.Ip + interactor.IsRemoteServer);
-                        Console.WriteLine(ex.ToString());
+                        Console.WriteLine("Exception while getting devices from local server");
+                        Console.WriteLine(ex);
+                        new WarningMessage("Could not refresh devices", "Exception while getting devices from local server, through Auth0 server", this);
                     }
                 }
             }
             DevicesTable.Source = source;
         }
 
+        public UIView GetTableViewHeader(bool isEditing)
+        {
+            UIView view = new UIView(new CGRect(0, 0, TableView.Bounds.Width, TableViewHeaderHeight));
+
+            // Voice control / add device button
+            UIButton button = new UIButton(UIButtonType.System);
+            button.Frame = new CGRect(TableView.Bounds.Width / 2 - IconDimension / 2, TableViewHeaderTopPadding, IconDimension, IconDimension);
+            if (isEditing)
+            {
+                button.SetBackgroundImage(UIImage.FromBundle(strings.addDeviceIcon), UIControlState.Normal);
+            }
+            else
+            {
+                button.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIcon), UIControlState.Normal);
+            }
+
+            button.TouchUpInside += delegate {
+                if (isEditing)
+                { // segue to add device
+                    ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
+                }
+                else
+                {
+                    // activate voice control
+                }
+            };
+
+            view.AddSubview(button);
+            return view;
+        }
+
 		public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
+
+            // Get the voice control button
+            DevicesTable.TableHeaderView = GetTableViewHeader(false);
+    
             RefreshDeviceList();
             Globals.DefaultLightGray = TableView.BackgroundColor;
-            // To tap row in editing mode for changing name
+            // To be able to tap row in editing mode for changing name
             DevicesTable.AllowsSelectionDuringEditing = true;  
 
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
@@ -97,7 +138,7 @@ namespace Hestia.DevicesScreen
             if(Globals.LocalLogin)
             {
                 UITableViewControllerLocalSettingsScreen uITableViewControllerLocalSettingsScreen =
-                     this.Storyboard.InstantiateViewController("LocalSettingsScreen")
+                    this.Storyboard.InstantiateViewController(strings.LocalSettingsScreen)
                           as UITableViewControllerLocalSettingsScreen;
                 if (uITableViewControllerLocalSettingsScreen != null)
                 {
@@ -107,7 +148,7 @@ namespace Hestia.DevicesScreen
             else
             {
                 UITableViewControllerGlobalSettingsScreen uITableViewControllerGlobalSettingsScreen =
-                    this.Storyboard.InstantiateViewController("GlobalSettingsScreen")
+                    this.Storyboard.InstantiateViewController(strings.GlobalSettingsScreen)
                          as UITableViewControllerGlobalSettingsScreen;
                 if (uITableViewControllerGlobalSettingsScreen != null)
                 {
@@ -117,13 +158,12 @@ namespace Hestia.DevicesScreen
         }
 
         //Method Pull to refresh
-        private void RefreshTable(object sender, EventArgs e)
+        void RefreshTable(object sender, EventArgs e)
         {
             RefreshControl.BeginRefreshing();
             RefreshDeviceList();
             TableView.ReloadData();
             RefreshControl.EndRefreshing();
-
         }
     }
 }

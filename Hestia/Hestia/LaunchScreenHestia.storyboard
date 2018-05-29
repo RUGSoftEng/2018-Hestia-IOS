@@ -35,5 +35,9 @@
     </scenes>
     <resources>
         <image name="LogoLaunchscreen" width="431" height="206"/>
+        <image name="AddDeviceIcon" width="50" height="50"/>
+        <image name="VoiceControlIcon" width="50" height="50"/>
+        <image name="Images/lock.png" width="300" height="295"/>
+        <image name="Images/lightbulb.png" width="300" height="300"/>
     </resources>
 </document>

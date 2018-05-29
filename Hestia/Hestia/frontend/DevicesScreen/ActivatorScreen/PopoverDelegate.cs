@@ -5,10 +5,6 @@ namespace Hestia.DevicesScreen.ActivatorScreen
 {
     public class PopoverDelegate : UIPopoverPresentationControllerDelegate
     {
-        public PopoverDelegate()
-        {
-        }
-
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
