@@ -50,7 +50,18 @@ namespace Hestia.DevicesScreen
             if (Globals.LocalLogin)
             {
                 source.numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
-                source.serverDevices.Add(Globals.LocalServerinteractor.GetDevices());
+                try
+                {
+                    source.serverDevices.Add(Globals.LocalServerinteractor.GetDevices());
+                }
+                catch (ServerInteractionException ex)
+                {
+                    Console.WriteLine("Exception while getting devices from local server");
+                    Console.WriteLine(ex);
+                    new WarningMessage("Could not refresh devices", "Exception while getting devices from local server", this);
+                    source.serverDevices = new List<List<Device>>();
+                    TableView.ReloadData();
+                }
             }
             else
             {
@@ -66,6 +77,8 @@ namespace Hestia.DevicesScreen
                         Console.WriteLine("Exception while getting devices from local server");
                         Console.WriteLine(ex);
                         new WarningMessage("Could not refresh devices", "Exception while getting devices from local server, through Auth0 server", this);
+                        source.serverDevices = new List<List<Device>>();
+                        TableView.ReloadData();
                     }
                 }
             }
@@ -133,6 +146,11 @@ namespace Hestia.DevicesScreen
             NavigationItem.RightBarButtonItem = SettingsButton;
         }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+            RefreshDeviceList();
+        }
         partial void SettingsButton_Activated(UIBarButtonItem sender)
         {
             if(Globals.LocalLogin)

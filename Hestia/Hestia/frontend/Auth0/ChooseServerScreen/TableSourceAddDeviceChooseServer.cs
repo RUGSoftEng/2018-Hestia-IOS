@@ -8,7 +8,7 @@ namespace Hestia.Auth0
 {
     public class TableSourceAddDeviceChooseServer : UITableViewSource
     {
-        // The viewController to which the TableView connected to this Source lives in
+        // The viewController in which the TableView connected to this Source lives in
         UITableViewControllerChooseServer owner;
 
         public TableSourceAddDeviceChooseServer(UITableViewControllerChooseServer owner)
@@ -43,16 +43,16 @@ namespace Hestia.Auth0
             return cell;
         }
 
-        // Pushes the properties window
+        // Pushes the choose manufacturer screen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         { 
             Globals.ServerToAddDeviceTo = Globals.GetInteractorsOfSelectedServers()[indexPath.Row];
             UITableViewControllerAddDevice addDevice =
-                this.owner.Storyboard.InstantiateViewController("AddManufacturer")
+                owner.Storyboard.InstantiateViewController(Resources.strings.AddManufacturerViewController)
                     as UITableViewControllerAddDevice;
             if (addDevice != null)
             {
-                this.owner.NavigationController.PushViewController(addDevice, true);
+                owner.NavigationController.PushViewController(addDevice, true);
             }
         }
     }

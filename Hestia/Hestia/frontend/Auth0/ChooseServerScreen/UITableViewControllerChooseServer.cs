@@ -1,9 +1,7 @@
-using Foundation;
-using Hestia.Auth0;
 using System;
 using UIKit;
 
-namespace Hestia
+namespace Hestia.Auth0
 {
     public partial class UITableViewControllerChooseServer : UITableViewController
     {

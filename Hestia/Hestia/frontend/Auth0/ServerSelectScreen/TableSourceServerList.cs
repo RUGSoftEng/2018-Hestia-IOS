@@ -5,7 +5,7 @@ using Foundation;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.models;
 
-namespace Hestia.Auth0.ServerSelectScreen
+namespace Hestia.Auth0
 {
     public class TableSourceServerList : UITableViewSource
     {

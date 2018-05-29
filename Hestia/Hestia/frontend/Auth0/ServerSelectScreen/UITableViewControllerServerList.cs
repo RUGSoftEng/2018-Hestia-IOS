@@ -1,12 +1,10 @@
-using Foundation;
-using Hestia.Auth0.ServerSelectScreen;
 using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.DevicesScreen.resources;
 using System;
 using UIKit;
 
-namespace Hestia
+namespace Hestia.Auth0
 {
     public partial class UITableViewControllerServerList : UITableViewController
     {
