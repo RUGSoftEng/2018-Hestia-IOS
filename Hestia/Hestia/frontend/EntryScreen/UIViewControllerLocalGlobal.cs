@@ -230,7 +230,7 @@ namespace Hestia
             }
             else if (resultLower == null)
             {
-                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
+                new WarningMessage(Globals.WRONG , Globals.NO_AUTHORIZATION, this);
             }
             else
             {

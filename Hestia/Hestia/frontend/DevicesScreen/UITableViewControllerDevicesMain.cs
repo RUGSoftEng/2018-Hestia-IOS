@@ -9,6 +9,7 @@ using UIKit;
 using System;
 using System.Collections.Generic;
 using Hestia.backend.speech_recognition;
+using Hestia.DevicesScreen.EditDevice;
 
 namespace Hestia.DevicesScreen
 {
@@ -216,11 +217,9 @@ namespace Hestia.DevicesScreen
             if (result.Contains(value: "activate") ||
                 (result.Contains(value: "turn") && result.Contains(value: "on")))
             {
-                Console.WriteLine("Yes");
                 device = GetDevice(result);
                 if (device != null)
                 {
-                    Console.WriteLine("Whooo");
                     SetDevice(device, true);
                 }
             }
@@ -232,6 +231,37 @@ namespace Hestia.DevicesScreen
                 {
                     SetDevice(device, false);
                 }
+                else
+                {
+                    new WarningMessage("No device found", "Please make sure you have pronounce the device name correctly", this);
+                }
+            } 
+            else if( result.Contains(value: "add device") ||
+                      (result.Contains(value: "new device")))
+            {
+                ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
+            } 
+            else if (result.Contains(value: "edit")) 
+            {
+                device = GetDevice(result);
+                if (device != null)
+                {
+                    UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this);
+                    editViewController.device = device;
+                    this.NavigationController.PushViewController(editViewController, true);
+                }
+                else 
+                {    
+                    new WarningMessage("No device found", "Please make sure you have pronounce the device name correctly", this);
+                }
+            } 
+            else if (result == null) 
+            {
+                new WarningMessage("Something went wrong", "Please make sure you have allowed speech recognition and try again.", this);
+            }
+            else
+            {
+                new WarningMessage(result + " is not a command.", "Please try again.", this);
             }
         }
 
@@ -265,7 +295,6 @@ namespace Hestia.DevicesScreen
             List<Device> list = Globals.GetDevices();
             foreach (Device device in list)
             {
-                Console.WriteLine(device.Name.ToLower() + " " + result);
                 if (result.Contains(value: device.Name.ToLower()))
                 {
                     return device;

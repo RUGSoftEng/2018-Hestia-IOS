@@ -31,6 +31,9 @@ namespace Hestia.DevicesScreen.resources
         public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
         public static List<HestiaServer> Auth0Servers { get; set; }
 
+        public const string NO_AUTHORIZATION = "Please make sure you have allowed speech recognition and try again.";
+        public const string WRONG = "Something went wrong";
+
         public static List<HestiaServerInteractor> GetInteractorsOfSelectedServers()
         {
             List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
