@@ -94,7 +94,7 @@ namespace UITests
             app.TapCoordinates(l[1].Rect.CenterX, l[1].Rect.CenterY + 20);
             app.EnterText("1");
             app.Tap(b => b.Button("Save"));
-            app.Tap(t => t.Text("Test"));
+            app.Tap(t => t.Text("OK"));
         }
 
         [Test]
@@ -133,6 +133,16 @@ namespace UITests
             app.Tap(t => t.Text("OK"));
 
             app.Tap(t => t.Text("Enter IP"));
+            app.EnterText("A");
+            app.Tap(t => t.Text("Connect"));
+            app.Tap(t => t.Text("OK"));
+            app.ClearText();
+
+            app.EnterText("123");
+            app.Tap(t => t.Text("Connect"));
+            app.Tap(t => t.Text("OK"));
+            app.ClearText();
+
             app.EnterText("0.0.0.0");
             app.Tap(t => t.Text("Connect"));
             app.Tap(t => t.Text("OK"));
