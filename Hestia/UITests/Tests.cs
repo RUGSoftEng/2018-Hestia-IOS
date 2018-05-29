@@ -85,13 +85,15 @@ namespace UITests
             app.Tap(t => t.Text("philips"));
             app.Tap(t => t.Text("colorLight"));
 
-            var l = app.Query(t => t.Text("NAME"));
-            app.TapCoordinates(l[1].Rect.CenterX, l[1].Rect.CenterY + 20);
+            app.Tap(b => b.Button("Save"));
+            app.Tap(t => t.Text("OK"));
+
+            var n = app.Query(t => t.Text("NAME"));
+            app.TapCoordinates(n[1].Rect.CenterX, n[1].Rect.CenterY + 20);
             app.EnterText("Test");
 
-
-            l = app.Query(t => t.Text("BRIDGE_IP"));
-            app.TapCoordinates(l[1].Rect.CenterX, l[1].Rect.CenterY + 20);
+            var br = app.Query(t => t.Text("BRIDGE_IP"));
+            app.TapCoordinates(br[1].Rect.CenterX, br[1].Rect.CenterY + 20);
             app.EnterText("1");
             app.Tap(b => b.Button("Save"));
             app.Tap(t => t.Text("OK"));
