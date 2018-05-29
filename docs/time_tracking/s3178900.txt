@@ -172,3 +172,25 @@ More trying with the lamp to get it working in different envoirements.
 Finishing up most of the server discovery.
 Finishing up most of the server discovery.
 Making sprint pr.
+Meeting with team
+Meeting with team
+Meeting with team
+Meeting with team
+Meeting with team
+Meeting with team
+Dividing tasks and updating trello board accordingly.
+Trying to fix server discovery.
+Implementing voice control.
+Implementing voice control.
+Merging pull request, minor fixes and reviewing.
+Implementing voice control. (with daan)
+Implementing voice control. (with daan)
+Implementing voice control. (with daan)
+Implementing voice control. (with daan)
+Implementing voice control. (with daan)
+Implementing voice control. (with daan)
+Implementing voice control. (with daan)
+Implementing voice control (most of the above was bug fixing).
+Some more merging and reviewing.
+Updating the architecture document.
+Making final PR.
