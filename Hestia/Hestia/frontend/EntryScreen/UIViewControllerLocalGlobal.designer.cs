@@ -1,4 +1,4 @@
-// WARNING
+﻿// WARNING
 //
 // This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
@@ -16,10 +16,6 @@ namespace Hestia
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton SpeechButton { get; set; }
-
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton ToGlobalButton { get; set; }
 
         [Outlet]
@@ -28,11 +24,6 @@ namespace Hestia
 
         void ReleaseDesignerOutlets ()
         {
-            if (SpeechButton != null) {
-                SpeechButton.Dispose ();
-                SpeechButton = null;
-            }
-
             if (ToGlobalButton != null) {
                 ToGlobalButton.Dispose ();
                 ToGlobalButton = null;

@@ -366,4 +366,16 @@
   <data name="tryAgain" xml:space="preserve">
     <value>Please try again.</value>
   </data>
+  <data name="defaultPrefix" xml:space="preserve">
+    <value>https://</value>
+  </data>
+  <data name="voiceControlIconInverted" xml:space="preserve">
+    <value>VoiceControlIconInverted</value>
+  </data>
+  <data name="noDeviceFound" xml:space="preserve">
+    <value>No device found</value>
+  </data>
+  <data name="pronounceDeviceNameCorrectly" xml:space="preserve">
+    <value>Please make sure you have pronounced the device name correctly.</value>
+  </data>
 </root>

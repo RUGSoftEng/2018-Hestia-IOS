@@ -26,7 +26,7 @@ namespace Hestia.DevicesScreen
         // Edit button in top right (is shown initially)
         UIBarButtonItem edit;
 
-        List<Device> devices = new List<Device>();
+        List<Device> devices;
 
         // Constructor
         public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
@@ -53,23 +53,27 @@ namespace Hestia.DevicesScreen
             source.serverDevices = new List<List<Device>>();
             if (Globals.LocalLogin)
             {
-                source.numberOfServers = int.Parse(Resources.strings.defaultNumberOfServers);
-                source.serverDevices.Add(Globals.GetDevices());
+                devices = Globals.LocalServerinteractor.GetDevices();
+                source.numberOfServers = int.Parse(strings.defaultNumberOfServers);
+                source.serverDevices.Add(devices);
             }
             else
             {
+                devices = new List<Device>();
                 source.numberOfServers = Globals.GetNumberOfSelectedServers();
                 foreach (HestiaServerInteractor interactor in Globals.GetInteractorsOfSelectedServers())
                 {
                     try
                     {
-                        source.serverDevices.Add(interactor.GetDevices());
+                        List<Device> tempDevices = interactor.GetDevices();
+                        source.serverDevices.Add(tempDevices);
+                        devices.AddRange(tempDevices);
                     }
                     catch (ServerInteractionException ex)
                     {
                         Console.WriteLine("Exception while getting devices from local server");
                         Console.WriteLine(ex);
-                        WarningMessage message = new WarningMessage("Could not refresh devices", "Exception while getting devices from local server, through Auth0 server", this);
+                        new WarningMessage("Could not refresh devices", "Exception while getting devices from local server, through Auth0 server", this);
                     }
                 }
             }
@@ -238,7 +242,7 @@ namespace Hestia.DevicesScreen
 
         public void SetDevice(Device device, bool on_off)
         {
-            foreach (Hestia.backend.models.Activator act in device.Activators)
+            foreach (backend.models.Activator act in device.Activators)
             {
                 if (act.State.Type == "bool")
                 {
@@ -262,8 +266,7 @@ namespace Hestia.DevicesScreen
 
         public Device GetDevice(string result)
         {
-            List<Device> list = Globals.GetDevices();
-            foreach (Device device in list)
+            foreach (Device device in devices)
             {
                 if (result.Contains(device.Name.ToLower()))
                 {

@@ -16,6 +16,7 @@ using Hestia.DevicesScreen;
 using Hestia.backend.models;
 using Hestia.backend.speech_recognition;
 using Hestia.frontend;
+using CoreGraphics;
 
 namespace Hestia
 {
@@ -26,7 +27,10 @@ namespace Hestia
     public partial class UIViewControllerLocalGlobal : UIViewController, IViewControllerSpeech
     {
         Auth0Client client;
-        private SpeechRecognition speechRecognizer;
+        SpeechRecognition speechRecognizer;
+        const int IconDimension = 50;
+        const int BottomPadding = 50;
+        UIButton SpeechButtonLocalGlobal;
 
         // User defaults
         NSUserDefaults userDefaults;
@@ -47,6 +51,12 @@ namespace Hestia
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultAccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
+        
+            SpeechButtonLocalGlobal = new UIButton(UIButtonType.System);
+            SpeechButtonLocalGlobal.Frame = new CGRect(View.Bounds.Width / 2 - IconDimension / 2, View.Bounds.Bottom - IconDimension - BottomPadding , IconDimension, IconDimension);
+            SpeechButtonLocalGlobal.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIconInverted), UIControlState.Normal);
+
+            View.AddSubview(SpeechButtonLocalGlobal);
         }
 
         public override void ViewDidAppear(bool animated)
@@ -63,28 +73,28 @@ namespace Hestia
                 await ToGlobalScreen();
             };
 
-            SpeechButton.TouchDown += (object sender, EventArgs e) => 
+            SpeechButtonLocalGlobal.TouchDown += (object sender, EventArgs e) => 
             {
                 speechRecognizer = new SpeechRecognition(this, this);
                 speechRecognizer.StartRecording();
             };
 
-            SpeechButton.TouchUpInside += (object sender, EventArgs e) =>
+            SpeechButtonLocalGlobal.TouchUpInside += (object sender, EventArgs e) =>
             {
                 speechRecognizer.StopRecording();
             };
 
-            SpeechButton.TouchDragExit += (object sender, EventArgs e) =>
+            SpeechButtonLocalGlobal.TouchDragExit += (object sender, EventArgs e) =>
             {
                 speechRecognizer.CancelRecording();
-            };
+            };   
         }
 
         bool CheckLocalLoginDefaults()
         {
-            if (defaultIP != null && defaultPort != null)
+            if (defaultIP != null)
             {
-                return PingServer.Check(defaultIP, int.Parse(defaultPort));
+                return PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
             }
             return false;
         }
@@ -100,17 +110,12 @@ namespace Hestia
             var loginResult = await client.LoginAsync(new { audience = strings.apiURL });
             if (loginResult.IsError)
             {
-                Debug.WriteLine($"An error occurred during login: {loginResult.Error}");
-            }
-            else
-            {
-                Debug.WriteLine($"id_token: {loginResult.IdentityToken}");
-                Debug.WriteLine($"access_token: {loginResult.AccessToken}");
+                Console.WriteLine($"An error occurred during login: {loginResult.Error}");
             }
             return loginResult;
         }
 
-        private void ToLocalScreen()
+        void ToLocalScreen()
         {
             // Already anticipate local login
             // Check if local serverinformation is present and correct
@@ -126,12 +131,12 @@ namespace Hestia
             else
             {
                 Console.WriteLine("To Server Connect screen");
-                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName("Devices2", null);
+                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
                 PresentViewController(devicesMainStoryboard.InstantiateInitialViewController(), true, null);
             }
         }
 
-        private async Task ToGlobalScreen()
+        async Task ToGlobalScreen()
         {
             userDefaults.SetString(bool.FalseString, strings.defaultsLocalHestia);
 
@@ -164,7 +169,7 @@ namespace Hestia
         {
             Globals.LocalLogin = true;
             Globals.ServerName = defaultServerName;
-            Globals.Address = defaultIP;
+            Globals.Address = strings.defaultPrefix + defaultIP;
             Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
             Console.WriteLine("To Devices Main Local");
             PerformSegue(strings.mainToDevicesMain, this);

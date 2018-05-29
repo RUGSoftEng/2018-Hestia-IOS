@@ -2,10 +2,6 @@
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
-using System.Drawing;
-
-using System.Collections;
-using CoreGraphics;
 using Hestia.backend;
 using Hestia.backend.models;
 using Hestia.Resources;
@@ -30,9 +26,6 @@ namespace Hestia.DevicesScreen.resources
         // Variables for global server
         public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
         public static List<HestiaServer> Auth0Servers { get; set; }
-
-        public const string NO_AUTHORIZATION = "Please make sure you have allowed speech recognition and try again.";
-        public const string WRONG = "Something went wrong";
 
         public static List<HestiaServerInteractor> GetInteractorsOfSelectedServers()
         {
@@ -65,52 +58,6 @@ namespace Hestia.DevicesScreen.resources
             return GetInteractorsOfSelectedServers().Count;
         }
 
-        // Get devices for only local servers or selected Firebase Servers
-        public static List<Device> GetDevices()
-        {
-            List<Device> devices = new List<Device>();
-            if (LocalLogin)
-            {
-                devices = LocalServerinteractor.GetDevices();
-            }
-            else
-            {
-                foreach (HestiaServerInteractor server in GetInteractorsOfSelectedServers())
-                {
-                    devices.AddRange(server.GetDevices());
-                }
-            }
-            return devices;
-        }
-
-        public static NetworkHandler GetTemporyNetworkHandler()
-        {
-            NetworkHandler temp_networkhandler;
-            if(LocalLogin)
-            {
-                temp_networkhandler = new NetworkHandler(Address, int.Parse(strings.defaultPort));
-            }
-            else
-            {
-                temp_networkhandler = new NetworkHandler(Auth0Servers[0].Interactor.NetworkHandler.Address, Auth0Servers[0].Interactor.NetworkHandler.Port);
-            }
-            return temp_networkhandler;
-        }
-
-		public static HestiaServerInteractor GetTemporaryServerInteractor()
-		{
-			HestiaServerInteractor temp_serverinteractor;
-            if (LocalLogin)
-            {
-                temp_serverinteractor = new HestiaServerInteractor(new NetworkHandler(Address, int.Parse(strings.defaultPort)));
-            }
-            else
-            {
-				temp_serverinteractor = Auth0Servers[0].Interactor;
-            }
-			return temp_serverinteractor;
-		}
-
         public static void ResetAllUserDefaults()
         {
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
@@ -121,7 +68,5 @@ namespace Hestia.DevicesScreen.resources
             userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
             userDefaults.RemoveObject(strings.defaultsIdentityTokenHestia);
         }
-
-       // public static Reset
     }
 }

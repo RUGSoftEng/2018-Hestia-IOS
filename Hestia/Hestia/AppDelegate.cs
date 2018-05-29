@@ -9,6 +9,7 @@ using System;
 using Hestia.Resources;
 using Hestia.backend.exceptions;
 using Hestia.backend.speech_recognition;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -23,7 +24,6 @@ namespace Hestia
         public override UIWindow Window { get; set; }
         public static UIStoryboard mainStoryboard = UIStoryboard.FromName(strings.mainStoryBoard, null);
         public static UIStoryboard devices2Storyboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
-        public static UIStoryboard devices3Storyboard = UIStoryboard.FromName(strings.devices3StoryBoard, null);
 
         string defaultServername;
         string defaultIP;
@@ -38,7 +38,7 @@ namespace Hestia
             }
             try
             {
-                bool validIp = PingServer.Check(defaultIP, int.Parse(defaultPort));
+                bool validIp = PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
             }
             catch (Exception exception)
             {
@@ -51,7 +51,7 @@ namespace Hestia
         public void SetGlobalsToDefaultsLocalLogin()
         {
             Globals.ServerName = defaultServername;
-            Globals.Address = defaultIP;
+            Globals.Address = strings.defaultPrefix + defaultIP;
             HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
             Globals.LocalServerinteractor = serverInteractor;
         }
@@ -76,8 +76,9 @@ namespace Hestia
             }
             catch(ServerInteractionException ex)
             {
-                Console.WriteLine("Exception while getting devices from server.");
+                Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex.StackTrace);
+                new WarningMessage("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
             }
         }
 
@@ -125,7 +126,7 @@ namespace Hestia
 				Console.WriteLine(" Default global");
                 Globals.LocalLogin = false;
 
-                var viewServerList = devices3Storyboard.InstantiateInitialViewController();
+                var viewServerList = devices2Storyboard.InstantiateViewController("navigationServerList");
                 Window.RootViewController = viewServerList;
                 SetGlobalsToDefaultsGlobalLogin();
             }

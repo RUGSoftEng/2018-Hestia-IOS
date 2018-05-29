@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UIKit;
-using Foundation;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
-using System.Drawing;
 using System.Collections;
-using Hestia.backend;
 using Hestia.backend.exceptions;
-using Hestia.backend.models;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -43,7 +40,8 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while using serverInteractor");
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex);
+                WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to get available plugins", this);
             }
             
             // Contains methods that describe behavior of table

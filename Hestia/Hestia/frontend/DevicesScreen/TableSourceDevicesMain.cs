@@ -8,8 +8,8 @@ using Hestia.DevicesScreen.ActivatorScreen;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
-using Hestia.frontend;
 using Hestia.Resources;
+
 
 namespace Hestia.DevicesScreen
 {
@@ -80,21 +80,27 @@ namespace Hestia.DevicesScreen
         {
             if (!tableView.Editing)
             {
-                var deviceRow = GetSectionRow(indexPath);
-                if (deviceRow.Activators.Count != 0)
+                var d = GetSectionRow(indexPath);
+                if (d.Activators.Count != 0)
                 {
-                    var popupViewController = new UITableViewActivators();
-                    popupViewController.device = deviceRow;
-                    nfloat heightPop = tableView.RowHeight * 2;
-                    popupViewController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * deviceRow.Activators.Count);
-                    popupViewController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-                    var popPresenter = popupViewController.PopoverPresentationController;
-                    popPresenter.SourceView = owner.View;
-                    popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight / 2 - heightPop, 0, 0);
+                    var popupNavVC = new UITableViewActivators();
+                    popupNavVC.Title = d.Name;
+                    popupNavVC.device = d;
+
+
+                    var navigationController = new UINavigationController(popupNavVC);
+                    navigationController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
+                    navigationController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
+
+                    nfloat heightPop = 20 + navigationController.NavigationBar.Frame.Size.Height;
+                    var popPresenter = navigationController.PopoverPresentationController;
+                    popPresenter.SourceView = this.owner.View;
+                    popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight/2-heightPop, 0, 0);
                     popPresenter.Delegate = new PopoverDelegate();
                     popPresenter.PermittedArrowDirections = 0;
                     popPresenter.BackgroundColor = UIColor.White;
-                    owner.PresentViewController(popupViewController, true, null);
+                    this.owner.PresentViewController(navigationController, true, null);
+
                 }
             }
             // Go to edit name window for non-insert cells
@@ -117,9 +123,8 @@ namespace Hestia.DevicesScreen
                 }
                 catch (ServerInteractionException ex)
                 {
-                    Console.WriteLine("Exception while removing device");
+                    Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
                     Console.Out.WriteLine(ex);
-                    WarningMessage message = new WarningMessage("Exception while removing device", "An exception occurred while removing the device from the local server", owner);
                 }
             }
             else
@@ -132,9 +137,8 @@ namespace Hestia.DevicesScreen
                 }
                 catch (ServerInteractionException ex)
                 {
-                    Console.WriteLine("Exception while removing device");
+                    Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
                     Console.Out.WriteLine(ex);
-                    WarningMessage message = new WarningMessage("Exception while removing device", "An exception occurred while removing the device from the local server through the Auth0 server", owner);
                 }
             }
             // Remove device from local list

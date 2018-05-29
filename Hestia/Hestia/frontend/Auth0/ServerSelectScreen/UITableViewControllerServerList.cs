@@ -1,16 +1,18 @@
-using System;
-using UIKit;
-using Hestia.DevicesScreen.resources;
+using Foundation;
+using Hestia.Auth0.ServerSelectScreen;
 using Hestia.backend;
 using Hestia.backend.exceptions;
+using Hestia.DevicesScreen.resources;
+using System;
+using UIKit;
 
-namespace Hestia.Auth0.ServerSelectScreen
+namespace Hestia
 {
-    public class UITableViewServerList : UITableViewController
+    public partial class UITableViewControllerServerList : UITableViewController
     {
         UIBarButtonItem done;
 
-        public UITableViewServerList (IntPtr handle) : base (handle)
+        public UITableViewControllerServerList (IntPtr handle) : base (handle)
         {
         }
 
@@ -19,7 +21,11 @@ namespace Hestia.Auth0.ServerSelectScreen
             base.ViewDidLoad();
             Title = Resources.strings.selectServerTitle;
             TableView.Source = new TableSourceServerList();
+        }
 
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
             // The done button that loads the devicesMainScreen with the selected servers
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 if (ShouldPerformSegue())
@@ -88,5 +94,5 @@ namespace Hestia.Auth0.ServerSelectScreen
             okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
             PresentViewController(okAlertController, true, null);
         }
-    }
+	}
 }

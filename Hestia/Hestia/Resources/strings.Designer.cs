@@ -223,6 +223,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://.
+        /// </summary>
+        public static string defaultPrefix {
+            get {
+                return ResourceManager.GetString("defaultPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to accessTokenHestia.
         /// </summary>
         public static string defaultsAccessTokenHestia {
@@ -565,7 +574,7 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please make sure you have pronounce the device name correctly..
+        ///   Looks up a localized string similar to Please make sure you have pronounced the device name correctly..
         /// </summary>
         public static string pronounceDeviceNameCorrectly {
             get {
@@ -813,6 +822,15 @@ namespace Hestia.Resources {
         public static string voiceControlIcon {
             get {
                 return ResourceManager.GetString("voiceControlIcon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VoiceControlIconInverted.
+        /// </summary>
+        public static string voiceControlIconInverted {
+            get {
+                return ResourceManager.GetString("voiceControlIconInverted", resourceCulture);
             }
         }
         

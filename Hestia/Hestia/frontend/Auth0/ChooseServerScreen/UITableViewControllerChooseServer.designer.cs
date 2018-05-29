@@ -11,8 +11,8 @@ using UIKit;
 
 namespace Hestia
 {
-    [Register ("UITableViewControllerServerDiscovery")]
-    partial class UITableViewControllerServerDiscovery
+    [Register ("UITabelViewControllerChooseServer")]
+    partial class UITableViewControllerChooseServer
     {
         void ReleaseDesignerOutlets ()
         {
