@@ -282,14 +282,8 @@
   <data name="defaultsAccessTokenHestia" xml:space="preserve">
     <value>accessTokenHestia</value>
   </data>
-  <data name="defaultsIdentityTokenHestia" xml:space="preserve">
-    <value>identityTokenHestia</value>
-  </data>
   <data name="devices2StoryBoard" xml:space="preserve">
     <value>Devices2</value>
-  </data>
-  <data name="devices3StoryBoard" xml:space="preserve">
-    <value>Devices3</value>
   </data>
   <data name="mainStoryBoard" xml:space="preserve">
     <value>Main</value>
@@ -377,5 +371,11 @@
   </data>
   <data name="pronounceDeviceNameCorrectly" xml:space="preserve">
     <value>Please make sure you have pronounced the device name correctly.</value>
+  </data>
+  <data name="viewControllerAddDeviceProperties" xml:space="preserve">
+    <value>AddDeviceProperties</value>
+  </data>
+  <data name="viewControllerAddDevice" xml:space="preserve">
+    <value>AddDevice</value>
   </data>
 </root>

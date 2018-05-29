@@ -22,7 +22,6 @@ namespace Hestia
         Regex rxName = new Regex(@"^(.)+$");
         MatchCollection matchesName, matchesIP;
 
-
         public UITableViewControllerAddDeviceProperties(IntPtr handle) : base(handle)
         {
         }
@@ -59,52 +58,67 @@ namespace Hestia
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
                 SaveFields();
                 Console.WriteLine("Clicked save button");
-
-                if (matchesName.Count <= 0 && matchesIP.Count <= 0)
+                if (matchesIP != null)
                 {
-                    var alert = UIAlertController.Create("Error!", "You have to fill all the specifictions.", UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                    PresentViewController(alert, true, null);
-                }
-                else if (matchesName.Count <= 0 && matchesIP.Count > 0)
-                {
-                    var alert = UIAlertController.Create("Error!", "You have to give a name for the device.", UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                    PresentViewController(alert, true, null);
-                }
-                else if (matchesIP.Count <= 0 && matchesName.Count > 0)
-                {
-                    var alert = UIAlertController.Create("Error!", "IP= 'X.X.X.X'. X should be between 0 or 255", UIAlertControllerStyle.Alert);
-                    alert.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-                    PresentViewController(alert, true, null);
+                    if (matchesName.Count <= 0 && matchesIP.Count <= 0)
+                    {
+                        new WarningMessage("Error!", "You have to fill all the specifictions.", this);
+                    }
+                    else if (matchesName.Count <= 0 && matchesIP.Count > 0)
+                    {
+                        new WarningMessage("Error!", "You have to give a name for the device.", this);
+                    }
+                    else if (matchesIP.Count <= 0 && matchesName.Count > 0)
+                    {
+                        new WarningMessage("Error!", "X.X.X.X'. X should be between 0 or 255", this);
+                    }
+                    else
+                    {
+                        AddDeviceToServer();
+                    }
                 }
                 else
                 {
-                    // Try to add device to server
-                    try
+                    if (matchesName.Count <= 0)
                     {
-                        Console.WriteLine("Server to add device to" + Globals.ServerToAddDeviceTo);
-                        Globals.ServerToAddDeviceTo.AddDevice(pluginInfo);
-
+                        new WarningMessage("Error!", "You have to give a name for the device.", this);
                     }
-                    catch (ServerInteractionException ex)
+                    else
                     {
-                        Console.WriteLine("Exception while adding device to server");
-                        Console.WriteLine(ex);
-                        frontend.WarningMessage message = new frontend.WarningMessage("Exception", "Could not add device", this);
+                        AddDeviceToServer();
                     }
-                }
-
-                // Get the root view contoller and cancel the editing state
-                var rootViewController = NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
-                rootViewController.CancelEditingState();
-                rootViewController.RefreshDeviceList();
-                // Go back to the devices main screen
-                NavigationController.PopToViewController(rootViewController, true);
+                }    
             });
 
             // Set right button to save 
             NavigationItem.RightBarButtonItem = save;
+        }
+
+        void AddDeviceToServer()
+        {
+            // Try to add device to server
+            try
+            {
+                Console.WriteLine("Server to add device to" + Globals.ServerToAddDeviceTo);
+                Globals.ServerToAddDeviceTo.AddDevice(pluginInfo);
+                SegueToDevicesMain();
+            }
+            catch (ServerInteractionException ex)
+            {
+                Console.WriteLine("Exception while adding device to server");
+                Console.WriteLine(ex);
+                new WarningMessage("Exception", "Could not add device", this);
+            }
+        }
+
+        void SegueToDevicesMain()
+        {
+            // Get the root view contoller and cancel the editing state
+            var rootViewController = NavigationController.ViewControllers[0] as UITableViewControllerDevicesMain;
+            rootViewController.CancelEditingState();
+            rootViewController.RefreshDeviceList();
+            // Go back to the devices main screen
+            NavigationController.PopToViewController(rootViewController, true);
         }
     }
 }

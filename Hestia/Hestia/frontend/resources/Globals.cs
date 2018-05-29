@@ -66,7 +66,6 @@ namespace Hestia.DevicesScreen.resources
             userDefaults.RemoveObject(strings.defaultsPortHestia);
             userDefaults.RemoveObject(strings.defaultsLocalHestia);
             userDefaults.RemoveObject(strings.defaultsAccessTokenHestia);
-            userDefaults.RemoveObject(strings.defaultsIdentityTokenHestia);
         }
     }
 }

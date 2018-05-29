@@ -47,3 +47,20 @@ producing unit tests
 producing unit tests
 attempting to install virtualbox with macOS
 attempting to install virtualbox with macOS
+realizing that it's not going to work
+researching different voice recognition methods
+attending meeting with customer
+attending meeting with customer
+attending meeting with customer
+attending meeting with customer
+working on back end voice recognition
+working on back end voice recognition
+working on back end voice recognition
+working on back end voice recognition
+working on back end voice recognition
+working on back end voice recognition
+working on back end voice recognition
+making diagram of server and app interaction
+making diagram of server and app interaction
+updating documentation about server and app interaction
+

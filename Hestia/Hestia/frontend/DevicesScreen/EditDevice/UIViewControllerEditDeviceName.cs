@@ -56,6 +56,12 @@ namespace Hestia.DevicesScreen.EditDevice
                     try
                     {
                         device.Name = changeNameField.Text;
+                        // Reset editing mode to be able to correctly update cell contents
+                        owner.CancelEditingState();
+
+                        owner.RefreshDeviceList();
+                        owner.SetEditingState();
+                        NavigationController.PopViewController(true);
                     }
                     catch (ServerInteractionException ex)
                     {
@@ -63,12 +69,6 @@ namespace Hestia.DevicesScreen.EditDevice
                         Console.WriteLine(ex);
                         new WarningMessage("Exception", "An exception occurred on the server when changing the name of the device", this);  
                     } 
-                    // Reset editing mode to be able to correctly update cell contents
-                    owner.CancelEditingState();
-
-                    owner.RefreshDeviceList();
-                    owner.SetEditingState();
-                    NavigationController.PopViewController(true);
                 }
             });
             NavigationItem.RightBarButtonItem = saveName;

@@ -142,13 +142,13 @@
     <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
     <Compile Include="frontend\WarningMessage.cs" />
     <Compile Include="frontend\Auth0\ChooseServerScreen\TableSourceAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Auth0\ServerSelectScreen\UITableViewControllerServerList.cs" />
-    <Compile Include="frontend\Auth0\ServerSelectScreen\UITableViewControllerServerList.designer.cs">
-      <DependentUpon>UITableViewControllerServerList.cs</DependentUpon>
+    <Compile Include="frontend\Auth0\ServerSelectScreen\ViewControllerServerList.cs" />
+    <Compile Include="frontend\Auth0\ServerSelectScreen\ViewControllerServerList.designer.cs">
+      <DependentUpon>ViewControllerServerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerChooseServer.cs" />
-    <Compile Include="frontend\Auth0\ChooseServerScreen\UITableViewControllerChooseServer.designer.cs">
-      <DependentUpon>UITableViewControllerChooseServer.cs</DependentUpon>
+    <Compile Include="frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.designer.cs">
+      <DependentUpon>ViewControllerChooseServer.cs</DependentUpon>
     </Compile>
     <Compile Include="backend\speech_recognition\IViewControllerSpeech.cs" />
   </ItemGroup>

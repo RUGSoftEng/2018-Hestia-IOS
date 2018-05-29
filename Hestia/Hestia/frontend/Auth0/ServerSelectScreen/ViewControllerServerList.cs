@@ -1,18 +1,20 @@
 using Foundation;
-using Hestia.Auth0.ServerSelectScreen;
+using System;
+using UIKit;
+using Hestia.Auth0;
+
 using Hestia.backend;
 using Hestia.backend.exceptions;
 using Hestia.DevicesScreen.resources;
-using System;
-using UIKit;
+using Hestia.frontend;
 
 namespace Hestia
 {
-    public partial class UITableViewControllerServerList : UITableViewController
+    public partial class ViewControllerServerList : UITableViewController
     {
         UIBarButtonItem done;
 
-        public UITableViewControllerServerList (IntPtr handle) : base (handle)
+        public ViewControllerServerList(IntPtr handle) : base(handle)
         {
         }
 
@@ -79,20 +81,11 @@ namespace Hestia
                 {
                     Console.WriteLine("Exception while getting devices from local server");
                     Console.WriteLine(ex);
-                    DisplayWarningMessage();
+                    new WarningMessage("Could not fetch devices", "The server information is invalid. Did you forget to include https://?", this);
                     return false;
                 }
             }
             return true;
         }
-
-        void DisplayWarningMessage()
-        {
-            string title = "Could not fetch devices";
-            string message = "The server information is invalid. Did you forget to include https://?";
-            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
-            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
-            PresentViewController(okAlertController, true, null);
-        }
-	}
+    }
 }

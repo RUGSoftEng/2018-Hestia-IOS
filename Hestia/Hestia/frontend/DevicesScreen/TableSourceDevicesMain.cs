@@ -9,7 +9,7 @@ using Hestia.backend.exceptions;
 using Hestia.backend.models;
 using Hestia.DevicesScreen.EditDevice;
 using Hestia.Resources;
-
+using System.Diagnostics.Contracts;
 
 namespace Hestia.DevicesScreen
 {
@@ -24,6 +24,7 @@ namespace Hestia.DevicesScreen
 
         Device GetSectionRow(NSIndexPath indexPath)
         {
+            Contract.Ensures(Contract.Result<Device>() != null);
             return serverDevices[indexPath.Section][indexPath.Row];
         }
 
