@@ -127,17 +127,6 @@ namespace UITests
             app.Tap(t => t.Text("Connect"));
             app.Tap(t => t.Text("OK"));
 
-            app.Tap(t => t.Text("Enter IP"));
-            app.EnterText("0.0.0.0");
-            app.Tap(t => t.Text("Connect"));
-            app.Tap(t => t.Text("OK"));
-            app.Tap(b => b.Button("Clear text"));
-
-            app.EnterText("94.212.164.28");
-            app.Tap(t => t.Text("Connect"));
-            app.Tap(t => t.Text("OK"));
-            app.Tap(b => b.Button("Clear text"));
-
             app.Tap(t => t.Text("Enter name"));
             app.EnterText("Hestia");
             app.Tap(t => t.Text("Connect"));
@@ -147,11 +136,10 @@ namespace UITests
             app.EnterText("0.0.0.0");
             app.Tap(t => t.Text("Connect"));
             app.Tap(t => t.Text("OK"));
-            app.Tap(b => b.Button("Clear text"));
+            app.ClearText();
 
             app.EnterText("94.212.164.28");
             app.Tap(t => t.Text("Connect"));
-            app.Tap(t => t.Text("OK"));
         }
     }
 }
