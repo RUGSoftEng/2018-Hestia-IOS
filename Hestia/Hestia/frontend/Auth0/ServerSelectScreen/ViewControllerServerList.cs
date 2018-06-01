@@ -22,7 +22,7 @@ namespace Hestia
         {
             base.ViewDidLoad();
             Title = Resources.strings.selectServerTitle;
-            TableView.Source = new TableSourceServerList();
+            TableView.Source = new TableSourceServerList(this);
         }
 
         public override void ViewDidAppear(bool animated)

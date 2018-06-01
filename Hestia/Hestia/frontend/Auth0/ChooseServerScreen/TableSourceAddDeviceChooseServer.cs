@@ -1,8 +1,10 @@
 ﻿using System;
 using UIKit;
 using Foundation;
-
 using Hestia.DevicesScreen.resources;
+using Hestia.backend.models;
+using Hestia.backend.exceptions;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -57,3 +59,5 @@ namespace Hestia
         }
     }
 }
+
+

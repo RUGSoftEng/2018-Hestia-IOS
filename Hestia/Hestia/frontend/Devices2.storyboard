@@ -758,5 +758,38 @@
             </objects>
             <point key="canvasLocation" x="-1232" y="2358"/>
         </scene>
+        <scene sceneID="103618">
+            <objects>
+                <tableViewController id="103619" sceneMemberID="viewController" customClass="AddServerViewController" storyboardIdentifier="AddServerViewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="103620">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="103623">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="103623" id="103624">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="103619" id="103621"/>
+                            <outlet property="delegate" destination="103619" id="103622"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="103625" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-407" y="3182"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="LogoLaunchscreen" width="431" height="206"/>
+        <image name="AddDeviceIcon" width="50" height="50"/>
+        <image name="VoiceControlIcon" width="50" height="50"/>
+        <image name="VoiceControlIconInverted" width="50" height="50"/>
+    </resources>
 </document>
