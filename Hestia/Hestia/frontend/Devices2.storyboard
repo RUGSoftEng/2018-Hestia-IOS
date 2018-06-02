@@ -759,4 +759,11 @@
             <point key="canvasLocation" x="-1232" y="2358"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LogoLaunchscreen" width="431" height="206"/>
+        <image name="AddDeviceIcon" width="50" height="50"/>
+        <image name="VoiceControlIcon" width="50" height="50"/>
+        <image name="VoiceControlIconInverted" width="50" height="50"/>
+        <image name="VoiceControlIcon2" width="50" height="50"/>
+    </resources>
 </document>
