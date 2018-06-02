@@ -232,6 +232,8 @@
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIconInverted.imageset\" />
+    <Folder Include="Assets.xcassets\d.imageset\" />
+    <Folder Include="Assets.xcassets\VoiceControlIcon2.imageset\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -304,6 +306,10 @@
     <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_150.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_50.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_100.png" />
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_150.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

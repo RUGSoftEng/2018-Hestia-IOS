@@ -364,7 +364,7 @@
     <value>https://</value>
   </data>
   <data name="voiceControlIconInverted" xml:space="preserve">
-    <value>VoiceControlIconInverted</value>
+    <value>VoiceControlIcon2</value>
   </data>
   <data name="noDeviceFound" xml:space="preserve">
     <value>No device found</value>

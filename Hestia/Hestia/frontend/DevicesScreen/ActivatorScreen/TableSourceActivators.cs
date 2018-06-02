@@ -42,7 +42,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
 
                 // Set the switch's state to that of the device.
                 DeviceSwitch.On = (bool)act.State.RawState;
-                DeviceSwitch.ValueChanged += delegate (object sender, EventArgs e)
+                DeviceSwitch.TouchUpInside += delegate (object sender, EventArgs e)
                 {
                     try 
                     {
