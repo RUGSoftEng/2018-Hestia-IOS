@@ -12,9 +12,7 @@ using System.Threading.Tasks;
 using IdentityModel.OidcClient;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
-using Hestia.backend.speech_recognition;
 using Hestia.frontend;
-using CoreGraphics;
 
 namespace Hestia
 {
@@ -22,10 +20,9 @@ namespace Hestia
     /// This view controller belongs to the first window that can be seen when loading the app
     /// if no user default for local/global is present. The user can then choose local/global.
     /// </summary>
-    public partial class UIViewControllerLocalGlobal : UIViewController, IViewControllerSpeech
+    public partial class UIViewControllerLocalGlobal : UIViewController
     {
         Auth0Client client;
-        SpeechRecognition speechRecognizer;
         const int IconDimension = 50;
         const int BottomPadding = 50;
         UIButton SpeechButtonLocalGlobal;
@@ -49,12 +46,6 @@ namespace Hestia
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultAccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
-        
-            SpeechButtonLocalGlobal = new UIButton(UIButtonType.System);
-            SpeechButtonLocalGlobal.Frame = new CGRect(View.Bounds.Width / 2 - IconDimension / 2, View.Bounds.Bottom - IconDimension - BottomPadding , IconDimension, IconDimension);
-            SpeechButtonLocalGlobal.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIconInverted), UIControlState.Normal);
-
-            View.AddSubview(SpeechButtonLocalGlobal);
         }
 
         public override void ViewDidAppear(bool animated)
@@ -69,27 +60,7 @@ namespace Hestia
             ToGlobalButton.TouchUpInside += async (object sender, EventArgs e) =>
             {
                 await ToGlobalScreen();
-            };
-
-            SpeechButtonLocalGlobal.TouchDown += (object sender, EventArgs e) => 
-            {
-                speechRecognizer = new SpeechRecognition(this, this);
-                WarningMessage warningMessage = speechRecognizer.StartRecording();
-                if (warningMessage != null)
-                {
-                    warningMessage.DisplayWarningMessage(this);
-                }
-            };
-
-            SpeechButtonLocalGlobal.TouchUpInside += (object sender, EventArgs e) =>
-            {
-                speechRecognizer.StopRecording();
-            };
-
-            SpeechButtonLocalGlobal.TouchDragExit += (object sender, EventArgs e) =>
-            {
-                speechRecognizer.CancelRecording();
-            };   
+            };         
         }
 
         bool CheckLocalLoginDefaults()
@@ -219,23 +190,6 @@ namespace Hestia
             }
             Console.WriteLine("To Server Select Global");
             PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
-        }
-
-        public async void ProcessSpeech(string result)
-        {
-            result = result.ToLower();
-            if (result.Equals("local"))
-            {
-                ToLocalScreen();
-            }
-            else if (result.Equals("global"))
-            {
-                await ToGlobalScreen();
-            }
-            else
-            {
-                new WarningMessage(result + " " + strings.speechNotACommand, strings.tryAgain, this);
-            }
         }
     }
 }
