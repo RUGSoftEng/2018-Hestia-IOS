@@ -98,7 +98,8 @@ namespace Hestia.DevicesScreen
 
             try
             {
-                validIp = PingServer.Check(strings.defaultPrefix + newIP.Text, int.Parse(strings.defaultPort));
+                string address = strings.defaultPrefix + newIP.Text + ":" + int.Parse(strings.defaultPort);
+                validIp = PingServer.Check(address);
             }
             catch (Exception exception)
             {
@@ -111,8 +112,8 @@ namespace Hestia.DevicesScreen
             if (validIp)
             {
                 Globals.ServerName = newServerName.Text;
-                Globals.Address = strings.defaultPrefix + newIP.Text;
-                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
+                Globals.Address = strings.defaultPrefix + newIP.Text + ":" + strings.defaultPort;
+                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address));
                 Globals.LocalServerinteractor = serverInteractor;
 
                 userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);

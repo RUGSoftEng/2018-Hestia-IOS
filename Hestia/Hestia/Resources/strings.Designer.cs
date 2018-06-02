@@ -385,6 +385,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to https://fathomless-reef-69954.herokuapp.com.
+        /// </summary>
+        public static string hestiaWebServerAddress {
+            get {
+                return ResourceManager.GetString("hestiaWebServerAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 10.
         /// </summary>
         public static string initialCount {
@@ -831,15 +840,6 @@ namespace Hestia.Resources {
         public static string voiceControlIconInverted {
             get {
                 return ResourceManager.GetString("voiceControlIconInverted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to https://fathomless-reef-69954.herokuapp.com.
-        /// </summary>
-        public static string webserverIP {
-            get {
-                return ResourceManager.GetString("webserverIP", resourceCulture);
             }
         }
     }
