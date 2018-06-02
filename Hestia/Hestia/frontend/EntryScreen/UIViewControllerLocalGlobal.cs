@@ -74,7 +74,11 @@ namespace Hestia
             SpeechButtonLocalGlobal.TouchDown += (object sender, EventArgs e) => 
             {
                 speechRecognizer = new SpeechRecognition(this, this);
-                speechRecognizer.StartRecording();
+                WarningMessage warningMessage = speechRecognizer.StartRecording();
+                if (warningMessage != null)
+                {
+                    warningMessage.DisplayWarningMessage(this);
+                }
             };
 
             SpeechButtonLocalGlobal.TouchUpInside += (object sender, EventArgs e) =>

@@ -66,12 +66,11 @@ namespace Hestia.backend.speech_recognition
             }
         }
 
-        public void StartRecording()
+        public WarningMessage StartRecording()
         {
             if (!IsAuthorized())
             {
-                new WarningMessage(strings.speechAccessDenied, strings.speechAllowAccess, viewController);
-                return;
+                return new WarningMessage(strings.speechAccessDenied, strings.speechAllowAccess);
             }
             
             var node = AudioEngine.InputNode;
@@ -87,8 +86,7 @@ namespace Hestia.backend.speech_recognition
             if (error != null)
             {
                 Console.WriteLine(strings.speechStartRecordProblem);
-                new WarningMessage(strings.speechStartRecordProblem, strings.tryAgain, viewController);
-                return;
+                return new WarningMessage(strings.speechStartRecordProblem, strings.tryAgain);
             }
             
             if (player.IsPlaying) player.Stop();
@@ -109,6 +107,7 @@ namespace Hestia.backend.speech_recognition
                     }
                 }
             });
+            return null;
         }
 
         public void StopRecording()

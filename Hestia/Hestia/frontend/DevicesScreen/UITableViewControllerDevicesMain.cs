@@ -115,7 +115,11 @@ namespace Hestia.DevicesScreen
                 if(!isEditing)
                 {
                     speechRecognizer = new SpeechRecognition(this, this);
-                    speechRecognizer.StartRecording();
+                    WarningMessage warningMessage = speechRecognizer.StartRecording();
+                    if (warningMessage != null)
+                    {
+                        warningMessage.DisplayWarningMessage(this);
+                    }
                 }
             };
 
