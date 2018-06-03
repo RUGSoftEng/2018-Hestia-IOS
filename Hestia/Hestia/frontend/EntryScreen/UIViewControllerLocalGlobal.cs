@@ -30,7 +30,6 @@ namespace Hestia
         NSUserDefaults userDefaults;
         string defaultServerName;
         string defaultIP;
-        string defaultPort;
         string defaultAccessToken;
         
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
@@ -43,7 +42,6 @@ namespace Hestia
             userDefaults = NSUserDefaults.StandardUserDefaults;
             defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
-            defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultAccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
         }
 
@@ -66,7 +64,8 @@ namespace Hestia
         {
             if (defaultIP != null)
             {
-                return PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
+                string address = strings.defaultPrefix + defaultIP + ":" + int.Parse(strings.defaultPort);
+                return PingServer.Check(address);
             }
             return false;
         }
@@ -139,8 +138,8 @@ namespace Hestia
         {
             Globals.LocalLogin = true;
             Globals.ServerName = defaultServerName;
-            Globals.Address = strings.defaultPrefix + defaultIP;
-            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
+            Globals.Address = strings.defaultPrefix + defaultIP + ":" + Int32.Parse(strings.defaultPort);
+            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address));
             PerformSegue(strings.mainToDevicesMain, this);
         }
 
@@ -148,7 +147,7 @@ namespace Hestia
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, defaultAccessToken);
+            NetworkHandler networkHandler = new NetworkHandler(strings.hestiaWebServerAddress, defaultAccessToken);
             CreateServerInteractorAndSegue(networkHandler);
         }
 
@@ -158,7 +157,7 @@ namespace Hestia
             userDefaults.SetString(accessToken, strings.defaultsAccessTokenHestia);
 
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, accessToken);
+            NetworkHandler networkHandler = new NetworkHandler(strings.hestiaWebServerAddress, accessToken);
             CreateServerInteractorAndSegue(networkHandler);
         }
 
