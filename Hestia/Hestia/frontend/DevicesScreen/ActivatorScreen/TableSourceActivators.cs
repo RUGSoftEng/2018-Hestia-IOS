@@ -71,7 +71,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
 
                 // Set the switch's state to that of the device.
                 slider.Value = (float)act.State.RawState;
-                slider.TouchUpInside += delegate (object sender, EventArgs e)
+                slider.TouchUpInside += delegate
                 {
                     try
                     {

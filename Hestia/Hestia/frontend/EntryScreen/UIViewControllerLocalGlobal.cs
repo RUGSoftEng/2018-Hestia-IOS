@@ -25,7 +25,6 @@ namespace Hestia
         Auth0Client client;
         const int IconDimension = 50;
         const int BottomPadding = 50;
-        UIButton SpeechButtonLocalGlobal;
 
         // User defaults
         NSUserDefaults userDefaults;
