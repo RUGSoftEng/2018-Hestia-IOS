@@ -10,9 +10,7 @@ namespace Hestia.backend
 {
     public class NetworkHandler
     {
-        private string address; // address including connection method
-        private int port;
-        private bool hasPort;
+        private string address; // address including connection method and optionally a port
         private RestClient client;
         private bool usesAuth;
         private string accessToken; // auth0 access token
@@ -26,39 +24,14 @@ namespace Hestia.backend
                 SetRestClient();
             }
         }
-        public int Port
-        {
-            get => port;
-            set
-            {
-                port = value;
-                SetRestClient();
-            }
-        }
         public bool UsesAuth
         {
             get => usesAuth;
-        }
-        public bool HasPort
-        {
-            get => hasPort;
         }
 
         public NetworkHandler(string address)
         {
             this.address = address;
-            this.hasPort = false;
-            this.usesAuth = false;
-
-            SetRestClient();
-            TrustAllCerts();
-        }
-
-        public NetworkHandler(string address, int port)
-        {
-            this.address = address;
-            this.port = port;
-            this.hasPort = true;
             this.usesAuth = false;
 
             SetRestClient();
@@ -68,24 +41,10 @@ namespace Hestia.backend
         public NetworkHandler(string address, string accessToken)
         {
             this.address = address;
-            this.hasPort = false;
             this.usesAuth = true;
             this.accessToken = accessToken;
 
             SetRestClient();
-            TrustAllCerts();
-        }
-
-        public NetworkHandler(string address, int port, string accessToken)
-        {
-            this.address = address;
-            this.port = port;
-            this.hasPort = true;
-            this.usesAuth = true;
-            this.accessToken = accessToken;
-
-            SetRestClient();
-
             TrustAllCerts();
         }
 
@@ -175,15 +134,7 @@ namespace Hestia.backend
         private void SetRestClient()
         {
             Uri baseUrl = null;
-
-            if (hasPort)
-            {
-                baseUrl = new Uri(address + ":" + port + "/");
-            } else
-            {
-                baseUrl = new Uri(address + "/");
-            }
-
+            baseUrl = new Uri(address + "/");
             client = new RestClient(baseUrl);
         }
 
@@ -194,13 +145,7 @@ namespace Hestia.backend
 
         public override string ToString()
         {
-            if (hasPort)
-            {
-                return address + ":" + port.ToString();
-            } else
-            {
-                return address;
-            }
+            return address;
         }
     }
 }
