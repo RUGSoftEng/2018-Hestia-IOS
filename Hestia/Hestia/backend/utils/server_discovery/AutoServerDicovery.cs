@@ -12,8 +12,8 @@ namespace Hestia.backend.utils.server_discovery
     {
         public NSNetServiceBrowser Browser { get; }
         public ServerDelegate Delegate { get; }
-        private const string PROTOCOL = "_hestia._tcp";
-        private const string DOMAIN = @"local";
+        const string PROTOCOL = "_hestia._tcp";
+        const string DOMAIN = @"local";
 
         public AutoServerDicovery(UITableViewControllerServerDiscovery parent)
         {

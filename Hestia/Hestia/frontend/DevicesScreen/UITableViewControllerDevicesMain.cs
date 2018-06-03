@@ -19,7 +19,7 @@ namespace Hestia.DevicesScreen
         const int TableViewHeaderTopPadding = 5;
         const int IconDimension = 50;
 
-        private SpeechRecognition speechRecognizer;
+        SpeechRecognition speechRecognizer;
 
        // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
@@ -280,7 +280,7 @@ namespace Hestia.DevicesScreen
                     catch (ServerInteractionException ex)
                     {
                         Console.WriteLine("Exception while changing activator state");
-                        Console.WriteLine(ex.ToString());
+                        Console.WriteLine(ex);
                     }
                     return;
                 }

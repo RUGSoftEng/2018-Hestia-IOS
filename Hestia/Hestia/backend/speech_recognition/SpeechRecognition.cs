@@ -16,13 +16,13 @@ namespace Hestia.backend.speech_recognition
     /// </summary>
     class SpeechRecognition
     {
-        private AVAudioEngine AudioEngine = new AVAudioEngine();
-        private SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
-        private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
-        private SFSpeechRecognitionTask RecognitionTask;
-        private UIViewController viewController;
-        private IViewControllerSpeech viewControllerSpeech;
-        private ISimpleAudioPlayer player;
+        AVAudioEngine AudioEngine = new AVAudioEngine();
+        SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
+        SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
+        SFSpeechRecognitionTask RecognitionTask;
+        UIViewController viewController;
+        IViewControllerSpeech viewControllerSpeech;
+        ISimpleAudioPlayer player;
 
         public SpeechRecognition(UIViewController viewController, IViewControllerSpeech viewControllerSpeech)
         {
@@ -54,16 +54,13 @@ namespace Hestia.backend.speech_recognition
             });
         }
 
-        private bool IsAuthorized() 
+        bool IsAuthorized()
         {
             if (SFSpeechRecognizer.AuthorizationStatus == SFSpeechRecognizerAuthorizationStatus.Authorized)
             {
                 return true;
             }
-            else 
-            {
-                return false;
-            }
+            return false;
         }
 
         public WarningMessage StartRecording()

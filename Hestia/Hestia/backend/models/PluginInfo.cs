@@ -6,9 +6,9 @@ namespace Hestia.backend.models
 {
     public class PluginInfo
     {
-        private string collection;
-        private string plugin;
-        private Dictionary<string, string> requiredInfo;
+        string collection;
+        string plugin;
+        Dictionary<string, string> requiredInfo;
 
         [JsonProperty("collection")]
         public string Collection

@@ -8,10 +8,10 @@ namespace Hestia.backend
 {
     public class HestiaServerInteractor
     {
-        private NetworkHandler networkHandler;
-        private bool isRemoteServer;
-        private string serverId;
-        private string hestiaWebEndpoint;
+        NetworkHandler networkHandler;
+        bool isRemoteServer;
+        string serverId;
+        string hestiaWebEndpoint;
 
         public NetworkHandler NetworkHandler
         {

@@ -3,11 +3,11 @@ namespace Hestia.backend.models
 {
     public class Activator
     {
-        private string activatorId;
-        private string name;
-        private int rank;
-        private ActivatorState state;
-        private Device device;
+        string activatorId;
+        string name;
+        int rank;
+        ActivatorState state;
+        Device device;
 
         public string ActivatorId
         {

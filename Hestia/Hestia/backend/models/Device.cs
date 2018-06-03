@@ -5,11 +5,11 @@ namespace Hestia.backend.models
 {
     public class Device
     {
-        private string deviceId;
-        private string name;
-        private string type;
-        private List<Activator> activators;
-        private HestiaServerInteractor serverInteractor;
+        string deviceId;
+        string name;
+        string type;
+        List<Activator> activators;
+        HestiaServerInteractor serverInteractor;
 
         public string DeviceId
         {
