@@ -26,5 +26,12 @@ namespace Hestia.frontend
         {
             uIViewController.PresentViewController(alertController, true, null);
         }
+
+        public static void Display(string title, string message, UIViewController uIViewController)
+        {
+            var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
+            okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
+            uIViewController.PresentViewController(okAlertController, true, null);
+        }
     }
 }

@@ -1,4 +1,4 @@
-using Foundation;
+﻿using Foundation;
 using System;
 using UIKit;
 
@@ -103,7 +103,7 @@ namespace Hestia.DevicesScreen
             catch (Exception exception)
             {
                 Console.WriteLine(exception.StackTrace);
-                new WarningMessage("Could not connect to server", "Invalid server information", this);
+                WarningMessage.Display("Could not connect to server", "Invalid server information", this);
                 connectButton.Selected = false;
                 return false;
             }
@@ -121,7 +121,7 @@ namespace Hestia.DevicesScreen
                 return true;
             }
 
-            new WarningMessage("Could not connect to server", "Invalid server information", this);
+            WarningMessage.Display("Could not connect to server", "Invalid server information", this);
             connectButton.Selected = false;
             return false;
         }

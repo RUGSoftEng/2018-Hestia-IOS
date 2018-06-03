@@ -76,7 +76,7 @@ namespace Hestia.DevicesScreen
                 {
                     Console.WriteLine("Exception while getting required info");
                     Console.WriteLine(ex);
-                    WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to get information for available plugins", owner);
+                    WarningMessage.Display("Exception", "An exception occured on the server trying to get information for available plugins", owner);
                 }
             }
         }

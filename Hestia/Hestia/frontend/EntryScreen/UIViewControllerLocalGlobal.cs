@@ -1,4 +1,4 @@
-using Foundation;
+﻿using Foundation;
 using System;
 using System.Collections.Generic;
 using UIKit;
@@ -130,7 +130,7 @@ namespace Hestia
                 }
                 else if (!(logResult.Error == "UserCancel"))
                 {
-                    new WarningMessage("Login failed", logResult.Error, this);
+                    WarningMessage.Display("Login failed", logResult.Error, this);
                 }
             }
         }
@@ -186,7 +186,7 @@ namespace Hestia
             {
                 Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex.StackTrace);
-                new WarningMessage("Exception whle getting server", "Could not get the server information about local server from Auth0 server.", this);
+                WarningMessage.Display("Exception whle getting server", "Could not get the server information about local server from Auth0 server.", this);
             }
             Console.WriteLine("To Server Select Global");
             PerformSegue(strings.segueToLocalGlobalToServerSelect, this);

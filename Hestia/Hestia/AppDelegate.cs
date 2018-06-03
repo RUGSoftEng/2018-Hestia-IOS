@@ -1,4 +1,4 @@
-using Foundation;
+﻿using Foundation;
 using UIKit;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
@@ -78,7 +78,7 @@ namespace Hestia
             {
                 Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex.StackTrace);
-                new WarningMessage("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
+                WarningMessage.Display("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
             }
         }
 

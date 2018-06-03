@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UIKit;
 using Hestia.backend.exceptions;
@@ -62,15 +62,15 @@ namespace Hestia
                 {
                     if (matchesName.Count <= 0 && matchesIP.Count <= 0)
                     {
-                        new WarningMessage("Error!", "You have to fill all the specifictions.", this);
+                        WarningMessage.Display("Error!", "You have to fill all the specifictions.", this);
                     }
                     else if (matchesName.Count <= 0 && matchesIP.Count > 0)
                     {
-                        new WarningMessage("Error!", "You have to give a name for the device.", this);
+                        WarningMessage.Display("Error!", "You have to give a name for the device.", this);
                     }
                     else if (matchesIP.Count <= 0 && matchesName.Count > 0)
                     {
-                        new WarningMessage("Error!", "X.X.X.X'. X should be between 0 or 255", this);
+                        WarningMessage.Display("Error!", "X.X.X.X'. X should be between 0 or 255", this);
                     }
                     else
                     {
@@ -81,7 +81,7 @@ namespace Hestia
                 {
                     if (matchesName.Count <= 0)
                     {
-                        new WarningMessage("Error!", "You have to give a name for the device.", this);
+                        WarningMessage.Display("Error!", "You have to give a name for the device.", this);
                     }
                     else
                     {
@@ -107,7 +107,7 @@ namespace Hestia
             {
                 Console.WriteLine("Exception while adding device to server");
                 Console.WriteLine(ex);
-                new WarningMessage("Exception", "Could not add device", this);
+                WarningMessage.Display("Exception", "Could not add device", this);
             }
         }
 

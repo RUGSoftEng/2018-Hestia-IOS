@@ -42,7 +42,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
 
                 // Set the switch's state to that of the device.
                 DeviceSwitch.On = (bool)act.State.RawState;
-                DeviceSwitch.TouchUpInside += delegate (object sender, EventArgs e)
+                DeviceSwitch.TouchUpInside += delegate
                 {
                     try 
                     {
@@ -52,7 +52,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     {
                         Console.WriteLine("Exception while changing activator state");
                         Console.WriteLine(ex);
-                        new WarningMessage("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
+                        WarningMessage.Display("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
 
                         // Reset back the switch
                         DeviceSwitch.On = (bool)act.State.RawState;
@@ -81,7 +81,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     {
                         Console.WriteLine("Exception while changing activator state");
                         Console.WriteLine(ex);
-                        new WarningMessage("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
+                        WarningMessage.Display("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
 
                         // Reset back the slider
                         slider.Value = (float)act.State.RawState;
