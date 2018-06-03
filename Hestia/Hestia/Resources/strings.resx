@@ -309,7 +309,7 @@
   <data name="usersPath" xml:space="preserve">
     <value>users/</value>
   </data>
-  <data name="webserverIP" xml:space="preserve">
+  <data name="hestiaWebServerAddress" xml:space="preserve">
     <value>https://fathomless-reef-69954.herokuapp.com</value>
   </data>
   <data name="segueToServerDiscovery" xml:space="preserve">

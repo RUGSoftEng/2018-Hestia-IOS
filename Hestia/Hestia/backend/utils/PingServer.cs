@@ -5,9 +5,9 @@ namespace Hestia.backend.utils
 {
     class PingServer
     {
-        public static bool Check(string address, int port)
+        public static bool Check(string address)
         {
-            HestiaServerInteractor interactor = new HestiaServerInteractor(new NetworkHandler(address, port));
+            HestiaServerInteractor interactor = new HestiaServerInteractor(new NetworkHandler(address));
             try
             {
                 interactor.GetDevices();

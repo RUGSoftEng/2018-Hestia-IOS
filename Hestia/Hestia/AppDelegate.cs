@@ -38,7 +38,8 @@ namespace Hestia
             }
             try
             {
-                bool validIp = PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
+                string address = strings.defaultPrefix + defaultIP + ":" + int.Parse(strings.defaultPort);
+                bool validIp = PingServer.Check(address);
             }
             catch (Exception exception)
             {
@@ -52,13 +53,13 @@ namespace Hestia
         {
             Globals.ServerName = defaultServername;
             Globals.Address = strings.defaultPrefix + defaultIP;
-            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
+            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address));
             Globals.LocalServerinteractor = serverInteractor;
         }
 
         public void SetGlobalsToDefaultsGlobalLogin()
         {
-            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
+            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.hestiaWebServerAddress, defaultAuth0AccessToken));
 
             try
             {

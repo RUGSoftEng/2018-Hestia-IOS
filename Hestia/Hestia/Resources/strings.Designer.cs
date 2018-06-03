@@ -191,6 +191,12 @@ namespace Hestia.Resources {
             }
         }
         
+        public static string hestiaWebServerAddress {
+            get {
+                return ResourceManager.GetString("hestiaWebServerAddress", resourceCulture);
+            }
+        }
+        
         public static string initialCount {
             get {
                 return ResourceManager.GetString("initialCount", resourceCulture);
