@@ -151,12 +151,10 @@
       <DependentUpon>ViewControllerChooseServer.cs</DependentUpon>
     </Compile>
     <Compile Include="backend\speech_recognition\IViewControllerSpeech.cs" />
-    <Compile Include="frontend\Auth0\AddServerScreen\AddServerViewController.cs" />
-    <Compile Include="frontend\Auth0\AddServerScreen\AddServerViewController.designer.cs">
-      <DependentUpon>..\..\..\AddServerViewController.cs</DependentUpon>
+    <Compile Include="frontend\Auth0\AddServerViewController.cs" />
+    <Compile Include="frontend\Auth0\AddServerViewController.designer.cs">
+      <DependentUpon>AddServerViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Auth0\AddServerScreen\TableSourceAddServer.cs" />
-    <Compile Include="frontend\Auth0\AddServerScreen\PropertyCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -238,7 +236,6 @@
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIconInverted.imageset\" />
-    <Folder Include="frontend\Auth0\AddServerScreen\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
