@@ -35,7 +35,7 @@ namespace Hestia.Auth0
             UITableViewCell cell = tableView.CellAt(indexPath);
             if(cell.TextLabel.Text == "Add a new device")
             {
-                AddServerViewController serverView = owner.Storyboard.InstantiateViewController("AddServerViewController") as AddServerViewController;
+                AddServerViewController serverView = owner.Storyboard.InstantiateViewController("AddServer") as AddServerViewController;
                 owner.NavigationController.PushViewController(serverView, true);
             }
             else{

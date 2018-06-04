@@ -760,7 +760,7 @@
         </scene>
         <scene sceneID="105464">
             <objects>
-                <viewController id="105465" sceneMemberID="viewController" storyboardIdentifier="AddServerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" customClass="AddServerViewController">
+                <viewController id="105465" sceneMemberID="viewController" storyboardIdentifier="AddServer" customClass="AddServerViewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="105462"/>
                         <viewControllerLayoutGuide type="bottom" id="105463"/>

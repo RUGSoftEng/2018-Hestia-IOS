@@ -8,12 +8,14 @@ using Hestia.backend.exceptions;
 using Hestia.frontend;
 using System.Text.RegularExpressions;
 using Hestia.backend;
+using Hestia.Resources;
 
 namespace Hestia
 {
     public partial class AddServerViewController : UIViewController
     {
         UIBarButtonItem done;
+      
         public AddServerViewController (IntPtr handle) : base (handle)
         {
         }
@@ -21,14 +23,12 @@ namespace Hestia
 		public override void ViewDidLoad()
 		{
             base.ViewDidLoad();
-            Title = "New server";
-            View.BackgroundColor = Globals.DefaultLightGray;
-            HestiaWebServerInteractor serverToAdd;
+
+            NetworkHandler network = new NetworkHandler(strings.webserverIP, strings.defaultsAccessTokenHestia);
+            HestiaWebServerInteractor serverToAdd = new HestiaWebServerInteractor(network);
             Regex rxIP = new Regex(@"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}");
             Regex rxName = new Regex(@"^(.)+$");
             MatchCollection matchesName, matchesIP;
-
-
 
 
             // Rectangular cell displaying the label and inputfield
@@ -82,6 +82,9 @@ namespace Hestia
             changePortField.Placeholder = "Introduce a port";
             rectangle3.AddSubview(changePortField);
 
+            Title = "New server";
+            View.BackgroundColor = Globals.DefaultLightGray;
+
             // Save button
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 matchesName = rxName.Matches(changeNameField.Text);
@@ -100,7 +103,11 @@ namespace Hestia
                     PresentViewController(okAlertController, true, null);
                 }
                 else{
-                    //serverToAdd.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+                    changeIPField.Text = "https://" + changeIPField.Text;
+                    serverToAdd.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+
+                    ViewControllerServerList add = this.Storyboard.InstantiateViewController("ViewControllerServerList") as ViewControllerServerList;
+                    this.NavigationController.PushViewController(add, true);
                 }
             });
             NavigationItem.RightBarButtonItem = done;
