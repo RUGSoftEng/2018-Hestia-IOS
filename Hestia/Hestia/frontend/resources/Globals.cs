@@ -15,8 +15,8 @@ namespace Hestia.DevicesScreen.resources
         public static String UserName { get; set; }
         public static string Prefix { get; set; }
 
-        public static int ScreenHeight { get; set;  }
-        public static int ScreenWidth { get; set;  }
+        public static int ScreenHeight { get; set; }
+        public static int ScreenWidth { get; set; }
 
         // Variables for local server
         public static HestiaServerInteractor LocalServerinteractor { get; set; }
@@ -26,13 +26,13 @@ namespace Hestia.DevicesScreen.resources
         // Variables for global server
         public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
         public static List<HestiaServer> Auth0Servers { get; set; }
-
+        public static HestiaWebServerInteractor HestiaWebServerInteractor { get; set; }
         public static List<HestiaServerInteractor> GetInteractorsOfSelectedServers()
         {
             List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
-            foreach(HestiaServer auth0server in Auth0Servers)
+            foreach (HestiaServer auth0server in Auth0Servers)
             {
-                if(auth0server.Selected)
+                if (auth0server.Selected)
                 {
                     serverInteractors.Add(auth0server.Interactor);
                 }

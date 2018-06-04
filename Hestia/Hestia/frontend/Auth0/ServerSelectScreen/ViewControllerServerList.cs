@@ -28,6 +28,7 @@ namespace Hestia
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
+            TableView.ReloadData();
             // The done button that loads the devicesMainScreen with the selected servers
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 if (ShouldPerformSegue())
