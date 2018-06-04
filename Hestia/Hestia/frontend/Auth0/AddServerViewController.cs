@@ -107,7 +107,9 @@ namespace Hestia
                         Console.WriteLine(changeNameField.Text);
                         Console.WriteLine(changeIPField.Text);
                         Console.WriteLine(int.Parse(changePortField.Text));
-                        serverToAdd.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+                        Globals.HestiaWebServerInteractor.PostUser();
+                        Globals.HestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+                        NavigationController.PopViewController(true);
                     }
                     catch (ServerInteractionException ex)
 
@@ -115,7 +117,7 @@ namespace Hestia
                         Console.WriteLine("Exception while using serverInteractor");
                         Console.WriteLine(ex);
                     }
-                    NavigationController.PopViewController(true);
+
 
                 }
             });
