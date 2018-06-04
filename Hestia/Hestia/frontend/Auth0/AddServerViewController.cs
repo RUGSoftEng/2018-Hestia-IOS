@@ -24,8 +24,6 @@ namespace Hestia
 		{
             base.ViewDidLoad();
 
-            NetworkHandler network = new NetworkHandler(strings.webserverIP, strings.defaultsAccessTokenHestia);
-            HestiaWebServerInteractor serverToAdd = new HestiaWebServerInteractor(network);
             Regex rxIP = new Regex(@"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}");
             Regex rxName = new Regex(@"^(.)+$");
             MatchCollection matchesName, matchesIP;
@@ -112,12 +110,13 @@ namespace Hestia
                         serverToAdd.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
                     }
                     catch (ServerInteractionException ex)
+
                     {
                         Console.WriteLine("Exception while using serverInteractor");
                         Console.WriteLine(ex);
                     }
-
                     NavigationController.PopViewController(true);
+
                 }
             });
             NavigationItem.RightBarButtonItem = done;
