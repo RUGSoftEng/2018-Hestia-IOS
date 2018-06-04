@@ -110,7 +110,6 @@ namespace Hestia
                         Console.WriteLine(changeIPField.Text);
                         Console.WriteLine(int.Parse(changePortField.Text));
                         serverToAdd.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
-                        Globals.HestiaWebServerInteractor.GetServers();
                     }
                     catch (ServerInteractionException ex)
                     {
@@ -118,8 +117,7 @@ namespace Hestia
                         Console.WriteLine(ex);
                     }
 
-                    ViewControllerServerList add = this.Storyboard.InstantiateViewController("ServerList") as ViewControllerServerList;
-                    this.NavigationController.PushViewController(add, true);
+                    NavigationController.PopViewController(true);
                 }
             });
             NavigationItem.RightBarButtonItem = done;
