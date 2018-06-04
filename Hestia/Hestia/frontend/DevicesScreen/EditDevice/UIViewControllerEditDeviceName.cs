@@ -66,7 +66,7 @@ namespace Hestia.DevicesScreen.EditDevice
                     catch (ServerInteractionException ex)
                     {
                         Console.WriteLine("Exception while changing device name");
-                        Console.WriteLine(ex.ToString());
+                        Console.WriteLine(ex);
                         WarningMessage.Display("Exception", "An exception occurred on the server when changing the name of the device", this);  
                     } 
                 }

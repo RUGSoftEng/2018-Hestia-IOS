@@ -16,7 +16,7 @@ namespace Hestia.backend.utils
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("No such server exists");
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex);
                 return false;
             }
         }

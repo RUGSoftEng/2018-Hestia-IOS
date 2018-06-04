@@ -29,7 +29,7 @@ namespace Hestia.backend
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString());
+                    Console.WriteLine(ex);
                     return false;
                 }
             }

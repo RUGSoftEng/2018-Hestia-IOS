@@ -149,7 +149,7 @@ namespace Hestia.DevicesScreen
                 catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
-                    Console.Out.WriteLine(ex.ToString());
+                    Console.Out.WriteLine(ex);
                 }
             }
             else // Global login
@@ -163,7 +163,7 @@ namespace Hestia.DevicesScreen
                 catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
-                    Console.Out.WriteLine(ex.ToString());
+                    Console.Out.WriteLine(ex);
                 }
             }
             // Remove device from list that is shown in the TableView

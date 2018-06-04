@@ -103,7 +103,7 @@ namespace Hestia.DevicesScreen
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine(ex);
                 WarningMessage.Display("Could not connect to server", "Invalid server information", this);
                 connectButton.Selected = false;
                 return false;
