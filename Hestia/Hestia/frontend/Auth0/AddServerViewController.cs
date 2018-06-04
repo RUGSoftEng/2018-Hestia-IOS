@@ -82,8 +82,8 @@ namespace Hestia
             changePortField.Placeholder = "Introduce a port";
             rectangle3.AddSubview(changePortField);
 
+            //View.BackgroundColor = Globals.DefaultLightGray;
             Title = "New server";
-            View.BackgroundColor = Globals.DefaultLightGray;
 
             // Save button
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
@@ -106,7 +106,7 @@ namespace Hestia
                     changeIPField.Text = "https://" + changeIPField.Text;
                     serverToAdd.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
 
-                    ViewControllerServerList add = this.Storyboard.InstantiateViewController("ViewControllerServerList") as ViewControllerServerList;
+                    ViewControllerServerList add = this.Storyboard.InstantiateViewController("ServerList") as ViewControllerServerList;
                     this.NavigationController.PushViewController(add, true);
                 }
             });

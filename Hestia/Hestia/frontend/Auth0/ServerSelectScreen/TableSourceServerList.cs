@@ -33,7 +33,7 @@ namespace Hestia.Auth0
 		public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
 		{
             UITableViewCell cell = tableView.CellAt(indexPath);
-            if(cell.TextLabel.Text == "Add a new device")
+            if(cell.TextLabel.Text == "Add a new server")
             {
                 AddServerViewController serverView = owner.Storyboard.InstantiateViewController("AddServer") as AddServerViewController;
                 owner.NavigationController.PushViewController(serverView, true);
@@ -80,7 +80,7 @@ namespace Hestia.Auth0
             }
             else if(indexPath.Row >= Globals.Auth0Servers.Count)
             {
-                cell.TextLabel.Text = "Add a new device";
+                cell.TextLabel.Text = "Add a new server";
             }
 
             return cell;
