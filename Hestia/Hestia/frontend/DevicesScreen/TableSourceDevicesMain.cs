@@ -12,7 +12,10 @@ using Hestia.Resources;
 using System.Diagnostics.Contracts;
 
 namespace Hestia.DevicesScreen
-{
+{   /// <summary>
+    /// This class contains the behaviour of the TableView that shows the list of devices.
+    /// <see cref="UITableViewControllerDevicesMain"/>
+    /// </summary>
     public class TableSourceDevicesMain : UITableViewSource
     {
         // The viewController to which the TableView connected to this Source lives in
@@ -22,6 +25,8 @@ namespace Hestia.DevicesScreen
         public nint numberOfServers;
         public List<List<Device>> serverDevices;
 
+        /// <returns>The device</returns>
+        /// <param name="indexPath">The indexpath of the cell on which the device should be shown</param>
         Device GetSectionRow(NSIndexPath indexPath)
         {
             Contract.Ensures(Contract.Result<Device>() != null);
@@ -33,7 +38,10 @@ namespace Hestia.DevicesScreen
             serverDevices[indexPath.Section].RemoveAt(indexPath.Row);
         }
 
-        // Constructor. Gets the device data (local) and the ViewController
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Hestia.DevicesScreen.TableSourceDevicesMain"/> class.
+        /// </summary>
+        /// <param name="owner">The ViewController in which this TableView lives</param>
         public TableSourceDevicesMain(UITableViewControllerDevicesMain owner)
         {
             this.owner = owner;
@@ -44,7 +52,11 @@ namespace Hestia.DevicesScreen
             return numberOfServers;
         }
 
-        // The number of devices in the list per section
+        /// <summary>
+        /// The number of devices in the list per section
+        /// </summary>
+        /// <returns>The number of devices in a section</returns>
+        /// <param name="section">The section number</param>
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             if (serverDevices.Count <= 0)
@@ -55,7 +67,11 @@ namespace Hestia.DevicesScreen
             return count;
         }
 
-        // Important method. Called to generate a cell to display
+        /// <summary>
+        /// Important method. Called to generate a cell to display.
+        /// It puts the name on the cell and shows a disclosure indicator in editing mode.
+        /// </summary>
+        /// <returns>The cell with the device name.</returns>
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
@@ -76,32 +92,36 @@ namespace Hestia.DevicesScreen
             return cell;
         }
 
-        // Displays activators or go to edit device screen when in editing mode
+        /// <summary>
+        /// Defines the action when tapped on a cell. It displays activators in a pop up
+        /// or goes to the edit device screen when in editing mode.
+        /// </summary>
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             if (!tableView.Editing)
             {
-                var d = GetSectionRow(indexPath);
-                if (d.Activators.Count != 0)
+                var device = GetSectionRow(indexPath);
+                if (device.Activators.Count != 0)
                 {
+                    // Create the contents of the pop up window, which is a list of activators. 
                     var popupNavVC = new UITableViewActivators();
-                    popupNavVC.Title = d.Name;
-                    popupNavVC.device = d;
-
+                    popupNavVC.Title = device.Name;
+                    popupNavVC.device = device;
 
                     var navigationController = new UINavigationController(popupNavVC);
                     navigationController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-                    navigationController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * d.Activators.Count);
+                    navigationController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * device.Activators.Count);
 
+                    // Define the layout of the pop up
                     nfloat heightPop = 20 + navigationController.NavigationBar.Frame.Size.Height;
                     var popPresenter = navigationController.PopoverPresentationController;
-                    popPresenter.SourceView = this.owner.View;
+                    popPresenter.SourceView = owner.View;
                     popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight/2-heightPop, 0, 0);
                     popPresenter.Delegate = new PopoverDelegate();
                     popPresenter.PermittedArrowDirections = 0;
                     popPresenter.BackgroundColor = UIColor.White;
-                    this.owner.PresentViewController(navigationController, true, null);
-
+                    // Show the pop up
+                    owner.PresentViewController(navigationController, true, null);
                 }
             }
             // Go to edit name window for non-insert cells
@@ -114,6 +134,10 @@ namespace Hestia.DevicesScreen
             tableView.DeselectRow(indexPath, true);
         }
 
+        /// <summary>
+        /// Defines what happens when the delete action is confirmed. 
+        /// Then the device is removed from the server and the list.
+        /// </summary>
         public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
         {   
             if (Globals.LocalLogin)
@@ -128,7 +152,7 @@ namespace Hestia.DevicesScreen
                     Console.Out.WriteLine(ex);
                 }
             }
-            else
+            else // Global login
             {
                 var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
 				var deviceServerInteractor = deviceInRow.ServerInteractor;
@@ -142,13 +166,20 @@ namespace Hestia.DevicesScreen
                     Console.Out.WriteLine(ex);
                 }
             }
-            // Remove device from local list
+            // Remove device from list that is shown in the TableView
             RemoveDeviceAt(indexPath);
 
-            // delete the row from the table
+            // Delete the row from the table
             tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
         }
 
+        /// <summary>
+        /// The action that is performed when the green plus icon is tapped to add a new device.
+        /// It segues to the add device screen in case of local login or to the server select screen
+        /// in case of global login, to choose the server to add the device to.
+        /// <see cref="ViewControllerChooseServer"/> 
+        /// <see cref="UITableViewControllerAddDevice"/>
+        /// </summary>
         public void InsertAction()
         {
             if (Globals.LocalLogin)
@@ -172,26 +203,39 @@ namespace Hestia.DevicesScreen
             }
         }
 
+        /// <summary>
+        /// The rows cannot be edited in normal mode, but they can in editing mode.
+        /// That is: they can be deleted.
+        /// </summary>
+        /// <returns><c>true</c>, if row can be edited <c>false</c> otherwise.</returns>
         public override bool CanEditRow(UITableView tableView, NSIndexPath indexPath)
         {
             if (tableView.Editing)
             {
-                return true; // return false if you wish to disable editing for a specific indexPath or for all rows
+                return true;
             }
             return false;
         }
 
-        // Is called after a press on edit button
+        /// <summary>
+        /// Is called after a press on edit button. It refreshes the header such that
+        /// the microphone icon is changed to an insertion icon.
+        /// </summary>
         public void WillBeginTableEditing(UITableView tableView)
         {
             tableView.TableHeaderView = owner.GetTableViewHeader(true);
         }
 
+        /// <summary>
+        /// Is called after a press on done button. It refreshes the header such that
+        /// the insertion icon is changed back to microphone icon.
+        /// </summary>
         public void DidFinishTableEditing(UITableView tableView)
         {
             tableView.TableHeaderView = owner.GetTableViewHeader(false);
         }
 
+        /// <returns>The title for the header, which consist of the server name + its IP and port</returns>
 		public override string TitleForHeader(UITableView tableView, nint section)
 		{
             if(Globals.LocalLogin)

@@ -1,4 +1,4 @@
-using Foundation;
+﻿using Foundation;
 using UIKit;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
@@ -79,7 +79,7 @@ namespace Hestia
             {
                 Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex.StackTrace);
-                new WarningMessage("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
+                WarningMessage.Display("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
             }
         }
 
@@ -114,6 +114,8 @@ namespace Hestia
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
                         as UINavigationController;
                     Window.RootViewController = navigationController;
+                    // Make key and visible to be able to present possibly Alert window
+                    Window.MakeKeyAndVisible();
                     SetGlobalsToDefaultsLocalLogin();
                 }
                 else
@@ -129,6 +131,8 @@ namespace Hestia
 
                 var viewServerList = devices2Storyboard.InstantiateViewController("navigationServerList");
                 Window.RootViewController = viewServerList;
+                // Make key and visible to be able to present possibly Alert window
+                Window.MakeKeyAndVisible();
                 SetGlobalsToDefaultsGlobalLogin();
             }
             else

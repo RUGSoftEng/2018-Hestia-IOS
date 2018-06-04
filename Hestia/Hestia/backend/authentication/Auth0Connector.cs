@@ -4,7 +4,7 @@ using UIKit;
 
 namespace Hestia.backend.authentication
 {
-    public class Auth0Connector
+    public static class Auth0Connector
     {
         public static Auth0Client CreateAuthClient(UIViewController uIViewController)
         {

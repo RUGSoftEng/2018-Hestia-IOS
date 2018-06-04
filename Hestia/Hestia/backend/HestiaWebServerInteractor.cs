@@ -8,7 +8,7 @@ namespace Hestia.backend
 {
     public class HestiaWebServerInteractor
     {
-        private NetworkHandler networkHandler;
+        NetworkHandler networkHandler;
 
         public HestiaWebServerInteractor(NetworkHandler networkHandler)
         {

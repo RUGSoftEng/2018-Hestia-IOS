@@ -12,7 +12,7 @@ namespace Hestia.backend.utils.server_discovery
     {
         public bool Searching { get; set; }
         public NSMutableArray Services { get; set; }
-        private UITableViewControllerServerDiscovery parent;
+        UITableViewControllerServerDiscovery parent;
 
         public ServerDelegate(UITableViewControllerServerDiscovery parent)
         {

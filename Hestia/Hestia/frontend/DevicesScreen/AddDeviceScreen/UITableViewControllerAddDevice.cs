@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UIKit;
 using Hestia.DevicesScreen;
@@ -42,7 +42,7 @@ namespace Hestia
             {
                 Console.WriteLine("Exception while using serverInteractor");
                 Console.WriteLine(ex);
-                WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to get available plugins", this);
+                WarningMessage.Display("Exception", "An exception occured on the server trying to get available plugins", this);
             }
             
             // Contains methods that describe behavior of table

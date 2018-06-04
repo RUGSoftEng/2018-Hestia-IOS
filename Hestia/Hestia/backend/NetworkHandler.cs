@@ -1,4 +1,4 @@
-﻿using Hestia.backend.exceptions;
+using Hestia.backend.exceptions;
 using Hestia.Resources;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -10,10 +10,10 @@ namespace Hestia.backend
 {
     public class NetworkHandler
     {
-        private string address; // address including connection method and optionally a port
-        private RestClient client;
-        private bool usesAuth;
-        private string accessToken; // auth0 access token
+        string address; // address including connection method and optionally a port
+        RestClient client;
+        bool usesAuth;
+        string accessToken; // auth0 access token
 
         public string Address
         {
@@ -66,7 +66,7 @@ namespace Hestia.backend
 
             return jsonResponse;
         }
-        
+
         public virtual JToken Delete(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.DELETE);
@@ -86,7 +86,7 @@ namespace Hestia.backend
             return jsonResponse;
         }
 
-        private JToken ExecuteRequest(RestRequest request)
+        JToken ExecuteRequest(RestRequest request)
         {
             request.Timeout = Int32.Parse(strings.requestTimeout);
 
@@ -114,31 +114,29 @@ namespace Hestia.backend
                     if (responseJson["message"] != null)
                     {
                         throw new ServerInteractionException(responseJson["message"].ToString());
-                    } else if (responseJson["error"] != null)
+                    }
+                    if (responseJson["error"] != null)
                     {
                         throw new ServerInteractionException(responseJson["error"].ToString());
-                    } else
-                    {
-                        throw new ServerInteractionException();
                     }
+                    throw new ServerInteractionException();
                 }
-                else
-                {
-                    throw new ServerInteractionException(response.ErrorMessage, response.ErrorException);
-                }
+                throw new ServerInteractionException(response.ErrorMessage, response.ErrorException);
             }
 
             return responseJson;
         }
 
-        private void SetRestClient()
+        void SetRestClient()
         {
             Uri baseUrl = null;
+
             baseUrl = new Uri(address + "/");
+
             client = new RestClient(baseUrl);
         }
 
-        private void TrustAllCerts()
+        void TrustAllCerts()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         }
