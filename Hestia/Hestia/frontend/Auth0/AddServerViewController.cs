@@ -102,13 +102,27 @@ namespace Hestia
                 }
                 else{
                     changeIPField.Text = "https://" + changeIPField.Text;
+                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.hestiaWebServerAddress, strings.defaultsAccessTokenHestia));
+
+                    try
+                    {
+
+                        hestiaWebServerInteractor.PostUser();
+                    }
+                    catch (ServerInteractionException ex)
+
+                    {
+                        Console.WriteLine("Exception while posting");
+                        Console.WriteLine(ex);
+                    }
                     try
                     {
                         Console.WriteLine(changeNameField.Text);
                         Console.WriteLine(changeIPField.Text);
                         Console.WriteLine(int.Parse(changePortField.Text));
-                        Globals.HestiaWebServerInteractor.PostUser();
-                        Globals.HestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+                        //Globals.HestiaWebServerInteractor.GetServers();
+                       // Globals.HestiaWebServerInteractor.PostUser();
+                        hestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
                         NavigationController.PopViewController(true);
                     }
                     catch (ServerInteractionException ex)

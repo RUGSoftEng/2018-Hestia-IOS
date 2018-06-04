@@ -59,7 +59,7 @@ namespace Hestia
 
         public void SetGlobalsToDefaultsGlobalLogin()
         {
-            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
+            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.hestiaWebServerAddress, defaultAuth0AccessToken));
 
 
             try
@@ -125,9 +125,10 @@ namespace Hestia
                 }
             }
 
-            else if (defaultLocal == bool.FalseString)
+            else if (defaultLocal == bool.FalseString && defaultAuth0AccessToken != null)
             {
 				Console.WriteLine(" Default global");
+                Console.WriteLine(defaultAuth0AccessToken);
                 Globals.LocalLogin = false;
 
                 var viewServerList = devices2Storyboard.InstantiateViewController("navigationServerList");
