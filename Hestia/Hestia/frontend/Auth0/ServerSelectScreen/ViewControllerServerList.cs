@@ -80,7 +80,7 @@ namespace Hestia
                 catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while getting devices from local server");
-                    Console.WriteLine(ex);
+                    Console.WriteLine(ex.ToString());
                     WarningMessage.Display("Could not fetch devices", "The server information is invalid. Did you forget to include https://?", this);
                     return false;
                 }

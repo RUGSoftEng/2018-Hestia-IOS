@@ -75,7 +75,7 @@ namespace Hestia.DevicesScreen
                 catch (ServerInteractionException ex)
                 {
                     Console.WriteLine("Exception while getting required info");
-                    Console.WriteLine(ex);
+                    Console.WriteLine(ex.ToString());
                     WarningMessage.Display("Exception", "An exception occured on the server trying to get information for available plugins", owner);
                 }
             }

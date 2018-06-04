@@ -88,7 +88,7 @@ namespace Hestia.DevicesScreen
         void HandleException(TableSourceDevicesMain source, ServerInteractionException ex)
         {
             Console.WriteLine("Exception while getting devices from local server");
-            Console.WriteLine(ex);
+            Console.WriteLine(ex.ToString());
             WarningMessage.Display("Could not refresh devices", "Exception while getting devices from local server", this);
             source.serverDevices = new List<List<Device>>();
             TableView.ReloadData();
@@ -280,7 +280,7 @@ namespace Hestia.DevicesScreen
                     catch (ServerInteractionException ex)
                     {
                         Console.WriteLine("Exception while changing activator state");
-                        Console.WriteLine(ex);
+                        Console.WriteLine(ex.ToString());
                     }
                     return;
                 }

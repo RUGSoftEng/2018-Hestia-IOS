@@ -41,9 +41,9 @@ namespace Hestia
                 string address = strings.defaultPrefix + defaultIP + ":" + int.Parse(strings.defaultPort);
                 bool validIp = PingServer.Check(address);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(exception.StackTrace);
+                Console.WriteLine(ex.ToString());
                 return false;
             }
             return true;
@@ -68,7 +68,7 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while posting user. User possibly already exists.");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.ToString());
             }
             Globals.Auth0Servers = new System.Collections.Generic.List<backend.models.HestiaServer>();
             try
@@ -78,7 +78,7 @@ namespace Hestia
             catch(ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while getting servers");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex.ToString());
                 WarningMessage.Display("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
             }
         }

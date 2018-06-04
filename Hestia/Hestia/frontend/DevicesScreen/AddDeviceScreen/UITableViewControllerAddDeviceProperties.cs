@@ -106,7 +106,7 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while adding device to server");
-                Console.WriteLine(ex);
+                Console.WriteLine(ex.ToString());
                 WarningMessage.Display("Exception", "Could not add device", this);
             }
         }

@@ -41,7 +41,7 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while using serverInteractor");
-                Console.WriteLine(ex);
+                Console.WriteLine(ex.ToString());
                 WarningMessage.Display("Exception", "An exception occured on the server trying to get available plugins", this);
             }
             

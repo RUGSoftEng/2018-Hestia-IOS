@@ -51,7 +51,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     catch(ServerInteractionException ex) 
                     {
                         Console.WriteLine("Exception while changing activator state");
-                        Console.WriteLine(ex);
+                        Console.WriteLine(ex.ToString());
                         WarningMessage.Display("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
 
                         // Reset back the switch
@@ -80,7 +80,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     catch(ServerInteractionException ex)
                     {
                         Console.WriteLine("Exception while changing activator state");
-                        Console.WriteLine(ex);
+                        Console.WriteLine(ex.ToString());
                         WarningMessage.Display("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
 
                         // Reset back the slider

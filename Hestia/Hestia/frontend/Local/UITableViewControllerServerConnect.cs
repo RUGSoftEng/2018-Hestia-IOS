@@ -101,9 +101,9 @@ namespace Hestia.DevicesScreen
                 string address = strings.defaultPrefix + newIP.Text + ":" + int.Parse(strings.defaultPort);
                 validIp = PingServer.Check(address);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(exception.StackTrace);
+                Console.WriteLine(ex.ToString());
                 WarningMessage.Display("Could not connect to server", "Invalid server information", this);
                 connectButton.Selected = false;
                 return false;
