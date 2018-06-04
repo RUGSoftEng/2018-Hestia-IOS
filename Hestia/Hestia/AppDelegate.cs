@@ -38,11 +38,12 @@ namespace Hestia
             }
             try
             {
-                bool validIp = PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
+                string address = strings.defaultPrefix + defaultIP + ":" + int.Parse(strings.defaultPort);
+                bool validIp = PingServer.Check(address);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(exception.StackTrace);
+                Console.WriteLine(ex);
                 return false;
             }
             return true;
@@ -52,13 +53,14 @@ namespace Hestia
         {
             Globals.ServerName = defaultServername;
             Globals.Address = strings.defaultPrefix + defaultIP;
-            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
+            HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address));
             Globals.LocalServerinteractor = serverInteractor;
         }
 
         public void SetGlobalsToDefaultsGlobalLogin()
         {
             Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
+
 
             try
             {
@@ -67,7 +69,7 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while posting user. User possibly already exists.");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex);
             }
             Globals.Auth0Servers = new System.Collections.Generic.List<backend.models.HestiaServer>();
             try
@@ -77,8 +79,8 @@ namespace Hestia
             catch(ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while getting servers");
-                Console.WriteLine(ex.StackTrace);
-                new WarningMessage("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
+                Console.WriteLine(ex);
+                WarningMessage.Display("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
             }
         }
 
@@ -113,6 +115,8 @@ namespace Hestia
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
                         as UINavigationController;
                     Window.RootViewController = navigationController;
+                    // Make key and visible to be able to present possibly Alert window
+                    Window.MakeKeyAndVisible();
                     SetGlobalsToDefaultsLocalLogin();
                 }
                 else
@@ -128,6 +132,8 @@ namespace Hestia
 
                 var viewServerList = devices2Storyboard.InstantiateViewController("navigationServerList");
                 Window.RootViewController = viewServerList;
+                // Make key and visible to be able to present possibly Alert window
+                Window.MakeKeyAndVisible();
                 SetGlobalsToDefaultsGlobalLogin();
             }
             else

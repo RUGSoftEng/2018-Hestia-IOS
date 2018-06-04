@@ -1,4 +1,4 @@
-using CoreGraphics;
+﻿using CoreGraphics;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
@@ -19,7 +19,7 @@ namespace Hestia.DevicesScreen
         const int TableViewHeaderTopPadding = 5;
         const int IconDimension = 50;
 
-        private SpeechRecognition speechRecognizer;
+        SpeechRecognition speechRecognizer;
 
        // Done button in top right (appears in edit mode)
         UIBarButtonItem done;
@@ -89,7 +89,7 @@ namespace Hestia.DevicesScreen
         {
             Console.WriteLine("Exception while getting devices from local server");
             Console.WriteLine(ex);
-            new WarningMessage("Could not refresh devices", "Exception while getting devices from local server", this);
+            WarningMessage.Display("Could not refresh devices", "Exception while getting devices from local server", this);
             source.serverDevices = new List<List<Device>>();
             TableView.ReloadData();
         }
@@ -115,7 +115,11 @@ namespace Hestia.DevicesScreen
                 if(!isEditing)
                 {
                     speechRecognizer = new SpeechRecognition(this, this);
-                    speechRecognizer.StartRecording();
+                    WarningMessage warningMessage = speechRecognizer.StartRecording();
+                    if (warningMessage != null)
+                    {
+                        warningMessage.DisplayWarningMessage(this);
+                    }
                 }
             };
 
@@ -232,7 +236,7 @@ namespace Hestia.DevicesScreen
                 }
                 else
                 {
-                    new WarningMessage(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                    WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
                 }
             } 
             else if( result.Contains("add device") || (result.Contains("new device")))
@@ -250,12 +254,12 @@ namespace Hestia.DevicesScreen
                 }
                 else 
                 {
-                    new WarningMessage(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                    WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
                 }
             }
             else
             {
-                new WarningMessage(result + " " + strings.speechNotACommand, strings.tryAgain, this);
+                WarningMessage.Display(result + " " + strings.speechNotACommand, strings.tryAgain, this);
             }
         }
 
@@ -276,7 +280,7 @@ namespace Hestia.DevicesScreen
                     catch (ServerInteractionException ex)
                     {
                         Console.WriteLine("Exception while changing activator state");
-                        Console.WriteLine(ex.ToString());
+                        Console.WriteLine(ex);
                     }
                     return;
                 }

@@ -1,4 +1,4 @@
-using Foundation;
+﻿using Foundation;
 using System;
 using UIKit;
 using Hestia.Auth0;
@@ -82,7 +82,7 @@ namespace Hestia
                 {
                     Console.WriteLine("Exception while getting devices from local server");
                     Console.WriteLine(ex);
-                    new WarningMessage("Could not fetch devices", "The server information is invalid. Did you forget to include https://?", this);
+                    WarningMessage.Display("Could not fetch devices", "The server information is invalid. Did you forget to include https://?", this);
                     return false;
                 }
             }

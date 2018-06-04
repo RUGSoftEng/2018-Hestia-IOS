@@ -1,4 +1,4 @@
-using Hestia.DevicesScreen.resources;
+﻿using Hestia.DevicesScreen.resources;
 using Hestia.frontend;
 using System;
 using UIKit;
@@ -21,7 +21,7 @@ namespace Hestia
         partial void UIButton87850_TouchUpInside(UIButton sender)
         {
             Globals.ResetAllUserDefaults();
-            new WarningMessage("User Defaults Reset", "All settings are cleared", this);
+            WarningMessage.Display("User Defaults Reset", "All settings are cleared", this);
         }
     }
 }

@@ -26,8 +26,6 @@ namespace Hestia.backend.models.deserializers
                 case "float":
                     state = new ActivatorState(jsonActivator.Value<float>("state"), "float");
                     break;
-                default:
-                    break;
             }
 
             // create the Activator

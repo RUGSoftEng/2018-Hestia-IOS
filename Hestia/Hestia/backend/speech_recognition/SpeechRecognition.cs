@@ -16,13 +16,13 @@ namespace Hestia.backend.speech_recognition
     /// </summary>
     class SpeechRecognition
     {
-        private AVAudioEngine AudioEngine = new AVAudioEngine();
-        private SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
-        private SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
-        private SFSpeechRecognitionTask RecognitionTask;
-        private UIViewController viewController;
-        private IViewControllerSpeech viewControllerSpeech;
-        private ISimpleAudioPlayer player;
+        AVAudioEngine AudioEngine = new AVAudioEngine();
+        SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
+        SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
+        SFSpeechRecognitionTask RecognitionTask;
+        UIViewController viewController;
+        IViewControllerSpeech viewControllerSpeech;
+        ISimpleAudioPlayer player;
 
         public SpeechRecognition(UIViewController viewController, IViewControllerSpeech viewControllerSpeech)
         {
@@ -54,24 +54,20 @@ namespace Hestia.backend.speech_recognition
             });
         }
 
-        private bool IsAuthorized() 
+        bool IsAuthorized()
         {
             if (SFSpeechRecognizer.AuthorizationStatus == SFSpeechRecognizerAuthorizationStatus.Authorized)
             {
                 return true;
             }
-            else 
-            {
-                return false;
-            }
+            return false;
         }
 
-        public void StartRecording()
+        public WarningMessage StartRecording()
         {
             if (!IsAuthorized())
             {
-                new WarningMessage(strings.speechAccessDenied, strings.speechAllowAccess, viewController);
-                return;
+                return new WarningMessage(strings.speechAccessDenied, strings.speechAllowAccess);
             }
             
             var node = AudioEngine.InputNode;
@@ -87,8 +83,7 @@ namespace Hestia.backend.speech_recognition
             if (error != null)
             {
                 Console.WriteLine(strings.speechStartRecordProblem);
-                new WarningMessage(strings.speechStartRecordProblem, strings.tryAgain, viewController);
-                return;
+                return new WarningMessage(strings.speechStartRecordProblem, strings.tryAgain);
             }
             
             if (player.IsPlaying) player.Stop();
@@ -109,6 +104,7 @@ namespace Hestia.backend.speech_recognition
                     }
                 }
             });
+            return null;
         }
 
         public void StopRecording()

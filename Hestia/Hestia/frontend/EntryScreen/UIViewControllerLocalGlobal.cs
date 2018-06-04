@@ -1,4 +1,4 @@
-using Foundation;
+﻿using Foundation;
 using System;
 using System.Collections.Generic;
 using UIKit;
@@ -12,9 +12,7 @@ using System.Threading.Tasks;
 using IdentityModel.OidcClient;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
-using Hestia.backend.speech_recognition;
 using Hestia.frontend;
-using CoreGraphics;
 
 namespace Hestia
 {
@@ -22,19 +20,16 @@ namespace Hestia
     /// This view controller belongs to the first window that can be seen when loading the app
     /// if no user default for local/global is present. The user can then choose local/global.
     /// </summary>
-    public partial class UIViewControllerLocalGlobal : UIViewController, IViewControllerSpeech
+    public partial class UIViewControllerLocalGlobal : UIViewController
     {
         Auth0Client client;
-        SpeechRecognition speechRecognizer;
         const int IconDimension = 50;
         const int BottomPadding = 50;
-        UIButton SpeechButtonLocalGlobal;
 
         // User defaults
         NSUserDefaults userDefaults;
         string defaultServerName;
         string defaultIP;
-        string defaultPort;
         string defaultAccessToken;
         
         public UIViewControllerLocalGlobal (IntPtr handle) : base (handle)
@@ -47,14 +42,7 @@ namespace Hestia
             userDefaults = NSUserDefaults.StandardUserDefaults;
             defaultServerName = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultIP = userDefaults.StringForKey(strings.defaultsIpHestia);
-            defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultAccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
-        
-            SpeechButtonLocalGlobal = new UIButton(UIButtonType.System);
-            SpeechButtonLocalGlobal.Frame = new CGRect(View.Bounds.Width / 2 - IconDimension / 2, View.Bounds.Bottom - IconDimension - BottomPadding , IconDimension, IconDimension);
-            SpeechButtonLocalGlobal.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIconInverted), UIControlState.Normal);
-
-            View.AddSubview(SpeechButtonLocalGlobal);
         }
 
         public override void ViewDidAppear(bool animated)
@@ -69,30 +57,15 @@ namespace Hestia
             ToGlobalButton.TouchUpInside += async (object sender, EventArgs e) =>
             {
                 await ToGlobalScreen();
-            };
-
-            SpeechButtonLocalGlobal.TouchDown += (object sender, EventArgs e) => 
-            {
-                speechRecognizer = new SpeechRecognition(this, this);
-                speechRecognizer.StartRecording();
-            };
-
-            SpeechButtonLocalGlobal.TouchUpInside += (object sender, EventArgs e) =>
-            {
-                speechRecognizer.StopRecording();
-            };
-
-            SpeechButtonLocalGlobal.TouchDragExit += (object sender, EventArgs e) =>
-            {
-                speechRecognizer.CancelRecording();
-            };   
+            };         
         }
 
         bool CheckLocalLoginDefaults()
         {
             if (defaultIP != null)
             {
-                return PingServer.Check(strings.defaultPrefix + defaultIP, int.Parse(strings.defaultPort));
+                string address = strings.defaultPrefix + defaultIP + ":" + int.Parse(strings.defaultPort);
+                return PingServer.Check(address);
             }
             return false;
         }
@@ -155,7 +128,7 @@ namespace Hestia
                 }
                 else if (!(logResult.Error == "UserCancel"))
                 {
-                    new WarningMessage("Login failed", logResult.Error, this);
+                    WarningMessage.Display("Login failed", logResult.Error, this);
                 }
             }
         }
@@ -165,8 +138,8 @@ namespace Hestia
         {
             Globals.LocalLogin = true;
             Globals.ServerName = defaultServerName;
-            Globals.Address = strings.defaultPrefix + defaultIP;
-            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
+            Globals.Address = strings.defaultPrefix + defaultIP + ":" + Int32.Parse(strings.defaultPort);
+            Globals.LocalServerinteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address));
             PerformSegue(strings.mainToDevicesMain, this);
         }
 
@@ -174,7 +147,7 @@ namespace Hestia
         void SetValuesAndSegueToServerSelectGlobal()
         {
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, defaultAccessToken);
+            NetworkHandler networkHandler = new NetworkHandler(strings.hestiaWebServerAddress, defaultAccessToken);
             CreateServerInteractorAndSegue(networkHandler);
         }
 
@@ -184,7 +157,7 @@ namespace Hestia
             userDefaults.SetString(accessToken, strings.defaultsAccessTokenHestia);
 
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(strings.webserverIP, accessToken);
+            NetworkHandler networkHandler = new NetworkHandler(strings.hestiaWebServerAddress, accessToken);
             CreateServerInteractorAndSegue(networkHandler);
         }
 
@@ -198,7 +171,7 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while posting user. User possibly already exists.");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex);
             }
             Globals.Auth0Servers = new List<HestiaServer>();
             try
@@ -210,28 +183,11 @@ namespace Hestia
             catch(ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while getting servers");
-                Console.WriteLine(ex.StackTrace);
-                new WarningMessage("Exception whle getting server", "Could not get the server information about local server from Auth0 server.", this);
+                Console.WriteLine(ex);
+                WarningMessage.Display("Exception whle getting server", "Could not get the server information about local server from Auth0 server.", this);
             }
             Console.WriteLine("To Server Select Global");
             PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
-        }
-
-        public async void ProcessSpeech(string result)
-        {
-            result = result.ToLower();
-            if (result.Equals("local"))
-            {
-                ToLocalScreen();
-            }
-            else if (result.Equals("global"))
-            {
-                await ToGlobalScreen();
-            }
-            else
-            {
-                new WarningMessage(result + " " + strings.speechNotACommand, strings.tryAgain, this);
-            }
         }
     }
 }

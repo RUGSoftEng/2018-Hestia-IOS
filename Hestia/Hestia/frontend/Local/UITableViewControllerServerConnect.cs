@@ -1,4 +1,4 @@
-using Foundation;
+﻿using Foundation;
 using System;
 using UIKit;
 
@@ -98,12 +98,13 @@ namespace Hestia.DevicesScreen
 
             try
             {
-                validIp = PingServer.Check(strings.defaultPrefix + newIP.Text, int.Parse(strings.defaultPort));
+                string address = strings.defaultPrefix + newIP.Text + ":" + int.Parse(strings.defaultPort);
+                validIp = PingServer.Check(address);
             }
-            catch (Exception exception)
+            catch (Exception ex)
             {
-                Console.WriteLine(exception.StackTrace);
-                new WarningMessage("Could not connect to server", "Invalid server information", this);
+                Console.WriteLine(ex);
+                WarningMessage.Display("Could not connect to server", "Invalid server information", this);
                 connectButton.Selected = false;
                 return false;
             }
@@ -111,8 +112,8 @@ namespace Hestia.DevicesScreen
             if (validIp)
             {
                 Globals.ServerName = newServerName.Text;
-                Globals.Address = strings.defaultPrefix + newIP.Text;
-                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address, int.Parse(strings.defaultPort)));
+                Globals.Address = strings.defaultPrefix + newIP.Text + ":" + strings.defaultPort;
+                HestiaServerInteractor serverInteractor = new HestiaServerInteractor(new NetworkHandler(Globals.Address));
                 Globals.LocalServerinteractor = serverInteractor;
 
                 userDefaults.SetString(newServerName.Text, strings.defaultsServerNameHestia);
@@ -121,7 +122,7 @@ namespace Hestia.DevicesScreen
                 return true;
             }
 
-            new WarningMessage("Could not connect to server", "Invalid server information", this);
+            WarningMessage.Display("Could not connect to server", "Invalid server information", this);
             connectButton.Selected = false;
             return false;
         }
