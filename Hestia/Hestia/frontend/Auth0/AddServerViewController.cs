@@ -24,8 +24,6 @@ namespace Hestia
 		{
             base.ViewDidLoad();
 
-            NetworkHandler network = new NetworkHandler(strings.webserverIP, strings.defaultsAccessTokenHestia);
-            HestiaWebServerInteractor serverToAdd = new HestiaWebServerInteractor(network);
             Regex rxIP = new Regex(@"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}");
             Regex rxName = new Regex(@"^(.)+$");
             MatchCollection matchesName, matchesIP;
@@ -104,8 +102,19 @@ namespace Hestia
                 }
                 else{
                     changeIPField.Text = "https://" + changeIPField.Text;
-                    serverToAdd.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
-
+                    try
+                    {
+                        Console.WriteLine(changeNameField.Text);
+                        Console.WriteLine(changeIPField.Text);
+                        Console.WriteLine(int.Parse(changePortField.Text));
+                        //serverToAdd.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+                        Globals.HestiaWebServerInteractor.GetServers();
+                    }
+                    catch(ServerInteractionException ex)
+                    {
+                        Console.WriteLine("Exception while using serverInteractor");
+                        Console.WriteLine(ex);
+                    }
                     ViewControllerServerList add = this.Storyboard.InstantiateViewController("ViewControllerServerList") as ViewControllerServerList;
                     this.NavigationController.PushViewController(add, true);
                 }

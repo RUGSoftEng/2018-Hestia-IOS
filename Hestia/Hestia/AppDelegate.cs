@@ -58,11 +58,11 @@ namespace Hestia
 
         public void SetGlobalsToDefaultsGlobalLogin()
         {
-            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
+            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.webserverIP, defaultAuth0AccessToken));
 
             try
             {
-                hestiaWebServerInteractor.PostUser(); 
+                Globals.HestiaWebServerInteractor.PostUser(); 
             }
             catch (ServerInteractionException ex)
             {
@@ -72,7 +72,7 @@ namespace Hestia
             Globals.Auth0Servers = new System.Collections.Generic.List<backend.models.HestiaServer>();
             try
             {
-                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+                Globals.Auth0Servers = Globals.HestiaWebServerInteractor.GetServers();
             }
             catch(ServerInteractionException ex)
             {

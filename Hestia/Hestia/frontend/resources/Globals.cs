@@ -26,7 +26,7 @@ namespace Hestia.DevicesScreen.resources
         // Variables for global server
         public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
         public static List<HestiaServer> Auth0Servers { get; set; }
-
+        public static HestiaWebServerInteractor HestiaWebServerInteractor { get; set; }
         public static List<HestiaServerInteractor> GetInteractorsOfSelectedServers()
         {
             List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();

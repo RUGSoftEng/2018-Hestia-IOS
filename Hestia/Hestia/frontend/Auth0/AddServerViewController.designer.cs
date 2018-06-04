@@ -14,5 +14,8 @@ namespace Hestia
     [Register ("AddServerViewController")]
     partial class AddServerViewController
     {
+        void ReleaseDesignerOutlets ()
+        {
+        }
     }
 }
