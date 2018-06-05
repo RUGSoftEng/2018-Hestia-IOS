@@ -56,7 +56,7 @@ namespace Hestia.backend
             {
                 { "server_name", name },
                 { "server_address", address },
-                { "server_port", port }
+                { "server_port", port.ToString() }
             };            
             string endpoint = strings.serversPath;
             networkHandler.Post(payload, endpoint);
