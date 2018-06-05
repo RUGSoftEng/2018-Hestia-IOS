@@ -20,7 +20,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
     <CodesignKey>iPhone Developer: marcfleurke@gmail.com (V58LLQJ8HJ)</CodesignKey>
     <CodesignProvision>iOS Team Provisioning Profile: com.ruggedHestia.Hestia</CodesignProvision>
@@ -74,6 +74,7 @@
     <Compile Include="backend\models\Device.cs" />
     <Compile Include="backend\models\PluginInfo.cs" />
     <Compile Include="backend\NetworkHandler.cs" />
+    <Compile Include="backend\speech_recognition\SpeechRecognition.cs" />
     <Compile Include="backend\utils\server_discovery\ServerDelegate.cs" />
     <Compile Include="backend\models\HestiaServer.cs" />
     <Compile Include="backend\HestiaServerInteractor.cs" />
@@ -117,20 +118,11 @@
     </Compile>
     <Compile Include="frontend\DevicesScreen\ActivatorScreen\TableSourceActivators.cs" />
     <Compile Include="frontend\resources\Globals.cs" />
-    <Compile Include="frontend\Firebase\UITableViewControllerAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Firebase\UITableViewControllerAddDeviceChooseServer.designer.cs">
-      <DependentUpon>UITableViewControllerAddDeviceChooseServer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\Firebase\TableSourceAddDeviceChooseServer.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerLocalSettingsScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Firebase\ServerSelectScreen\TableSourceServerList.cs" />
-    <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.cs" />
-    <Compile Include="frontend\Firebase\ServerSelectScreen\UITableViewServerList.designer.cs">
-      <DependentUpon>UITableViewServerList.cs</DependentUpon>
-    </Compile>
+    <Compile Include="frontend\Auth0\ServerSelectScreen\TableSourceServerList.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.cs" />
     <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
@@ -148,6 +140,17 @@
       <DependentUpon>UITableViewControllerServerDiscovery.cs</DependentUpon>
     </Compile>
     <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
+    <Compile Include="frontend\WarningMessage.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\TableSourceAddDeviceChooseServer.cs" />
+    <Compile Include="frontend\Auth0\ServerSelectScreen\ViewControllerServerList.cs" />
+    <Compile Include="frontend\Auth0\ServerSelectScreen\ViewControllerServerList.designer.cs">
+      <DependentUpon>ViewControllerServerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.cs" />
+    <Compile Include="frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.designer.cs">
+      <DependentUpon>ViewControllerChooseServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="backend\speech_recognition\IViewControllerSpeech.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -159,7 +162,6 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="frontend\Devices2.storyboard" />
     <InterfaceDefinition Include="LaunchScreenHestia.storyboard" />
-    <InterfaceDefinition Include="frontend\Devices3.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Auth0.OidcClient, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -189,6 +191,12 @@
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Plugin.SimpleAudioPlayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.SimpleAudioPlayer.1.1.0\lib\Xamarin.iOS10\Plugin.SimpleAudioPlayer.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugin.SimpleAudioPlayer.Abstractions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Xam.Plugin.SimpleAudioPlayer.1.1.0\lib\Xamarin.iOS10\Plugin.SimpleAudioPlayer.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="RestSharp, Version=106.2.1.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>..\packages\RestSharp.106.2.1\lib\netstandard2.0\RestSharp.dll</HintPath>
     </Reference>
@@ -208,15 +216,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Entitlements.plist" />
+    <BundleResource Include="Resources\Sounds\siri_cancel.mp3" />
+    <BundleResource Include="Resources\Sounds\siri_start.mp3" />
+    <BundleResource Include="Resources\Sounds\siri_stop.mp3" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Assets.xcassets\AddDeviceIcon.imageset\" />
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
+    <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
+    <Folder Include="Assets.xcassets\VoiceControlIconInverted.imageset\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -256,14 +271,43 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\HestiaIcon1024.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\AddDeviceIcon.imageset\plus_icon100_2.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon.imageset\microphone_icon150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />
     <ITunesArtwork Include="iTunesArtwork%402x" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Images\lock.png" />
-    <BundleResource Include="Resources\Images\lightbulb.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -107,3 +107,32 @@ Looking for possible fixes
 Nothing online.
 Tried to scan the code but nothing that would seemingly indent twice.
 Tried to scan the code but nothing that would seemingly indent twice.
+Team meeting.
+Team meeting.
+Team meeting.
+Team meeting.
+Team meeting.
+Fixed popup to customer wishes.
+Fixed popup to customer wishes.
+Fixed popup to customer wishes.
+Fixed popup to customer wishes.
+Fixed popup to customer wishes.
+Fixed popup to customer wishes.
+Reading up on UITests
+Reading up on UITests
+Reading up on UITests
+Reading up on UITests
+Reading up on UITests
+Reading up on UITests
+Reading up on UITests
+Reading up on UITests
+implenting UITests
+implenting UITests
+implenting UITests
+implenting UITests
+implenting UITests
+implenting UITests
+implenting UITests
+implenting UITests
+implenting UITests
+implenting UITests

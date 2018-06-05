@@ -14,6 +14,10 @@ namespace Hestia
     [Register ("UITableViewControllerGlobalSettingsScreen")]
     partial class UITableViewControllerGlobalSettingsScreen
     {
+        [Action ("UIButton89405_TouchUpInside:")]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        partial void UIButton89405_TouchUpInside (UIKit.UIButton sender);
+
         void ReleaseDesignerOutlets ()
         {
         }

@@ -11,8 +11,8 @@ using UIKit;
 
 namespace Hestia
 {
-    [Register ("UITableViewControllerAddDeviceChooseServer")]
-    partial class UITableViewControllerAddDeviceChooseServer
+    [Register ("ViewControllerChooseServer")]
+    partial class ViewControllerChooseServer
     {
         void ReleaseDesignerOutlets ()
         {

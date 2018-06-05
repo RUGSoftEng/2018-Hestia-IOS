@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using UIKit;
 using Foundation;
 using Hestia.DevicesScreen.resources;
-using Hestia.backend.models;
 
-namespace Hestia
+namespace Hestia.Auth0
 {
     public class TableSourceServerList : UITableViewSource
     {
@@ -49,6 +47,14 @@ namespace Hestia
             }
             // The text to display on the cell is the server info
             cell.TextLabel.Text = Globals.Auth0Servers[indexPath.Row].Name;
+            if (Globals.Auth0Servers[indexPath.Row].Selected == false)
+            {
+                cell.Accessory = UITableViewCellAccessory.None;
+            }
+            else
+            {
+                cell.Accessory = UITableViewCellAccessory.Checkmark;
+            }
 
             return cell;
 		}
