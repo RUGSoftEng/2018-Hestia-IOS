@@ -19,7 +19,7 @@ namespace Hestia
         {
             if(MFMailComposeViewController.CanSendMail){
                 mailController = new MFMailComposeViewController();
-                mailController.SetToRecipients(new string[] {"hestiasupport@gmail.com"});
+                mailController.SetToRecipients(new string[] {"hestia.contact.email@gmail.com"});
                 mailController.SetSubject("Opinion on Hestia iOS Application");
                 mailController.SetMessageBody("This is a test", false);
 
@@ -37,7 +37,7 @@ namespace Hestia
             if (MFMailComposeViewController.CanSendMail)
             {
                 mailController = new MFMailComposeViewController();
-                mailController.SetToRecipients(new string[] {"hestiasupport@gmail.com"});
+                mailController.SetToRecipients(new string[] {"hestia.contact.email@gmail.com"});
                 mailController.SetSubject("Bug(s) found in Hestia iOS Application");
                 mailController.SetMessageBody("This is a test", false);
 
@@ -55,7 +55,7 @@ namespace Hestia
             if (MFMailComposeViewController.CanSendMail)
             {
                 mailController = new MFMailComposeViewController();
-                mailController.SetToRecipients(new string[] {"hestiasupport@gmail.com"});
+                mailController.SetToRecipients(new string[] {"hestia.contact.email@gmail.com"});
                 mailController.SetSubject("Issues of Hestia iOS Application");
                 mailController.SetMessageBody("This is a test", false);
 
