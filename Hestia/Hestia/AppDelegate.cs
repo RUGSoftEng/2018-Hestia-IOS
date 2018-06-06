@@ -37,7 +37,7 @@ namespace Hestia
         /// verify if a stored IP address is still valid.
         /// </summary>
         /// <returns><c>True</c>, if the server could be verified, <c>False</c> otherwise.</returns>
-        public bool IsServerValid()
+        public static bool IsServerValid(string defaultIP)
         {
             if (defaultIP == null)
             {
@@ -128,7 +128,7 @@ namespace Hestia
                 Globals.LocalLogin = true;
                 
                 // If the server is valid go directly to the Devices main screen
-                if(IsServerValid())
+                if(IsServerValid(defaultIP))
                 {
                     UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain) as UINavigationController;
                     Window.RootViewController = navigationController;
