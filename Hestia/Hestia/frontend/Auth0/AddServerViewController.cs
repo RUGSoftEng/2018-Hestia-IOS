@@ -102,12 +102,10 @@ namespace Hestia
                 }
                 else{
                     changeIPField.Text = "https://" + changeIPField.Text;
-                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.hestiaWebServerAddress, strings.defaultsAccessTokenHestia));
-
+                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(Globals.HestiaWebserverNetworkHandler);
                     try
                     {
-
-                        //hestiaWebServerInteractor.PostUser();
+                        hestiaWebServerInteractor.PostUser();
                     }
                     catch (ServerInteractionException ex)
 
@@ -117,13 +115,12 @@ namespace Hestia
                     }
                     try
                     {
-                       // Console.WriteLine(changeNameField.Text);
-                       // Console.WriteLine(changeIPField.Text);
-                       // Console.WriteLine(int.Parse(changePortField.Text));
-                        //Globals.HestiaWebServerInteractor.GetServers();
+                        Console.WriteLine(changeNameField.Text);
+                        Console.WriteLine(changeIPField.Text);
+//                        Console.WriteLine(int.Parse(changePortField.Text));
+                        hestiaWebServerInteractor.GetServers();
                         // Globals.HestiaWebServerInteractor.PostUser();
-                        //hestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
-                        hestiaWebServerInteractor.AddServer("test", "12.12.12.12", 39);
+                        hestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
 
                         NavigationController.PopViewController(true);
                     }

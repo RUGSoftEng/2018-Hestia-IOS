@@ -169,8 +169,8 @@ namespace Hestia
             userDefaults.SetString(accessToken, strings.defaultsAccessTokenHestia);
 
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(strings.hestiaWebServerAddress, accessToken);
-            CreateServerInteractorAndSegue(networkHandler);
+            Globals.HestiaWebserverNetworkHandler = new NetworkHandler(strings.hestiaWebServerAddress, accessToken);
+            CreateServerInteractorAndSegue(Globals.HestiaWebserverNetworkHandler);
         }
 
         /// <summary>
@@ -179,7 +179,7 @@ namespace Hestia
         /// </summary>
         void CreateServerInteractorAndSegue(NetworkHandler networkHandler)
         {
-            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(Globals.HestiaWebserverNetworkHandler);
             try
             {
                 Globals.HestiaWebServerInteractor.PostUser();                

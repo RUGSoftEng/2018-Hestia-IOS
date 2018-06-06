@@ -76,7 +76,8 @@ namespace Hestia
         /// </summary>
         public void SetGlobalsToDefaultsGlobalLogin()
         {
-            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.hestiaWebServerAddress, defaultAuth0AccessToken));
+            Globals.HestiaWebserverNetworkHandler = new NetworkHandler(strings.hestiaWebServerAddress, defaultAuth0AccessToken);
+            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(Globals.HestiaWebserverNetworkHandler);
 
 
             try
