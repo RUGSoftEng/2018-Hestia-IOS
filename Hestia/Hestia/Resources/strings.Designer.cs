@@ -191,12 +191,6 @@ namespace Hestia.Resources {
             }
         }
         
-        public static string hestiaWebServerAddress {
-            get {
-                return ResourceManager.GetString("hestiaWebServerAddress", resourceCulture);
-            }
-        }
-        
         public static string initialCount {
             get {
                 return ResourceManager.GetString("initialCount", resourceCulture);
@@ -437,9 +431,9 @@ namespace Hestia.Resources {
             }
         }
         
-        public static string webserverIP {
+        public static string hestiaWebServerAddress {
             get {
-                return ResourceManager.GetString("webserverIP", resourceCulture);
+                return ResourceManager.GetString("hestiaWebServerAddress", resourceCulture);
             }
         }
         
@@ -572,6 +566,12 @@ namespace Hestia.Resources {
         public static string viewControllerAddDevice {
             get {
                 return ResourceManager.GetString("viewControllerAddDevice", resourceCulture);
+            }
+        }
+        
+        public static string hestiaEmail {
+            get {
+                return ResourceManager.GetString("hestiaEmail", resourceCulture);
             }
         }
     }
