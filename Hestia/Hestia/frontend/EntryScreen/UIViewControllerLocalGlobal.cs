@@ -187,7 +187,7 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while posting user. User possibly already exists.");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex);
             }
             Globals.Auth0Servers = new List<HestiaServer>();
             try
@@ -199,7 +199,7 @@ namespace Hestia
             catch(ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while getting servers");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex);
                 WarningMessage.Display("Exception whle getting server", "Could not get the server information about local server from Auth0 server.", this);
             }
 

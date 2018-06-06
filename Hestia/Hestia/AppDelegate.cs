@@ -1,4 +1,4 @@
-﻿using Foundation;
+using Foundation;
 using UIKit;
 using Hestia.DevicesScreen;
 using Hestia.DevicesScreen.resources;
@@ -48,9 +48,10 @@ namespace Hestia
                 string address = strings.defaultPrefix + defaultIP + ":" + int.Parse(strings.defaultPort);
                 bool validIp = PingServer.Check(address);
             }
-            catch (Exception exception)  // Not only catch ServerException, but also Exceptions that could be thrown following an invalid Parse.
+            catch (Exception ex)  // Not only catch ServerException, but also Exceptions that could be thrown following an invalid Parse.
+
             {
-                Console.WriteLine(exception.StackTrace);
+                Console.WriteLine(ex);
                 return false;
             }
             return true;
@@ -84,7 +85,7 @@ namespace Hestia
             catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while posting user. User possibly already exists.");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex);
             }
             // Create an empty list in case no servers can be fetched from the Webserver, to prevent NullReferenceException in Devices main screen
             Globals.Auth0Servers = new System.Collections.Generic.List<backend.models.HestiaServer>();
@@ -95,7 +96,7 @@ namespace Hestia
             catch(ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while getting servers");
-                Console.WriteLine(ex.StackTrace);
+                Console.WriteLine(ex);
                 WarningMessage.Display("Exception while getting servers", "Could not get local server list from webserver", Window.RootViewController);
             }
         }
