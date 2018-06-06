@@ -11,6 +11,10 @@ using System.Text.RegularExpressions;
 
 namespace Hestia
 {
+    /// <summary>
+    /// This view show the required info that is needed in order
+    /// to create a new device.
+    /// </summary>
     public partial class UITableViewControllerAddDeviceProperties : UITableViewController
     {
         // Plugin info set at creation in devices window

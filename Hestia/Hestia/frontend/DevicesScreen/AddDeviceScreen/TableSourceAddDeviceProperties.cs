@@ -7,6 +7,11 @@ using Hestia.DevicesScreen.AddDeviceScreen;
 
 namespace Hestia.DevicesScreen
 {
+    /// <summary>
+    /// This view is the one that controls the way that the table is
+    /// showed. This tableSource is dynamic, that means that the required info
+    /// for each device will be different, it depends on the type of device.
+    /// </summary>
     public class TableSourceAddDeviceProperties : UITableViewSource
     {
         // Hashtable to keep track of inputfields

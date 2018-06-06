@@ -4,6 +4,10 @@ using CoreGraphics;
 
 namespace Hestia.DevicesScreen.AddDeviceScreen
 {
+    /// <summary>
+    /// This view controls how the cells on the addDeviceProperties are displayed.
+    /// <see cref="TableSourceAddDeviceProperties"/>
+    /// </summary>
     public class PropertyCell : UITableViewCell
     {
         public UITextField inputField;
