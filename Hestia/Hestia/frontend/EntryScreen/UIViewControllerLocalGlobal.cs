@@ -17,7 +17,7 @@ using Hestia.frontend;
 namespace Hestia
 {
     /// <summary>
-    /// This view controller belongs to the first window that can be seen when loading the app
+    /// This ViewController belongs to the first window that can be seen when loading the app
     /// if no user default for local/global is present. The user can then choose local/global.
     /// </summary>
     public partial class UIViewControllerLocalGlobal : UIViewController
@@ -36,6 +36,9 @@ namespace Hestia
         {
         }
 
+        /// <summary>
+        /// This method is called if the View is loaded, the user defaults are re
+        /// </summary>
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
