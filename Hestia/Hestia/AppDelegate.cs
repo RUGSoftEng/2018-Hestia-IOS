@@ -86,11 +86,7 @@ namespace Hestia
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             Xamarin.Calabash.Start();
-            Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
-            Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
-
             SpeechRecognition.RequestAuthorization();
-
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
             string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);

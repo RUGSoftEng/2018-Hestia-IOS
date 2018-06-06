@@ -15,9 +15,6 @@ namespace Hestia.DevicesScreen.resources
         public static String UserName { get; set; }
         public static string Prefix { get; set; }
 
-        public static int ScreenHeight { get; set;  }
-        public static int ScreenWidth { get; set;  }
-
         // Variables for local server
         public static HestiaServerInteractor LocalServerinteractor { get; set; }
         public static String ServerName { get; set; }
