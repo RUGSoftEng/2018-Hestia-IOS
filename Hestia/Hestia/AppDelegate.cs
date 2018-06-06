@@ -109,9 +109,8 @@ namespace Hestia
         {
             // Used for UITesting
             Xamarin.Calabash.Start();
-
+            
             SpeechRecognition.RequestAuthorization();
-
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
             string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);
@@ -119,52 +118,49 @@ namespace Hestia
             defaultPort = userDefaults.StringForKey(strings.defaultsPortHestia);
             defaultServername = userDefaults.StringForKey(strings.defaultsServerNameHestia);
             defaultAuth0AccessToken = userDefaults.StringForKey(strings.defaultsAccessTokenHestia);
-            Console.WriteLine(" Defaultip:" + defaultIP);
 
+            // The main window where the app lives in
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
-            Console.WriteLine(" defaults:" + defaultLocal);
+
             // Check if defaults for local/global are present
             if (defaultLocal == bool.TrueString)
             {
-				Console.WriteLine(" Default local ");
                 Globals.LocalLogin = true;
-                var serverConnectViewController = devices2Storyboard.InstantiateInitialViewController();
-
+                
+                // If the server is valid go directly to the Devices main screen
                 if(IsServerValid())
                 {
-                    UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain)
-                        as UINavigationController;
+                    UINavigationController navigationController = devices2Storyboard.InstantiateViewController(strings.navigationControllerDevicesMain) as UINavigationController;
                     Window.RootViewController = navigationController;
                     // Make key and visible to be able to present possibly Alert window
                     Window.MakeKeyAndVisible();
                     SetGlobalsToDefaultsLocalLogin();
                 }
                 else
-                {
-                    Window.RootViewController = serverConnectViewController;
+                {   // Server is not valid. Go to server connect screen.
+                    Window.RootViewController = devices2Storyboard.InstantiateInitialViewController(); ;
                 }
             }
-
             else if (defaultLocal == bool.FalseString)
             {
-				Console.WriteLine(" Default global");
                 Globals.LocalLogin = false;
 
-                var viewServerList = devices2Storyboard.InstantiateViewController("navigationServerList");
-                Window.RootViewController = viewServerList;
+                Window.RootViewController = devices2Storyboard.InstantiateViewController(strings.navigationControllerServerSelectList); ;
                 // Make key and visible to be able to present possibly Alert window
                 Window.MakeKeyAndVisible();
                 SetGlobalsToDefaultsGlobalLogin();
             }
             else
             {   // No previous login information available. Go to local/global choose screen.
-                UIViewControllerLocalGlobal localGlobalViewController = mainStoryboard.InstantiateInitialViewController() as UIViewControllerLocalGlobal;
-                Window.RootViewController = localGlobalViewController;
+                Window.RootViewController = mainStoryboard.InstantiateInitialViewController() as UIViewControllerLocalGlobal;
             }
             Window.MakeKeyAndVisible();
             return true;
         }
 
+        /// <summary>
+        /// This method is used to handle the call back URL from the Auth0 login
+        /// </summary>
         public override bool OpenUrl(UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
         {
             ActivityMediator.Instance.Send(url.AbsoluteString);
