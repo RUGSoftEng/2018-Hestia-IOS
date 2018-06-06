@@ -1,8 +1,6 @@
-using Foundation;
 using System;
 using UIKit;
 using MessageUI;
-
 
 namespace Hestia
 {
@@ -17,55 +15,43 @@ namespace Hestia
         //Opinion
         partial void UIButton105005_TouchUpInside(UIButton sender)
         {
-            if(MFMailComposeViewController.CanSendMail){
-                mailController = new MFMailComposeViewController();
-                mailController.SetToRecipients(new string[] {"hestia.contact.email@gmail.com"});
-                mailController.SetSubject("Opinion on Hestia iOS Application");
-                mailController.SetMessageBody("This is a test", false);
-
-                mailController.Finished += (object s, MFComposeResultEventArgs args) => {
-                    Console.WriteLine(args.Result.ToString());
-                    args.Controller.DismissViewController(true, null);
-                };
-                this.PresentViewController(mailController, true, null);
-            }
+            const string subject = "Opinion on Hestia iOS Application";
+            const string message = "Test";
+            ComposeMessage(subject, message);
         }
 
         //Bugs
         partial void UIButton105006_TouchUpInside(UIButton sender)
         {
-            if (MFMailComposeViewController.CanSendMail)
-            {
-                mailController = new MFMailComposeViewController();
-                mailController.SetToRecipients(new string[] {"hestia.contact.email@gmail.com"});
-                mailController.SetSubject("Bug(s) found in Hestia iOS Application");
-                mailController.SetMessageBody("This is a test", false);
-
-                mailController.Finished += (object s, MFComposeResultEventArgs args) => {
-                    Console.WriteLine(args.Result.ToString());
-                    args.Controller.DismissViewController(true, null);
-                };
-                this.PresentViewController(mailController, true, null);
-            }
+            const string subject = "Bug(s) found in Hestia iOS Application";
+            const string message = "Test";
+            ComposeMessage(subject, message);
         }
 
         //Issues
         partial void UIButton105007_TouchUpInside(UIButton sender)
         {
+            const string subject = "Issues Hestia iOS Application";
+            const string message = "Test";
+            ComposeMessage(subject, message);
+        }
+
+        void ComposeMessage(string subject, string message)
+        {
             if (MFMailComposeViewController.CanSendMail)
             {
                 mailController = new MFMailComposeViewController();
-                mailController.SetToRecipients(new string[] {"hestia.contact.email@gmail.com"});
-                mailController.SetSubject("Issues of Hestia iOS Application");
-                mailController.SetMessageBody("This is a test", false);
+                mailController.SetToRecipients(new string[] { "hestia.contact.email@gmail.com" });
+                mailController.SetSubject(subject);
+                mailController.SetMessageBody(message, false);
 
-                mailController.Finished += (object s, MFComposeResultEventArgs args) => {
+                mailController.Finished += (object s, MFComposeResultEventArgs args) =>
+                {
                     Console.WriteLine(args.Result.ToString());
                     args.Controller.DismissViewController(true, null);
                 };
-                this.PresentViewController(mailController, true, null);
+                PresentViewController(mailController, true, null);
             }
         }
-    
     }
 }
