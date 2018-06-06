@@ -2,6 +2,10 @@
 
 namespace Hestia.frontend
 {
+    /// <summary>
+    /// This class contains code to simply create the typical iOS Warning message in one line of code.
+    /// It is used in many places in the other front end classes.
+    /// </summary>
     public class WarningMessage
     {
         string title, message;
@@ -27,6 +31,12 @@ namespace Hestia.frontend
             uIViewController.PresentViewController(alertController, true, null);
         }
 
+        /// <summary>
+        /// Displays a warning message
+        /// </summary>
+        /// <param name="title">Title of the message</param>
+        /// <param name="message">Message body</param>
+        /// <param name="uIViewController">The ViewController on which the warning should be presented</param>
         public static void Display(string title, string message, UIViewController uIViewController)
         {
             var okAlertController = UIAlertController.Create(title, message, UIAlertControllerStyle.Alert);
