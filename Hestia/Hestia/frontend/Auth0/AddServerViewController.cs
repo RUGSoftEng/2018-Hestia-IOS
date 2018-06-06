@@ -107,7 +107,7 @@ namespace Hestia
                     try
                     {
 
-                        hestiaWebServerInteractor.PostUser();
+                        //hestiaWebServerInteractor.PostUser();
                     }
                     catch (ServerInteractionException ex)
 
@@ -117,12 +117,14 @@ namespace Hestia
                     }
                     try
                     {
-                        Console.WriteLine(changeNameField.Text);
-                        Console.WriteLine(changeIPField.Text);
-                        Console.WriteLine(int.Parse(changePortField.Text));
+                       // Console.WriteLine(changeNameField.Text);
+                       // Console.WriteLine(changeIPField.Text);
+                       // Console.WriteLine(int.Parse(changePortField.Text));
                         //Globals.HestiaWebServerInteractor.GetServers();
-                       // Globals.HestiaWebServerInteractor.PostUser();
-                        hestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+                        // Globals.HestiaWebServerInteractor.PostUser();
+                        //hestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+                        hestiaWebServerInteractor.AddServer("test", "12.12.12.12", 39);
+
                         NavigationController.PopViewController(true);
                     }
                     catch (ServerInteractionException ex)
