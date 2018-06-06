@@ -9,6 +9,10 @@ using Hestia.frontend;
 
 namespace Hestia.DevicesScreen.ActivatorScreen
 {
+    /// <summary>
+    /// This class describes the contents of the list with activators that is shown on the pop-over in the Devices main screen.
+    /// See, <see cref="UITableViewActivators"/>.
+    /// </summary>
     public class TableSourceActivators : UITableViewSource
     {
         Device device;
@@ -28,6 +32,9 @@ namespace Hestia.DevicesScreen.ActivatorScreen
             return activators.Count;
 		}
 
+        /// <summary>
+        /// The cell is filled with a switch or slider and the name of the activator.
+        /// </summary>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
             UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.activatorCell);

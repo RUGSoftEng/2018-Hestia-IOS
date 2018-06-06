@@ -11,13 +11,18 @@ namespace Hestia
         {
         }
 
+        /// <summary>
+        /// Displays server name on the button for change Server
+        /// </summary>
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             serverName.Text = Globals.ServerName;
         }
 
-        // Reset Defaults button
+        /// <summary>
+        /// Reset Defaults button
+        /// </summary>
         partial void UIButton87850_TouchUpInside(UIButton sender)
         {
             Globals.ResetAllUserDefaults();
