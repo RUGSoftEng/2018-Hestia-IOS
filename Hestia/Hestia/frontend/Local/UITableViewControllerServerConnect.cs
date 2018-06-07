@@ -60,7 +60,7 @@ namespace Hestia.DevicesScreen
             {
                 SetCancelButtton();
             }
-            //Set cancel button otherwise if it does not appear in the Settings screen
+            // Set cancel button otherwise if it does not appear in the Settings screen
             else if (!(NavigationController.ViewControllers[NavigationController.ViewControllers.Length - 2] is UITableViewControllerLocalSettingsScreen))
             {
                 SetCancelButtton();
