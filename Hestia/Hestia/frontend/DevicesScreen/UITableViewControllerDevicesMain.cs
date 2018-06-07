@@ -19,9 +19,10 @@ namespace Hestia.DevicesScreen
     /// </summary>
     public partial class UITableViewControllerDevicesMain : UITableViewController, IViewControllerSpeech
     {
-        const int TableViewHeaderHeight = 35;
-        const int TableViewHeaderTopPadding = 5;
+        const int TableViewFooterHeight = 50;
         const int IconDimension = 50;
+        const int Padding = 15;
+        nfloat bottomOfView;
 
         SpeechRecognition speechRecognizer;
 
@@ -121,10 +122,32 @@ namespace Hestia.DevicesScreen
         public UIView GetTableViewHeader(bool isEditing)
         {
             UIView view = new UIView(new CGRect(0, 0, TableView.Bounds.Width, TableViewHeaderHeight));
+        }
 
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+            RemoveButtons();
+        }
+
+        void RemoveButtons()
+        {
+            foreach (UIView view in ParentViewController.View.Subviews)
+            {
+                if (view is UIButton)
+                {
+                    view.RemoveFromSuperview();
+                }
+            }
+        }
+
+        public void ReloadButtons(bool isEditing)
+        {
+            RemoveButtons();
             // Voice control / add device button
             UIButton button = new UIButton(UIButtonType.System);
-            button.Frame = new CGRect(TableView.Bounds.Width / 2 - IconDimension / 2, TableViewHeaderTopPadding, IconDimension, IconDimension);
+            button.Frame = new CGRect(TableView.Bounds.Width - IconDimension - Padding, bottomOfView - TableViewFooterHeight - Padding , IconDimension, IconDimension);
             if (isEditing)
             {
                 button.SetBackgroundImage(UIImage.FromBundle(strings.addDeviceIcon), UIControlState.Normal);
@@ -136,7 +159,7 @@ namespace Hestia.DevicesScreen
 
             button.TouchDown += (object sender, EventArgs e) =>
             {
-                if(!isEditing)
+                if (!isEditing)
                 {
                     speechRecognizer = new SpeechRecognition(this, this);
                     WarningMessage warningMessage = speechRecognizer.StartRecording();
@@ -161,27 +184,38 @@ namespace Hestia.DevicesScreen
 
             button.TouchDragExit += (object sender, EventArgs e) =>
             {
-                if(!isEditing)
+                if (!isEditing)
                 {
                     speechRecognizer.CancelRecording();
                 }
             };
-
-            view.AddSubview(button);
-            return view;
+            ParentViewController.View.AddSubview(button);
         }
 
         /// <summary>
-        /// This method is called when the Devices main screen first appears and loads the header with the
-        /// Speech Recognition icon, refreshes the devices list and sets the edit/done and settings buttons
+        /// The footer has enough free space to shown the complete microphone/insertion icons 
+        /// if the user scrolls to the bottom of the page.
         /// </summary>
+        /// <returns>The table view footer.</returns>
+        public UIView GetTableViewFooter()
+        {
+            UIView view = new UIView(new CGRect(0, 0, TableView.Bounds.Width, TableViewFooterHeight));
+            return view;
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            ReloadButtons(DevicesTable.Editing);
+        }
+
         public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
+            // Fix the bottom position of the view, such that icons appear at same place when reloaded.
+            bottomOfView = TableView.Bounds.Bottom;
 
-            // Get the voice control button
-            DevicesTable.TableHeaderView = GetTableViewHeader(false);
-    
+            DevicesTable.TableFooterView = GetTableViewFooter();
             RefreshDeviceList();
             // Set the light gray color in Globals, it is used in the Edit device (change name) screen
             Globals.DefaultLightGray = TableView.BackgroundColor;
