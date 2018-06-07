@@ -580,5 +580,11 @@ namespace Hestia.Resources {
                 return ResourceManager.GetString("arrowRight", resourceCulture);
             }
         }
+        
+        public static string addServerViewController {
+            get {
+                return ResourceManager.GetString("addServerViewController", resourceCulture);
+            }
+        }
     }
 }

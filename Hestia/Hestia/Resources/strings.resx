@@ -384,4 +384,7 @@
   <data name="arrowRight" xml:space="preserve">
     <value>ArrowRight</value>
   </data>
+  <data name="addServerViewController" xml:space="preserve">
+    <value>AddServer</value>
+  </data>
 </root>

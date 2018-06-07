@@ -3,9 +3,9 @@ using UIKit;
 using Foundation;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
-using Hestia.DevicesScreen.EditDevice;
 using Hestia.Resources;
 using Hestia.frontend.Auth0.ServerSelectScreen;
+using Hestia.frontend;
 
 namespace Hestia.Auth0
 {
@@ -34,7 +34,6 @@ namespace Hestia.Auth0
             UITableViewCell cell = tableView.CellAt(indexPath);
             if (!owner.TableView.Editing)
             {
-                Console.WriteLine("not editing");
                 if (Globals.Auth0Servers[indexPath.Row].Selected == false)
                 {
                     cell.Accessory = UITableViewCellAccessory.Checkmark;
@@ -47,16 +46,12 @@ namespace Hestia.Auth0
                 }
 
             }
-            // Go to edit name window for non-insert cells
-            else
+            else  // Go to edit name window
             {
-                Console.WriteLine(" editing");
                 UIViewControllerEditServerName uIViewControllerEditServerName = new UIViewControllerEditServerName(this.owner);
                 uIViewControllerEditServerName.server = Globals.Auth0Servers[indexPath.Row];
-               // editViewController.device = GetSectionRow(indexPath);
                 owner.NavigationController.PushViewController(uIViewControllerEditServerName, true);
             }
-
             tableView.DeselectRow(indexPath, true);
         }
 
@@ -72,47 +67,37 @@ namespace Hestia.Auth0
             }
 
             cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
+            cell.TextLabel.Text = Globals.Auth0Servers[indexPath.Row].Name;
 
-
-                cell.TextLabel.Text = Globals.Auth0Servers[indexPath.Row].Name;
-
-                if (Globals.Auth0Servers[indexPath.Row].Selected == false)
-                {
-                    cell.Accessory = UITableViewCellAccessory.None;
-                }
-                else
-                {
-                    cell.Accessory = UITableViewCellAccessory.Checkmark;
-                }
-
+            if (Globals.Auth0Servers[indexPath.Row].Selected == false)
+            {
+                cell.Accessory = UITableViewCellAccessory.None;
+            }
+            else
+            {
+                cell.Accessory = UITableViewCellAccessory.Checkmark;
+            }
 
             return cell;
         }
 
         /// <summary>
         /// Defines what happens when the delete action is confirmed. 
-        /// Then the device is removed from the server and the list.
+        /// Then the server is removed from the Webserver and the list.
         /// </summary>
         public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
         {
-
-            //var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
-           // var deviceServerInteractor = deviceInRow.ServerInteractor;
             try
             {
-                //deviceServerInteractor.RemoveDevice(deviceInRow);
                 Globals.HestiaWebServerInteractor.DeleteServer(Globals.Auth0Servers[indexPath.Row]);
             }
             catch (ServerInteractionException ex)
             {
-                Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
+                Console.WriteLine("Exception while deleting local server from Webserver");
                 Console.Out.WriteLine(ex);
+                WarningMessage.Display("Exception while deleting server", "An exception occurred while deleting a local server from the Webserver", owner);
             }
 
-            //Remove device from list that is shown in the TableView
-            //RemoveDeviceAt(indexPath);
-            //owner.RefreshServerList();
-            // Delete the row from the table
             // At this point, the deletion from the server has succeeded, so we can remove the server
             // from the Auth0Servers list. We delete the row from the list and then refresh the list. 
             // This order is necessary, preventing exceptions.
@@ -121,18 +106,14 @@ namespace Hestia.Auth0
             owner.RefreshServerList();
         }
 
-
-
         /// <summary>
-        /// The action that is performed when the green plus icon is tapped to add a new device.
-        /// It segues to the add device screen in case of local login or to the server select screen
-        /// in case of global login, to choose the server to add the device to.
-        /// <see cref="ViewControllerChooseServer"/> 
-        /// <see cref="UITableViewControllerAddDevice"/>
+        /// The action that is performed when the green plus icon is tapped to add a new server.
+        /// It segues to the add Server screen.
+        /// <see cref="AddServerViewController"/>
         /// </summary>
         public void InsertAction()
         {
-            AddServerViewController serverView = owner.Storyboard.InstantiateViewController("AddServer") as AddServerViewController;
+            AddServerViewController serverView = owner.Storyboard.InstantiateViewController(strings.addServerViewController) as AddServerViewController;
             owner.NavigationController.PushViewController(serverView, true);
         }
 
@@ -151,7 +132,7 @@ namespace Hestia.Auth0
         }
 
         /// <summary>
-        /// Is called after a press on edit button. The microphone icon is changed to an insertion icon.
+        /// Is called after a press on edit button. The 'next' icon is changed to an insertion icon.
         /// </summary>
         public void WillBeginTableEditing(UITableView tableView)
         {
@@ -159,7 +140,7 @@ namespace Hestia.Auth0
         }
 
         /// <summary>
-        /// Is called after a press on done button. The insertion icon is changed back to microphone icon.
+        /// Is called after a press on done button. The insertion icon is changed back to 'next' icon.
         /// </summary>
         public void DidFinishTableEditing(UITableView tableView)
         {
@@ -167,4 +148,3 @@ namespace Hestia.Auth0
         }
     }
 }
-

@@ -1,18 +1,14 @@
 ﻿using System;
-
-using System;
 using UIKit;
 using CoreGraphics;
 
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.models;
 using Hestia.backend.exceptions;
-using Hestia.frontend;
 namespace Hestia.frontend.Auth0.ServerSelectScreen
 {
     public class UIViewControllerEditServerName : UIViewController
     {
-
         ViewControllerServerList owner;
         public HestiaServer server;
         UIBarButtonItem saveName;
@@ -56,11 +52,8 @@ namespace Hestia.frontend.Auth0.ServerSelectScreen
                 {
                     try
                     {
-                        //server.Name = changeNameField.Text;
                         Globals.HestiaWebServerInteractor.EditServer(server, changeNameField.Text, server.Address, server.Port);
-                        // Reset editing mode to be able to correctly update cell contents
                         owner.CancelEditingState();
-
                         owner.RefreshServerList();
                         owner.SetEditingState();
                         NavigationController.PopViewController(true);
@@ -69,15 +62,11 @@ namespace Hestia.frontend.Auth0.ServerSelectScreen
                     {
                         Console.WriteLine("Exception while changing device name");
                         Console.WriteLine(ex);
-                        WarningMessage.Display("Exception", "An exception occurred on the server when changing the name of the device", this);
+                        WarningMessage.Display("Exception", "An exception occurred on the server when changing the name of the server", this);
                     }
                 }
             });
             NavigationItem.RightBarButtonItem = saveName;
         }
     }
-
 }
-
-
-

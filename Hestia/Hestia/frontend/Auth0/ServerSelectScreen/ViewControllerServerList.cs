@@ -41,6 +41,7 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+            RefreshServerList();
             Title = strings.selectServerTitle;
             TableView.Source = new TableSourceServerList(this);
 
@@ -50,15 +51,16 @@ namespace Hestia
             bottomOfView = TableView.Bounds.Bottom;
 
             TableView.TableFooterView = GetTableViewFooter();
-           // RefreshServerList();
             // To be able to tap a row in editing mode for changing name
             TableView.AllowsSelectionDuringEditing = true;
 
-            edit = new UIBarButtonItem(UIBarButtonSystemItem.Edit, (s, e) => {
+            edit = new UIBarButtonItem(UIBarButtonSystemItem.Edit, (s, e) =>
+            {
                 SetEditingState();
             });
 
-            done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
+            done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) =>
+            {
                 CancelEditingState();
             });
 
@@ -69,44 +71,30 @@ namespace Hestia
 
             // Set right button initially to edit 
             NavigationItem.RightBarButtonItem = edit;
-            NavigationItem.LeftBarButtonItem = cancel;
         }
 
-        /// <summary>
-        /// If the View appeared in the application, the actions of the done button are set. The done button leads
-        /// to the Devices main screen.
-        /// </summary>
-        public override void ViewDidAppear(bool animated)
-        {
-            base.ViewDidAppear(animated);
-            RefreshServerList();
-            TableView.ReloadData();
-        }
+
 
         /// <summary>
         /// This method is called when the View will appear. It creates the cancel button and assigns it the correct behaviour,
         /// depending on the previous ViewController. If the View is shown in the global settings screen, the cancel button 
-        /// should not appear. See, <see cref="SetCancelButtton(UIViewController)"/>.
+        /// should not appear. See, <see cref="SetCancelButtton()"/>.
         /// </summary>
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-
+            RefreshServerList();
+            TableView.ReloadData();
             // Set cancel button if the Server connect screen is loaded from Appdelegate
             if (NavigationController.ViewControllers.Length < 2)
             {
                 SetCancelButtton();
             }
             //Set cancel button otherwise if it does not appear in the Settings screen
-            else if (!(NavigationController.ViewControllers[NavigationController.ViewControllers.Length - 2] is UITableViewControllerLocalSettingsScreen))
+            else if (!(NavigationController.ViewControllers[NavigationController.ViewControllers.Length - 2] is UITableViewControllerGlobalSettingsScreen))
             {
                 SetCancelButtton();
             }
-
-            //if (!(PresentingViewController is UINavigationController))
-            //{
-            //    SetCancelButtton(PresentingViewController);
-            //}
             ReloadButtons(TableView.Editing);
         }
 
@@ -116,28 +104,11 @@ namespace Hestia
         /// ViewController is directly presented from the <see cref="AppDelegate"/>, a new <see cref="UIViewControllerLocalGlobal"/>
         /// should be instantiated.
         /// </summary>
-        /// <param name="uIViewController">The ViewController from which the ServeSelect list is called.</param>
-        public void SetCancelButtton(UIViewController uIViewController)
-        {
-            // Cancel button to go back to local/global screen
-                cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
-                if (uIViewController is UIViewControllerLocalGlobal)
-                {
-                    DismissViewController(true, null);
-                }
-                // Create new local/global screen
-                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(Resources.strings.mainStoryBoard, null);
-                var localGlobal = devicesMainStoryboard.InstantiateInitialViewController();
-                PresentViewController(localGlobal, true, null);
-            });
-            NavigationItem.LeftBarButtonItem = cancel;
-        }
-
-
         public void SetCancelButtton()
         {
             // Cancel button to go back to local/global screen
-            cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
+            cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) =>
+            {
                 // If loaded from Appdelegate, instantiate the Local/Global screen
                 if (PresentingViewController is null)
                 {
@@ -151,8 +122,9 @@ namespace Hestia
             });
             NavigationItem.LeftBarButtonItem = cancel;
         }
+
         /// <summary>
-        /// This method is used in <see cref="ViewDidAppear(bool)"/> to set the behaviour of the done button. 
+        /// This method is used in <see cref="ReloadButtons(bool)"/> to set the behaviour of the done button. 
         /// The next screen should only be loaded if the local servers can be used without exceptions, which is 
         /// checked by this mehtod.
         /// </summary>
@@ -179,7 +151,7 @@ namespace Hestia
         /// <summary>
         /// This methods is called if the done button is touched. The button is changed to display "edit" and the 
         /// list changes to normal mode (the delete icons disappear).
-        /// See, <see cref="TableSourceDevicesMain.DidFinishTableEditing(UITableView)"/>
+        /// See, <see cref="TableSourceServerList.DidFinishTableEditing(UITableView)"/>
         /// </summary>
         public void CancelEditingState()
         {
@@ -188,11 +160,10 @@ namespace Hestia
             ((TableSourceServerList)TableView.Source).DidFinishTableEditing(TableView);
         }
 
-
         /// <summary>
         /// This methods is called if the edit button is touched. The button is changed to display "done" and the 
         /// list changes to editing mode (the delete icons appear).
-        /// See, <see cref="TableSourceDevicesMain.WillBeginTableEditing(UITableView))"/>
+        /// See, <see cref="TableSourceServerList.WillBeginTableEditing(UITableView))"/>
         /// </summary>
         public void SetEditingState()
         {
@@ -212,7 +183,7 @@ namespace Hestia
                 List<HestiaServer> servers = Globals.HestiaWebServerInteractor.GetServers();
                 Globals.Auth0Servers = servers;
             }
-            catch(ServerInteractionException ex)
+            catch (ServerInteractionException ex)
             {
                 Console.WriteLine("Exception while getting servers");
                 Console.WriteLine(ex);
@@ -221,16 +192,6 @@ namespace Hestia
 
             TableView.Source = new TableSourceServerList(this);
         }
-
-        void HandleException(TableSourceServerList source, ServerInteractionException ex)
-        {
-            Console.WriteLine("Exception while getting devices from local server");
-            Console.WriteLine(ex);
-            WarningMessage.Display("Could not refresh devices", "Exception while getting devices from local server", this);
-           // source.serverDevices = new List<List<Device>>();
-            TableView.ReloadData();
-        }
-
 
         public override void ViewWillDisappear(bool animated)
         {
@@ -252,7 +213,7 @@ namespace Hestia
         public void ReloadButtons(bool isEditing)
         {
             RemoveButtons();
-            // Voice control / add device button
+            // Next / add device button
             UIButton button = new UIButton(UIButtonType.System);
             button.Frame = new CGRect(TableView.Bounds.Width - IconDimension - Padding, bottomOfView - TableViewFooterHeight - Padding, IconDimension, IconDimension);
             if (isEditing)
@@ -264,30 +225,28 @@ namespace Hestia
                 button.SetBackgroundImage(UIImage.FromBundle(strings.arrowRight), UIControlState.Normal);
             }
 
-
             button.TouchUpInside += (object sender, EventArgs e) =>
             {
                 if (isEditing)
-                {   // segue to add device
+                {
                     ((TableSourceServerList)TableView.Source).InsertAction();
                 }
                 else
                 {
                     if (ShouldPerformSegue())
                     {
-                        UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(Resources.strings.devices2StoryBoard, null);
-                        var devicesMain = devicesMainStoryboard.InstantiateViewController(Resources.strings.navigationControllerDevicesMain) as UINavigationController;
+                        UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
+                        var devicesMain = devicesMainStoryboard.InstantiateViewController(strings.navigationControllerDevicesMain) as UINavigationController;
                         ShowViewController(devicesMain, this);
                     }
                 }
             };
 
-
             ParentViewController.View.AddSubview(button);
         }
 
         /// <summary>
-        /// The footer has enough free space to shown the complete microphone/insertion icons 
+        /// The footer has enough free space to shown the complete next/insertion icons 
         /// if the user scrolls to the bottom of the page.
         /// </summary>
         /// <returns>The table view footer.</returns>
@@ -306,7 +265,6 @@ namespace Hestia
             RefreshServerList();
             RefreshControl.EndRefreshing();
         }
-
 
     }
 }
