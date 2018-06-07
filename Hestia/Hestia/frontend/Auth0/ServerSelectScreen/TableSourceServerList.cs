@@ -109,7 +109,7 @@ namespace Hestia.Auth0
 
             //Remove device from list that is shown in the TableView
             //RemoveDeviceAt(indexPath);
-
+            owner.RefreshServerList();
             // Delete the row from the table
             tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
         }

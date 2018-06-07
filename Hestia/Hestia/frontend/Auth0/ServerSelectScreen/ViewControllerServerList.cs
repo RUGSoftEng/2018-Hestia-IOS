@@ -100,10 +100,22 @@ namespace Hestia
         public override void ViewWillAppear(bool animated)
         {
             base.ViewWillAppear(animated);
-            if (!(PresentingViewController is UINavigationController))
+
+            // Set cancel button if the Server connect screen is loaded from Appdelegate
+            if (NavigationController.ViewControllers.Length < 2)
             {
-                SetCancelButtton(PresentingViewController);
+                SetCancelButtton();
             }
+            //Set cancel button otherwise if it does not appear in the Settings screen
+            else if (!(NavigationController.ViewControllers[NavigationController.ViewControllers.Length - 2] is UITableViewControllerLocalSettingsScreen))
+            {
+                SetCancelButtton();
+            }
+
+            //if (!(PresentingViewController is UINavigationController))
+            //{
+            //    SetCancelButtton(PresentingViewController);
+            //}
             ReloadButtons(TableView.Editing);
         }
 
@@ -130,6 +142,24 @@ namespace Hestia
             NavigationItem.LeftBarButtonItem = cancel;
         }
 
+
+        public void SetCancelButtton()
+        {
+            // Cancel button to go back to local/global screen
+            cancel = new UIBarButtonItem(UIBarButtonSystemItem.Cancel, (sender, eventArguments) => {
+                // If loaded from Appdelegate, instantiate the Local/Global screen
+                if (PresentingViewController is null)
+                {
+                    var initialViewController = AppDelegate.mainStoryboard.InstantiateInitialViewController();
+                    PresentViewController(initialViewController, true, null);
+                }
+                else
+                {   // Called from local/global screen
+                    DismissViewController(true, null);
+                }
+            });
+            NavigationItem.LeftBarButtonItem = cancel;
+        }
         /// <summary>
         /// This method is used in <see cref="ViewDidAppear(bool)"/> to set the behaviour of the done button. 
         /// The next screen should only be loaded if the local servers can be used without exceptions, which is 
