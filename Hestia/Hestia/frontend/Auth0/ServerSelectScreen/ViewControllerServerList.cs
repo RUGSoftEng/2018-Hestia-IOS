@@ -43,6 +43,8 @@ namespace Hestia
             Title = strings.selectServerTitle;
             TableView.Source = new TableSourceServerList(this);
 
+            Globals.DefaultLightGray = TableView.BackgroundColor;
+
             // Fix the bottom position of the view, such that icons appear at same place when reloaded.
             bottomOfView = TableView.Bounds.Bottom;
 

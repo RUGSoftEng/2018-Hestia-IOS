@@ -5,6 +5,7 @@ using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
 using Hestia.DevicesScreen.EditDevice;
 using Hestia.Resources;
+using Hestia.frontend.Auth0.ServerSelectScreen;
 
 namespace Hestia.Auth0
 {
@@ -48,9 +49,10 @@ namespace Hestia.Auth0
             // Go to edit name window for non-insert cells
             else
             {
-                UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this.owner);
-                editViewController.device = GetSectionRow(indexPath);
-                owner.NavigationController.PushViewController(editViewController, true);
+                UIViewControllerEditServerName uIViewControllerEditServerName = new UIViewControllerEditServerName(this.owner);
+                uIViewControllerEditServerName.server = Globals.Auth0Servers[indexPath.Row];
+               // editViewController.device = GetSectionRow(indexPath);
+                owner.NavigationController.PushViewController(uIViewControllerEditServerName, true);
             }
 
             tableView.DeselectRow(indexPath, true);
@@ -69,9 +71,7 @@ namespace Hestia.Auth0
 
             cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;
 
-            // The text to display on the cell is the server info
-            if (indexPath.Row < Globals.Auth0Servers.Count)
-            {
+
                 cell.TextLabel.Text = Globals.Auth0Servers[indexPath.Row].Name;
 
                 if (Globals.Auth0Servers[indexPath.Row].Selected == false)
@@ -82,11 +82,7 @@ namespace Hestia.Auth0
                 {
                     cell.Accessory = UITableViewCellAccessory.Checkmark;
                 }
-            }
-            else if (indexPath.Row >= Globals.Auth0Servers.Count)
-            {
-                cell.TextLabel.Text = "Add a new server";
-            }
+
 
             return cell;
         }
@@ -98,11 +94,12 @@ namespace Hestia.Auth0
         public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, Foundation.NSIndexPath indexPath)
         {
 
-            var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
-            var deviceServerInteractor = deviceInRow.ServerInteractor;
+            //var deviceInRow = serverDevices[indexPath.Section][indexPath.Row];
+           // var deviceServerInteractor = deviceInRow.ServerInteractor;
             try
             {
-                deviceServerInteractor.RemoveDevice(deviceInRow);
+                //deviceServerInteractor.RemoveDevice(deviceInRow);
+                Globals.HestiaWebServerInteractor.DeleteServer(Globals.Auth0Servers[indexPath.Row]);
             }
             catch (ServerInteractionException ex)
             {
@@ -111,7 +108,7 @@ namespace Hestia.Auth0
             }
 
             //Remove device from list that is shown in the TableView
-            RemoveDeviceAt(indexPath);
+            //RemoveDeviceAt(indexPath);
 
             // Delete the row from the table
             tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);

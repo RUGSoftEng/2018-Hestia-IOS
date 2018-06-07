@@ -155,6 +155,7 @@
     <Compile Include="frontend\Auth0\AddServerViewController.designer.cs">
       <DependentUpon>AddServerViewController.cs</DependentUpon>
     </Compile>
+    <Compile Include="frontend\Auth0\ServerSelectScreen\UIViewControllerEditServerName.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
