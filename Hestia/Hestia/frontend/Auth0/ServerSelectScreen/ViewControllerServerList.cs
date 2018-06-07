@@ -67,8 +67,8 @@ namespace Hestia
             TableView.Add(RefreshControl);
 
             // Set right button initially to edit 
-            NavigationItem.LeftBarButtonItem = edit;
-            NavigationItem.RightBarButtonItem = cancel;
+            NavigationItem.RightBarButtonItem = edit;
+            NavigationItem.LeftBarButtonItem = cancel;
         }
 
         /// <summary>
@@ -80,16 +80,6 @@ namespace Hestia
             base.ViewDidAppear(animated);
             RefreshServerList();
             TableView.ReloadData();
-            // The done button that loads the devicesMainScreen with the selected servers
-            done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
-                if (ShouldPerformSegue())
-                {
-                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(Resources.strings.devices2StoryBoard, null);
-                    var devicesMain = devicesMainStoryboard.InstantiateViewController(Resources.strings.navigationControllerDevicesMain) as UINavigationController;
-                    ShowViewController(devicesMain, this);
-                }
-            });
-            NavigationItem.RightBarButtonItem = done;
         }
 
         /// <summary>
@@ -193,7 +183,7 @@ namespace Hestia
         public void CancelEditingState()
         {
             TableView.SetEditing(false, true);
-            NavigationItem.LeftBarButtonItem = edit;
+            NavigationItem.RightBarButtonItem = edit;
             ((TableSourceServerList)TableView.Source).DidFinishTableEditing(TableView);
         }
 
@@ -207,7 +197,7 @@ namespace Hestia
         {
             ((TableSourceServerList)TableView.Source).WillBeginTableEditing(TableView);
             TableView.SetEditing(true, true);
-            NavigationItem.LeftBarButtonItem = done;
+            NavigationItem.RightBarButtonItem = done;
         }
 
         /// <summary>
@@ -282,7 +272,12 @@ namespace Hestia
                 }
                 else
                 {
-                    // segue
+                    if (ShouldPerformSegue())
+                    {
+                        UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(Resources.strings.devices2StoryBoard, null);
+                        var devicesMain = devicesMainStoryboard.InstantiateViewController(Resources.strings.navigationControllerDevicesMain) as UINavigationController;
+                        ShowViewController(devicesMain, this);
+                    }
                 }
             };
 

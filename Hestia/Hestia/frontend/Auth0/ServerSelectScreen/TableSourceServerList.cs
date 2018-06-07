@@ -32,8 +32,9 @@ namespace Hestia.Auth0
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewCell cell = tableView.CellAt(indexPath);
-            if (!owner.Editing)
+            if (!owner.TableView.Editing)
             {
+                Console.WriteLine("not editing");
                 if (Globals.Auth0Servers[indexPath.Row].Selected == false)
                 {
                     cell.Accessory = UITableViewCellAccessory.Checkmark;
@@ -49,6 +50,7 @@ namespace Hestia.Auth0
             // Go to edit name window for non-insert cells
             else
             {
+                Console.WriteLine(" editing");
                 UIViewControllerEditServerName uIViewControllerEditServerName = new UIViewControllerEditServerName(this.owner);
                 uIViewControllerEditServerName.server = Globals.Auth0Servers[indexPath.Row];
                // editViewController.device = GetSectionRow(indexPath);
