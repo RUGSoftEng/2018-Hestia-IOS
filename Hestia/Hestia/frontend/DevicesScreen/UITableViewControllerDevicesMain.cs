@@ -114,17 +114,6 @@ namespace Hestia.DevicesScreen
             TableView.ReloadData();
         }
 
-        /// <summary>
-        /// The header shows the Speech Recognition button if the table is in normal mode and the 
-        /// insertion icon (green +), if the table is in editing mode.
-        /// </summary>
-        /// <returns>The header</returns>
-        public UIView GetTableViewHeader(bool isEditing)
-        {
-            UIView view = new UIView(new CGRect(0, 0, TableView.Bounds.Width, TableViewHeaderHeight));
-        }
-
-
         public override void ViewWillDisappear(bool animated)
         {
             base.ViewWillDisappear(animated);
