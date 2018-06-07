@@ -17,6 +17,7 @@ namespace Hestia
     /// <summary>
     /// This ViewController contains the View that holds a list of local servers that are on the Webserver.
     /// The servers that the user wants to show up in the Devices main screen should be selected.
+    /// The user can also add and delete servers, and change the name.
     /// See, <see cref="TableSourceServerList"/>.
     /// </summary>
     public partial class ViewControllerServerList : UITableViewController
@@ -30,7 +31,7 @@ namespace Hestia
         UIBarButtonItem cancel;
         // Edit button in top right (is shown initially)
         UIBarButtonItem edit;
-        // Edit button in top right (appears in edit mode)lly)
+        // Edit button in top right (appears in edit mode)
         UIBarButtonItem done;
 
         public ViewControllerServerList(IntPtr handle) : base(handle)
@@ -260,7 +261,7 @@ namespace Hestia
             }
             else
             {
-                button.SetBackgroundImage(UIImage.FromBundle(strings.voiceControlIcon), UIControlState.Normal);
+                button.SetBackgroundImage(UIImage.FromBundle(strings.arrowRight), UIControlState.Normal);
             }
 
 

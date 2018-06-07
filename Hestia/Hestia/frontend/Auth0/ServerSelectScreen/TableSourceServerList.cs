@@ -111,9 +111,14 @@ namespace Hestia.Auth0
 
             //Remove device from list that is shown in the TableView
             //RemoveDeviceAt(indexPath);
-            owner.RefreshServerList();
+            //owner.RefreshServerList();
             // Delete the row from the table
+            // At this point, the deletion from the server has succeeded, so we can remove the server
+            // from the Auth0Servers list. We delete the row from the list and then refresh the list. 
+            // This order is necessary, preventing exceptions.
+            Globals.Auth0Servers.RemoveAt(indexPath.Row);
             tableView.DeleteRows(new NSIndexPath[] { indexPath }, UITableViewRowAnimation.Fade);
+            owner.RefreshServerList();
         }
 
 

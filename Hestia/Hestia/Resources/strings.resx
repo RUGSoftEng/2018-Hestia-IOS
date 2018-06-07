@@ -381,4 +381,7 @@
   <data name="navigationControllerServerSelectList" xml:space="preserve">
     <value>navigationServerList</value>
   </data>
+  <data name="arrowRight" xml:space="preserve">
+    <value>ArrowRight</value>
+  </data>
 </root>
