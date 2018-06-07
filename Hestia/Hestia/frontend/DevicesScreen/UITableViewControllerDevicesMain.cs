@@ -1,4 +1,4 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using Hestia.DevicesScreen.resources;
 using Hestia.backend.exceptions;
 using Hestia.backend.models;
@@ -19,9 +19,10 @@ namespace Hestia.DevicesScreen
     /// </summary>
     public partial class UITableViewControllerDevicesMain : UITableViewController, IViewControllerSpeech
     {
-        const int TableViewHeaderHeight = 35;
-        const int TableViewHeaderTopPadding = 5;
+        const int TableViewFooterHeight = 50;
         const int IconDimension = 50;
+        const int Padding = 15;
+        nfloat bottomOfView;
 
         SpeechRecognition speechRecognizer;
 
@@ -105,26 +106,37 @@ namespace Hestia.DevicesScreen
 
         void HandleException(TableSourceDevicesMain source, ServerInteractionException ex)
         {
-            Console.WriteLine("Exception while getting devices from server");
+            Console.WriteLine("Exception while getting devices from local server");
             Console.WriteLine(ex);
-            WarningMessage.Display("Could not refresh devices", "Exception while getting devices from server", this);
-            // Show an empty list
+            WarningMessage.Display("Could not refresh devices", "Exception while getting devices from local server", this);
             source.serverDevices = new List<List<Device>>();
             TableView.ReloadData();
         }
 
-        /// <summary>
-        /// The header shows the Speech Recognition button if the table is in normal mode and the 
-        /// insertion icon (green +), if the table is in editing mode.
-        /// </summary>
-        /// <returns>The header</returns>
-        public UIView GetTableViewHeader(bool isEditing)
-        {
-            UIView view = new UIView(new CGRect(0, 0, TableView.Bounds.Width, TableViewHeaderHeight));
 
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+            RemoveButtons();
+        }
+
+        void RemoveButtons()
+        {
+            foreach (UIView view in ParentViewController.View.Subviews)
+            {
+                if (view is UIButton)
+                {
+                    view.RemoveFromSuperview();
+                }
+            }
+        }
+
+        public void ReloadButtons(bool isEditing)
+        {
+            RemoveButtons();
             // Voice control / add device button
             UIButton button = new UIButton(UIButtonType.System);
-            button.Frame = new CGRect(TableView.Bounds.Width / 2 - IconDimension / 2, TableViewHeaderTopPadding, IconDimension, IconDimension);
+            button.Frame = new CGRect(TableView.Bounds.Width - IconDimension - Padding, bottomOfView - TableViewFooterHeight - Padding , IconDimension, IconDimension);
             if (isEditing)
             {
                 button.SetBackgroundImage(UIImage.FromBundle(strings.addDeviceIcon), UIControlState.Normal);
@@ -136,7 +148,7 @@ namespace Hestia.DevicesScreen
 
             button.TouchDown += (object sender, EventArgs e) =>
             {
-                if(!isEditing)
+                if (!isEditing)
                 {
                     speechRecognizer = new SpeechRecognition(this, this);
                     WarningMessage warningMessage = speechRecognizer.StartRecording();
@@ -161,14 +173,30 @@ namespace Hestia.DevicesScreen
 
             button.TouchDragExit += (object sender, EventArgs e) =>
             {
-                if(!isEditing)
+                if (!isEditing)
                 {
                     speechRecognizer.CancelRecording();
                 }
             };
 
-            view.AddSubview(button);
+            ParentViewController.View.AddSubview(button);
+        }
+
+        /// <summary>
+        /// The footer has enough free space to shown the complete microphone/insertion icons 
+        /// if the user scrolls to the bottom of the page.
+        /// </summary>
+        /// <returns>The table view footer.</returns>
+        public UIView GetTableViewFooter()
+        {
+            UIView view = new UIView(new CGRect(0, 0, TableView.Bounds.Width, TableViewFooterHeight));
             return view;
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+            ReloadButtons(DevicesTable.Editing);
         }
 
         /// <summary>
@@ -178,10 +206,10 @@ namespace Hestia.DevicesScreen
         public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
+            // Fix the bottom position of the view, such that icons appear at same place when reloaded.
+            bottomOfView = TableView.Bounds.Bottom;
 
-            // Get the voice control button
-            DevicesTable.TableHeaderView = GetTableViewHeader(false);
-    
+            DevicesTable.TableFooterView = GetTableViewFooter();
             RefreshDeviceList();
             // Set the light gray color in Globals, it is used in the Edit device (change name) screen
             Globals.DefaultLightGray = TableView.BackgroundColor;
