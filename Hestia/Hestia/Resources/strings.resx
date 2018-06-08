@@ -378,4 +378,7 @@
   <data name="viewControllerAddDevice" xml:space="preserve">
     <value>AddDevice</value>
   </data>
+  <data name="navigationControllerServerSelectList" xml:space="preserve">
+    <value>navigationServerList</value>
+  </data>
 </root>

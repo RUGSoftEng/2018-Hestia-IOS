@@ -13,6 +13,10 @@ using Hestia.DevicesScreen.EditDevice;
 
 namespace Hestia.DevicesScreen
 {
+    /// <summary>
+    /// This class contains the contents and behaviour of the ViewController that controls the Devices main screen.
+    /// It sets the buttons in the navigation bar, manages the refreshing of the list and defines the behaviour of SpeechRecognition.
+    /// </summary>
     public partial class UITableViewControllerDevicesMain : UITableViewController, IViewControllerSpeech
     {
         const int TableViewFooterHeight = 50;
@@ -22,18 +26,22 @@ namespace Hestia.DevicesScreen
 
         SpeechRecognition speechRecognizer;
 
-       // Done button in top right (appears in edit mode)
+       // Done button in top left (appears in edit mode)
         UIBarButtonItem done;
-        // Edit button in top right (is shown initially)
+        // Edit button in top left (is shown initially)
         UIBarButtonItem edit;
 
         List<Device> devices;
 
-        // Constructor
         public UITableViewControllerDevicesMain(IntPtr handle) : base(handle)
         {
         }
 
+        /// <summary>
+        /// This methods is called if the done button is touched. The button is changed to display "edit" and the 
+        /// list changes to normal mode (the delete icons disappear).
+        /// See, <see cref="TableSourceDevicesMain.DidFinishTableEditing(UITableView)"/>
+        /// </summary>
         public void CancelEditingState()
         {
             DevicesTable.SetEditing(false, true);
@@ -41,6 +49,11 @@ namespace Hestia.DevicesScreen
             ((TableSourceDevicesMain)DevicesTable.Source).DidFinishTableEditing(DevicesTable);
         }
 
+        /// <summary>
+        /// This methods is called if the edit button is touched. The button is changed to display "done" and the 
+        /// list changes to editing mode (the delete icons appear).
+        /// See, <see cref="TableSourceDevicesMain.WillBeginTableEditing(UITableView))"/>
+        /// </summary>
         public void SetEditingState()
         {
             ((TableSourceDevicesMain)DevicesTable.Source).WillBeginTableEditing(DevicesTable);
@@ -48,6 +61,10 @@ namespace Hestia.DevicesScreen
             NavigationItem.LeftBarButtonItem = done;
         }
 
+        /// <summary>
+        /// This method should be called if the list of devices should be updated from the server. 
+        /// This method is called for example when pull-to-refresh is performed.
+        /// </summary>
         public void RefreshDeviceList()
         {
             TableSourceDevicesMain source = new TableSourceDevicesMain(this);
@@ -65,9 +82,10 @@ namespace Hestia.DevicesScreen
                     HandleException(source, ex);
                 }
             }
-            else
+            else // Global login (possibly multiple servers)
             {
-                devices = new List<Device>();
+                // Complete list of devices, used in SpeechRecognition
+                devices = new List<Device>(); 
                 source.numberOfServers = Globals.GetNumberOfSelectedServers();
                 foreach (HestiaServerInteractor interactor in Globals.GetInteractorsOfSelectedServers())
                 {
@@ -88,9 +106,10 @@ namespace Hestia.DevicesScreen
 
         void HandleException(TableSourceDevicesMain source, ServerInteractionException ex)
         {
-            Console.WriteLine("Exception while getting devices from local server");
+            Console.WriteLine("Exception while getting devices from server");
             Console.WriteLine(ex);
-            WarningMessage.Display("Could not refresh devices", "Exception while getting devices from local server", this);
+            WarningMessage.Display("Could not refresh devices", "Exception while getting devices from server", this);
+            // Show an empty list
             source.serverDevices = new List<List<Device>>();
             TableView.ReloadData();
         }
@@ -159,7 +178,6 @@ namespace Hestia.DevicesScreen
                     speechRecognizer.CancelRecording();
                 }
             };
-
             ParentViewController.View.AddSubview(button);
         }
 
@@ -188,8 +206,9 @@ namespace Hestia.DevicesScreen
 
             DevicesTable.TableFooterView = GetTableViewFooter();
             RefreshDeviceList();
+            // Set the light gray color in Globals, it is used in the Edit device (change name) screen
             Globals.DefaultLightGray = TableView.BackgroundColor;
-            // To be able to tap row in editing mode for changing name
+            // To be able to tap a row in editing mode for changing name
             DevicesTable.AllowsSelectionDuringEditing = true;  
 
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
@@ -210,18 +229,25 @@ namespace Hestia.DevicesScreen
             NavigationItem.RightBarButtonItem = SettingsButton;
         }
 
+        /// <summary>
+        /// This method makes sure the device list is refreshed if the Main devices screen reappears
+        /// </summary>
+        /// <param name="animated"></param>
         public override void ViewDidAppear(bool animated)
         {
             base.ViewDidAppear(animated);
             RefreshDeviceList();
         }
+
+        /// <summary>
+        /// The settings button segues to the local or global settings screen depending on the used mode.
+        /// </summary>
         partial void SettingsButton_Activated(UIBarButtonItem sender)
         {
             if(Globals.LocalLogin)
             {
                 UITableViewControllerLocalSettingsScreen uITableViewControllerLocalSettingsScreen =
-                    this.Storyboard.InstantiateViewController(strings.LocalSettingsScreen)
-                          as UITableViewControllerLocalSettingsScreen;
+                    this.Storyboard.InstantiateViewController(strings.LocalSettingsScreen) as UITableViewControllerLocalSettingsScreen;
                 if (uITableViewControllerLocalSettingsScreen != null)
                 {
                     NavigationController.PushViewController(uITableViewControllerLocalSettingsScreen, true);
@@ -230,8 +256,7 @@ namespace Hestia.DevicesScreen
             else
             {
                 UITableViewControllerGlobalSettingsScreen uITableViewControllerGlobalSettingsScreen =
-                    this.Storyboard.InstantiateViewController(strings.GlobalSettingsScreen)
-                         as UITableViewControllerGlobalSettingsScreen;
+                    this.Storyboard.InstantiateViewController(strings.GlobalSettingsScreen) as UITableViewControllerGlobalSettingsScreen;
                 if (uITableViewControllerGlobalSettingsScreen != null)
                 {
                     NavigationController.PushViewController(uITableViewControllerGlobalSettingsScreen, true);
@@ -239,12 +264,13 @@ namespace Hestia.DevicesScreen
             }
         }
 
-        //Method Pull to refresh
+        /// <summary>
+        /// Method for Pull to refresh
+        /// </summary>
         void RefreshTable(object sender, EventArgs e)
         {
             RefreshControl.BeginRefreshing();
             RefreshDeviceList();
-            TableView.ReloadData();
             RefreshControl.EndRefreshing();
         }
 
