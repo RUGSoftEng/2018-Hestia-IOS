@@ -89,8 +89,6 @@ namespace Hestia
             Globals.ScreenHeight = (int)UIScreen.MainScreen.Bounds.Height;
             Globals.ScreenWidth = (int)UIScreen.MainScreen.Bounds.Width;
 
-            SpeechRecognition.RequestAuthorization();
-
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
             string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);

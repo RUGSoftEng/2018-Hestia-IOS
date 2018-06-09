@@ -378,4 +378,7 @@
   <data name="viewControllerAddDevice" xml:space="preserve">
     <value>AddDevice</value>
   </data>
+  <data name="speechError" xml:space="preserve">
+    <value>Error during speech recognition</value>
+  </data>
 </root>

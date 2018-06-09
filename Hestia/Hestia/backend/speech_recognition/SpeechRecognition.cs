@@ -6,6 +6,8 @@ using Plugin.SimpleAudioPlayer;
 using Hestia.frontend;
 using UIKit;
 using Hestia.Resources;
+using Hestia.DevicesScreen;
+using Hestia.backend.models;
 
 namespace Hestia.backend.speech_recognition
 {
@@ -20,38 +22,18 @@ namespace Hestia.backend.speech_recognition
         SFSpeechRecognizer SpeechRecognizer = new SFSpeechRecognizer();
         SFSpeechAudioBufferRecognitionRequest LiveSpeechRequest = new SFSpeechAudioBufferRecognitionRequest();
         SFSpeechRecognitionTask RecognitionTask;
-        UIViewController viewController;
-        IViewControllerSpeech viewControllerSpeech;
+        IViewControllerSpeech viewController;
         ISimpleAudioPlayer player;
 
-        public SpeechRecognition(UIViewController viewController, IViewControllerSpeech viewControllerSpeech)
+        public SpeechRecognition(IViewControllerSpeech viewController)
         {
             player = CrossSimpleAudioPlayer.Current;
             this.viewController = viewController;
-            this.viewControllerSpeech = viewControllerSpeech;
         }
 
         public static void RequestAuthorization() 
         {
-            // Request user authorization
-            SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) => {
-                // Take action based on status
-                switch (status)
-                {
-                    case SFSpeechRecognizerAuthorizationStatus.Authorized:
-                        // User has approved speech recognition
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.Denied:
-                        // User has denied speech recognition
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.NotDetermined:
-                        // Waiting on approval
-                        break;
-                    case SFSpeechRecognizerAuthorizationStatus.Restricted:
-                        // The device is not permitted
-                        break;
-                }
-            });
+            SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) => {});
         }
 
         bool IsAuthorized()
@@ -63,11 +45,12 @@ namespace Hestia.backend.speech_recognition
             return false;
         }
 
-        public WarningMessage StartRecording()
+        public void StartRecording(out int warningStatus)
         {
             if (!IsAuthorized())
             {
-                return new WarningMessage(strings.speechAccessDenied, strings.speechAllowAccess);
+                warningStatus = 0;
+                return;
             }
             
             var node = AudioEngine.InputNode;
@@ -83,9 +66,11 @@ namespace Hestia.backend.speech_recognition
             if (error != null)
             {
                 Console.WriteLine(strings.speechStartRecordProblem);
-                return new WarningMessage(strings.speechStartRecordProblem, strings.tryAgain);
+                warningStatus = 1;
+                return;
             }
             
+            // Play start sound
             if (player.IsPlaying) player.Stop();
             player.Load("Sounds/siri_start.mp3");
             player.Play();
@@ -95,16 +80,18 @@ namespace Hestia.backend.speech_recognition
                 if (err != null)
                 {
                     Console.WriteLine(strings.speechRecordError);
+                    viewController.ProcessSpeech(null);
                 }
                 else
                 {
                     if (result.Final)
                     {
-                        viewControllerSpeech.ProcessSpeech(result.BestTranscription.FormattedString);
+                        viewController.ProcessSpeech(result.BestTranscription.FormattedString);
                     }
                 }
             });
-            return null;
+
+            warningStatus = -1;
         }
 
         public void StopRecording()

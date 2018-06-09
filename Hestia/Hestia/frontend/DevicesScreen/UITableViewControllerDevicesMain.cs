@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using Hestia.backend.speech_recognition;
 using Hestia.DevicesScreen.EditDevice;
+using Foundation;
 
 namespace Hestia.DevicesScreen
 {
@@ -131,15 +132,19 @@ namespace Hestia.DevicesScreen
             {
                 if (!isEditing)
                 {
-                    speechRecognizer = new SpeechRecognition(this, this);
-                    WarningMessage warningMessage = speechRecognizer.StartRecording();
-                    if (warningMessage != null)
+                    speechRecognizer = new SpeechRecognition(this);
+                    speechRecognizer.StartRecording(out int warningStatus);
+                    if (warningStatus == 0) // Access to speech recognition denied
                     {
-                        warningMessage.DisplayWarningMessage(this);
+                        WarningMessage.Display(strings.speechAccessDenied, strings.speechAllowAccess, this);
+                    }
+                    else if (warningStatus == 1) // Couldn't start speech recording
+                    {
+                        WarningMessage.Display(strings.speechStartRecordProblem, strings.tryAgain, this);
                     }
                 }
             };
-
+            
             button.TouchUpInside += (object sender, EventArgs e) =>
             {
                 if (isEditing)
@@ -183,6 +188,9 @@ namespace Hestia.DevicesScreen
         public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
+
+            SpeechRecognition.RequestAuthorization();
+
             // Fix the bottom position of the view, such that icons appear at same place when reloaded.
             bottomOfView = TableView.Bounds.Bottom;
 
@@ -289,6 +297,61 @@ namespace Hestia.DevicesScreen
                 {
                     WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
                 }
+            }
+            else if (result.Contains("remove") || result.Contains("delete"))
+            {
+                device = GetDevice(result);
+                if (device != null)
+                {
+                    // Loop over devices until device is found
+                    for (int section = 0; section < ((TableSourceDevicesMain)DevicesTable.Source).serverDevices.Count; section++)
+                    {
+                        var serverDevices = ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section];
+                        for (int row = 0; row < serverDevices.Count; row++)
+                        {
+                            if (device.DeviceId.Equals(serverDevices[row].DeviceId))
+                            {
+                                if (Globals.LocalLogin)
+                                {
+                                    try
+                                    {   // remove device from server   
+                                        Globals.LocalServerinteractor.RemoveDevice(serverDevices[row]);
+                                    }
+                                    catch (ServerInteractionException ex)
+                                    {
+                                        Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
+                                        Console.Out.WriteLine(ex);
+                                    }
+                                }
+                                else // Global login
+                                {
+                                    var deviceServerInteractor = serverDevices[row].ServerInteractor;
+                                    try
+                                    {
+                                        deviceServerInteractor.RemoveDevice(serverDevices[row]);
+                                    }
+                                    catch (ServerInteractionException ex)
+                                    {
+                                        Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
+                                        Console.Out.WriteLine(ex);
+                                    }
+                                }
+
+                                // Remove device from list with devices and refresh device list
+                                ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section].RemoveAt(row);
+                                RefreshDeviceList();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                }
+            }
+            else if (result == null)
+            {
+                WarningMessage.Display(strings.speechError, strings.tryAgain, this);
             }
             else
             {
