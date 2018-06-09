@@ -511,6 +511,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to navigationServerList.
+        /// </summary>
+        public static string navigationControllerServerSelectList {
+            get {
+                return ResourceManager.GetString("navigationControllerServerSelectList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Device.
         /// </summary>
         public static string newDeviceName {

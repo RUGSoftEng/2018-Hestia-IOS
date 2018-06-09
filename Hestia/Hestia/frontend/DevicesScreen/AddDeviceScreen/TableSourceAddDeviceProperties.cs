@@ -7,6 +7,11 @@ using Hestia.DevicesScreen.AddDeviceScreen;
 
 namespace Hestia.DevicesScreen
 {
+    /// <summary>
+    /// This is the TableSource that defines the contents of the third and final screen that is displayed in 
+    /// the Add devices sequence of screen. One can enter the properties of the device in this screen. 
+    /// See, <see cref="UITableViewControllerAddDeviceProperties"/>
+    /// </summary>
     public class TableSourceAddDeviceProperties : UITableViewSource
     {
         // Hashtable to keep track of inputfields
@@ -16,11 +21,12 @@ namespace Hestia.DevicesScreen
 
         UITableViewControllerAddDeviceProperties owner;
 
-        // Constructor. Fill propertyNames with a copy of current keys
-        public TableSourceAddDeviceProperties(
-                    UITableViewControllerAddDeviceProperties owner)
+        /// <summary>
+        /// Constructor. Fills propertyNames with a copy of current keys to display in the inputfields as placeholder.
+        /// See, <see cref="PropertyCell"/>.
+        /// </summary>
+        public TableSourceAddDeviceProperties(UITableViewControllerAddDeviceProperties owner)
         {
-            this.owner = owner;
             inputs = owner.inputFields;
             completeInfo = owner.pluginInfo;
             propertyNames = new string[completeInfo.RequiredInfo.Keys.Count];
