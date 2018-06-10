@@ -24,6 +24,7 @@ namespace Hestia.backend.speech_recognition
         SFSpeechRecognitionTask RecognitionTask;
         IViewControllerSpeech viewController;
         ISimpleAudioPlayer player;
+        enum Warning { AccessDenied = 1, RecordProblem };
 
         public SpeechRecognition(IViewControllerSpeech viewController)
         {
@@ -49,7 +50,7 @@ namespace Hestia.backend.speech_recognition
         {
             if (!IsAuthorized())
             {
-                warningStatus = 0;
+                warningStatus = (int)Warning.AccessDenied;
                 return;
             }
             
@@ -66,7 +67,7 @@ namespace Hestia.backend.speech_recognition
             if (error != null)
             {
                 Console.WriteLine(strings.speechStartRecordProblem);
-                warningStatus = 1;
+                warningStatus = (int)Warning.RecordProblem;
                 return;
             }
             

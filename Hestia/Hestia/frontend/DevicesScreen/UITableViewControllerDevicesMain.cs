@@ -26,6 +26,7 @@ namespace Hestia.DevicesScreen
         nfloat bottomOfView;
 
         SpeechRecognition speechRecognizer;
+        enum Warning { AccessDenied = 1, RecordProblem };
 
        // Done button in top left (appears in edit mode)
         UIBarButtonItem done;
@@ -153,11 +154,11 @@ namespace Hestia.DevicesScreen
                 {
                     speechRecognizer = new SpeechRecognition(this);
                     speechRecognizer.StartRecording(out int warningStatus);
-                    if (warningStatus == 0) // Access to speech recognition denied
+                    if (warningStatus == (int)Warning.AccessDenied) // Access to speech recognition denied
                     {
                         WarningMessage.Display(strings.speechAccessDenied, strings.speechAllowAccess, this);
                     }
-                    else if (warningStatus == 1) // Couldn't start speech recording
+                    else if (warningStatus == (int)Warning.RecordProblem) // Couldn't start speech recording
                     {
                         WarningMessage.Display(strings.speechStartRecordProblem, strings.tryAgain, this);
                     }
@@ -332,16 +333,16 @@ namespace Hestia.DevicesScreen
                     // Loop over devices until device is found
                     for (int section = 0; section < ((TableSourceDevicesMain)DevicesTable.Source).serverDevices.Count; section++)
                     {
-                        var serverDevices = ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section];
-                        for (int row = 0; row < serverDevices.Count; row++)
+                        var devices = ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section];
+                        for (int row = 0; row < devices.Count; row++)
                         {
-                            if (device.DeviceId.Equals(serverDevices[row].DeviceId))
+                            if (device.DeviceId.Equals(devices[row].DeviceId))
                             {
                                 if (Globals.LocalLogin)
                                 {
                                     try
                                     {   // remove device from server   
-                                        Globals.LocalServerinteractor.RemoveDevice(serverDevices[row]);
+                                        Globals.LocalServerinteractor.RemoveDevice(devices[row]);
                                     }
                                     catch (ServerInteractionException ex)
                                     {
@@ -351,10 +352,10 @@ namespace Hestia.DevicesScreen
                                 }
                                 else // Global login
                                 {
-                                    var deviceServerInteractor = serverDevices[row].ServerInteractor;
+                                    var deviceServerInteractor = devices[row].ServerInteractor;
                                     try
                                     {
-                                        deviceServerInteractor.RemoveDevice(serverDevices[row]);
+                                        deviceServerInteractor.RemoveDevice(devices[row]);
                                     }
                                     catch (ServerInteractionException ex)
                                     {
