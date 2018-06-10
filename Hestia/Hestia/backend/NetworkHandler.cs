@@ -1,12 +1,13 @@
-using Hestia.backend.exceptions;
+using Hestia.Backend.Exceptions;
 using Hestia.Resources;
+using Hestia.Utils.Backend;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Net;
 using System.Runtime.Serialization;
 
-namespace Hestia.backend
+namespace Hestia.Backend
 {
     public class NetworkHandler
     {

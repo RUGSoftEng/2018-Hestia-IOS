@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UIKit;
 using Foundation;
-using Hestia.backend.exceptions;
-using Hestia.backend.models;
-using Hestia.DevicesScreen.resources;
-using Hestia.frontend;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend.Models;
+using Hestia.Resources;
+using Hestia.Frontend.Resources;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {
     /// <summary>
     /// This is the TableSource that defines the contents of the second screen that is displayed in 
@@ -41,7 +41,7 @@ namespace Hestia.DevicesScreen
         /// <returns>Number of section</returns>
         public override nint NumberOfSections(UITableView tableView)
         {
-            return int.Parse(Resources.strings.defaultNumberOfSections);
+            return int.Parse(strings.defaultNumberOfSections);
         }
 
         /// <returns>Number of devices in list</returns>
@@ -58,12 +58,12 @@ namespace Hestia.DevicesScreen
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.deviceTypeCell);
+            UITableViewCell cell = tableView.DequeueReusableCell(strings.deviceTypeCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.deviceTypeCell);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, strings.deviceTypeCell);
             }
 
             // The text to display on the cell is the plugin name
@@ -78,7 +78,7 @@ namespace Hestia.DevicesScreen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewControllerAddDeviceProperties addDeviceProperties = 
-                owner.Storyboard.InstantiateViewController(Resources.strings.viewControllerAddDeviceProperties) 
+                owner.Storyboard.InstantiateViewController(strings.viewControllerAddDeviceProperties) 
                     as UITableViewControllerAddDeviceProperties;
             if (addDeviceProperties != null)
             {

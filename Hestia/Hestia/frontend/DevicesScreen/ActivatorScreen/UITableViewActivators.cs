@@ -1,8 +1,8 @@
 using System;
 using UIKit;
-using Hestia.backend.models;
+using Hestia.Backend.Models;
 
-namespace Hestia.DevicesScreen.ActivatorScreen
+namespace Hestia.Frontend.DevicesScreen.ActivatorScreen
 {
     /// <summary>
     /// The TableViewController in which the TableView containing the list with 

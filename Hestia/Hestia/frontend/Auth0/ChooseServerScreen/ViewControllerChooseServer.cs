@@ -1,7 +1,7 @@
 using System;
 using UIKit;
 
-namespace Hestia
+namespace Hestia.Frontend.Auth0.ChooseServerScreen
 {
     /// <summary>
     /// The ViewController that holds the View that contains the list with

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 using System.Collections;
+using Hestia.Resources;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {
     /// <summary>
     /// This is the TableSource that defines the contents of the first screen that is displayed in 
@@ -38,7 +39,7 @@ namespace Hestia.DevicesScreen
         /// </summary>
         public override nint NumberOfSections(UITableView tableView)
         {
-            return int.Parse(Resources.strings.defaultNumberOfSections);
+            return int.Parse(strings.defaultNumberOfSections);
         }
 
         /// <returns>The number of manufacturers in the list</returns>
@@ -53,12 +54,12 @@ namespace Hestia.DevicesScreen
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.manufacturerCell);
+            UITableViewCell cell = tableView.DequeueReusableCell(strings.manufacturerCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.manufacturerCell);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, strings.manufacturerCell);
             }
 
             // The text to display on the cell is the manufacturer name
@@ -73,7 +74,7 @@ namespace Hestia.DevicesScreen
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewControllerAddDeviceDevice addDeviceType =
-                owner.Storyboard.InstantiateViewController(Resources.strings.viewControllerAddDevice)  as UITableViewControllerAddDeviceDevice;
+                owner.Storyboard.InstantiateViewController(strings.viewControllerAddDevice)  as UITableViewControllerAddDeviceDevice;
             if (addDeviceType != null)
             {
                 addDeviceType.collection = collections[indexPath.Row]; 

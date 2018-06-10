@@ -1,10 +1,11 @@
 ﻿using System;
 using UIKit;
 using Foundation;
+using Hestia.Resources;
+using Hestia.Frontend.Resources;
+using Hestia.Frontend.DevicesScreen.AddDeviceScreen;
 
-using Hestia.DevicesScreen.resources;
-
-namespace Hestia
+namespace Hestia.Frontend.Auth0.ChooseServerScreen
 {
     /// <summary>
     /// This class defines the contents and behaviour of the TableView living in <see cref="ViewControllerChooseServer"/>.
@@ -24,7 +25,7 @@ namespace Hestia
         /// <returns>There is only one section: the list with servers</returns>
         public override nint NumberOfSections(UITableView tableView)
         {
-            return int.Parse(Resources.strings.defaultNumberOfSections);
+            return int.Parse(strings.defaultNumberOfSections);
         }
 
         /// <returns>The number rows is the number of selected servers</returns>
@@ -39,12 +40,12 @@ namespace Hestia
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.addDeviceChooseServerCell);
+            UITableViewCell cell = tableView.DequeueReusableCell(strings.addDeviceChooseServerCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.addDeviceChooseServerCell);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, strings.addDeviceChooseServerCell);
             }
 
             cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].Name;
@@ -61,7 +62,7 @@ namespace Hestia
         { 
             Globals.ServerToAddDeviceTo = Globals.GetInteractorsOfSelectedServers()[indexPath.Row];
             UITableViewControllerAddDevice addDevice =
-                owner.Storyboard.InstantiateViewController(Resources.strings.AddManufacturerViewController)
+                owner.Storyboard.InstantiateViewController(strings.AddManufacturerViewController)
                     as UITableViewControllerAddDevice;
             if (addDevice != null)
             {

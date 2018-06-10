@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using UIKit;
-using Hestia.DevicesScreen;
-using Hestia.DevicesScreen.resources;
 using System.Collections;
-using Hestia.backend.exceptions;
-using Hestia.frontend;
+using Hestia.Backend.Exceptions;
+using Hestia.Frontend.Resources;
 
-namespace Hestia
+namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {
     public partial class UITableViewControllerAddDevice : UITableViewController
     {

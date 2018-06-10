@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Hestia.frontend
+namespace Hestia.Frontend
 {
     /// <summary>
     /// This class contains code to simply create the typical iOS Warning message in one line of code.

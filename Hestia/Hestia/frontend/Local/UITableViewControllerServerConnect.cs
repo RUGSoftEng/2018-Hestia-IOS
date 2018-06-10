@@ -2,13 +2,13 @@
 using System;
 using UIKit;
 
-using Hestia.DevicesScreen.resources;
-using Hestia.backend;
-using Hestia.backend.utils;
+using Hestia.Backend;
+using Hestia.Backend.Utils;
 using Hestia.Resources;
-using Hestia.frontend;
+using Hestia.Frontend.Resources;
+using Hestia.Frontend.SettingsScreen;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.Frontend.Local
 {
     /// <summary>
     /// This class defines the ViewController that contains the Server Connect view, 

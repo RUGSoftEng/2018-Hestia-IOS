@@ -1,4 +1,4 @@
-﻿using Hestia.backend.models;
+﻿using Hestia.Backend.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hestia.UnitTests.backend.models

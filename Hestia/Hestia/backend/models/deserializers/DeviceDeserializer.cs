@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace Hestia.backend.models.deserializers
+namespace Hestia.Backend.Models.Deserializers
 {
     /**
      * Helper class that deserializes a jToken into a Device object

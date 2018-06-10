@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UIKit;
-using Hestia.DevicesScreen;
 
-namespace Hestia
+namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {
     public partial class UITableViewControllerAddDeviceDevice : UITableViewController
     {

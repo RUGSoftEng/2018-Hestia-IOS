@@ -1,7 +1,7 @@
 ﻿using System;
+using Hestia.Backend;
+using Hestia.Backend.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Hestia.backend;
-using Hestia.backend.models;
 
 namespace Hestia.UnitTests.backend
 {

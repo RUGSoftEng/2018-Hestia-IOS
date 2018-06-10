@@ -7,7 +7,7 @@ using Foundation;
 using Newtonsoft.Json.Linq;
 using UIKit;
 
-namespace Hestia.backend.models.deserializers
+namespace Hestia.Backend.Models.Deserializers
 {
     public class HestiaServerDeserializer
     {

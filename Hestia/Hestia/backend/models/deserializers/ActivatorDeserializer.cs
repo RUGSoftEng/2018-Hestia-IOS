@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 
-namespace Hestia.backend.models.deserializers
+namespace Hestia.Backend.Models.Deserializers
 {
     /**
      * Helper class that deserializes a json object into an Activator object

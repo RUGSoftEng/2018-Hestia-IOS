@@ -6,12 +6,12 @@ using Foundation;
 
 using System.Drawing;
 using System.Collections;
-using Hestia.backend;
-using Hestia.backend.exceptions;
-using Hestia.backend.models;
-using Hestia.DevicesScreen.resources;
+using Hestia.Backend;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend.Models;
+using Hestia.Resources;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.Frontend.Local
 {
     public class TableSourceServerDiscovery: UITableViewSource
     {
@@ -36,7 +36,7 @@ namespace Hestia.DevicesScreen
         // We have only one section with devices (thus far)
         public override nint NumberOfSections(UITableView tableView)
         {
-            return int.Parse(Resources.strings.defaultNumberOfSections);
+            return int.Parse(strings.defaultNumberOfSections);
         }
 
         // The number of devices in the list
@@ -49,7 +49,7 @@ namespace Hestia.DevicesScreen
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.deviceTypeCell);
+            UITableViewCell cell = tableView.DequeueReusableCell(strings.deviceTypeCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {

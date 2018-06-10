@@ -1,5 +1,5 @@
 ﻿
-namespace Hestia.backend.speech_recognition
+namespace Hestia.Backend.SpeechRecognition
 {
     public interface IViewControllerSpeech
     {

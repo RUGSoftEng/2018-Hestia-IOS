@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using UIKit;
 
-namespace Hestia.backend
+namespace Hestia.Utils.Backend
 {
     public static class JsonValidator
     {

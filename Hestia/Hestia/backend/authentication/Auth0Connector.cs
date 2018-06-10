@@ -1,8 +1,7 @@
-﻿using System.Threading;
-using Auth0.OidcClient;
+﻿using Auth0.OidcClient;
 using UIKit;
 
-namespace Hestia.backend.authentication
+namespace Hestia.Backend.Authentication
 {
     public static class Auth0Connector
     {

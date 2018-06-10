@@ -1,4 +1,5 @@
-﻿using Hestia.backend.utils.server_discovery;
+﻿using Hestia.Backend.Utils.ServerDiscovery;
+using Hestia.Frontend.Local;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hestia.UnitTests.backend.utils.server_discovery

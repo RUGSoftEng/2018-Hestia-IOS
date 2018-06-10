@@ -2,10 +2,10 @@
 using UIKit;
 using Foundation;
 using System.Collections;
-using Hestia.backend.models;
-using Hestia.DevicesScreen.AddDeviceScreen;
+using Hestia.Backend.Models;
+using Hestia.Resources;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {
     /// <summary>
     /// This is the TableSource that defines the contents of the third and final screen that is displayed in 
@@ -42,19 +42,19 @@ namespace Hestia.DevicesScreen
         // The number of properties in the list
         public override nint RowsInSection(UITableView tableview, nint section)
         {
-            return int.Parse(Resources.strings.defaultNumberOfSections);
+            return int.Parse(strings.defaultNumberOfSections);
         }
 
         // Important method. Called to generate a cell to display
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            PropertyCell cell = tableView.DequeueReusableCell(Resources.strings.propertyCell) as PropertyCell;
+            PropertyCell cell = tableView.DequeueReusableCell(strings.propertyCell) as PropertyCell;
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default propertyCell
-                cell = new PropertyCell((NSString)Resources.strings.propertyCell);
+                cell = new PropertyCell((NSString)strings.propertyCell);
             }
 
             // Keep reference in hashtable

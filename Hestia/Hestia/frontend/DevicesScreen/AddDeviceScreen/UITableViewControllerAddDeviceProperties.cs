@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections;
 using UIKit;
-using Hestia.backend.exceptions;
-using Hestia.backend.models;
-using Hestia.DevicesScreen;
-using Hestia.DevicesScreen.AddDeviceScreen;
-using Hestia.DevicesScreen.resources;
-using Hestia.frontend;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend.Models;
 using System.Text.RegularExpressions;
+using Hestia.Frontend.Resources;
 
-namespace Hestia
+namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {
     public partial class UITableViewControllerAddDeviceProperties : UITableViewController
     {

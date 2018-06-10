@@ -1,10 +1,9 @@
 using System;
 using UIKit;
 using Foundation;
-using Hestia.DevicesScreen;
-using Hestia.backend.utils.server_discovery;
+using Hestia.Backend.Utils.ServerDiscovery;
 
-namespace Hestia
+namespace Hestia.Frontend.Local
 {
     public partial class UITableViewControllerServerDiscovery : UITableViewController
     {

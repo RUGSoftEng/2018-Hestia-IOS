@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Hestia.Frontend.Resources;
+using System;
 using UIKit;
-using Hestia.DevicesScreen.resources;
-using Hestia.frontend;
 
-namespace Hestia
+namespace Hestia.Frontend.SettingsScreen
 {
     public partial class UITableViewControllerGlobalSettingsScreen : UITableViewController
     {

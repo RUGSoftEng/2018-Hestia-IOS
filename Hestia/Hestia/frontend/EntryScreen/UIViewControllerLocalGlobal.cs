@@ -2,18 +2,17 @@
 using System;
 using System.Collections.Generic;
 using UIKit;
-using Hestia.backend;
+using Hestia.Backend;
 using Hestia.Resources;
-using Hestia.DevicesScreen.resources;
 using Auth0.OidcClient;
-using Hestia.backend.authentication;
+using Hestia.Backend.Authentication;
 using System.Threading.Tasks;
 using IdentityModel.OidcClient;
-using Hestia.backend.exceptions;
-using Hestia.backend.models;
-using Hestia.frontend;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend.Models;
+using Hestia.Frontend.Resources;
 
-namespace Hestia
+namespace Hestia.Frontend.EntryScreen
 {
     /// <summary>
     /// This ViewController belongs to the first window that can be seen when loading the app

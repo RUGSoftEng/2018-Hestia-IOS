@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hestia.backend.exceptions
+namespace Hestia.Backend.Exceptions
 {
     public class ServerInteractionException : Exception
     {

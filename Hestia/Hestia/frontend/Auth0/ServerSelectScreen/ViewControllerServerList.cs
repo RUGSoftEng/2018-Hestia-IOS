@@ -1,13 +1,13 @@
 ﻿using System;
 using UIKit;
-using Hestia.Auth0;
 
-using Hestia.backend;
-using Hestia.backend.exceptions;
-using Hestia.DevicesScreen.resources;
-using Hestia.frontend;
+using Hestia.Backend;
+using Hestia.Backend.Exceptions;
+using Hestia.Resources;
+using Hestia.Frontend.Resources;
+using Hestia.Frontend.EntryScreen;
 
-namespace Hestia
+namespace Hestia.Frontend.Auth0.ServerSelectScreen
 {
     /// <summary>
     /// This ViewController contains the View that holds a list of local servers that are on the Webserver.
@@ -25,7 +25,7 @@ namespace Hestia
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            Title = Resources.strings.selectServerTitle;
+            Title = strings.selectServerTitle;
             TableView.Source = new TableSourceServerList();
         }
 
@@ -40,8 +40,8 @@ namespace Hestia
             done = new UIBarButtonItem(UIBarButtonSystemItem.Done, (s, e) => {
                 if (ShouldPerformSegue())
                 {
-                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(Resources.strings.devices2StoryBoard, null);
-                    var devicesMain = devicesMainStoryboard.InstantiateViewController(Resources.strings.navigationControllerDevicesMain) as UINavigationController;
+                    UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(strings.devices2StoryBoard, null);
+                    var devicesMain = devicesMainStoryboard.InstantiateViewController(strings.navigationControllerDevicesMain) as UINavigationController;
                     ShowViewController(devicesMain, this);
                 }
             });
@@ -78,7 +78,7 @@ namespace Hestia
                     DismissViewController(true, null);
                 }
                 // Create new local/global screen
-                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(Resources.strings.mainStoryBoard, null);
+                UIStoryboard devicesMainStoryboard = UIStoryboard.FromName(strings.mainStoryBoard, null);
                 var localGlobal = devicesMainStoryboard.InstantiateInitialViewController();
                 PresentViewController(localGlobal, true, null);
             });

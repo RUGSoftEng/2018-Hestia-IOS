@@ -1,7 +1,7 @@
-﻿using Hestia.backend.exceptions;
+﻿using Hestia.Backend.Exceptions;
 using System;
 
-namespace Hestia.backend.utils
+namespace Hestia.Backend.Utils
 {
     class PingServer
     {

@@ -1,5 +1,5 @@
 ﻿
-namespace Hestia.backend.models
+namespace Hestia.Backend.Models
 {
     public class Activator
     {

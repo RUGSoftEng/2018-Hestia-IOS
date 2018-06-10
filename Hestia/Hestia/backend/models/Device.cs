@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Hestia.backend.models
+namespace Hestia.Backend.Models
 {
     public class Device
     {

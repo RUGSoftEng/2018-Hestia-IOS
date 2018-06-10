@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections;
 using UIKit;
-using Hestia.backend.models;
-using Hestia.backend.exceptions;
+using Hestia.Backend.Models;
+using Hestia.Backend.Exceptions;
 using System.Collections.Generic;
 using Foundation;
-using Hestia.frontend;
+using Hestia.Resources;
 
-namespace Hestia.DevicesScreen.ActivatorScreen
+namespace Hestia.Frontend.DevicesScreen.ActivatorScreen
 {
     /// <summary>
     /// This class describes the contents of the list with activators that is shown on the pop-over in the Devices main screen.
@@ -16,7 +16,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
     public class TableSourceActivators : UITableViewSource
     {
         Device device;
-        List<backend.models.Activator> activators;
+        List<Backend.Models.Activator> activators;
         Hashtable actAccessories = new Hashtable();
         UITableViewActivators owner;
 
@@ -37,11 +37,11 @@ namespace Hestia.DevicesScreen.ActivatorScreen
         /// </summary>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
-            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.activatorCell);
-            backend.models.Activator act = activators[indexPath.Row];
+            UITableViewCell cell = tableView.DequeueReusableCell(strings.activatorCell);
+            Backend.Models.Activator act = activators[indexPath.Row];
             if (cell == null)
             {
-                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.activatorCell);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, strings.activatorCell);
             }
             if (act.State.Type == "bool")
             {

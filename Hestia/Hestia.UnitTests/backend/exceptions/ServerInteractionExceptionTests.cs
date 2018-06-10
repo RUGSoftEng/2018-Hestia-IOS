@@ -1,4 +1,4 @@
-﻿using Hestia.backend.exceptions;
+﻿using Hestia.Backend.Exceptions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

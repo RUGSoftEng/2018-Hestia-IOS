@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UIKit;
 using Foundation;
 
-using Hestia.DevicesScreen.resources;
-using Hestia.DevicesScreen.ActivatorScreen;
-using Hestia.backend.exceptions;
-using Hestia.backend.models;
-using Hestia.DevicesScreen.EditDevice;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend.Models;
 using Hestia.Resources;
 using System.Diagnostics.Contracts;
+using Hestia.Frontend.DevicesScreen.ActivatorScreen;
+using Hestia.Frontend.DevicesScreen.EditDevice;
+using Hestia.Frontend.Resources;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.Frontend.DevicesScreen
 {   /// <summary>
     /// This class contains the behaviour of the TableView that shows the list of devices.
     /// <see cref="UITableViewControllerDevicesMain"/>
@@ -75,12 +75,12 @@ namespace Hestia.DevicesScreen
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.devicesMainCell);
+            UITableViewCell cell = tableView.DequeueReusableCell(strings.devicesMainCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.devicesMainCell);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, strings.devicesMainCell);
             }
 
             cell.EditingAccessory = UITableViewCellAccessory.DisclosureIndicator;

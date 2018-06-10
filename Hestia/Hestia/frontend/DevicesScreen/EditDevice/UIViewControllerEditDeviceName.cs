@@ -2,12 +2,11 @@
 using UIKit;
 using CoreGraphics;
 
-using Hestia.DevicesScreen.resources;
-using Hestia.backend.models;
-using Hestia.backend.exceptions;
-using Hestia.frontend;
+using Hestia.Backend.Models;
+using Hestia.Backend.Exceptions;
+using Hestia.Frontend.Resources;
 
-namespace Hestia.DevicesScreen.EditDevice
+namespace Hestia.Frontend.DevicesScreen.EditDevice
 {
     public class UIViewControllerEditDeviceName : UIViewController
     {

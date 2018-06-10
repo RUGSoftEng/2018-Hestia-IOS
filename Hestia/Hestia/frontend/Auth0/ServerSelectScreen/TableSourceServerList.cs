@@ -1,15 +1,16 @@
 using System;
 using UIKit;
 using Foundation;
-using Hestia.DevicesScreen.resources;
+using Hestia.Resources;
+using Hestia.Frontend.Resources;
 
-namespace Hestia.Auth0
+namespace Hestia.Frontend.Auth0.ServerSelectScreen
 {
     public class TableSourceServerList : UITableViewSource
     {
 		public override nint NumberOfSections(UITableView tableView)
 		{
-            return int.Parse(Resources.strings.defaultNumberOfSections);
+            return int.Parse(strings.defaultNumberOfSections);
 		}
 
 		public override nint RowsInSection(UITableView tableview, nint section)
@@ -38,12 +39,12 @@ namespace Hestia.Auth0
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
             // request a recycled cell to save memory
-            UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.serverCell);
+            UITableViewCell cell = tableView.DequeueReusableCell(strings.serverCell);
             // if there are no cells to reuse, create a new one
             if (cell == null)
             {
                 // Generate a default table cell
-                cell = new UITableViewCell(UITableViewCellStyle.Default, Resources.strings.serverCell);
+                cell = new UITableViewCell(UITableViewCellStyle.Default, strings.serverCell);
             }
             // The text to display on the cell is the server info
             cell.TextLabel.Text = Globals.Auth0Servers[indexPath.Row].Name;

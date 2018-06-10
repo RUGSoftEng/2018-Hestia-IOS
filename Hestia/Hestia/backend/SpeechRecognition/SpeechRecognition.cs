@@ -3,13 +3,11 @@ using Speech;
 using Foundation;
 using AVFoundation;
 using Plugin.SimpleAudioPlayer;
-using Hestia.frontend;
 using UIKit;
 using Hestia.Resources;
-using Hestia.DevicesScreen;
-using Hestia.backend.models;
+using Hestia.Backend.Models;
 
-namespace Hestia.backend.speech_recognition
+namespace Hestia.Backend.SpeechRecognition
 {
     /// <summary>
     /// This class can be used to form a speech dialog with the user.

@@ -8,7 +8,7 @@
  *            (for a slider).
  * see ActivatorDeserializer
  */
-namespace Hestia.backend.models
+namespace Hestia.Backend.Models
 {
     public class ActivatorState
     {

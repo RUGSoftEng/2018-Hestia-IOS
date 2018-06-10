@@ -2,7 +2,7 @@
 using Foundation;
 using CoreGraphics;
 
-namespace Hestia.DevicesScreen.AddDeviceScreen
+namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {
     /// <summary>
     /// This is the cell that is used in the Add devices screen, where one has to enter the information

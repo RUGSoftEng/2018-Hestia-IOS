@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
-using Hestia.backend;
-using Hestia.backend.models;
+using Hestia.Backend;
+using Hestia.Backend.Models;
 using Hestia.Resources;
 
-namespace Hestia.DevicesScreen.resources
+namespace Hestia.Frontend.Resources
 {
     /// <summary>
     /// This class contains some static fields and methods that are used in multiple places in the app.

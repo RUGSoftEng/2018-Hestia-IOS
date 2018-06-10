@@ -1,4 +1,5 @@
-﻿using Hestia.backend;
+﻿using Hestia.Backend;
+using Hestia.Utils.Backend;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 

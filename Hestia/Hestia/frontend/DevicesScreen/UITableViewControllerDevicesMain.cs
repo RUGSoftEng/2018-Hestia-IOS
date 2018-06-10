@@ -1,18 +1,18 @@
 ﻿using CoreGraphics;
-using Hestia.DevicesScreen.resources;
-using Hestia.backend.exceptions;
-using Hestia.backend.models;
-using Hestia.backend;
-using Hestia.frontend;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend.Models;
+using Hestia.Backend;
 using Hestia.Resources;
 using UIKit;
 using System;
 using System.Collections.Generic;
-using Hestia.backend.speech_recognition;
-using Hestia.DevicesScreen.EditDevice;
+using Hestia.Backend.SpeechRecognition;
 using Foundation;
+using Hestia.Frontend.Resources;
+using Hestia.Frontend.DevicesScreen.EditDevice;
+using Hestia.Frontend.SettingsScreen;
 
-namespace Hestia.DevicesScreen
+namespace Hestia.Frontend.DevicesScreen
 {
     /// <summary>
     /// This class contains the contents and behaviour of the ViewController that controls the Devices main screen.
@@ -388,7 +388,7 @@ namespace Hestia.DevicesScreen
 
         public void SetDevice(Device device, bool on_off)
         {
-            foreach (backend.models.Activator act in device.Activators)
+            foreach (Backend.Models.Activator act in device.Activators)
             {
                 if (act.State.Type == "bool")
                 {

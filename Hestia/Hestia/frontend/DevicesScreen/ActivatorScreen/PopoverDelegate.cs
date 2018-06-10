@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace Hestia.DevicesScreen.ActivatorScreen
+namespace Hestia.Frontend.DevicesScreen.ActivatorScreen
 {
     /// <summary>
     /// This class defines the behaviour of the pop-over that is presented on the Devices main screen with the activators.

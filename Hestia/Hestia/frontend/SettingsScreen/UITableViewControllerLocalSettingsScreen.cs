@@ -1,9 +1,9 @@
-﻿using Hestia.DevicesScreen.resources;
-using Hestia.frontend;
+﻿using Hestia.Frontend;
+using Hestia.Frontend.Resources;
 using System;
 using UIKit;
 
-namespace Hestia
+namespace Hestia.Frontend.SettingsScreen
 {
     public partial class UITableViewControllerLocalSettingsScreen : UITableViewController
     {
