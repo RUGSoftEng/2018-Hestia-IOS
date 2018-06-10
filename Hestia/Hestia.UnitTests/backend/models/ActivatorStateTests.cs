@@ -1,7 +1,7 @@
 ﻿using Hestia.Backend.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Hestia.UnitTests.backend.models
+namespace Hestia.UnitTests.Backend.Models
 {
     [TestClass]
     public class ActivatorStateTests

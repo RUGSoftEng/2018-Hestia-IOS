@@ -3,7 +3,7 @@ using Hestia.Utils.Backend;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 
-namespace Hestia.UnitTests.backend.utils
+namespace Hestia.UnitTests.Backend.Utils
 {
     [TestClass]
     public class JsonValidatorTests

@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace Hestia.UnitTests.backend.models
+namespace Hestia.UnitTests.Backend.Models
 {
     [TestClass]
     public class PluginInfoTests

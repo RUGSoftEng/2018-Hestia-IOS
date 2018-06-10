@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hestia.UnitTests.backend
+namespace Hestia.UnitTests.Backend
 {
     [TestClass]
     public class HestiaWebServerInteractorTests

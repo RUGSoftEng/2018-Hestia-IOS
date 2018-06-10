@@ -3,7 +3,7 @@ using Hestia.Backend.Models.Deserializers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 
-namespace Hestia.UnitTests.backend.models.deserializers
+namespace Hestia.UnitTests.Backend.Models.Deserializers
 {
     [TestClass]
     public class ActivatorDeserializerTest

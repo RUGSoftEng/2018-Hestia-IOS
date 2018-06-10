@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Hestia.UnitTests.backend.exceptions
+namespace Hestia.UnitTests.Backend.Exceptions
 {
     [TestClass]
     public class ServerInteractionExceptionTests

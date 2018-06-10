@@ -6,7 +6,7 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 
-namespace Hestia.UnitTests.backend
+namespace Hestia.UnitTests.Backend
 {
     [TestClass]
     public class HestiaServerInteractorTests

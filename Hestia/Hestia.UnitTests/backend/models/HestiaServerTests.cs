@@ -3,7 +3,7 @@ using Hestia.Backend;
 using Hestia.Backend.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Hestia.UnitTests.backend
+namespace Hestia.UnitTests.Backend.Models
 {
     [TestClass]
     public class HestiaServerTests
