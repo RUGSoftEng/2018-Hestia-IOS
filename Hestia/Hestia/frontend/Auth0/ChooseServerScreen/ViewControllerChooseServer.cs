@@ -4,7 +4,7 @@ using UIKit;
 namespace Hestia
 {
     /// <summary>
-    /// The ViewController that contains the View that is contains the list with
+    /// The ViewController that holds the View that contains the list with
     /// servers that can be chosen to add a new device to.
     /// See, <see cref="TableSourceAddDeviceChooseServer"/>.
     /// </summary>

@@ -86,7 +86,7 @@ namespace Hestia
 
         /// <summary>
         /// This methods handles the click on the local button. It checks if default information is valid, 
-        /// if it is valid is loads the Devices main screen, otherwise it goes to the Server connect screen.
+        /// if it is valid it loads the Devices main screen, otherwise it goes to the Server connect screen.
         /// </summary>
         void ToLocalScreen()
         {

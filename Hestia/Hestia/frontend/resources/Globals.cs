@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
@@ -15,9 +15,6 @@ namespace Hestia.DevicesScreen.resources
     {
         public static bool LocalLogin { get; set; }
         public static UIColor DefaultLightGray { get; set; }
-
-        public static int ScreenHeight { get; set; }
-        public static int ScreenWidth { get; set; }
 
         // Variables for local server
         public static HestiaServerInteractor LocalServerinteractor { get; set; }

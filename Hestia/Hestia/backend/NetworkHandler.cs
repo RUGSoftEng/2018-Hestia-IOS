@@ -12,8 +12,8 @@ namespace Hestia.backend
     {
         string address; // address including connection method and optionally a port
         RestClient client;
-        bool usesAuth;
-        string accessToken; // auth0 access token
+        readonly bool usesAuth;
+        readonly string accessToken; // auth0 access token
 
         public string Address
         {
@@ -23,10 +23,6 @@ namespace Hestia.backend
                 address = value;
                 SetRestClient();
             }
-        }
-        public bool UsesAuth
-        {
-            get => usesAuth;
         }
 
         public NetworkHandler(string address)
