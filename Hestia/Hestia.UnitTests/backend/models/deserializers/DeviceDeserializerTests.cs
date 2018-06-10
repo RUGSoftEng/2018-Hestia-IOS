@@ -56,9 +56,8 @@ namespace Hestia.UnitTests.backend.models.deserializers
         [TestInitialize]
         public void SetUp()
         {
-            string dummyAddress = "https://0.0.0.0";
-            int dummyPort = 1000;
-            NetworkHandler networkHandler = new NetworkHandler(dummyAddress, dummyPort);
+            string dummyAddress = "https://0.0.0.0:1000";
+            NetworkHandler networkHandler = new NetworkHandler(dummyAddress);
             serverInteractor = new HestiaServerInteractor(networkHandler);
 
             jsonDevice = JToken.Parse(jsonDeviceString);

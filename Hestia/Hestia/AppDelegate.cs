@@ -110,7 +110,7 @@ namespace Hestia
         {
             // Used for UITesting
             Xamarin.Calabash.Start();
-
+            SpeechRecognition.RequestAuthorization();
             NSUserDefaults userDefaults = NSUserDefaults.StandardUserDefaults;
 
             string defaultLocal = userDefaults.StringForKey(strings.defaultsLocalHestia);

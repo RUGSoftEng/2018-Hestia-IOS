@@ -17,8 +17,7 @@ namespace Hestia.UnitTests.backend.models
         private string type = "dummytype";
         private List<Activator> activators;
         private Activator activator;
-        private string dummyAddress = "https://1.1.1.1";
-        private int dummyPort = 1000;
+        private string dummyAddress = "https://1.1.1.1:1000";
         private NetworkHandler networkHandler;
         private HestiaServerInteractor serverInteractor;
 
@@ -36,7 +35,7 @@ namespace Hestia.UnitTests.backend.models
                 activator
             };
 
-            networkHandler = new NetworkHandler(dummyAddress, dummyPort);
+            networkHandler = new NetworkHandler(dummyAddress);
             serverInteractor = new HestiaServerInteractor(networkHandler);
 
             device = new Device(deviceId, deviceName, type, activators, serverInteractor);
@@ -60,7 +59,7 @@ namespace Hestia.UnitTests.backend.models
         {
             Assert.AreEqual(deviceName, device.Name);
 
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress);
             mockNetworkHandler.Setup(x => x.Put(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
             device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
@@ -80,7 +79,7 @@ namespace Hestia.UnitTests.backend.models
         [ExpectedException(typeof(ServerInteractionException))]
         public void SetNameTestFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress);
             mockNetworkHandler.Setup(x => x.Put(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
             device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
@@ -125,9 +124,8 @@ namespace Hestia.UnitTests.backend.models
         {
             Assert.AreEqual(serverInteractor, device.ServerInteractor);
 
-            string newAddress = "https://2.2.2.2";
-            int newPort = 2000;
-            NetworkHandler newNetworkHandler = new NetworkHandler(newAddress, newPort);
+            string newAddress = "https://2.2.2.2:2000";
+            NetworkHandler newNetworkHandler = new NetworkHandler(newAddress);
             HestiaServerInteractor newServerInteractor = new HestiaServerInteractor(newNetworkHandler);
 
             device.ServerInteractor = newServerInteractor;

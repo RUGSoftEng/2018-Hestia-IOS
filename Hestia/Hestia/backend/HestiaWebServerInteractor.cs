@@ -69,5 +69,23 @@ namespace Hestia.backend
             string endpoint = strings.serversPath;
             networkHandler.Post(payload, endpoint);
         }
+
+        public void DeleteServer(HestiaServer server)
+        {
+            string endpoint = strings.serversPath + server.Id;
+            networkHandler.Delete(endpoint);
+        }
+
+        public void EditServer(HestiaServer server, string name, string address, int port)
+        {
+            JObject payload = new JObject
+            {
+                { "server_name", name },
+                { "server_address", address },
+                { "server_port", port.ToString() }
+            };
+            string endpoint = strings.serversPath + server.Id;
+            networkHandler.Put(payload, endpoint);
+        }
     }
 }

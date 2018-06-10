@@ -27,8 +27,7 @@ namespace Hestia.UnitTests.backend.models
         private ActivatorState floatActivatorState;
         private Activator floatActivator;
 
-        private string dummyAddress = "https://0.0.0.0";
-        private int dummyPort = 1000;
+        private string dummyAddress = "https://0.0.0.0:1000";
         private NetworkHandler networkHandler;
         private HestiaServerInteractor serverInteractor;
         private Device device;
@@ -36,7 +35,7 @@ namespace Hestia.UnitTests.backend.models
         [TestInitialize]
         public void SetUpActivators()
         {
-            networkHandler = new NetworkHandler(dummyAddress, dummyPort);
+            networkHandler = new NetworkHandler(dummyAddress);
             serverInteractor = new HestiaServerInteractor(networkHandler);
             device = new Device("1234", "nice_device", "light", new List<Activator>(), serverInteractor);
 
@@ -116,7 +115,7 @@ namespace Hestia.UnitTests.backend.models
         {
             Assert.AreEqual(boolActivatorState, boolActivator.State);
 
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress);
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
             boolActivator.Device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
@@ -139,7 +138,7 @@ namespace Hestia.UnitTests.backend.models
         [ExpectedException(typeof(ServerInteractionException))]
         public void SetBoolStateFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress);
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
             boolActivator.Device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
@@ -152,7 +151,7 @@ namespace Hestia.UnitTests.backend.models
         {
             Assert.AreEqual(floatActivatorState, floatActivator.State);
 
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress);
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
             floatActivator.Device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
@@ -176,7 +175,7 @@ namespace Hestia.UnitTests.backend.models
         [ExpectedException(typeof(ServerInteractionException))]
         public void SetFloatStateFailure()
         {
-            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress, dummyPort);
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(dummyAddress);
             mockNetworkHandler.Setup(x => x.Post(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
             floatActivator.Device.ServerInteractor.NetworkHandler = mockNetworkHandler.Object;
 
