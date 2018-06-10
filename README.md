@@ -21,13 +21,13 @@ Choosing local allows the user to connect to a local server. Hence, an active lo
 Once the user enters a valid server or has tapped done in the server select screen, they will be presented with a list of devices that are on the local server(s) and can edit and change these as they see fit. The devices are created using plugins, for more on this please refer to previously stated repositories. Currently, it is only possible control devices using a switch (turning a devices on or off) and a slider, e.g. to change the brightness of a light.
 
 The app also supports voice control. The commands that can be used in the devices main screen are as follows:
-- To set boolean activator to true:  “activate” +  <Device name>  or “turn on” + <Device name>
-- To set boolean activator to false: “deactivate” +  <Device name>  or “turn off” + <Device name>
+- To set boolean activator to true:  “activate” +  (Device name)  or “turn on” + (Device name)
+- To set boolean activator to false: “deactivate” +  (Device name)  or “turn off” + (Device name)
 - To go to add device screen: “add device” or “new device”
-- To go to edit device screen: “edit” + <Device name>
-- To go to remove a device : “remove” + <Device name> or “delete” + <Device name>
+- To go to edit device screen: “edit” + (Device name)
+- To go to remove a device : “remove” + (Device name) or “delete” + (Device name)
 
-##Credits
+## Credits
 The chevron icon (>) on the server select screen is made by [Freepik](http://www.freepik.com) from [www.flaticon.com](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
 
 [logo]: /docs/images/logo_transparent.png "Hestia logo"
