@@ -745,6 +745,15 @@ namespace Hestia.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error during speech recognition.
+        /// </summary>
+        public static string speechError {
+            get {
+                return ResourceManager.GetString("speechError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to is not a command..
         /// </summary>
         public static string speechNotACommand {
