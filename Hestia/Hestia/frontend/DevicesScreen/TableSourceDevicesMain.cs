@@ -110,13 +110,13 @@ namespace Hestia.DevicesScreen
 
                     var navigationController = new UINavigationController(popupNavVC);
                     navigationController.ModalPresentationStyle = UIModalPresentationStyle.Popover;
-                    navigationController.PreferredContentSize = new CoreGraphics.CGSize(Globals.ScreenWidth, tableView.RowHeight * device.Activators.Count);
+                    navigationController.PreferredContentSize = new CoreGraphics.CGSize(tableView.Window.Screen.Bounds.Width, tableView.RowHeight * device.Activators.Count);
 
                     // Define the layout of the pop up
                     nfloat heightPop = 20 + navigationController.NavigationBar.Frame.Size.Height;
                     var popPresenter = navigationController.PopoverPresentationController;
                     popPresenter.SourceView = owner.View;
-                    popPresenter.SourceRect = new CoreGraphics.CGRect(0, Globals.ScreenHeight/2-heightPop, 0, 0);
+                    popPresenter.SourceRect = new CoreGraphics.CGRect(0, tableView.Window.Screen.Bounds.Height / 2 - heightPop, 0, 0);
                     popPresenter.Delegate = new PopoverDelegate();
                     popPresenter.PermittedArrowDirections = 0;
                     popPresenter.BackgroundColor = UIColor.White;
