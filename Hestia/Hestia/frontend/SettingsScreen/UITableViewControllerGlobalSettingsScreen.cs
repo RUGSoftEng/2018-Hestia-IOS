@@ -11,7 +11,9 @@ namespace Hestia
         {
         }
 
-        // Reset Defaults button
+        /// <summary>
+        ///  Reset Defaults button
+        /// </summary>
         partial void UIButton89405_TouchUpInside(UIButton sender)
         {
             Globals.ResetAllUserDefaults();

@@ -218,21 +218,19 @@ namespace Hestia.DevicesScreen
         }
 
         /// <summary>
-        /// Is called after a press on edit button. It refreshes the header such that
-        /// the microphone icon is changed to an insertion icon.
+        /// Is called after a press on edit button. The microphone icon is changed to an insertion icon.
         /// </summary>
         public void WillBeginTableEditing(UITableView tableView)
         {
-            tableView.TableHeaderView = owner.GetTableViewHeader(true);
+            owner.ReloadButtons(true);
         }
 
         /// <summary>
-        /// Is called after a press on done button. It refreshes the header such that
-        /// the insertion icon is changed back to microphone icon.
+        /// Is called after a press on done button. The insertion icon is changed back to microphone icon.
         /// </summary>
         public void DidFinishTableEditing(UITableView tableView)
         {
-            tableView.TableHeaderView = owner.GetTableViewHeader(false);
+            owner.ReloadButtons(false);
         }
 
         /// <returns>The title for the header, which consist of the server name + its IP and port</returns>
@@ -240,7 +238,7 @@ namespace Hestia.DevicesScreen
 		{
             if(Globals.LocalLogin)
             {
-                return Globals.ServerName + " " + Globals.Address + ":" + int.Parse(strings.defaultPort);
+                return Globals.ServerName + " " + Globals.Address;
             }
 
             HestiaServer server = Globals.GetSelectedServers()[(int)section];

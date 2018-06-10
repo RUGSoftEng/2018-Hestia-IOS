@@ -1,9 +1,13 @@
-using Foundation;
 using System;
 using UIKit;
 
 namespace Hestia
 {
+    /// <summary>
+    /// The ViewController that holds the View that contains the list with
+    /// servers that can be chosen to add a new device to.
+    /// See, <see cref="TableSourceAddDeviceChooseServer"/>.
+    /// </summary>
     public partial class ViewControllerChooseServer : UITableViewController
     {
         public ViewControllerChooseServer(IntPtr handle) : base(handle)
