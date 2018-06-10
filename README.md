@@ -27,4 +27,7 @@ The app also supports voice control. The commands that can be used in the device
 - To go to edit device screen: “edit” + <Device name>
 - To go to remove a device : “remove” + <Device name> or “delete” + <Device name>
 
+##Credits
+The chevron icon (>) on the server select screen is made by [Freepik](http://www.freepik.com) from [www.flaticon.com](https://www.flaticon.com/) is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
+
 [logo]: /docs/images/logo_transparent.png "Hestia logo"
