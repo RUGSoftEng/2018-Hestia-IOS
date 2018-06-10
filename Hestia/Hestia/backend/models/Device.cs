@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Hestia.backend.models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Device
     {
         string deviceId;

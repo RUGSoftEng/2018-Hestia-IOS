@@ -1,6 +1,8 @@
-﻿
-namespace Hestia.backend.models
+﻿namespace Hestia.backend.models
 {
+    /// <summary>
+    /// This class represents a single activator of a device.
+    /// </summary>
     public class Activator
     {
         string activatorId;
