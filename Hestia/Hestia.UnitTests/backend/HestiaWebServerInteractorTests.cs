@@ -191,5 +191,85 @@ namespace Hestia.UnitTests.backend
 
             serverInteractor.AddServer("dummyName", "dummyAddress", 1000);
         }
+
+        [TestMethod]
+        public void DeleteServerTestSuccess()
+        {
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, TOKEN);
+            mockNetworkHandler.CallBase = true;
+            mockNetworkHandler.Setup(x => x.Delete(It.IsAny<string>())).Returns(new JObject());
+            serverInteractor.NetworkHandler = mockNetworkHandler.Object;
+
+            HestiaServer server = new HestiaServer(false, new HestiaServerInteractor(networkHandler));
+            server.Id = "dummyId";
+            server.Name = "dummyName";
+            server.Address = "dummyAddress";
+            server.Port = 1000;
+            try
+            {
+                serverInteractor.DeleteServer(server);
+            }
+            catch (ServerInteractionException ex)
+            {
+                Assert.Fail(ex.Message, ex);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ServerInteractionException))]
+        public void DeleteServerTestFailure()
+        {
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, TOKEN);
+            mockNetworkHandler.CallBase = true;
+            mockNetworkHandler.Setup(x => x.Delete(It.IsAny<string>())).Throws(new ServerInteractionException());
+            serverInteractor.NetworkHandler = mockNetworkHandler.Object;
+
+            HestiaServer server = new HestiaServer(false, new HestiaServerInteractor(networkHandler));
+            server.Id = "dummyId";
+            server.Name = "dummyName";
+            server.Address = "dummyAddress";
+            server.Port = 1000;
+            serverInteractor.DeleteServer(server);
+        }
+
+        [TestMethod]
+        public void EditServerTestSuccess()
+        {
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, TOKEN);
+            mockNetworkHandler.CallBase = true;
+            mockNetworkHandler.Setup(x => x.Put(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
+            serverInteractor.NetworkHandler = mockNetworkHandler.Object;
+
+            HestiaServer server = new HestiaServer(false, new HestiaServerInteractor(networkHandler));
+            server.Id = "dummyId";
+            server.Name = "dummyName";
+            server.Address = "dummyAddress";
+            server.Port = 1000;
+            try
+            {
+                serverInteractor.EditServer(server, "newDummyName", "newDummyAddress", 2000);
+            }
+            catch (ServerInteractionException ex)
+            {
+                Assert.Fail(ex.Message, ex);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ServerInteractionException))]
+        public void EditServerTestFailure()
+        {
+            Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, TOKEN);
+            mockNetworkHandler.CallBase = true;
+            mockNetworkHandler.Setup(x => x.Put(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
+            serverInteractor.NetworkHandler = mockNetworkHandler.Object;
+
+            HestiaServer server = new HestiaServer(false, new HestiaServerInteractor(networkHandler));
+            server.Id = "dummyId";
+            server.Name = "dummyName";
+            server.Address = "dummyAddress";
+            server.Port = 1000;
+            serverInteractor.EditServer(server, "newDummyName", "newDummyAddress", 2000);
+        }
     }
 }
