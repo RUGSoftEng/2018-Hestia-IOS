@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Hestia.backend
 {
     /// <summary>
-    /// This class is a facade, performing the basic operations between the user and the server.
+    /// This class is a facade, performing the basic operations between the user and the hestia server.
     /// It does so using the NetworkHandler.
     /// </summary>
     public class HestiaServerInteractor

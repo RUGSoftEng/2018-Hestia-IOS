@@ -3,7 +3,7 @@
 namespace Hestia.backend.models
 {
     /// <summary>
-    /// 
+    /// This class represents the internal representation of the device on the client.
     /// </summary>
     public class Device
     {
