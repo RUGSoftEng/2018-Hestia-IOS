@@ -380,5 +380,10 @@
   </data>
   <data name="hestiaEmail" xml:space="preserve">
     <value>hestia.contact.email@gmail.com</value>
+  <data name="speechError" xml:space="preserve">
+    <value>Error during speech recognition</value>
+  </data>
+  <data name="navigationControllerServerSelectList" xml:space="preserve">
+    <value>navigationServerList</value>
   </data>
 </root>
