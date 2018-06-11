@@ -8,15 +8,13 @@ using Hestia.Resources;
 
 namespace Hestia.DevicesScreen.resources
 {
+    /// <summary>
+    /// This class contains some static fields and methods that are used in multiple places in the app.
+    /// </summary>
     public static class Globals
     {
         public static bool LocalLogin { get; set; }
         public static UIColor DefaultLightGray { get; set; }
-        public static String UserName { get; set; }
-        public static string Prefix { get; set; }
-
-        public static int ScreenHeight { get; set;  }
-        public static int ScreenWidth { get; set;  }
 
         // Variables for local server
         public static HestiaServerInteractor LocalServerinteractor { get; set; }

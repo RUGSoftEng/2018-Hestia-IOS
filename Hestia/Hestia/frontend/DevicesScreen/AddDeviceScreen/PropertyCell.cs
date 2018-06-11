@@ -4,6 +4,10 @@ using CoreGraphics;
 
 namespace Hestia.DevicesScreen.AddDeviceScreen
 {
+    /// <summary>
+    /// This is the cell that is used in the Add devices screen, where one has to enter the information
+    /// for a new device. It contains an input textfield.
+    /// </summary>
     public class PropertyCell : UITableViewCell
     {
         public UITextField inputField;
@@ -17,6 +21,9 @@ namespace Hestia.DevicesScreen.AddDeviceScreen
             ContentView.AddSubviews(new UIView[] {inputField});
         }
 
+        /// <summary>
+        /// Determines the position of the input textfield in the cell.
+        /// </summary>
         public override void LayoutSubviews()
         {
             base.LayoutSubviews();
