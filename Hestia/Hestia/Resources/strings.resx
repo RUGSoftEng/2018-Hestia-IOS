@@ -380,6 +380,7 @@
   </data>
   <data name="hestiaEmail" xml:space="preserve">
     <value>hestia.contact.email@gmail.com</value>
+  </data>
   <data name="speechError" xml:space="preserve">
     <value>Error during speech recognition</value>
   </data>
