@@ -17,8 +17,8 @@ namespace Hestia
         {
         }
 
-		public override void ViewDidLoad()
-		{
+        public override void ViewDidLoad()
+        {
             base.ViewDidLoad();
 
             Regex rxIP = new Regex(@"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}");
@@ -100,8 +100,6 @@ namespace Hestia
                     changeIPField.Text = "https://" + changeIPField.Text;
                     try
                     {
-                        Console.WriteLine(changeNameField.Text);
-                        Console.WriteLine(changeIPField.Text);
                         Globals.HestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
                         NavigationController.PopViewController(true);
                     }
@@ -115,6 +113,6 @@ namespace Hestia
                 }
             });
             NavigationItem.RightBarButtonItem = done;
-		}
+        }
 	}
 }

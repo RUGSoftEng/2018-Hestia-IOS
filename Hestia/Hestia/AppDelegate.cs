@@ -79,7 +79,6 @@ namespace Hestia
             Globals.HestiaWebserverNetworkHandler = new NetworkHandler(strings.hestiaWebServerAddress, defaultAuth0AccessToken);
             Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(Globals.HestiaWebserverNetworkHandler);
 
-
             try
             {
                 Globals.HestiaWebServerInteractor.PostUser(); 
@@ -144,14 +143,9 @@ namespace Hestia
                 }
             }
 
-
             else if (defaultLocal == bool.FalseString && defaultAuth0AccessToken != null)
             {
-				Console.WriteLine(" Default global");
-                Console.WriteLine(defaultAuth0AccessToken);
-
                 Globals.LocalLogin = false;
-
                 Window.RootViewController = devices2Storyboard.InstantiateViewController(strings.navigationControllerServerSelectList); ;
                 // Make key and visible to be able to present possibly Alert window
                 Window.MakeKeyAndVisible();
