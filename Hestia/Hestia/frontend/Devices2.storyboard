@@ -774,7 +774,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="105467" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-361" y="3207"/>
-</scene>
+        </scene>
         <scene sceneID="103573">
             <objects>
                 <tableViewController id="103574" sceneMemberID="viewController" customClass="UITableViewControllerContacts">
@@ -886,5 +886,6 @@
         <image name="VoiceControlIcon" width="50" height="50"/>
         <image name="VoiceControlIconInverted" width="50" height="50"/>
         <image name="VoiceControlIcon2" width="50" height="50"/>
+        <image name="ArrowRight" width="50" height="50"/>
     </resources>
 </document>

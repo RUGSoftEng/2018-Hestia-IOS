@@ -78,7 +78,7 @@ namespace Hestia.backend.speech_recognition
                 if (err != null)
                 {
                     Console.WriteLine(strings.speechRecordError);
-                    viewController.ProcessSpeech(null);
+                    viewController.ProcessSpeech(" ");
                 }
                 else
                 {
