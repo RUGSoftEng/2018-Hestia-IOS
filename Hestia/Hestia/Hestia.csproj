@@ -151,6 +151,10 @@
       <DependentUpon>ViewControllerChooseServer.cs</DependentUpon>
     </Compile>
     <Compile Include="backend\speech_recognition\IViewControllerSpeech.cs" />
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerContacts.cs" />
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerContacts.designer.cs">
+      <DependentUpon>UITableViewControllerContacts.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
