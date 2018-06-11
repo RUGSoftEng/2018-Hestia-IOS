@@ -780,8 +780,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105005" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105005" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                                                     <rect key="frame" x="20" y="7" width="281" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <state key="normal" title="Opinion about Hestia"/>
                                                     <connections>
                                                         <action selector="UIButton105005_TouchUpInside:" destination="103574" id="105009" eventType="touchUpInside"/>
@@ -808,8 +809,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105006" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105006" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                                                     <rect key="frame" x="44" y="7" width="233" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                     <state key="normal" title="Report Bugs"/>
                                                     <connections>
                                                         <action selector="UIButton105006_TouchUpInside:" destination="103574" id="105658" eventType="touchUpInside"/>
@@ -833,9 +835,10 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105007" translatesAutoresizingMaskIntoConstraints="NO">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105007" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
                                                     <rect key="frame" x="44" y="7" width="233" height="30"/>
-                                                    <state key="normal" title="Issuses using Hestia"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <state key="normal" title="Issues using Hestia"/>
                                                     <connections>
                                                         <action selector="UIButton105007_TouchUpInside:" destination="103574" id="105659" eventType="touchUpInside"/>
                                                     </connections>
@@ -861,4 +864,11 @@
             <point key="canvasLocation" x="1258" y="-109"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="LogoLaunchscreen" width="431" height="206"/>
+        <image name="AddDeviceIcon" width="50" height="50"/>
+        <image name="VoiceControlIcon" width="50" height="50"/>
+        <image name="VoiceControlIconInverted" width="50" height="50"/>
+        <image name="VoiceControlIcon2" width="50" height="50"/>
+    </resources>
 </document>
