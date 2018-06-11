@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 namespace Hestia.backend
 {
+    /// <summary>
+    /// This class is a facade, performing the basic operations between the user and the hestia web team server.
+    /// It does so using the NetworkHandler.
+    /// </summary>
     public class HestiaWebServerInteractor
     {
         NetworkHandler networkHandler;
@@ -21,7 +25,11 @@ namespace Hestia.backend
             set => networkHandler = value;
         }
 
-        // This method should be called before any other method in this class
+        /// <summary>
+        /// This methods posts an user on the web team server.
+        /// It should be called only once after the app launches.
+        /// If the user already exists it will always throw an ServerInteractionException.
+        /// </summary>
         public void PostUser()
         {
             string endpoint = strings.usersPath;

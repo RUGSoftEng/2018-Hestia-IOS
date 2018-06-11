@@ -288,12 +288,17 @@ namespace Hestia.DevicesScreen
             RefreshControl.EndRefreshing();
         }
 
+        /// <summary>
+        /// This method processes the speech recognition result.
+        /// It can perform five actions: turning on a device, turning off a device, adding a new device, editing a device and removing a device.
+        /// </summary>
+        /// <param name="result"></param>
         public void ProcessSpeech(string result)
         {
             Device device;
             result = result.ToLower();
             if (result.Contains("activate") || (result.Contains("turn") && result.Contains("on")))
-            {
+            {   // Turning on a device
                 device = GetDevice(result);
                 if (device != null)
                 {
@@ -301,7 +306,7 @@ namespace Hestia.DevicesScreen
                 }
             }
             else if (result.Contains("deactivate") || (result.Contains("turn") && result.Contains("off")))
-            {
+            {   // Turning off a device
                 device = GetDevice(result);
                 if (device != null)
                 {
@@ -313,11 +318,11 @@ namespace Hestia.DevicesScreen
                 }
             } 
             else if( result.Contains("add device") || (result.Contains("new device")))
-            {
+            {   // Adding a new device
                 ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
             } 
             else if (result.Contains("edit")) 
-            {
+            {   // Editing a device
                 device = GetDevice(result);
                 if (device != null)
                 {
@@ -331,7 +336,7 @@ namespace Hestia.DevicesScreen
                 }
             }
             else if (result.Contains("remove") || result.Contains("delete"))
-            {
+            {   // Removing a device
                 device = GetDevice(result);
                 if (device != null)
                 {
@@ -346,7 +351,7 @@ namespace Hestia.DevicesScreen
                                 if (Globals.LocalLogin)
                                 {
                                     try
-                                    {   // remove device from server   
+                                    {   // Remove device from server   
                                         Globals.LocalServerinteractor.RemoveDevice(devices[row]);
                                     }
                                     catch (ServerInteractionException ex)
@@ -382,15 +387,20 @@ namespace Hestia.DevicesScreen
                 }
             }
             else if (result == null)
-            {
+            {   // Something went wrong with recognizing speech
                 WarningMessage.Display(strings.speechError, strings.tryAgain, this);
             }
             else
-            {
+            {   // Result did not contain any of the above keywords
                 WarningMessage.Display(result + " " + strings.speechNotACommand, strings.tryAgain, this);
             }
         }
 
+        /// <summary>
+        /// Sets the boolean state of a device.
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="on_off"></param>
         public void SetDevice(Device device, bool on_off)
         {
             foreach (backend.models.Activator act in device.Activators)
@@ -415,6 +425,11 @@ namespace Hestia.DevicesScreen
             }
         }
 
+        /// <summary>
+        /// Searches for a device given a string which may or may not contain the device name.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns>A device object</returns>
         public Device GetDevice(string result)
         {
             foreach (Device device in devices)

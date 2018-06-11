@@ -156,6 +156,10 @@
       <DependentUpon>AddServerViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="frontend\Auth0\ServerSelectScreen\UIViewControllerEditServerName.cs" />
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerContacts.cs" />
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerContacts.designer.cs">
+      <DependentUpon>UITableViewControllerContacts.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">

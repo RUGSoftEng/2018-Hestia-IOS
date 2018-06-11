@@ -166,4 +166,66 @@ Setting up trello and slack
           22/30.  Added Log out button 
           23/00.  Added time-tracking new info for period 03.04 - 1.05 
                
+
+15/05.    10/30.  Talk with the team
+          11/00.  Started Working on settings screen
+          11/30.  Modified the contact page
+          12/00.  Sill working
+          12/30.  Modifying table view
+          13/00   YouTube tutorials
+          15/00.  Tutorials on how to send a contact form through e-mail
+          15/30.  Still looking
+          16/00.  Deciding which method to choose
+          16/30.  Working on the implementation
+          17/00.  Still working
+          17/30.  Still trying
+          18/00.  Solving errors 
+          18/30.  It doesn't work  
+
+31/05.    9/00.   Meeting with Feiko and Lars
+          9/30.   Still in meeting
+          10/00.  Meeting with Zino, Marc, Juan
+          10/30.  Splitting tasks
+          11/00.  Getting directions on what I need to do.
+          11/30.  Still doing that
+          12/00   Meeting ending
           
+02/06.    14/00.  Looking for nice template for presentation
+          14/30.  Starting working on the presentation 
+          15/00.  Gathering ideas and looking online on successful presentations
+          15/30.  Started working on the presentation
+	  16/00.  Working on Slide 5
+          16/30.  Still working on Slide 5 and started working on 6
+          17/30.  Working on Slide 6 and started slide 7
+          18/00.  Slide 9 & 10
+          18/30.  Slide 11
+          19/00.  Slide 12
+          20/00.  SLide 12
+          20/30.  Slide 12
+          21/00.  Slide 13
+	  21/30.  Slide 14
+          22/00.  Research for Mirroring iPhone screen
+
+3/06.     10/00.  Continuing Slide 14
+          10/30.  Slide 15
+          11/00.  Looking for a way to mirror the iPhone screen without wireless.
+
+4.06.     14/00.  Researching websites on how to send an e-mail from inside an app
+          14/30.  Still doing that because I could only find things for Swift or Object C
+          15.00.  Still looking
+          15/30.  Same
+          16/00.  Looking on YouTube
+          17/00.  Asking on forums about this
+          17/30.  Find something
+          18/00.  Trying to adapt it to our code
+          18/30.  Research on C# syntax
+          19/00.  Implementing
+          19/30.  Implementing
+          20/00.  Implementing
+          20/30   Implementing
+          21/00.  Modifying some things for presentation
+
+05.06     05/00.  Modifying some things for presentation 
+          05/30.  Still Doing that
+          06/00.  Doing the time tracking file
+	  06/30.  Upload files on Git

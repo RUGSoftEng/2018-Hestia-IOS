@@ -497,6 +497,7 @@ namespace Hestia.Resources {
             }
         }
         
+
         public static string speechAccessDenied {
             get {
                 return ResourceManager.GetString("speechAccessDenied", resourceCulture);
@@ -509,18 +510,6 @@ namespace Hestia.Resources {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Error during speech recognition.
-        /// </summary>
-        public static string speechError {
-            get {
-                return ResourceManager.GetString("speechError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to is not a command..
-        /// </summary>
         public static string speechNotACommand {
             get {
                 return ResourceManager.GetString("speechNotACommand", resourceCulture);
@@ -581,12 +570,6 @@ namespace Hestia.Resources {
             }
         }
         
-        public static string navigationControllerServerSelectList {
-            get {
-                return ResourceManager.GetString("navigationControllerServerSelectList", resourceCulture);
-            }
-        }
-        
         public static string arrowRight {
             get {
                 return ResourceManager.GetString("arrowRight", resourceCulture);
@@ -596,6 +579,23 @@ namespace Hestia.Resources {
         public static string addServerViewController {
             get {
                 return ResourceManager.GetString("addServerViewController", resourceCulture);
+            }
+        }
+        public static string hestiaEmail {
+            get {
+                return ResourceManager.GetString("hestiaEmail", resourceCulture);
+            }
+        }
+        
+        public static string speechError {
+            get {
+                return ResourceManager.GetString("speechError", resourceCulture);
+            }
+        }
+        
+        public static string navigationControllerServerSelectList {
+            get {
+                return ResourceManager.GetString("navigationControllerServerSelectList", resourceCulture);
             }
         }
     }

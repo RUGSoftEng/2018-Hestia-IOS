@@ -37,12 +37,5 @@ namespace Hestia.UnitTests.backend
             Assert.AreEqual(newAddress, networkHandlerAddress.Address);
             Assert.AreEqual(newAddress, networkHandlerAddressToken.Address);
         }
-
-        [TestMethod]
-        public void UsesAuthTest()
-        {
-            Assert.AreEqual(false, networkHandlerAddress.UsesAuth);
-            Assert.AreEqual(true, networkHandlerAddressToken.UsesAuth);
-        }
     }
 }
