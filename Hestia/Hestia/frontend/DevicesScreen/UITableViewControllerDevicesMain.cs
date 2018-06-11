@@ -251,6 +251,7 @@ namespace Hestia.DevicesScreen
         {
             base.ViewDidAppear(animated);
             RefreshDeviceList();
+            TableView.ReloadData();
         }
 
         /// <summary>
@@ -285,6 +286,7 @@ namespace Hestia.DevicesScreen
         {
             RefreshControl.BeginRefreshing();
             RefreshDeviceList();
+            TableView.ReloadData();
             RefreshControl.EndRefreshing();
         }
 
@@ -377,6 +379,7 @@ namespace Hestia.DevicesScreen
                                 // Remove device from list with devices and refresh device list
                                 ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section].RemoveAt(row);
                                 RefreshDeviceList();
+                                TableView.ReloadData();
                             }
                         }
                     }
