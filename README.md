@@ -1,5 +1,5 @@
 # 2018-Hestia-IOS
-![()][logo]  
+![][logo]  
 A home automation system.
 
 ## Description
