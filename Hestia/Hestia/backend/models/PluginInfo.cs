@@ -4,11 +4,15 @@ using System.Collections.Generic;
 
 namespace Hestia.backend.models
 {
+    /// <summary>
+    /// This class holds the data that needs to be sent to the server in order to add a new device.
+    /// It contains the strings collection and plugin. The dictionary requiredInfo holds key-value pairs with required information.
+    /// </summary>
     public class PluginInfo
     {
-        private string collection;
-        private string plugin;
-        private Dictionary<string, string> requiredInfo;
+        string collection;
+        string plugin;
+        Dictionary<string, string> requiredInfo;
 
         [JsonProperty("collection")]
         public string Collection

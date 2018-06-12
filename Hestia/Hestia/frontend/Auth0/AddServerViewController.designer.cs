@@ -11,8 +11,8 @@ using UIKit;
 
 namespace Hestia
 {
-    [Register ("UITableViewServerList")]
-    partial class UITableViewServerList
+    [Register ("AddServerViewController")]
+    partial class AddServerViewController
     {
         void ReleaseDesignerOutlets ()
         {

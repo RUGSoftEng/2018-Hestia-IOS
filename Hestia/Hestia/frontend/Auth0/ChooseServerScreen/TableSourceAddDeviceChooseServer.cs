@@ -1,11 +1,18 @@
 ﻿using System;
 using UIKit;
 using Foundation;
-
 using Hestia.DevicesScreen.resources;
+using Hestia.backend.models;
+using Hestia.backend.exceptions;
+using Hestia.frontend;
 
 namespace Hestia
 {
+    /// <summary>
+    /// This class defines the contents and behaviour of the TableView living in <see cref="ViewControllerChooseServer"/>.
+    /// It the list of locals servers that were selected to be shown in the devices main screen.
+    /// One can select the server that the new device should be added to.
+    /// </summary>
     public class TableSourceAddDeviceChooseServer : UITableViewSource
     {
         // The viewController in which the TableView connected to this Source lives in
@@ -16,17 +23,21 @@ namespace Hestia
             this.owner = owner;
         }
 
+        /// <returns>There is only one section: the list with servers</returns>
         public override nint NumberOfSections(UITableView tableView)
         {
             return int.Parse(Resources.strings.defaultNumberOfSections);
         }
 
+        /// <returns>The number rows is the number of selected servers</returns>
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return Globals.GetNumberOfSelectedServers();
         }
 
-        // Important method. Called to generate a cell to display
+        /// <summary>
+        /// Important method. Called to generate a cell to display. It displays the name of the server.
+        /// </summary>
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
@@ -39,21 +50,30 @@ namespace Hestia
             }
 
             cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].Name;
-
             return cell;
         }
 
-        // Pushes the choose manufacturer screen
+        // Pushes the Important method. Called to generate a cell to display
+        /// <summary>
+        /// When a row is selected, the <see cref="UITableViewControllerAddDevice"/> is pushed, 
+        /// which further manages the adding of a device.
+        /// </summary>
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         { 
+            UITableViewCell cell = tableView.CellAt(indexPath);
+
             Globals.ServerToAddDeviceTo = Globals.GetInteractorsOfSelectedServers()[indexPath.Row];
             UITableViewControllerAddDevice addDevice =
-                owner.Storyboard.InstantiateViewController(Resources.strings.AddManufacturerViewController)
-                    as UITableViewControllerAddDevice;
+            owner.Storyboard.InstantiateViewController(Resources.strings.AddManufacturerViewController)
+                as UITableViewControllerAddDevice;
             if (addDevice != null)
             {
                 owner.NavigationController.PushViewController(addDevice, true);
             }
+
+            tableView.DeselectRow(indexPath,true);
         }
     }
 }
+
+

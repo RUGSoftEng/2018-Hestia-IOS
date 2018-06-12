@@ -1,17 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using UIKit;
+using System;
 
 namespace Hestia.backend
 {
+    /// <summary>
+    /// Static class with method that checks if a string is a json string.
+    /// </summary>
     public static class JsonValidator
     {
+        /// <summary>
+        /// Checks if a string is a json string.
+        /// </summary>
+        /// <param name="json"></param>
+        /// <returns>True or false</returns>
         public static bool IsValidJson(string json)
         {
             json = json.Trim();
@@ -29,14 +31,11 @@ namespace Hestia.backend
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.ToString());
+                    Console.WriteLine(ex);
                     return false;
                 }
             }
-            else
-            {
-                return false;
-            }
+            return false;
         }
     }
 }

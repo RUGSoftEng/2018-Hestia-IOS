@@ -1,4 +1,4 @@
-using Hestia.DevicesScreen.resources;
+﻿using Hestia.DevicesScreen.resources;
 using Hestia.frontend;
 using System;
 using UIKit;
@@ -11,17 +11,22 @@ namespace Hestia
         {
         }
 
+        /// <summary>
+        /// Displays server name on the button for change Server
+        /// </summary>
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
             serverName.Text = Globals.ServerName;
         }
 
-        // Reset Defaults button
+        /// <summary>
+        /// Reset Defaults button
+        /// </summary>
         partial void UIButton87850_TouchUpInside(UIButton sender)
         {
             Globals.ResetAllUserDefaults();
-            new WarningMessage("User Defaults Reset", "All settings are cleared", this);
+            WarningMessage.Display("User Defaults Reset", "All settings are cleared", this);
         }
     }
 }

@@ -9,6 +9,10 @@ using Hestia.frontend;
 
 namespace Hestia.DevicesScreen.ActivatorScreen
 {
+    /// <summary>
+    /// This class describes the contents of the list with activators that is shown on the pop-over in the Devices main screen.
+    /// See, <see cref="UITableViewActivators"/>.
+    /// </summary>
     public class TableSourceActivators : UITableViewSource
     {
         Device device;
@@ -28,6 +32,9 @@ namespace Hestia.DevicesScreen.ActivatorScreen
             return activators.Count;
 		}
 
+        /// <summary>
+        /// The cell is filled with a switch or slider and the name of the activator.
+        /// </summary>
 		public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
 		{
             UITableViewCell cell = tableView.DequeueReusableCell(Resources.strings.activatorCell);
@@ -42,7 +49,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
 
                 // Set the switch's state to that of the device.
                 DeviceSwitch.On = (bool)act.State.RawState;
-                DeviceSwitch.ValueChanged += delegate (object sender, EventArgs e)
+                DeviceSwitch.TouchUpInside += delegate
                 {
                     try 
                     {
@@ -52,7 +59,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     {
                         Console.WriteLine("Exception while changing activator state");
                         Console.WriteLine(ex);
-                        new WarningMessage("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
+                        WarningMessage.Display("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
 
                         // Reset back the switch
                         DeviceSwitch.On = (bool)act.State.RawState;
@@ -71,7 +78,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
 
                 // Set the switch's state to that of the device.
                 slider.Value = (float)act.State.RawState;
-                slider.TouchUpInside += delegate (object sender, EventArgs e)
+                slider.TouchUpInside += delegate
                 {
                     try
                     {
@@ -81,7 +88,7 @@ namespace Hestia.DevicesScreen.ActivatorScreen
                     {
                         Console.WriteLine("Exception while changing activator state");
                         Console.WriteLine(ex);
-                        new WarningMessage("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
+                        WarningMessage.Display("Could not set activator", "An exception occurred when changing the state of the activator on the server", owner);
 
                         // Reset back the slider
                         slider.Value = (float)act.State.RawState;

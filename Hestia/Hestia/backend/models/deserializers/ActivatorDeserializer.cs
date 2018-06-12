@@ -2,11 +2,16 @@
 
 namespace Hestia.backend.models.deserializers
 {
-    /**
-     * Helper class that deserializes a json object into an Activator object
-     */
+    /// <summary>
+    /// Class for deserializing a json object into an Activator object.
+    /// </summary>
     public class ActivatorDeserializer
     {
+        /// <summary>
+        /// Deserializes a json object into an Activator object.
+        /// </summary>
+        /// <param name="jsonActivator"></param>
+        /// <returns>An Activator object</returns>
         public Activator DeserializeActivator(JToken jsonActivator)
         {
             // get the activatorId, rank and name
@@ -25,8 +30,6 @@ namespace Hestia.backend.models.deserializers
                     break;
                 case "float":
                     state = new ActivatorState(jsonActivator.Value<float>("state"), "float");
-                    break;
-                default:
                     break;
             }
 

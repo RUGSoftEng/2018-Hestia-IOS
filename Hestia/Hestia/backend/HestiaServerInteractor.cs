@@ -6,12 +6,16 @@ using System.Collections.Generic;
 
 namespace Hestia.backend
 {
+    /// <summary>
+    /// This class is a facade, performing the basic operations between the user and the hestia server.
+    /// It does so using the NetworkHandler.
+    /// </summary>
     public class HestiaServerInteractor
     {
-        private NetworkHandler networkHandler;
-        private bool isRemoteServer;
-        private string serverId;
-        private string hestiaWebEndpoint;
+        NetworkHandler networkHandler;
+        bool isRemoteServer;
+        string serverId; // necessary for communication with hestia server through web team server.
+        string hestiaWebEndpoint; // web team server endpoint
 
         public NetworkHandler NetworkHandler
         {

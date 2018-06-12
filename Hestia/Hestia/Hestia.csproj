@@ -151,6 +151,15 @@
       <DependentUpon>ViewControllerChooseServer.cs</DependentUpon>
     </Compile>
     <Compile Include="backend\speech_recognition\IViewControllerSpeech.cs" />
+    <Compile Include="frontend\Auth0\AddServerViewController.cs" />
+    <Compile Include="frontend\Auth0\AddServerViewController.designer.cs">
+      <DependentUpon>AddServerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frontend\Auth0\ServerSelectScreen\UIViewControllerEditServerName.cs" />
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerContacts.cs" />
+    <Compile Include="frontend\SettingsScreen\UITableViewControllerContacts.designer.cs">
+      <DependentUpon>UITableViewControllerContacts.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -232,6 +241,9 @@
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIconInverted.imageset\" />
+    <Folder Include="Assets.xcassets\d.imageset\" />
+    <Folder Include="Assets.xcassets\VoiceControlIcon2.imageset\" />
+    <Folder Include="Assets.xcassets\ArrowRight.imageset\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -304,6 +316,22 @@
     <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_150.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_50.png" />
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_100.png" />
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_150.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork" />

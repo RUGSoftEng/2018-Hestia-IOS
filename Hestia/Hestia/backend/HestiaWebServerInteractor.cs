@@ -6,9 +6,13 @@ using System.Collections.Generic;
 
 namespace Hestia.backend
 {
+    /// <summary>
+    /// This class is a facade, performing the basic operations between the user and the hestia web team server.
+    /// It does so using the NetworkHandler.
+    /// </summary>
     public class HestiaWebServerInteractor
     {
-        private NetworkHandler networkHandler;
+        NetworkHandler networkHandler;
 
         public HestiaWebServerInteractor(NetworkHandler networkHandler)
         {
@@ -21,7 +25,11 @@ namespace Hestia.backend
             set => networkHandler = value;
         }
 
-        // This method should be called before any other method in this class
+        /// <summary>
+        /// This methods posts an user on the web team server.
+        /// It should be called only once after the app launches.
+        /// If the user already exists it will always throw an ServerInteractionException.
+        /// </summary>
         public void PostUser()
         {
             string endpoint = strings.usersPath;
@@ -56,10 +64,28 @@ namespace Hestia.backend
             {
                 { "server_name", name },
                 { "server_address", address },
-                { "server_port", port }
+                { "server_port", port.ToString() }
             };            
             string endpoint = strings.serversPath;
             networkHandler.Post(payload, endpoint);
+        }
+
+        public void DeleteServer(HestiaServer server)
+        {
+            string endpoint = strings.serversPath + server.Id;
+            networkHandler.Delete(endpoint);
+        }
+
+        public void EditServer(HestiaServer server, string name, string address, int port)
+        {
+            JObject payload = new JObject
+            {
+                { "server_name", name },
+                { "server_address", address },
+                { "server_port", port.ToString() }
+            };
+            string endpoint = strings.serversPath + server.Id;
+            networkHandler.Put(payload, endpoint);
         }
     }
 }

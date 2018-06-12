@@ -29,7 +29,7 @@ namespace Hestia.UnitTests.backend.models.deserializers
                 ["updated_at"] = "dummyType",
                 ["user_id"] = "dummyId"
             };
-            networkHandler = new NetworkHandler("https://dummyAddress", 1000, "dummyToken");
+            networkHandler = new NetworkHandler("https://dummyAddress:1000", "dummyToken");
 
             Assert.IsNotNull(deserializer);
             Assert.IsNotNull(jsonServer);

@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Hestia.backend.models
 {
+    /// <summary>
+    /// This class represents the internal representation of the device on the client.
+    /// </summary>
     public class Device
     {
-        private string deviceId;
-        private string name;
-        private string type;
-        private List<Activator> activators;
-        private HestiaServerInteractor serverInteractor;
+        string deviceId;
+        string name;
+        string type;
+        List<Activator> activators;
+        HestiaServerInteractor serverInteractor;
 
         public string DeviceId
         {

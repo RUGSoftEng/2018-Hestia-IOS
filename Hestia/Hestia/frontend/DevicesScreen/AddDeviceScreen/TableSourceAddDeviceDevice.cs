@@ -9,6 +9,11 @@ using Hestia.frontend;
 
 namespace Hestia.DevicesScreen
 {
+    /// <summary>
+    /// This is the TableSource that defines the contents of the second screen that is displayed in 
+    /// the Add devices sequence of screen. One can select the type of device in this screen. 
+    /// See, <see cref="UITableViewControllerAddDeviceDevice"/>
+    /// </summary>
     public class TableSourceAddDeviceDevice: UITableViewSource
     {
         // The viewController to which the TableView connected to this Source lives in
@@ -18,7 +23,9 @@ namespace Hestia.DevicesScreen
         List<string> plugins;
         string collection;
 
-        // Constructor. Gets the device data and the ViewController
+        /// <summary>
+        /// Constructor. Gets the device data and the ViewController
+        /// </summary>
         public TableSourceAddDeviceDevice(List<string> plugins, string collection,
                     UITableViewControllerAddDeviceDevice owner)
         {
@@ -27,19 +34,27 @@ namespace Hestia.DevicesScreen
             this.collection = collection;
         }
 
-        // We have only one section with devices (thus far)
+
+        /// <summary>
+        /// We have only one section with devices
+        /// </summary>
+        /// <returns>Number of section</returns>
         public override nint NumberOfSections(UITableView tableView)
         {
             return int.Parse(Resources.strings.defaultNumberOfSections);
         }
 
-        // The number of devices in the list
+        /// <returns>Number of devices in list</returns>
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return plugins.Count;
         }
 
-        // Important method. Called to generate a cell to display
+
+        /// <summary>
+        /// Important method. Called to generate a cell to display
+        /// </summary>
+        /// <returns>The cell for the indexpath in the tableView</returns>
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
@@ -57,7 +72,9 @@ namespace Hestia.DevicesScreen
             return cell;
         }
 
-        // Pushes the properties window
+        /// <summary>
+        /// If a cell is tapped, the properties window is pushed
+        /// </summary>
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewControllerAddDeviceProperties addDeviceProperties = 
@@ -66,9 +83,8 @@ namespace Hestia.DevicesScreen
             if (addDeviceProperties != null)
             {
                 try
-                {
-                    PluginInfo requiredInfo = 
-                        Globals.ServerToAddDeviceTo.GetPluginInfo(collection, plugins[indexPath.Row]);
+                {   // Get the required inputfield that have to be filled in for this device
+                    PluginInfo requiredInfo = Globals.ServerToAddDeviceTo.GetPluginInfo(collection, plugins[indexPath.Row]);
                     addDeviceProperties.pluginInfo = requiredInfo;
                     owner.NavigationController.PushViewController(addDeviceProperties, true);
                 }
@@ -76,7 +92,7 @@ namespace Hestia.DevicesScreen
                 {
                     Console.WriteLine("Exception while getting required info");
                     Console.WriteLine(ex);
-                    WarningMessage message = new WarningMessage("Exception", "An exception occured on the server trying to get information for available plugins", owner);
+                    WarningMessage.Display("Exception", "An exception occured on the server trying to get information for available plugins", owner);
                 }
             }
         }

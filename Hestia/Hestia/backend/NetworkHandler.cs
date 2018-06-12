@@ -1,21 +1,21 @@
-﻿using Hestia.backend.exceptions;
+using Hestia.backend.exceptions;
 using Hestia.Resources;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Net;
-using System.Runtime.Serialization;
 
 namespace Hestia.backend
 {
+    /// <summary>
+    /// A class which handles interaction between front and back end.
+    /// </summary>
     public class NetworkHandler
     {
-        private string address; // address including connection method
-        private int port;
-        private bool hasPort;
-        private RestClient client;
-        private bool usesAuth;
-        private string accessToken; // auth0 access token
+        string address; // address including connection method and optionally a port
+        RestClient client;
+        readonly bool usesAuth;
+        readonly string accessToken; // auth0 access token
 
         public string Address
         {
@@ -26,39 +26,10 @@ namespace Hestia.backend
                 SetRestClient();
             }
         }
-        public int Port
-        {
-            get => port;
-            set
-            {
-                port = value;
-                SetRestClient();
-            }
-        }
-        public bool UsesAuth
-        {
-            get => usesAuth;
-        }
-        public bool HasPort
-        {
-            get => hasPort;
-        }
 
         public NetworkHandler(string address)
         {
             this.address = address;
-            this.hasPort = false;
-            this.usesAuth = false;
-
-            SetRestClient();
-            TrustAllCerts();
-        }
-
-        public NetworkHandler(string address, int port)
-        {
-            this.address = address;
-            this.port = port;
-            this.hasPort = true;
             this.usesAuth = false;
 
             SetRestClient();
@@ -68,7 +39,6 @@ namespace Hestia.backend
         public NetworkHandler(string address, string accessToken)
         {
             this.address = address;
-            this.hasPort = false;
             this.usesAuth = true;
             this.accessToken = accessToken;
 
@@ -76,19 +46,11 @@ namespace Hestia.backend
             TrustAllCerts();
         }
 
-        public NetworkHandler(string address, int port, string accessToken)
-        {
-            this.address = address;
-            this.port = port;
-            this.hasPort = true;
-            this.usesAuth = true;
-            this.accessToken = accessToken;
-
-            SetRestClient();
-
-            TrustAllCerts();
-        }
-
+        /// <summary>
+        /// Performs a http GET request given an endpoint.
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns>The response in JToken form</returns>
         public virtual JToken Get(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.GET);
@@ -97,6 +59,11 @@ namespace Hestia.backend
             return jsonResponse;
         }
 
+        /// <summary>
+        /// Performs a http POST request given a json payload and an endpoint.
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns>The response in JToken form</returns>
         public virtual JToken Post(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.POST);
@@ -107,7 +74,12 @@ namespace Hestia.backend
 
             return jsonResponse;
         }
-        
+
+        /// <summary>
+        /// Performs a http DELETE request given an endpoint.
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns>The response in JToken form</returns>
         public virtual JToken Delete(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.DELETE);
@@ -116,6 +88,11 @@ namespace Hestia.backend
             return jsonResponse;
         }
 
+        /// <summary>
+        /// Performs a http PUT request given a json payload and an endpoint.
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns>The response in JToken form</returns>
         public virtual JToken Put(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.PUT);
@@ -127,7 +104,12 @@ namespace Hestia.backend
             return jsonResponse;
         }
 
-        private JToken ExecuteRequest(RestRequest request)
+        /// <summary>
+        /// This method sets a request timeout and then executes a rest request. If the response is negative it throws an error else if returns the json response.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>The response in JToken form</returns>
+        JToken ExecuteRequest(RestRequest request)
         {
             request.Timeout = Int32.Parse(strings.requestTimeout);
 
@@ -155,52 +137,39 @@ namespace Hestia.backend
                     if (responseJson["message"] != null)
                     {
                         throw new ServerInteractionException(responseJson["message"].ToString());
-                    } else if (responseJson["error"] != null)
+                    }
+                    if (responseJson["error"] != null)
                     {
                         throw new ServerInteractionException(responseJson["error"].ToString());
-                    } else
-                    {
-                        throw new ServerInteractionException();
                     }
+                    throw new ServerInteractionException();
                 }
-                else
-                {
-                    throw new ServerInteractionException(response.ErrorMessage, response.ErrorException);
-                }
+                throw new ServerInteractionException(response.ErrorMessage, response.ErrorException);
             }
 
             return responseJson;
         }
 
-        private void SetRestClient()
+        void SetRestClient()
         {
             Uri baseUrl = null;
 
-            if (hasPort)
-            {
-                baseUrl = new Uri(address + ":" + port + "/");
-            } else
-            {
-                baseUrl = new Uri(address + "/");
-            }
+            baseUrl = new Uri(address + "/");
 
             client = new RestClient(baseUrl);
         }
 
-        private void TrustAllCerts()
+        /// <summary>
+        /// This method adds a certificate validation handler. Returning true will allow ignoring ssl validation errors.
+        /// </summary>
+        void TrustAllCerts()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
         }
 
         public override string ToString()
         {
-            if (hasPort)
-            {
-                return address + ":" + port.ToString();
-            } else
-            {
-                return address;
-            }
+            return address;
         }
     }
 }

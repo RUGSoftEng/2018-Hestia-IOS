@@ -49,7 +49,7 @@ namespace Hestia.DevicesScreen.EditDevice
             saveName = new UIBarButtonItem(UIBarButtonSystemItem.Save, (s, e) => {
                 if(changeNameField.Text.Length <= 0 )
                 {
-                    new WarningMessage("Error", "You have to give a name for the device.", this);  
+                    WarningMessage.Display("Error", "You have to give a name for the device.", this);  
                 }
                 else
                 {
@@ -67,7 +67,7 @@ namespace Hestia.DevicesScreen.EditDevice
                     {
                         Console.WriteLine("Exception while changing device name");
                         Console.WriteLine(ex);
-                        new WarningMessage("Exception", "An exception occurred on the server when changing the name of the device", this);  
+                        WarningMessage.Display("Exception", "An exception occurred on the server when changing the name of the device", this);  
                     } 
                 }
             });

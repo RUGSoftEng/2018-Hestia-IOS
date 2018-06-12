@@ -1,10 +1,12 @@
-﻿using System.Threading;
-using Auth0.OidcClient;
+﻿using Auth0.OidcClient;
 using UIKit;
 
 namespace Hestia.backend.authentication
 {
-    public class Auth0Connector
+    /// <summary>
+    /// This class is used to create an auth0 authenticator client.
+    /// </summary>
+    public static class Auth0Connector
     {
         public static Auth0Client CreateAuthClient(UIViewController uIViewController)
         {

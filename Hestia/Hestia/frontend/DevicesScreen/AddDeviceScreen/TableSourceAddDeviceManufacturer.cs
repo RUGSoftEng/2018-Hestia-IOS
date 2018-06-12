@@ -6,6 +6,11 @@ using System.Collections;
 
 namespace Hestia.DevicesScreen
 {
+    /// <summary>
+    /// This is the TableSource that defines the contents of the first screen that is displayed in 
+    /// the Add devices sequence of screen. One can select the manufacturer of the device in this screen. 
+    /// See, <see cref="UITableViewControllerAddDevice"/>
+    /// </summary>
     public class TableSourceAddDeviceManufacturer : UITableViewSource
     {
         // The viewController to which the TableView connected to this Source lives in
@@ -17,7 +22,9 @@ namespace Hestia.DevicesScreen
         // The list with collections, set in the constructor. (Retrieved from server)
         List<string> collections;
 
-        // Constructor. Gets the device data and the ViewController
+        /// <summary>
+        /// Constructor. Takes the device data and the ViewController
+        /// </summary>
         public TableSourceAddDeviceManufacturer(List<string> collections,
               Hashtable plugins, UITableViewControllerAddDevice owner)
         {
@@ -26,19 +33,23 @@ namespace Hestia.DevicesScreen
             this.collections = collections;
         }
 
-        // We have only one section with manufacturers
+        /// <summary>
+        /// We have only one section with manufacturers
+        /// </summary>
         public override nint NumberOfSections(UITableView tableView)
         {
             return int.Parse(Resources.strings.defaultNumberOfSections);
         }
 
-        // The number of manufacturers in the list
+        /// <returns>The number of manufacturers in the list</returns>
         public override nint RowsInSection(UITableView tableview, nint section)
         {
             return collections.Count;
         }
 
-        // Important method. Called to generate a cell to display
+        /// <summary>
+        /// Called to generate a cell to display
+        /// </summary>
         public override UITableViewCell GetCell(UITableView tableView, NSIndexPath indexPath)
         {
             // request a recycled cell to save memory
@@ -56,13 +67,13 @@ namespace Hestia.DevicesScreen
             return cell;
         }
 
-
-        // Touch on row should lead to next screen with device types
+        /// <summary>
+        /// Touch on row should lead to next screen with device types
+        /// </summary>
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewControllerAddDeviceDevice addDeviceType =
-                owner.Storyboard.InstantiateViewController(Resources.strings.viewControllerAddDevice) 
-                    as UITableViewControllerAddDeviceDevice;
+                owner.Storyboard.InstantiateViewController(Resources.strings.viewControllerAddDevice)  as UITableViewControllerAddDeviceDevice;
             if (addDeviceType != null)
             {
                 addDeviceType.collection = collections[indexPath.Row]; 
