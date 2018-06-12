@@ -13,18 +13,14 @@ namespace Hestia.Backend
     public class HestiaServerInteractor
     {
         NetworkHandler networkHandler;
-        bool isRemoteServer;
-        string serverId; // necessary for communication with hestia server through web team server.
-        string hestiaWebEndpoint; // web team server endpoint
+        readonly bool isRemoteServer;
+        readonly string serverId; // necessary for communication with hestia server through web team server.
+        readonly string hestiaWebEndpoint; // web team server endpoint
 
         public NetworkHandler NetworkHandler
         {
             get => networkHandler;
             set => networkHandler = value;
-        }
-        public bool IsRemoteServer
-        {
-            get => isRemoteServer;
         }
 
         public HestiaServerInteractor(NetworkHandler networkHandler)
