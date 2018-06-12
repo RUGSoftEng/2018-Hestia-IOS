@@ -1,16 +1,13 @@
-﻿using System;
-using UIKit;
-
-using CoreGraphics;
-using Hestia.Resources;
-using System.Collections.Generic;
-using Hestia.Frontend.Auth0.ServerSelectScreen;
-using Hestia.Frontend.Resources;
-using Hestia.Frontend.SettingsScreen;
+﻿using CoreGraphics;
 using Hestia.Backend;
 using Hestia.Backend.Exceptions;
-using Hestia.Frontend;
 using Hestia.Backend.Models;
+using Hestia.Frontend.Resources;
+using Hestia.Frontend.SettingsScreen;
+using Hestia.Resources;
+using System;
+using System.Collections.Generic;
+using UIKit;
 
 namespace Hestia.Frontend.Auth0.ServerSelectScreen
 {

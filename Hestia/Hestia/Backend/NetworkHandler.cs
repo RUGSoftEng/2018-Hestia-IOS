@@ -1,6 +1,6 @@
 using Hestia.Backend.Exceptions;
-using Hestia.Resources;
 using Hestia.Backend.Utils;
+using Hestia.Resources;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;

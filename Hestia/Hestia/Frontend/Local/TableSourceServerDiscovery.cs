@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using UIKit;
-using Foundation;
-
-
-using System.Drawing;
-using System.Collections;
-using Hestia.Backend;
-using Hestia.Backend.Exceptions;
-using Hestia.Backend.Models;
+﻿using Foundation;
 using Hestia.Resources;
+using System;
+using UIKit;
 
 namespace Hestia.Frontend.Local
 {

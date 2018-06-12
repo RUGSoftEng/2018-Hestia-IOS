@@ -1,16 +1,16 @@
-﻿using Foundation;
-using System;
-using System.Collections.Generic;
-using UIKit;
-using Hestia.Resources;
-using Auth0.OidcClient;
-using System.Threading.Tasks;
-using IdentityModel.OidcClient;
-using Hestia.Backend.Authentication;
-using Hestia.Frontend.Resources;
+﻿using Auth0.OidcClient;
+using Foundation;
 using Hestia.Backend;
+using Hestia.Backend.Authentication;
 using Hestia.Backend.Exceptions;
 using Hestia.Backend.Models;
+using Hestia.Frontend.Resources;
+using Hestia.Resources;
+using IdentityModel.OidcClient;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using UIKit;
 
 namespace Hestia.Frontend.EntryScreen
 {

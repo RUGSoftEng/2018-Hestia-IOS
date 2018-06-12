@@ -1,9 +1,9 @@
-using System;
-using UIKit;
 using CoreGraphics;
-using System.Text.RegularExpressions;
-using Hestia.Frontend.Resources;
 using Hestia.Backend.Exceptions;
+using Hestia.Frontend.Resources;
+using System;
+using System.Text.RegularExpressions;
+using UIKit;
 
 namespace Hestia.Frontend.Auth0
 {

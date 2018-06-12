@@ -1,9 +1,9 @@
+using Foundation;
+using Hestia.Backend.Exceptions;
+using Hestia.Frontend.Resources;
+using Hestia.Resources;
 using System;
 using UIKit;
-using Foundation;
-using Hestia.Resources;
-using Hestia.Frontend.Resources;
-using Hestia.Backend.Exceptions;
 
 namespace Hestia.Frontend.Auth0.ServerSelectScreen
 {

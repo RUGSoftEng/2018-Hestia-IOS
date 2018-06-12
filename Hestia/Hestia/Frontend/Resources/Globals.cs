@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
 using Foundation;
-using UIKit;
 using Hestia.Backend;
 using Hestia.Backend.Models;
 using Hestia.Resources;
+using System;
+using System.Collections.Generic;
+using UIKit;
 
 namespace Hestia.Frontend.Resources
 {

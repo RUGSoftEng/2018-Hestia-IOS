@@ -1,6 +1,6 @@
+using Hestia.Backend.Models;
 using System;
 using UIKit;
-using Hestia.Backend.Models;
 
 namespace Hestia.Frontend.DevicesScreen.ActivatorScreen
 {

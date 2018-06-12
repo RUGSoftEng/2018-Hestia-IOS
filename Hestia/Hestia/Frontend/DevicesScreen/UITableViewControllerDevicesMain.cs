@@ -1,18 +1,15 @@
 using CoreGraphics;
+using Hestia.Backend;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend.Models;
+using Hestia.Backend.SpeechRecognition;
+using Hestia.Frontend.DevicesScreen.EditDevice;
+using Hestia.Frontend.Resources;
+using Hestia.Frontend.SettingsScreen;
 using Hestia.Resources;
-using UIKit;
 using System;
 using System.Collections.Generic;
-using Foundation;
-using Hestia.Backend.SpeechRecognition;
-using Hestia.Backend.Models;
-using Hestia.Frontend.DevicesScreen;
-using Hestia.Frontend.Resources;
-using Hestia.Backend.Exceptions;
-using Hestia.Backend;
-using Hestia.Frontend;
-using Hestia.Frontend.SettingsScreen;
-using Hestia.Frontend.DevicesScreen.EditDevice;
+using UIKit;
 
 namespace Hestia.Frontend.DevicesScreen
 {

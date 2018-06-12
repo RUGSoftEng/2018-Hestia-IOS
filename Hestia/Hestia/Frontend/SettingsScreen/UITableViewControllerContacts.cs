@@ -1,7 +1,7 @@
+using Hestia.Resources;
+using MessageUI;
 using System;
 using UIKit;
-using MessageUI;
-using Hestia.Resources;
 
 namespace Hestia.Frontend.SettingsScreen
 {

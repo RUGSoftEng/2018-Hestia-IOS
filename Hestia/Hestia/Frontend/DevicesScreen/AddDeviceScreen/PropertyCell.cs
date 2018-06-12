@@ -1,6 +1,6 @@
-﻿using UIKit;
+﻿using CoreGraphics;
 using Foundation;
-using CoreGraphics;
+using UIKit;
 
 namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {
