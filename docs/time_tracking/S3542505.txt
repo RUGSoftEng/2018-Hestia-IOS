@@ -229,3 +229,8 @@ Setting up trello and slack
           05/30.  Still Doing that
           06/00.  Doing the time tracking file
 	  06/30.  Upload files on Git
+
+12.06.    10/30.  Edit architectural document ( justifying text and other small improvements)
+          11/00.  Still doing this
+          11/30.  Adding Contact Information page in Architectural Doc
+          12/00.  Small other modifications in the doc
