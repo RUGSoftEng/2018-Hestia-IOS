@@ -277,6 +277,7 @@ namespace Hestia.DevicesScreen
                     NavigationController.PushViewController(uITableViewControllerGlobalSettingsScreen, true);
                 }
             }
+            sender.Enabled = false;
         }
 
         /// <summary>
