@@ -250,3 +250,31 @@ Resolving merge conflicts
 Resolving merge conflicts
 Updating backend architecture document
 Updating backend architecture document
+Moving port to address for cleaner code
+Fixing backend unit tests/adding better exception printing
+Fixing backend unit tests/adding better exception printing
+Fixing backend unit tests/adding better exception printing
+Fixing backend unit tests/adding better exception printing
+Finding and fixing bug in back end AddServer method
+Adding back end methods to delete and edit servers + unit tests
+Reviewing pull requests
+Refactoring speech recognition code and adding removing device via speech functionality
+Refactoring speech recognition code and adding removing device via speech functionality
+Refactoring speech recognition code and adding removing device via speech functionality
+Refactoring speech recognition code and adding removing device via speech functionality
+Refactoring speech recognition code and adding removing device via speech functionality
+Refactoring speech recognition code and adding removing device via speech functionality
+Adding in-code documentation/comments for back end code
+Adding in-code documentation/comments for back end code
+Adding in-code documentation/comments for back end code
+Adding in-code documentation/comments for back end code
+Fixing namespaces
+Fixing namespaces
+Fixing namespaces
+Fixing namespaces
+Fixing namespaces
+Fixing namespaces
+Resolving merge conflicts
+Finishing up project
+Finishing up project
+Finishing up project
