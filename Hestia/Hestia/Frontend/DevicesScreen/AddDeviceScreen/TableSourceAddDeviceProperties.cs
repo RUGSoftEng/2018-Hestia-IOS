@@ -10,6 +10,8 @@ namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
     /// <summary>
     /// This is the TableSource that defines the contents of the third and final screen that is displayed in 
     /// the Add devices sequence of screen. One can enter the properties of the device in this screen. 
+    /// This TableSource has dynamic contents, that means that the required info
+    /// for each device will be different, it depends on the type of device.
     /// See, <see cref="UITableViewControllerAddDeviceProperties"/>
     /// </summary>
     public class TableSourceAddDeviceProperties : UITableViewSource

@@ -5,8 +5,13 @@ using System;
 using System.Text.RegularExpressions;
 using UIKit;
 
+
 namespace Hestia.Frontend.Auth0
 {
+	/// <summary>
+	/// This view controller belongs to the server selection view. The user can create
+	/// a new server writing its name, address and port.
+	/// </summary>
     public partial class AddServerViewController : UIViewController
     {
         UIBarButtonItem done;

@@ -7,6 +7,11 @@ using UIKit;
 
 namespace Hestia.Frontend.Auth0.ServerSelectScreen
 {
+    /// <summary>
+    /// This class define how the server list should be displayed.
+    /// Furthermore, this method add a new row showing that we can
+    /// add a new server.
+    /// </summary>
     public class TableSourceServerList : UITableViewSource
     {
         ViewControllerServerList owner;
@@ -26,7 +31,10 @@ namespace Hestia.Frontend.Auth0.ServerSelectScreen
             return Globals.Auth0Servers.Count;
         }
 
-        // Sets the checkmarks
+        /// <summary>
+        /// This method allows the user to select and deselect the server that he wants to show
+        /// in the main screen.
+        /// </summary>
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         {
             UITableViewCell cell = tableView.CellAt(indexPath);

@@ -7,6 +7,7 @@ namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
     /// <summary>
     /// This is the cell that is used in the Add devices screen, where one has to enter the information
     /// for a new device. It contains an input textfield.
+    /// See <see cref="TableSourceAddDeviceProperties"/>
     /// </summary>
     public class PropertyCell : UITableViewCell
     {

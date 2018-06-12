@@ -7,6 +7,10 @@ using UIKit;
 
 namespace Hestia.Frontend.DevicesScreen.EditDevice
 {
+    /// <summary>
+    /// This view controller makes us able to edit a device changing its name.
+    /// Besides, it does not allows a device with no name.
+    /// </summary>
     public class UIViewControllerEditDeviceName : UIViewController
     {
         UITableViewControllerDevicesMain owner;

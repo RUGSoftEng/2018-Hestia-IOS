@@ -3,23 +3,29 @@ Date Hour Activity
         15:30   Meeting with the group in order to discuss the work that each one is going to do.
         16:00   Meeting with the group in order to discuss the work that each one is going to do.
         16:30   Meeting with the group in order to discuss the work that each one is going to do.
-9/3/18  12:00   Setting up all the virtual studio envioremnt and the installation of Xamarin.
-        12:30   Setting up all the virtual studio envioremnt and the installation of Xamarin.
+
+9/3/18  12:00   Setting up all the virtual studio enviorement and the installation of Xamarin.
+        12:30   Setting up all the virtual studio enviorement and the installation of Xamarin.
         16:00   Reading all the requirement document and also read old documents.
         16:30   Reading all the requirement document and also read old documents.
         17:00   Looking for information about how to run iOS app in visual studio on Windows.
         17:30   Looking for information about how to run iOS app in visual studio on Windows.
         18:00   Looking for information about how to run iOS app in visual studio on Windows.
+
 11/3/18 18:00   Setting up a virtual machine with MacOS in order to have a Mac server to connect virtual studio with.
         18:30   Setting up a virtual machine with MacOS in order to have a Mac server to connect virtual studio with.
         19:00   Setting up a virtual machine with MacOS in order to have a Mac server to connect virtual studio with.
         19:30   Setting up a virtual machine with MacOS in order to have a Mac server to connect virtual studio with.
+
 13/3/18 19:00   Updating requirement document with Feiko's notes.
         19:30   Talk with group on Slack to check the document.
-        20:00   Modifing little mistakes.
+        20:00   Modifying little mistakes.
+
 14/3/18 15:00   Meeting with the group and discuss how the front end should be.
-21/3/18 15:00 	Meeting with the gruop to define the tasks to do about the front end.
-	15:30 	Meeting with the gruop to define the tasks to do about the front end.
+
+21/3/18 15:00 	Meeting with the group to define the tasks to do about the front end.
+	15:30 	Meeting with the group to define the tasks to do about the front end.
+
 22/3/18	15:30	Setting up virtual studio in order to simulate an iPhone.
 	16:00	Setting up virtual studio in order to simulate an iPhone.
 	16:30	Setting up virtual studio in order to simulate an iPhone.
@@ -29,6 +35,7 @@ Date Hour Activity
 	18:30	Getting started with C# and Xamarin.Forms.
 	19:00	Starting setting screen for each device.
 	19:30	Starting setting screen for each device.
+
 23/3/18	11:00	Creating the settings device's screen for each device.
 	11:30	Creating the settings device's screen for each device.
 	12:00	Creating the settings device's screen for each device.
@@ -37,6 +44,7 @@ Date Hour Activity
 	17:30	Creating the settings device's screen for each device.
 	18:00	Creating the settings device's screen for each device.
 	18:30	Creating the settings device's screen for each device.
+
 24/3/18	11:00	Adding edit screen of each device to the project.
 	11:30	Adding edit screen of each device to the project.
 	12:00	Adding edit screen of each device to the project.
@@ -135,3 +143,25 @@ Date Hour Activity
 23/5/18 11:00 Fixing regex and namespaces for the front end.
 	11:30 Fixing regex and namespaces for the front end.
 	12:00 Fixing regex and namespaces for the front end.
+
+31/5/18 9:00 Meeting with the client.
+	9:30 Meeting with the client.
+	10:00 Meeting with the group to decide what to do in the last sprint.
+	10:30 Meeting with the group to decide what to do in the last sprint.
+	11:00 Working on add server screen.
+
+1/6/18 9:00 Working on add server screen.
+	9:30 Working on add server screen.
+	10:00 Working on add server screen.
+	10:30 Working on add server screen.
+	11:00 Working on add server screen.
+
+4/6/18 9:00 Working on add server screen and trying to fix bugs.
+	9:30 Working on add server screen and trying to fix bugs.
+	10:00 Working on add server screen and trying to fix bugs.
+	10:30 Working on add server screen and trying to fix bugs.
+	11:00 Working on add server screen and trying to fix bugs.
+
+6/6/18 9:00 Adding comments to all the code done.
+	9:30 Adding comments to all the code done.
+	10:00 Adding comments to all the code done.
