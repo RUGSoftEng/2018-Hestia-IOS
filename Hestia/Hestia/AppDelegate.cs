@@ -76,11 +76,12 @@ namespace Hestia
         /// </summary>
         public void SetGlobalsToDefaultsGlobalLogin()
         {
-            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.hestiaWebServerAddress, defaultAuth0AccessToken));
+            Globals.HestiaWebserverNetworkHandler = new NetworkHandler(strings.hestiaWebServerAddress, defaultAuth0AccessToken);
+            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(Globals.HestiaWebserverNetworkHandler);
 
             try
-            {   
-                hestiaWebServerInteractor.PostUser(); 
+            {
+                Globals.HestiaWebServerInteractor.PostUser(); 
             }
             catch (ServerInteractionException ex)
             {
@@ -91,7 +92,7 @@ namespace Hestia
             Globals.Auth0Servers = new System.Collections.Generic.List<backend.models.HestiaServer>();
             try
             {
-                Globals.Auth0Servers = hestiaWebServerInteractor.GetServers();
+                Globals.Auth0Servers = Globals.HestiaWebServerInteractor.GetServers();
             }
             catch(ServerInteractionException ex)
             {
@@ -141,10 +142,10 @@ namespace Hestia
                     Window.RootViewController = devices2Storyboard.InstantiateInitialViewController(); ;
                 }
             }
-            else if (defaultLocal == bool.FalseString)
+
+            else if (defaultLocal == bool.FalseString && defaultAuth0AccessToken != null)
             {
                 Globals.LocalLogin = false;
-
                 Window.RootViewController = devices2Storyboard.InstantiateViewController(strings.navigationControllerServerSelectList); ;
                 // Make key and visible to be able to present possibly Alert window
                 Window.MakeKeyAndVisible();

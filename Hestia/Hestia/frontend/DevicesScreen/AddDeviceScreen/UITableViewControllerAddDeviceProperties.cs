@@ -57,7 +57,6 @@ namespace Hestia
             // Save button
             UIBarButtonItem save = new UIBarButtonItem(UIBarButtonSystemItem.Save, (sender, eventArguments) => {
                 SaveFields();
-                Console.WriteLine("Clicked save button");
                 if (matchesIP != null)
                 {
                     if (matchesName.Count <= 0 && matchesIP.Count <= 0)
@@ -99,7 +98,6 @@ namespace Hestia
             // Try to add device to server
             try
             {
-                Console.WriteLine("Server to add device to" + Globals.ServerToAddDeviceTo);
                 Globals.ServerToAddDeviceTo.AddDevice(pluginInfo);
                 SegueToDevicesMain();
             }

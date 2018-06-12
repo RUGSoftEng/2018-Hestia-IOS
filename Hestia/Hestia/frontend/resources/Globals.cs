@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Foundation;
 using UIKit;
@@ -24,13 +24,14 @@ namespace Hestia.DevicesScreen.resources
         // Variables for global server
         public static HestiaServerInteractor ServerToAddDeviceTo { get; set; }
         public static List<HestiaServer> Auth0Servers { get; set; }
-
+        public static NetworkHandler HestiaWebserverNetworkHandler { get; set; }
+        public static HestiaWebServerInteractor HestiaWebServerInteractor { get; set; }
         public static List<HestiaServerInteractor> GetInteractorsOfSelectedServers()
         {
             List<HestiaServerInteractor> serverInteractors = new List<HestiaServerInteractor>();
-            foreach(HestiaServer auth0server in Auth0Servers)
+            foreach (HestiaServer auth0server in Auth0Servers)
             {
-                if(auth0server.Selected)
+                if (auth0server.Selected)
                 {
                     serverInteractors.Add(auth0server.Interactor);
                 }

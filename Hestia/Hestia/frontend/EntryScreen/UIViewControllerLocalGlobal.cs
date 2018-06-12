@@ -169,8 +169,8 @@ namespace Hestia
             userDefaults.SetString(accessToken, strings.defaultsAccessTokenHestia);
 
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(strings.hestiaWebServerAddress, accessToken);
-            CreateServerInteractorAndSegue(networkHandler);
+            Globals.HestiaWebserverNetworkHandler = new NetworkHandler(strings.hestiaWebServerAddress, accessToken);
+            CreateServerInteractorAndSegue(Globals.HestiaWebserverNetworkHandler);
         }
 
         /// <summary>
@@ -179,10 +179,10 @@ namespace Hestia
         /// </summary>
         void CreateServerInteractorAndSegue(NetworkHandler networkHandler)
         {
-            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(Globals.HestiaWebserverNetworkHandler);
             try
             {
-                hestiaWebServerInteractor.PostUser();                
+                Globals.HestiaWebServerInteractor.PostUser();                
             }
             catch (ServerInteractionException ex)
             {
@@ -192,7 +192,7 @@ namespace Hestia
             Globals.Auth0Servers = new List<HestiaServer>();
             try
             {
-                List<HestiaServer> servers = hestiaWebServerInteractor.GetServers();
+                List<HestiaServer> servers = Globals.HestiaWebServerInteractor.GetServers();
                 Globals.Auth0Servers = servers;
                 PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
             }

@@ -1,8 +1,10 @@
 ﻿using System;
 using UIKit;
 using Foundation;
-
 using Hestia.DevicesScreen.resources;
+using Hestia.backend.models;
+using Hestia.backend.exceptions;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -48,7 +50,6 @@ namespace Hestia
             }
 
             cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].Name;
-
             return cell;
         }
 
@@ -59,14 +60,20 @@ namespace Hestia
         /// </summary>
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         { 
+            UITableViewCell cell = tableView.CellAt(indexPath);
+
             Globals.ServerToAddDeviceTo = Globals.GetInteractorsOfSelectedServers()[indexPath.Row];
             UITableViewControllerAddDevice addDevice =
-                owner.Storyboard.InstantiateViewController(Resources.strings.AddManufacturerViewController)
-                    as UITableViewControllerAddDevice;
+            owner.Storyboard.InstantiateViewController(Resources.strings.AddManufacturerViewController)
+                as UITableViewControllerAddDevice;
             if (addDevice != null)
             {
                 owner.NavigationController.PushViewController(addDevice, true);
             }
+
+            tableView.DeselectRow(indexPath,true);
         }
     }
 }
+
+

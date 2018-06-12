@@ -387,4 +387,10 @@
   <data name="navigationControllerServerSelectList" xml:space="preserve">
     <value>navigationServerList</value>
   </data>
+  <data name="arrowRight" xml:space="preserve">
+    <value>ArrowRight</value>
+  </data>
+  <data name="addServerViewController" xml:space="preserve">
+    <value>AddServer</value>
+  </data>
 </root>
