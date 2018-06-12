@@ -1,10 +1,9 @@
-﻿using System;
-using UIKit;
-using CoreGraphics;
-
-using Hestia.Backend.Models;
+﻿using CoreGraphics;
 using Hestia.Backend.Exceptions;
+using Hestia.Backend.Models;
 using Hestia.Frontend.Resources;
+using System;
+using UIKit;
 
 namespace Hestia.Frontend.DevicesScreen.EditDevice
 {

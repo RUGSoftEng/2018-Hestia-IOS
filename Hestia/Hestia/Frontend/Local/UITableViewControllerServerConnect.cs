@@ -1,12 +1,11 @@
 ﻿using Foundation;
-using System;
-using UIKit;
-
 using Hestia.Backend;
 using Hestia.Backend.Utils;
-using Hestia.Resources;
 using Hestia.Frontend.Resources;
 using Hestia.Frontend.SettingsScreen;
+using Hestia.Resources;
+using System;
+using UIKit;
 
 namespace Hestia.Frontend.Local
 {

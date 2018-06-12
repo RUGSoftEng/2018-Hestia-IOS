@@ -1,7 +1,7 @@
-using System;
-using UIKit;
 using Foundation;
 using Hestia.Backend.Utils.ServerDiscovery;
+using System;
+using UIKit;
 
 namespace Hestia.Frontend.Local
 {

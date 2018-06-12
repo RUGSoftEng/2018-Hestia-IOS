@@ -1,9 +1,9 @@
-﻿using System;
-using UIKit;
-using Foundation;
-using Hestia.Resources;
-using Hestia.Frontend.Resources;
+﻿using Foundation;
 using Hestia.Frontend.DevicesScreen.AddDeviceScreen;
+using Hestia.Frontend.Resources;
+using Hestia.Resources;
+using System;
+using UIKit;
 
 namespace Hestia.Frontend.Auth0.ChooseServerScreen
 

@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using UIKit;
-using Foundation;
-
+﻿using Foundation;
 using Hestia.Backend.Exceptions;
 using Hestia.Backend.Models;
-using Hestia.Resources;
-using System.Diagnostics.Contracts;
 using Hestia.Frontend.DevicesScreen.ActivatorScreen;
 using Hestia.Frontend.DevicesScreen.EditDevice;
 using Hestia.Frontend.Resources;
+using Hestia.Resources;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using UIKit;
 
 namespace Hestia.Frontend.DevicesScreen
 {   /// <summary>

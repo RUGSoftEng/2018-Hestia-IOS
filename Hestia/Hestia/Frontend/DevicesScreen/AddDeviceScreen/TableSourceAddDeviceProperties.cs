@@ -1,9 +1,9 @@
-﻿using System;
-using UIKit;
-using Foundation;
-using System.Collections;
+﻿using Foundation;
 using Hestia.Backend.Models;
 using Hestia.Resources;
+using System;
+using System.Collections;
+using UIKit;
 
 namespace Hestia.Frontend.DevicesScreen.AddDeviceScreen
 {

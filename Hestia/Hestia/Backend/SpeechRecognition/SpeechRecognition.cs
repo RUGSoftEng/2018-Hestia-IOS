@@ -1,11 +1,9 @@
 ﻿using AVFoundation;
 using Foundation;
-using Plugin.SimpleAudioPlayer;
-using UIKit;
 using Hestia.Resources;
-using Hestia.Backend.Models;
-using System;
+using Plugin.SimpleAudioPlayer;
 using Speech;
+using System;
 
 namespace Hestia.Backend.SpeechRecognition
 {
