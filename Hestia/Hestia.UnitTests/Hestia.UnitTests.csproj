@@ -64,21 +64,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="backend\exceptions\ServerInteractionExceptionTests.cs" />
-    <Compile Include="backend\HestiaWebServerInteractorTests.cs" />
-    <Compile Include="backend\models\ActivatorStateTests.cs" />
-    <Compile Include="backend\models\ActivatorTests.cs" />
-    <Compile Include="backend\models\deserializers\HestiaServerDeserializerTests.cs" />
-    <Compile Include="backend\models\DeviceTests.cs" />
-    <Compile Include="backend\models\PluginInfoTests.cs" />
-    <Compile Include="backend\HestiaServerInteractorTests.cs" />
-    <Compile Include="backend\models\deserializers\ActivatorDeserializerTests.cs" />
-    <Compile Include="backend\models\deserializers\DeviceDeserializerTests.cs" />
-    <Compile Include="backend\NetworkHandlerTests.cs" />
-    <Compile Include="backend\utils\server_discovery\AutoServerDiscoveryTests.cs" />
-    <Compile Include="backend\models\HestiaServerTests.cs" />
-    <Compile Include="backend\utils\JsonValidatorTests.cs" />
-    <Compile Include="backend\utils\PingServerTests.cs" />
+    <Compile Include="Backend\Exceptions\ServerInteractionExceptionTests.cs" />
+    <Compile Include="Backend\HestiaWebServerInteractorTests.cs" />
+    <Compile Include="Backend\Models\ActivatorStateTests.cs" />
+    <Compile Include="Backend\Models\ActivatorTests.cs" />
+    <Compile Include="Backend\Models\Deserializers\HestiaServerDeserializerTests.cs" />
+    <Compile Include="Backend\Models\DeviceTests.cs" />
+    <Compile Include="Backend\Models\PluginInfoTests.cs" />
+    <Compile Include="Backend\HestiaServerInteractorTests.cs" />
+    <Compile Include="Backend\Models\Deserializers\ActivatorDeserializerTests.cs" />
+    <Compile Include="Backend\Models\Deserializers\DeviceDeserializerTests.cs" />
+    <Compile Include="Backend\NetworkHandlerTests.cs" />
+    <Compile Include="Backend\Utils\ServerDiscovery\AutoServerDiscoveryTests.cs" />
+    <Compile Include="Backend\Models\HestiaServerTests.cs" />
+    <Compile Include="Backend\Utils\JsonValidatorTests.cs" />
+    <Compile Include="Backend\Utils\PingServerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

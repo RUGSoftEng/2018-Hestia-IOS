@@ -1,15 +1,17 @@
 using Foundation;
 using UIKit;
-using Hestia.DevicesScreen;
-using Hestia.DevicesScreen.resources;
-using Hestia.backend.utils;
-using Hestia.backend;
+using Hestia.Backend.Utils;
+using Hestia.Backend;
 using Auth0.OidcClient;
 using System;
 using Hestia.Resources;
-using Hestia.backend.exceptions;
-using Hestia.backend.speech_recognition;
-using Hestia.frontend;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend.SpeechRecognition;
+using Hestia.Backend.Models;
+using System.Collections.Generic;
+using Hestia.Frontend.Resources;
+using Hestia.Frontend;
+using Hestia.Frontend.EntryScreen;
 
 namespace Hestia
 {
@@ -89,7 +91,7 @@ namespace Hestia
                 Console.WriteLine(ex);
             }
             // Create an empty list in case no servers can be fetched from the Webserver, to prevent NullReferenceException in Devices main screen
-            Globals.Auth0Servers = new System.Collections.Generic.List<backend.models.HestiaServer>();
+            Globals.Auth0Servers = new List<HestiaServer>();
             try
             {
                 Globals.Auth0Servers = Globals.HestiaWebServerInteractor.GetServers();
