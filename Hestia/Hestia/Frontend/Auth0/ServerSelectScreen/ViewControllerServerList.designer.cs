@@ -9,7 +9,7 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Hestia
+namespace Hestia.Frontend.Auth0.ServerSelectScreen
 {
     [Register ("ViewControllerServerList")]
     partial class ViewControllerServerList

@@ -3,12 +3,17 @@ using System.Collections.Generic;
 
 namespace Hestia.Backend.Models.Deserializers
 {
-    /**
-     * Helper class that deserializes a jToken into a Device object
-     */
+    /// <summary>
+    /// Class for deserializing a json object into a Device object or List of Device objects.
+    /// </summary>
     public class DeviceDeserializer
     {
-        // deserialize a single device from a JToken
+        /// <summary>
+        /// Deserializes a json object into a Device object.
+        /// </summary>
+        /// <param name="jT"></param>
+        /// <param name="serverInteractor"></param>
+        /// <returns>A Device Object</returns>
         public Device DeserializeDevice(JToken jT, HestiaServerInteractor serverInteractor)
         {
             // get id, name and type
@@ -36,8 +41,12 @@ namespace Hestia.Backend.Models.Deserializers
             return device;
         }
 
-        // Use this function if you want to deserialize multiple devices.
-        // Useful when you get all the devices from the server and want to deserialize them into a list of devices.
+        /// <summary>
+        /// Deserializes a json object into a list of Device objects.
+        /// </summary>
+        /// <param name="devices"></param>
+        /// <param name="serverInteractor"></param>
+        /// <returns>A list of Device objects</returns>
         public List<Device> DeserializeDevices(JToken devices, HestiaServerInteractor serverInteractor)
         {
             List<Device> deviceList = new List<Device>();

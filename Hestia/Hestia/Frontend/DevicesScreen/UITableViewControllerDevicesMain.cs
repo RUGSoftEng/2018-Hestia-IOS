@@ -1,16 +1,18 @@
-﻿using CoreGraphics;
-using Hestia.Backend.Exceptions;
-using Hestia.Backend.Models;
-using Hestia.Backend;
+using CoreGraphics;
 using Hestia.Resources;
 using UIKit;
 using System;
 using System.Collections.Generic;
-using Hestia.Backend.SpeechRecognition;
 using Foundation;
+using Hestia.Backend.SpeechRecognition;
+using Hestia.Backend.Models;
+using Hestia.Frontend.DevicesScreen;
 using Hestia.Frontend.Resources;
-using Hestia.Frontend.DevicesScreen.EditDevice;
+using Hestia.Backend.Exceptions;
+using Hestia.Backend;
+using Hestia.Frontend;
 using Hestia.Frontend.SettingsScreen;
+using Hestia.Frontend.DevicesScreen.EditDevice;
 
 namespace Hestia.Frontend.DevicesScreen
 {
@@ -204,6 +206,11 @@ namespace Hestia.Frontend.DevicesScreen
             ReloadButtons(DevicesTable.Editing);
         }
 
+
+        /// <summary>
+        /// This method is called when the Devices main screen first appears and loads the header with the
+        /// Speech Recognition icon, refreshes the devices list and sets the edit/done and settings buttons
+        /// </summary>
         public override void ViewDidLoad()
         { 
             base.ViewDidLoad();
@@ -246,6 +253,7 @@ namespace Hestia.Frontend.DevicesScreen
         {
             base.ViewDidAppear(animated);
             RefreshDeviceList();
+            TableView.ReloadData();
         }
 
         /// <summary>
@@ -271,6 +279,7 @@ namespace Hestia.Frontend.DevicesScreen
                     NavigationController.PushViewController(uITableViewControllerGlobalSettingsScreen, true);
                 }
             }
+            sender.Enabled = false;
         }
 
         /// <summary>
@@ -280,112 +289,127 @@ namespace Hestia.Frontend.DevicesScreen
         {
             RefreshControl.BeginRefreshing();
             RefreshDeviceList();
+            TableView.ReloadData();
             RefreshControl.EndRefreshing();
         }
 
+        /// <summary>
+        /// This method processes the speech recognition result.
+        /// It can perform five actions: turning on a device, turning off a device, adding a new device, editing a device and removing a device.
+        /// </summary>
+        /// <param name="result"></param>
         public void ProcessSpeech(string result)
         {
             Device device;
-            result = result.ToLower();
-            if (result.Contains("activate") || (result.Contains("turn") && result.Contains("on")))
-            {
-                device = GetDevice(result);
-                if (device != null)
-                {
-                    SetDevice(device, true);
-                }
-            }
-            else if (result.Contains("deactivate") || (result.Contains("turn") && result.Contains("off")))
-            {
-                device = GetDevice(result);
-                if (device != null)
-                {
-                    SetDevice(device, false);
-                }
-                else
-                {
-                    WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
-                }
-            } 
-            else if( result.Contains("add device") || (result.Contains("new device")))
-            {
-                ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
-            } 
-            else if (result.Contains("edit")) 
-            {
-                device = GetDevice(result);
-                if (device != null)
-                {
-                    UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this);
-                    editViewController.device = device;
-                    NavigationController.PushViewController(editViewController, true);
-                }
-                else 
-                {
-                    WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
-                }
-            }
-            else if (result.Contains("remove") || result.Contains("delete"))
-            {
-                device = GetDevice(result);
-                if (device != null)
-                {
-                    // Loop over devices until device is found
-                    for (int section = 0; section < ((TableSourceDevicesMain)DevicesTable.Source).serverDevices.Count; section++)
-                    {
-                        var devices = ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section];
-                        for (int row = 0; row < devices.Count; row++)
-                        {
-                            if (device.DeviceId.Equals(devices[row].DeviceId))
-                            {
-                                if (Globals.LocalLogin)
-                                {
-                                    try
-                                    {   // remove device from server   
-                                        Globals.LocalServerinteractor.RemoveDevice(devices[row]);
-                                    }
-                                    catch (ServerInteractionException ex)
-                                    {
-                                        Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
-                                        Console.Out.WriteLine(ex);
-                                    }
-                                }
-                                else // Global login
-                                {
-                                    var deviceServerInteractor = devices[row].ServerInteractor;
-                                    try
-                                    {
-                                        deviceServerInteractor.RemoveDevice(devices[row]);
-                                    }
-                                    catch (ServerInteractionException ex)
-                                    {
-                                        Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
-                                        Console.Out.WriteLine(ex);
-                                    }
-                                }
-
-                                // Remove device from list with devices and refresh device list
-                                ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section].RemoveAt(row);
-                                RefreshDeviceList();
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
-                }
-            }
-            else if (result == null)
-            {
+            if (result == null)
+            {   // Something went wrong with recognizing speech
                 WarningMessage.Display(strings.speechError, strings.tryAgain, this);
             }
             else
             {
-                WarningMessage.Display(result + " " + strings.speechNotACommand, strings.tryAgain, this);
+                result = result.ToLower();
+                if (result.Contains("activate") || (result.Contains("turn") && result.Contains("on")))
+                {   // Turning on a device
+                    device = GetDevice(result);
+                    if (device != null)
+                    {
+                        SetDevice(device, true);
+                    }
+                }
+                else if (result.Contains("deactivate") || (result.Contains("turn") && result.Contains("off")))
+                {   // Turning off a device
+                    device = GetDevice(result);
+                    if (device != null)
+                    {
+                        SetDevice(device, false);
+                    }
+                    else
+                    {
+                        WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                    }
+                }
+                else if (result.Contains("add device") || (result.Contains("new device")))
+                {   // Adding a new device
+                    ((TableSourceDevicesMain)DevicesTable.Source).InsertAction();
+                }
+                else if (result.Contains("edit"))
+                {   // Editing a device
+                    device = GetDevice(result);
+                    if (device != null)
+                    {
+                        UIViewControllerEditDeviceName editViewController = new UIViewControllerEditDeviceName(this);
+                        editViewController.device = device;
+                        NavigationController.PushViewController(editViewController, true);
+                    }
+                    else
+                    {
+                        WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                    }
+                }
+                else if (result.Contains("remove") || result.Contains("delete"))
+                {   // Removing a device
+                    device = GetDevice(result);
+                    if (device != null)
+                    {
+                        // Loop over devices until device is found
+                        for (int section = 0; section < ((TableSourceDevicesMain)DevicesTable.Source).serverDevices.Count; section++)
+                        {
+                            var devices = ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section];
+                            for (int row = 0; row < devices.Count; row++)
+                            {
+                                if (device.DeviceId.Equals(devices[row].DeviceId))
+                                {
+                                    if (Globals.LocalLogin)
+                                    {
+                                        try
+                                        {   // Remove device from server   
+                                            Globals.LocalServerinteractor.RemoveDevice(devices[row]);
+                                        }
+                                        catch (ServerInteractionException ex)
+                                        {
+                                            Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
+                                            Console.Out.WriteLine(ex);
+                                        }
+                                    }
+                                    else // Global login
+                                    {
+                                        var deviceServerInteractor = devices[row].ServerInteractor;
+                                        try
+                                        {
+                                            deviceServerInteractor.RemoveDevice(devices[row]);
+                                        }
+                                        catch (ServerInteractionException ex)
+                                        {
+                                            Console.WriteLine("Exception while removing device. (Bug in server: exception is always thrown)");
+                                            Console.Out.WriteLine(ex);
+                                        }
+                                    }
+
+                                    // Remove device from list with devices and refresh device list
+                                    ((TableSourceDevicesMain)DevicesTable.Source).serverDevices[section].RemoveAt(row);
+                                    RefreshDeviceList();
+                                    TableView.ReloadData();
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        WarningMessage.Display(strings.noDeviceFound, strings.pronounceDeviceNameCorrectly, this);
+                    }
+                }
+                else
+                {   // Result did not contain any of the above keywords
+                    WarningMessage.Display(result + " " + strings.speechNotACommand, strings.tryAgain, this);
+                }
             }
         }
 
+        /// <summary>
+        /// Sets the boolean state of a device.
+        /// </summary>
+        /// <param name="device"></param>
+        /// <param name="on_off"></param>
         public void SetDevice(Device device, bool on_off)
         {
             foreach (Backend.Models.Activator act in device.Activators)
@@ -410,6 +434,11 @@ namespace Hestia.Frontend.DevicesScreen
             }
         }
 
+        /// <summary>
+        /// Searches for a device given a string which may or may not contain the device name.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns>A device object</returns>
         public Device GetDevice(string result)
         {
             foreach (Device device in devices)

@@ -2,15 +2,15 @@
 using System;
 using System.Collections.Generic;
 using UIKit;
-using Hestia.Backend;
 using Hestia.Resources;
 using Auth0.OidcClient;
-using Hestia.Backend.Authentication;
 using System.Threading.Tasks;
 using IdentityModel.OidcClient;
+using Hestia.Backend.Authentication;
+using Hestia.Frontend.Resources;
+using Hestia.Backend;
 using Hestia.Backend.Exceptions;
 using Hestia.Backend.Models;
-using Hestia.Frontend.Resources;
 
 namespace Hestia.Frontend.EntryScreen
 {
@@ -168,8 +168,8 @@ namespace Hestia.Frontend.EntryScreen
             userDefaults.SetString(accessToken, strings.defaultsAccessTokenHestia);
 
             Globals.LocalLogin = false;
-            NetworkHandler networkHandler = new NetworkHandler(strings.hestiaWebServerAddress, accessToken);
-            CreateServerInteractorAndSegue(networkHandler);
+            Globals.HestiaWebserverNetworkHandler = new NetworkHandler(strings.hestiaWebServerAddress, accessToken);
+            CreateServerInteractorAndSegue(Globals.HestiaWebserverNetworkHandler);
         }
 
         /// <summary>
@@ -178,10 +178,10 @@ namespace Hestia.Frontend.EntryScreen
         /// </summary>
         void CreateServerInteractorAndSegue(NetworkHandler networkHandler)
         {
-            HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(networkHandler);
+            Globals.HestiaWebServerInteractor = new HestiaWebServerInteractor(Globals.HestiaWebserverNetworkHandler);
             try
             {
-                hestiaWebServerInteractor.PostUser();                
+                Globals.HestiaWebServerInteractor.PostUser();                
             }
             catch (ServerInteractionException ex)
             {
@@ -191,7 +191,7 @@ namespace Hestia.Frontend.EntryScreen
             Globals.Auth0Servers = new List<HestiaServer>();
             try
             {
-                List<HestiaServer> servers = hestiaWebServerInteractor.GetServers();
+                List<HestiaServer> servers = Globals.HestiaWebServerInteractor.GetServers();
                 Globals.Auth0Servers = servers;
                 PerformSegue(strings.segueToLocalGlobalToServerSelect, this);
             }

@@ -1,16 +1,19 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Foundation;
-using Newtonsoft.Json.Linq;
-using UIKit;
 
 namespace Hestia.Backend.Models.Deserializers
 {
+    /// <summary>
+    /// Class for deserializing a json object into a HestiaServer object or List of HestiaServer objects.
+    /// </summary>
     public class HestiaServerDeserializer
     {
+        /// <summary>
+        /// Deserializes a json object into a HestiaServer object.
+        /// </summary>
+        /// <param name="jsonServer"></param>
+        /// <param name="networkHandler"></param>
+        /// <returns>A HestiaServer object</returns>
         public HestiaServer DeserializeServer(JToken jsonServer, NetworkHandler networkHandler)
         {
             string id = jsonServer.Value<string>("server_id");
@@ -30,6 +33,12 @@ namespace Hestia.Backend.Models.Deserializers
             return server;
         }
 
+        /// <summary>
+        /// Deserializes a json object into a list of HestiaServer objects.
+        /// </summary>
+        /// <param name="jsonServers"></param>
+        /// <param name="networkHandler"></param>
+        /// <returns>A list of HestiaServer objects</returns>
         public List<HestiaServer> DeserializeServers(JToken jsonServers, NetworkHandler networkHandler)
         {
             List<HestiaServer> servers = new List<HestiaServer>();

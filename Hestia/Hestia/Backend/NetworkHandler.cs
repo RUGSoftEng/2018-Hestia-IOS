@@ -1,14 +1,16 @@
 using Hestia.Backend.Exceptions;
 using Hestia.Resources;
-using Hestia.Utils.Backend;
+using Hestia.Backend.Utils;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System;
 using System.Net;
-using System.Runtime.Serialization;
 
 namespace Hestia.Backend
 {
+    /// <summary>
+    /// A class which handles interaction between front and back end.
+    /// </summary>
     public class NetworkHandler
     {
         string address; // address including connection method and optionally a port
@@ -45,6 +47,11 @@ namespace Hestia.Backend
             TrustAllCerts();
         }
 
+        /// <summary>
+        /// Performs a http GET request given an endpoint.
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns>The response in JToken form</returns>
         public virtual JToken Get(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.GET);
@@ -53,6 +60,11 @@ namespace Hestia.Backend
             return jsonResponse;
         }
 
+        /// <summary>
+        /// Performs a http POST request given a json payload and an endpoint.
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns>The response in JToken form</returns>
         public virtual JToken Post(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.POST);
@@ -64,6 +76,11 @@ namespace Hestia.Backend
             return jsonResponse;
         }
 
+        /// <summary>
+        /// Performs a http DELETE request given an endpoint.
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns>The response in JToken form</returns>
         public virtual JToken Delete(string endpoint)
         {
             var request = new RestRequest(endpoint, Method.DELETE);
@@ -72,6 +89,11 @@ namespace Hestia.Backend
             return jsonResponse;
         }
 
+        /// <summary>
+        /// Performs a http PUT request given a json payload and an endpoint.
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns>The response in JToken form</returns>
         public virtual JToken Put(JObject payload, string endpoint)
         {
             var request = new RestRequest(endpoint, Method.PUT);
@@ -83,6 +105,11 @@ namespace Hestia.Backend
             return jsonResponse;
         }
 
+        /// <summary>
+        /// This method sets a request timeout and then executes a rest request. If the response is negative it throws an error else if returns the json response.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns>The response in JToken form</returns>
         JToken ExecuteRequest(RestRequest request)
         {
             request.Timeout = Int32.Parse(strings.requestTimeout);
@@ -133,6 +160,9 @@ namespace Hestia.Backend
             client = new RestClient(baseUrl);
         }
 
+        /// <summary>
+        /// This method adds a certificate validation handler. Returning true will allow ignoring ssl validation errors.
+        /// </summary>
         void TrustAllCerts()
         {
             ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;

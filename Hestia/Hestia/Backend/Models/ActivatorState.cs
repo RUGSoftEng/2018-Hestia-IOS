@@ -1,15 +1,10 @@
 ﻿using System;
 
-/*
- * Wrapper class for the different state fields. The activator state has a type T, which is
- * inferred using a custom JSON deserializer.
- *
- * param <T> Type of the state of the activator. This can be a boolean (for a switch) or a float
- *            (for a slider).
- * see ActivatorDeserializer
- */
 namespace Hestia.Backend.Models
 {
+    /// <summary>
+    /// Wrapper class for the different state fields.
+    /// </summary>
     public class ActivatorState
     {
         object rawState;
@@ -32,25 +27,9 @@ namespace Hestia.Backend.Models
             this.type = type;
         }
         
-        override
-        public String ToString()
+        public override string ToString()
         {
-            return type + " - " + rawState;
-        }
-
-        new
-        public bool Equals(Object obj)
-        {
-            if (!(obj.GetType() == this.GetType())) return false;
-            ActivatorState activatorState = (ActivatorState) obj;
-            return (this == activatorState || (this.GetType().Equals(activatorState.GetType()) &&
-                    this.RawState.Equals(activatorState.RawState)));
-        }
-
-        new
-        public int GetHashCode()
-        {
-            throw new NotImplementedException();
+            return type + " " + rawState;
         }
     }
 }

@@ -1,5 +1,9 @@
+
 ﻿namespace Hestia.Backend.Models
 {
+    /// <summary>
+    /// This is a wrapper class for a hestia server on the Hestia Web Team server.
+    /// </summary>
     public class HestiaServer
     {
         public HestiaServerInteractor Interactor { get; set; }

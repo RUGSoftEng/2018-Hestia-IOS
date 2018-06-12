@@ -110,7 +110,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="5541" kind="show" id="5898"/>
+                                            <segue id="103652" destination="103574" kind="show"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -295,7 +295,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5547" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1189" y="709"/>
+            <point key="canvasLocation" x="1338" y="678"/>
         </scene>
         <!--Account-->
         <!--Username-->
@@ -555,7 +555,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue id="89822" destination="5541" kind="show"/>
+                                            <segue id="103716" destination="103574" kind="show"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="90225" accessoryType="disclosureIndicator">
@@ -598,6 +598,7 @@
                                                     </state>
                                                     <connections>
                                                         <segue id="88708" destination="73502" kind="presentation"/>
+                                                        <action selector="UIButton88669_TouchUpInside:" destination="63369" id="105008" eventType="touchUpInside"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -690,14 +691,13 @@
         </scene>
         <scene sceneID="97331">
             <objects>
-                <tableViewController id="97332" sceneMemberID="viewController" customClass="ViewControllerServerList">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="97334">
+                <tableViewController id="97332" sceneMemberID="viewController" customClass="ViewControllerServerList" storyboardIdentifier="ServerList">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="97334">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="97337" reuseIdentifier="servercell">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="63" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="97337" id="97338">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
@@ -758,5 +758,134 @@
             </objects>
             <point key="canvasLocation" x="-1232" y="2358"/>
         </scene>
+        <scene sceneID="105464">
+            <objects>
+                <viewController id="105465" sceneMemberID="viewController" storyboardIdentifier="AddServer" customClass="AddServerViewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="105462"/>
+                        <viewControllerLayoutGuide type="bottom" id="105463"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="105466">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" colorSpace="calibratedRGB" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="105467" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-361" y="3207"/>
+        </scene>
+        <scene sceneID="103573">
+            <objects>
+                <tableViewController id="103574" sceneMemberID="viewController" customClass="UITableViewControllerContacts">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="103575">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="103574" id="103576"/>
+                            <outlet property="delegate" destination="103574" id="103577"/>
+                        </connections>
+                        <sections>
+                            <tableViewSection id="103722" headerTitle="Contact Us">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="103723">
+                                        <rect key="frame" x="0.0" y="63" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="103723" id="103724">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105005" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                                    <rect key="frame" x="20" y="7" width="281" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <state key="normal" title="Opinion about Hestia"/>
+                                                    <connections>
+                                                        <action selector="UIButton105005_TouchUpInside:" destination="103574" id="105009" eventType="touchUpInside"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <accessibility key="accessibilityConfiguration">
+                                                <accessibilityTraits key="traits" button="YES"/>
+                                            </accessibility>
+                                            <constraints>
+                                                <constraint id="108204" firstItem="103724" firstAttribute="trailing" secondItem="105005" secondAttribute="trailing" constant="19"/>
+                                                <constraint id="108205" firstItem="105005" firstAttribute="leading" secondItem="103724" secondAttribute="leading" constant="20"/>
+                                                <constraint id="108206" firstItem="105005" firstAttribute="centerY" secondItem="103724" secondAttribute="centerY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="103725">
+                                        <rect key="frame" x="0.0" y="107" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="103725" id="103726">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105006" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                                    <rect key="frame" x="44" y="7" width="233" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <state key="normal" title="Report Bugs"/>
+                                                    <connections>
+                                                        <action selector="UIButton105006_TouchUpInside:" destination="103574" id="105658" eventType="touchUpInside"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint id="108200" firstItem="103726" firstAttribute="trailing" secondItem="105006" secondAttribute="trailing" constant="43"/>
+                                                <constraint id="108201" firstItem="105006" firstAttribute="leading" secondItem="103726" secondAttribute="leading" constant="44"/>
+                                                <constraint id="108202" firstItem="105006" firstAttribute="centerY" secondItem="103726" secondAttribute="centerY"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="104064">
+                                        <rect key="frame" x="0.0" y="151" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="104064" id="104065">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="105007" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
+                                                    <rect key="frame" x="44" y="7" width="233" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                    <state key="normal" title="Issues using Hestia"/>
+                                                    <connections>
+                                                        <action selector="UIButton105007_TouchUpInside:" destination="103574" id="105659" eventType="touchUpInside"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint id="108197" firstItem="105007" firstAttribute="centerY" secondItem="104065" secondAttribute="centerY"/>
+                                                <constraint id="108198" firstItem="104065" firstAttribute="trailing" secondItem="105007" secondAttribute="trailing" constant="43"/>
+                                                <constraint id="108199" firstItem="105007" firstAttribute="leading" secondItem="104065" secondAttribute="leading" constant="44"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" button="YES"/>
+                                        </accessibility>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="103580" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1258" y="-109"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="LogoLaunchscreen" width="431" height="206"/>
+        <image name="AddDeviceIcon" width="50" height="50"/>
+        <image name="VoiceControlIcon" width="50" height="50"/>
+        <image name="VoiceControlIconInverted" width="50" height="50"/>
+        <image name="VoiceControlIcon2" width="50" height="50"/>
+        <image name="ArrowRight" width="50" height="50"/>
+    </resources>
 </document>

@@ -3,6 +3,9 @@ using UIKit;
 
 namespace Hestia.Backend.Authentication
 {
+    /// <summary>
+    /// This class is used to create an auth0 authenticator client.
+    /// </summary>
     public static class Auth0Connector
     {
         public static Auth0Client CreateAuthClient(UIViewController uIViewController)

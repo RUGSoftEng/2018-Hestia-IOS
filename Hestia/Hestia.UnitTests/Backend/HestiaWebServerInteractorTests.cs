@@ -261,7 +261,7 @@ namespace Hestia.UnitTests.Backend
         {
             Mock<NetworkHandler> mockNetworkHandler = new Mock<NetworkHandler>(ADDRESS, TOKEN);
             mockNetworkHandler.CallBase = true;
-            mockNetworkHandler.Setup(x => x.Put(It.IsAny<JObject>(), It.IsAny<string>())).Returns(new JObject());
+            mockNetworkHandler.Setup(x => x.Put(It.IsAny<JObject>(), It.IsAny<string>())).Throws(new ServerInteractionException());
             serverInteractor.NetworkHandler = mockNetworkHandler.Object;
 
             HestiaServer server = new HestiaServer(false, new HestiaServerInteractor(networkHandler));

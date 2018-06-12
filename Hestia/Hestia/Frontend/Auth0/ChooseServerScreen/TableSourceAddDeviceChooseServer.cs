@@ -6,6 +6,7 @@ using Hestia.Frontend.Resources;
 using Hestia.Frontend.DevicesScreen.AddDeviceScreen;
 
 namespace Hestia.Frontend.Auth0.ChooseServerScreen
+
 {
     /// <summary>
     /// This class defines the contents and behaviour of the TableView living in <see cref="ViewControllerChooseServer"/>.
@@ -49,7 +50,6 @@ namespace Hestia.Frontend.Auth0.ChooseServerScreen
             }
 
             cell.TextLabel.Text = Globals.GetSelectedServers()[indexPath.Row].Name;
-
             return cell;
         }
 
@@ -60,14 +60,20 @@ namespace Hestia.Frontend.Auth0.ChooseServerScreen
         /// </summary>
         public override void RowSelected(UITableView tableView, NSIndexPath indexPath)
         { 
+            UITableViewCell cell = tableView.CellAt(indexPath);
+
             Globals.ServerToAddDeviceTo = Globals.GetInteractorsOfSelectedServers()[indexPath.Row];
             UITableViewControllerAddDevice addDevice =
-                owner.Storyboard.InstantiateViewController(strings.AddManufacturerViewController)
-                    as UITableViewControllerAddDevice;
+            owner.Storyboard.InstantiateViewController(strings.AddManufacturerViewController)
+                as UITableViewControllerAddDevice;
             if (addDevice != null)
             {
                 owner.NavigationController.PushViewController(addDevice, true);
             }
+
+            tableView.DeselectRow(indexPath,true);
         }
     }
 }
+
+

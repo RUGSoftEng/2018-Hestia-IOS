@@ -1,18 +1,16 @@
-﻿using System;
-using Speech;
+﻿using AVFoundation;
 using Foundation;
-using AVFoundation;
 using Plugin.SimpleAudioPlayer;
 using UIKit;
 using Hestia.Resources;
 using Hestia.Backend.Models;
+using System;
+using Speech;
 
 namespace Hestia.Backend.SpeechRecognition
 {
     /// <summary>
     /// This class can be used to form a speech dialog with the user.
-    /// It has several functions for recording voice and excuting
-    /// commands based on what was said.
     /// </summary>
     class SpeechRecognition
     {
@@ -30,6 +28,9 @@ namespace Hestia.Backend.SpeechRecognition
             this.viewController = viewController;
         }
 
+        /// <summary>
+        /// This method will show a popup for accepting or declining speech recognition. 
+        /// </summary>
         public static void RequestAuthorization() 
         {
             SFSpeechRecognizer.RequestAuthorization((SFSpeechRecognizerAuthorizationStatus status) => {});

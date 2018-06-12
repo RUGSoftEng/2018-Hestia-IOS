@@ -138,6 +138,15 @@
       <DependentUpon>ViewControllerChooseServer.cs</DependentUpon>
     </Compile>
     <Compile Include="Backend\SpeechRecognition\IViewControllerSpeech.cs" />
+    <Compile Include="Frontend\Auth0\AddServerViewController.cs" />
+    <Compile Include="Frontend\Auth0\AddServerViewController.designer.cs">
+      <DependentUpon>AddServerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\Auth0\ServerSelectScreen\UIViewControllerEditServerName.cs" />
+    <Compile Include="Frontend\SettingsScreen\UITableViewControllerContacts.cs" />
+    <Compile Include="Frontend\SettingsScreen\UITableViewControllerContacts.designer.cs">
+      <DependentUpon>UITableViewControllerContacts.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -221,6 +230,7 @@
     <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIcon2.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIconInverted.imageset\" />
+    <Folder Include="Assets.xcassets\ArrowRight.imageset\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -303,6 +313,18 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_150.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
