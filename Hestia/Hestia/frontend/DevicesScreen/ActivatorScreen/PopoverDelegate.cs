@@ -1,8 +1,10 @@
-﻿using System;
-using UIKit;
+﻿using UIKit;
 
 namespace Hestia.DevicesScreen.ActivatorScreen
 {
+    /// <summary>
+    /// This class defines the behaviour of the pop-over that is presented on the Devices main screen with the activators.
+    /// </summary>
     public class PopoverDelegate : UIPopoverPresentationControllerDelegate
     {
         protected override void Dispose(bool disposing)

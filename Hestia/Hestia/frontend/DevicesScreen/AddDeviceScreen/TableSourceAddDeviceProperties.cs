@@ -8,9 +8,11 @@ using Hestia.DevicesScreen.AddDeviceScreen;
 namespace Hestia.DevicesScreen
 {
     /// <summary>
-    /// This view is the one that controls the way that the table is
-    /// showed. This tableSource is dynamic, that means that the required info
+    /// This is the TableSource that defines the contents of the third and final screen that is displayed in 
+    /// the Add devices sequence of screen. One can enter the properties of the device in this screen. 
+    /// This TableSource has dynamic contents, that means that the required info
     /// for each device will be different, it depends on the type of device.
+    /// See, <see cref="UITableViewControllerAddDeviceProperties"/>
     /// </summary>
     public class TableSourceAddDeviceProperties : UITableViewSource
     {
@@ -21,11 +23,12 @@ namespace Hestia.DevicesScreen
 
         UITableViewControllerAddDeviceProperties owner;
 
-        // Constructor. Fill propertyNames with a copy of current keys
-        public TableSourceAddDeviceProperties(
-                    UITableViewControllerAddDeviceProperties owner)
+        /// <summary>
+        /// Constructor. Fills propertyNames with a copy of current keys to display in the inputfields as placeholder.
+        /// See, <see cref="PropertyCell"/>.
+        /// </summary>
+        public TableSourceAddDeviceProperties(UITableViewControllerAddDeviceProperties owner)
         {
-            this.owner = owner;
             inputs = owner.inputFields;
             completeInfo = owner.pluginInfo;
             propertyNames = new string[completeInfo.RequiredInfo.Keys.Count];

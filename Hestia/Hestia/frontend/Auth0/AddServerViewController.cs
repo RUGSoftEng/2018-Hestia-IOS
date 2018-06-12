@@ -1,14 +1,11 @@
 using System;
 using UIKit;
 using CoreGraphics;
-using System.Collections;
 using Hestia.DevicesScreen.resources;
-using Hestia.backend.models;
 using Hestia.backend.exceptions;
-using Hestia.frontend;
 using System.Text.RegularExpressions;
 using Hestia.backend;
-using Hestia.Resources;
+using Hestia.frontend;
 
 namespace Hestia
 {
@@ -24,14 +21,13 @@ namespace Hestia
         {
         }
 
-		public override void ViewDidLoad()
-		{
+        public override void ViewDidLoad()
+        {
             base.ViewDidLoad();
 
             Regex rxIP = new Regex(@"((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.|$)){4}");
             Regex rxName = new Regex(@"^(.)+$");
             MatchCollection matchesName, matchesIP;
-
 
             // Rectangular cell displaying the label and inputfield
             UIView rectangle = new UIView(new CGRect(0, 90, View.Bounds.Width, 50));
@@ -84,7 +80,6 @@ namespace Hestia
             changePortField.Placeholder = "Introduce a port";
             rectangle3.AddSubview(changePortField);
 
-            //View.BackgroundColor = Globals.DefaultLightGray;
             Title = "New server";
 
             // Save button
@@ -104,29 +99,12 @@ namespace Hestia
                     okAlertController.AddAction(UIAlertAction.Create("OK", UIAlertActionStyle.Default, null));
                     PresentViewController(okAlertController, true, null);
                 }
-                else{
+                else
+                {
                     changeIPField.Text = "https://" + changeIPField.Text;
-                    HestiaWebServerInteractor hestiaWebServerInteractor = new HestiaWebServerInteractor(new NetworkHandler(strings.hestiaWebServerAddress, strings.defaultsAccessTokenHestia));
-
                     try
                     {
-
-                        hestiaWebServerInteractor.PostUser();
-                    }
-                    catch (ServerInteractionException ex)
-
-                    {
-                        Console.WriteLine("Exception while posting");
-                        Console.WriteLine(ex);
-                    }
-                    try
-                    {
-                        Console.WriteLine(changeNameField.Text);
-                        Console.WriteLine(changeIPField.Text);
-                        Console.WriteLine(int.Parse(changePortField.Text));
-                        //Globals.HestiaWebServerInteractor.GetServers();
-                       // Globals.HestiaWebServerInteractor.PostUser();
-                        hestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
+                        Globals.HestiaWebServerInteractor.AddServer(changeNameField.Text, changeIPField.Text, int.Parse(changePortField.Text));
                         NavigationController.PopViewController(true);
                     }
                     catch (ServerInteractionException ex)
@@ -134,12 +112,11 @@ namespace Hestia
                     {
                         Console.WriteLine("Exception while using serverInteractor");
                         Console.WriteLine(ex);
+                        WarningMessage.Display("Exception", "Exception while adding new local server to Webserver", this);
                     }
-
-
                 }
             });
             NavigationItem.RightBarButtonItem = done;
-		}
+        }
 	}
 }

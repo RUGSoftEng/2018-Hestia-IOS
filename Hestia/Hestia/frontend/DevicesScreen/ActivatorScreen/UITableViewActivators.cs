@@ -4,6 +4,10 @@ using Hestia.backend.models;
 
 namespace Hestia.DevicesScreen.ActivatorScreen
 {
+    /// <summary>
+    /// The TableViewController in which the TableView containing the list with 
+    /// activators and their names. This is presented as a pop-over in the Devices main screen.
+    /// </summary>
     public partial class UITableViewActivators : UITableViewController
     {
         public Device device;
