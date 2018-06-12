@@ -378,3 +378,50 @@ Updating architecture document
 Updating architecture document 
 Updating architecture document + collecting documents + PR
 Updating timetracking
+Customer meeting
+Team meeting
+Team meeting + working out meeting notes
+Working out meeting notes
+Replying to and Fixing Feiko’s comments
+Replying to and Fixing Feiko’s comments
+Documenting TableSourceDevicesMain
+Analyze source + review PR
+Replace warning message by static method
+Looking at async problems
+Fix display warning in Appdelegate
+Documenting Code
+Documenting Code + review PR Daan + helping Juan
+Documenting Code + review PR Daan + helping Juan
+Helping Juan fix server bug + debugging addserverViewconroller
+Helping Juan fix server bug + debugging addserverViewconroller
+Helping Juan fix server bug + debugging addserverViewconroller
+Review PRs Daan and Andrei. Trying to fix addServer. Refactor Contact page
+Review PRs Daan and Andrei. Trying to fix addServer. Refactor Contact page
+Documentation frontend.
+Documentation frontend.
+Documentation frontend.
+Documentation frontend.
+Documentation frontend.
+Documenting + trying to get rid of warning presenting view controller
+Documenting + trying to get rid of warning presenting view controller
+Documenting + trying to get rid of warning presenting view controller
+Moving speech icon to bottom of page
+Moving speech icon to bottom of page
+Moving speech icon to bottom of page
+ServerList screen add server
+Next icon in serverlist screen
+Next icon in serverlist screen
+Next icon serverlist screen + debugging select serverlist
+Next icon serverlist screen + debugging select serverlist
+Next icon serverlist screen + debugging select serverlist
+Fix other PRs icons
+Fix other PRs icons
+Review PR Daan + fix multiple settingsscreen + asking Lars about button position
+Update readme
+Resolve merge conflicts + update readme
+Testing mail functionality contact page. Testing speech recognition remove device
+Testing mail functionality contact page. Testing speech recognition remove device
+Testing mail functionality contact page. Testing speech recognition remove device
+Review PR + Fix speech recognition null exception
+Update architecture document + fix merge conflicts Juan’s PR
+Update timetracking
