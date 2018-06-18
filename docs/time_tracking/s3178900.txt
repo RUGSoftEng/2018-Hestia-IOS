@@ -194,3 +194,15 @@ Implementing voice control (most of the above was bug fixing).
 Some more merging and reviewing.
 Updating the architecture document.
 Making final PR.
+Final bug fixes for the deployment.
+Final bug fixes for the deployment.
+Final bug fixes for the deployment.
+Looking into fixing server discovery
+Looking into fixing server discovery
+Looking into fixing server discovery
+Failing and seeing that i need swift which i cannot use.
+Merging and resolving issues.
+Merging and resolving issues.
+Merging and resolving issues.
+Updating time tracking.
+Making final pr.

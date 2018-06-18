@@ -64,93 +64,89 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="backend\exceptions\ServerInteractionException.cs" />
-    <Compile Include="backend\HestiaWebServerInteractor.cs" />
-    <Compile Include="backend\models\ActivatorState.cs" />
-    <Compile Include="backend\models\Activator.cs" />
-    <Compile Include="backend\models\deserializers\ActivatorDeserializer.cs" />
-    <Compile Include="backend\models\deserializers\DeviceDeserializer.cs" />
-    <Compile Include="backend\models\deserializers\HestiaServerDeserializer.cs" />
-    <Compile Include="backend\models\Device.cs" />
-    <Compile Include="backend\models\PluginInfo.cs" />
-    <Compile Include="backend\NetworkHandler.cs" />
-    <Compile Include="backend\speech_recognition\SpeechRecognition.cs" />
-    <Compile Include="backend\utils\server_discovery\ServerDelegate.cs" />
-    <Compile Include="backend\models\HestiaServer.cs" />
-    <Compile Include="backend\HestiaServerInteractor.cs" />
-    <Compile Include="backend\utils\JsonValidator.cs" />
-    <Compile Include="backend\utils\PingServer.cs" />
+    <Compile Include="Backend\Exceptions\ServerInteractionException.cs" />
+    <Compile Include="Backend\HestiaWebServerInteractor.cs" />
+    <Compile Include="Backend\Models\ActivatorState.cs" />
+    <Compile Include="Backend\Models\Activator.cs" />
+    <Compile Include="Backend\Models\Deserializers\ActivatorDeserializer.cs" />
+    <Compile Include="Backend\Models\Deserializers\DeviceDeserializer.cs" />
+    <Compile Include="Backend\Models\Deserializers\HestiaServerDeserializer.cs" />
+    <Compile Include="Backend\Models\Device.cs" />
+    <Compile Include="Backend\Models\PluginInfo.cs" />
+    <Compile Include="Backend\NetworkHandler.cs" />
+    <Compile Include="Backend\SpeechRecognition\SpeechRecognition.cs" />
+    <Compile Include="Backend\Utils\ServerDiscovery\ServerDelegate.cs" />
+    <Compile Include="Backend\Models\HestiaServer.cs" />
+    <Compile Include="Backend\HestiaServerInteractor.cs" />
+    <Compile Include="Backend\Utils\JsonValidator.cs" />
+    <Compile Include="Backend\Utils\PingServer.cs" />
     <Compile Include="Main.cs" />
     <None Include="app.config" />
-    <None Include="GettingStarted.Xamarin" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="packages.config" />
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\PropertyCell.cs" />
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\TableSourceAddDeviceDevice.cs" />
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\TableSourceAddDeviceManufacturer.cs" />
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\TableSourceAddDeviceProperties.cs" />
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.cs" />
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.designer.cs">
-      <DependentUpon>..\..\..\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.cs" />
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.designer.cs">
-      <DependentUpon>..\..\..\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.cs" />
-    <Compile Include="frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.designer.cs">
-      <DependentUpon>..\..\..\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\DevicesScreen\EditDevice\UIViewControllerEditDeviceName.cs" />
-    <Compile Include="frontend\DevicesScreen\TableSourceDevicesMain.cs" />
-    <Compile Include="frontend\DevicesScreen\UITableViewControllerDevicesMain.cs" />
-    <Compile Include="frontend\DevicesScreen\UITableViewControllerDevicesMain.designer.cs">
-      <DependentUpon>..\..\DevicesScreen\UITableViewControllerDevicesMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\Local\UITableViewControllerServerConnect.cs" />
-    <Compile Include="frontend\Local\UITableViewControllerServerConnect.designer.cs">
-      <DependentUpon>..\..\DevicesScreen\UITableViewControllerServerConnect.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\DevicesScreen\ActivatorScreen\UITableViewActivators.cs" />
-    <Compile Include="frontend\DevicesScreen\ActivatorScreen\UITableViewActivators.designer.cs">
-      <DependentUpon>..\..\..\DevicesScreen\UITableViewActivators.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frontend\DevicesScreen\ActivatorScreen\TableSourceActivators.cs" />
-    <Compile Include="frontend\resources\Globals.cs" />
-    <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.cs" />
-    <Compile Include="frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.designer.cs">
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\PropertyCell.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\TableSourceAddDeviceDevice.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\TableSourceAddDeviceManufacturer.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\TableSourceAddDeviceProperties.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDevice.designer.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceDevice.designer.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.cs" />
+    <Compile Include="Frontend\DevicesScreen\AddDeviceScreen\UITableViewControllerAddDeviceProperties.designer.cs" />
+    <Compile Include="Frontend\DevicesScreen\EditDevice\UIViewControllerEditDeviceName.cs" />
+    <Compile Include="Frontend\DevicesScreen\TableSourceDevicesMain.cs" />
+    <Compile Include="Frontend\DevicesScreen\UITableViewControllerDevicesMain.cs" />
+    <Compile Include="Frontend\DevicesScreen\UITableViewControllerDevicesMain.designer.cs" />
+    <Compile Include="Frontend\Local\UITableViewControllerServerConnect.cs" />
+    <Compile Include="Frontend\Local\UITableViewControllerServerConnect.designer.cs" />
+    <Compile Include="Frontend\DevicesScreen\ActivatorScreen\UITableViewActivators.cs" />
+    <Compile Include="Frontend\DevicesScreen\ActivatorScreen\UITableViewActivators.designer.cs" />
+    <Compile Include="Frontend\DevicesScreen\ActivatorScreen\TableSourceActivators.cs" />
+    <Compile Include="Frontend\Resources\Globals.cs" />
+    <Compile Include="Frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.cs" />
+    <Compile Include="Frontend\SettingsScreen\UITableViewControllerLocalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerLocalSettingsScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Auth0\ServerSelectScreen\TableSourceServerList.cs" />
-    <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.cs" />
-    <Compile Include="frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
+    <Compile Include="Frontend\Auth0\ServerSelectScreen\TableSourceServerList.cs" />
+    <Compile Include="Frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.cs" />
+    <Compile Include="Frontend\SettingsScreen\UITableViewControllerGlobalSettingsScreen.designer.cs">
       <DependentUpon>UITableViewControllerGlobalSettingsScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\DevicesScreen\ActivatorScreen\PopoverDelegate.cs" />
-    <Compile Include="backend\authentication\Auth0Connector.cs" />
+    <Compile Include="Frontend\DevicesScreen\ActivatorScreen\PopoverDelegate.cs" />
+    <Compile Include="Backend\Authentication\Auth0Connector.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="frontend\Local\TableSourceServerDiscovery.cs" />
-    <Compile Include="frontend\EntryScreen\UIViewControllerLocalGlobal.cs" />
-    <Compile Include="frontend\EntryScreen\UIViewControllerLocalGlobal.designer.cs">
+    <Compile Include="Frontend\Local\TableSourceServerDiscovery.cs" />
+    <Compile Include="Frontend\EntryScreen\UIViewControllerLocalGlobal.cs" />
+    <Compile Include="Frontend\EntryScreen\UIViewControllerLocalGlobal.designer.cs">
       <DependentUpon>UIViewControllerLocalGlobal.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.cs" />
-    <Compile Include="frontend\Local\UITableViewControllerServerDiscovery.designer.cs">
+    <Compile Include="Frontend\Local\UITableViewControllerServerDiscovery.cs" />
+    <Compile Include="Frontend\Local\UITableViewControllerServerDiscovery.designer.cs">
       <DependentUpon>UITableViewControllerServerDiscovery.cs</DependentUpon>
     </Compile>
-    <Compile Include="backend\utils\server_discovery\AutoServerDicovery.cs" />
-    <Compile Include="frontend\WarningMessage.cs" />
-    <Compile Include="frontend\Auth0\ChooseServerScreen\TableSourceAddDeviceChooseServer.cs" />
-    <Compile Include="frontend\Auth0\ServerSelectScreen\ViewControllerServerList.cs" />
-    <Compile Include="frontend\Auth0\ServerSelectScreen\ViewControllerServerList.designer.cs">
+    <Compile Include="Backend\Utils\ServerDiscovery\AutoServerDicovery.cs" />
+    <Compile Include="Frontend\WarningMessage.cs" />
+    <Compile Include="Frontend\Auth0\ChooseServerScreen\TableSourceAddDeviceChooseServer.cs" />
+    <Compile Include="Frontend\Auth0\ServerSelectScreen\ViewControllerServerList.cs" />
+    <Compile Include="Frontend\Auth0\ServerSelectScreen\ViewControllerServerList.designer.cs">
       <DependentUpon>ViewControllerServerList.cs</DependentUpon>
     </Compile>
-    <Compile Include="frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.cs" />
-    <Compile Include="frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.designer.cs">
+    <Compile Include="Frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.cs" />
+    <Compile Include="Frontend\Auth0\ChooseServerScreen\ViewControllerChooseServer.designer.cs">
       <DependentUpon>ViewControllerChooseServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="backend\speech_recognition\IViewControllerSpeech.cs" />
+    <Compile Include="Backend\SpeechRecognition\IViewControllerSpeech.cs" />
+    <Compile Include="Frontend\Auth0\AddServerViewController.cs" />
+    <Compile Include="Frontend\Auth0\AddServerViewController.designer.cs">
+      <DependentUpon>AddServerViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frontend\Auth0\ServerSelectScreen\UIViewControllerEditServerName.cs" />
+    <Compile Include="Frontend\SettingsScreen\UITableViewControllerContacts.cs" />
+    <Compile Include="Frontend\SettingsScreen\UITableViewControllerContacts.designer.cs">
+      <DependentUpon>UITableViewControllerContacts.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Resources\strings.Designer.cs">
@@ -158,10 +154,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
-    <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="Frontend\Main.storyboard" />
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
-    <InterfaceDefinition Include="frontend\Devices2.storyboard" />
-    <InterfaceDefinition Include="LaunchScreenHestia.storyboard" />
+    <InterfaceDefinition Include="Frontend\Devices2.storyboard" />
+    <InterfaceDefinition Include="Frontend\LaunchScreenHestia.storyboard" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Auth0.OidcClient, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -229,9 +225,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets.xcassets\AddDeviceIcon.imageset\" />
+    <Folder Include="Assets.xcassets\d.imageset\" />
     <Folder Include="Assets.xcassets\LogoLaunchscreen.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIcon.imageset\" />
+    <Folder Include="Assets.xcassets\VoiceControlIcon2.imageset\" />
     <Folder Include="Assets.xcassets\VoiceControlIconInverted.imageset\" />
+    <Folder Include="Assets.xcassets\ArrowRight.imageset\" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -302,6 +301,30 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\VoiceControlIconInverted.imageset\microphone_icon_inverted_150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\VoiceControlIcon2.imageset\microphone_icon_inverted_150.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_50.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_100.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ArrowRight.imageset\right_arrow_150.png">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>

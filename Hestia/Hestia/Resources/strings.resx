@@ -309,7 +309,7 @@
   <data name="usersPath" xml:space="preserve">
     <value>users/</value>
   </data>
-  <data name="webserverIP" xml:space="preserve">
+  <data name="hestiaWebServerAddress" xml:space="preserve">
     <value>https://fathomless-reef-69954.herokuapp.com</value>
   </data>
   <data name="segueToServerDiscovery" xml:space="preserve">
@@ -364,7 +364,7 @@
     <value>https://</value>
   </data>
   <data name="voiceControlIconInverted" xml:space="preserve">
-    <value>VoiceControlIconInverted</value>
+    <value>VoiceControlIcon2</value>
   </data>
   <data name="noDeviceFound" xml:space="preserve">
     <value>No device found</value>
@@ -377,5 +377,20 @@
   </data>
   <data name="viewControllerAddDevice" xml:space="preserve">
     <value>AddDevice</value>
+  </data>
+  <data name="hestiaEmail" xml:space="preserve">
+    <value>hestia.contact.email@gmail.com</value>
+  </data>
+  <data name="speechError" xml:space="preserve">
+    <value>Error during speech recognition</value>
+  </data>
+  <data name="navigationControllerServerSelectList" xml:space="preserve">
+    <value>navigationServerList</value>
+  </data>
+  <data name="arrowRight" xml:space="preserve">
+    <value>ArrowRight</value>
+  </data>
+  <data name="addServerViewController" xml:space="preserve">
+    <value>AddServer</value>
   </data>
 </root>
